@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import OktaSignIn from '@okta/okta-signin-widget';
-import '@okta/okta-signin-widget/dist/css/okta-sign-in.min.css';
+// import '@okta/okta-signin-widget/dist/css/okta-sign-in.min.css';
+import LoginTextArea from './LoginTextArea';
+import './login.css';
+import bgimage from './img/bglogin.png';
 
 import { config } from '../../../utils/oktaConfig';
 
@@ -21,7 +24,7 @@ const LoginContainer = () => {
       // add your custom logo to your signing/register widget here.
       i18n: {
         en: {
-          'primaryauth.title': 'Welcome to Labs Basic SPA Please sign in',
+          'primaryauth.title': 'Welcome back, Sign in to Continue',
           // change title for your app
         },
       },
@@ -47,7 +50,18 @@ const LoginContainer = () => {
     );
   }, []);
 
-  return <div id="sign-in-widget" />;
+  return (
+    <>
+      {' '}
+      <img className="bglogin" src={bgimage} alt="Underwater background" />
+      <div className="loginarea">
+        <div id="sign-in-widget" />
+        <div className="textarealogin">
+          <LoginTextArea />
+        </div>{' '}
+      </div>
+    </>
+  );
 };
 
 export default LoginContainer;
