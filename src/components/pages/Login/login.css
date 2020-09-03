@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
 
 .loginarea {
   display: flex;
@@ -13,7 +14,7 @@
   width: 70%;
   padding-left: 6%;
   padding-right: 8%;
-  padding-top: 5%;
+  padding-top: 13%;
 }
 
 .textarealogin p {
@@ -25,6 +26,7 @@
 #sign-in-widget {
   width: 40%;
   background-color: #fafafa;
+  margin-top: 9.2%;
 }
 
 .okta-form-title {
@@ -35,4 +37,45 @@
   font-family: 'Nunito', sans-serif;
   font-style: normal;
   font-weight: normal;
+}
+
+.o-form-fieldset-container {
+  text-align: center;
+  margin-top: 6%;
+}
+
+.o-form-button-bar {
+  margin-top: 6%;
+  text-align: center;
+  margin-bottom: 5%;
+}
+
+#okta-signin-username {
+  appearance: none;
+  width: 70%;
+}
+
+#okta-signin-password {
+  width: 70%;
+}
+
+.js-help {
+  padding-left: 35%;
+  color: black;
+}
+
+.logo h1 {
+  font-family: 'Bangers', cursive;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 72px;
+  line-height: 77px;
+  /* Block Background-White */
+
+  color: #ffffff;
+  /* Header-Nero */
+
+  text-shadow: -7px 0 black, 0 7px black, 7px 0 black, 0 -7px black;
+  text-align: center;
+  margin-top: -18%;
 }

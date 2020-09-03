@@ -3,7 +3,7 @@ import OktaSignIn from '@okta/okta-signin-widget';
 // import '@okta/okta-signin-widget/dist/css/okta-sign-in.min.css';
 import LoginTextArea from './LoginTextArea';
 import './login.css';
-import bgimage from './img/bglogin.png';
+import bgimage from './img/bglogin.jpg';
 
 import { config } from '../../../utils/oktaConfig';
 
@@ -54,6 +54,9 @@ const LoginContainer = () => {
     <>
       {' '}
       <img className="bglogin" src={bgimage} alt="Underwater background" />
+      <div className="logo">
+        <h1>STORY SQUAD</h1>
+      </div>
       <div className="loginarea">
         <div id="sign-in-widget" />
         <div className="textarealogin">
