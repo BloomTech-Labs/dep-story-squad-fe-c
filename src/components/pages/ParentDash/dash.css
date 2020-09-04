@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+.subButton {
+    background: lime
+}
+
+.Content {
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.AddCard {
+    height: 176px;
+    width: 343px;
+    background: #6CEAE6;
+    border: 0.5px solid #949494;
+    box-sizing: border-box;
+    border-radius: 14px;
+}
