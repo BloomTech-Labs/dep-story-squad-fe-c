@@ -10,26 +10,28 @@ const Nav = () => {
 
   return (
     <>
-      <Sider width={253} theme="light">
+      <Sider
+        style={{ borderRight: '1px solid #949494' }}
+        width={253}
+        theme="light"
+      >
+        <Header
+          style={{
+            background: 'white',
+            textAlign: 'center',
+            fontSize: '22px',
+            margin: '10px 0',
+          }}
+        >
+          Welcome Back
+        </Header>
         <Menu
           mode="inline"
           style={{
             height: '100%',
-            border: '1px solid #949494',
-            fontFamily: 'Nunito',
           }}
           defaultSelectedKeys={['1']}
         >
-          <Header
-            style={{
-              background: 'white',
-              textAlign: 'center',
-              fontSize: '22px',
-              margin: '10px 0',
-            }}
-          >
-            Welcome Back
-          </Header>
           <Item key="1">Dashboard</Item>
           <Item key="2">Parent Settings</Item>
           <Item key="3">Help</Item>
