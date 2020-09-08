@@ -1,4 +1,11 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  useHistory,
+  Switch,
+} from 'react-router-dom';
 import './dash.css';
 
 import { Layout } from 'antd';
@@ -16,7 +23,11 @@ const RenderParentDash = () => {
             <h1 style={{ fontFamily: 'Bangers' }}>Story Squad</h1>
           </Header>
           <Content className="Content" style={{ background: 'white' }}>
-            <LinkButton to="/dashboard/add">Add a Child</LinkButton>
+            <Router>
+              <Switch>
+                <LinkButton to="/dashboard/add">Add a Child</LinkButton>
+              </Switch>
+            </Router>
           </Content>
         </Layout>
       </Layout>
