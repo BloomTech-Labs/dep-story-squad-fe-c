@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Signup form to add children to parent account
 const ChildSignup = () => {
   return (
     <form>

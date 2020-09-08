@@ -3,6 +3,7 @@ import '../dash.css';
 
 import { Layout, Menu } from 'antd';
 
+// Nav bar for parent dash
 const Nav = () => {
   const { Header, Sider } = Layout;
   const { Item } = Menu;
