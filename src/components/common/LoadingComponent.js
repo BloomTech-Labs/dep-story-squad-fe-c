@@ -1,14 +1,21 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-function LoadingComponent(props) {
-  const { message } = props;
+import image_1 from '../../assets/animation-1.gif';
 
-  return <div>{message}</div>;
+// has a default loader image, or you can pass an animated spinner URL in props
+function LoadingComponent(props) {
+  const { imageUrl = image_1 } = props;
+
+  return (
+    <div>
+      <img alt="loader" src={imageUrl} />
+    </div>
+  );
 }
 
 export default LoadingComponent;
 
 LoadingComponent.propTypes = {
-  message: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string,
 };
