@@ -15,7 +15,6 @@ const LinkButton = props => {
   } = props;
   return (
     <button
-      className="AddCard"
       {...rest}
       onClick={() => {
         history.push(to);
