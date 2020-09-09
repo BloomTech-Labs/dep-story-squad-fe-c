@@ -1,19 +1,21 @@
 import React from 'react';
+import { Header } from '../../common/';
 
 const RenderChildDash = () => {
   return (
     <div>
+      <Header title={'Story Squad'} />
       <div className="dash-btn-container mission">
-        <h2>Accept The Mission!</h2>
+        <img src="/images/mission-btn.png" alt="accept the mission artwork" />
       </div>
       <div className="dash-btn-container avatar">
-        <h2>Change Your Avatar</h2>
+        <img src="/images/avatar-btn.png" alt="change avatar artwork" />
       </div>
       <div className="dash-btn-container passport">
-        <h2>Adventure Passport</h2>
+        <img src="/images/passport-btn.png" alt="adventure passport artwork" />
       </div>
       <div className="dash-btn-container trophy">
-        <h2>Tropy Room</h2>
+        <img src="/images/trophy-btn.png" alt="trophy room artwork" />
       </div>
     </div>
   );
