@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Header } from '../../common/';
 
 const RenderChildDash = () => {
@@ -6,16 +7,27 @@ const RenderChildDash = () => {
     <div>
       <Header title={'Story Squad'} />
       <div className="dash-btn-container mission">
-        <img src="/images/mission-btn.png" alt="accept the mission artwork" />
+        <Link>
+          <img src="/images/mission-btn.png" alt="accept the mission artwork" />
+        </Link>
       </div>
       <div className="dash-btn-container avatar">
-        <img src="/images/avatar-btn.png" alt="change avatar artwork" />
+        <Link>
+          <img src="/images/avatar-btn.png" alt="change avatar artwork" />
+        </Link>
       </div>
       <div className="dash-btn-container passport">
-        <img src="/images/passport-btn.png" alt="adventure passport artwork" />
+        <Link>
+          <img
+            src="/images/passport-btn.png"
+            alt="adventure passport artwork"
+          />
+        </Link>
       </div>
       <div className="dash-btn-container trophy">
-        <img src="/images/trophy-btn.png" alt="trophy room artwork" />
+        <Link>
+          <img src="/images/trophy-btn.png" alt="trophy room artwork" />
+        </Link>
       </div>
     </div>
   );
