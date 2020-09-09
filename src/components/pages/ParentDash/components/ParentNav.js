@@ -25,13 +25,7 @@ const Nav = () => {
         >
           Welcome Back
         </Header>
-        <Menu
-          mode="inline"
-          style={{
-            height: '100%',
-          }}
-          defaultSelectedKeys={['1']}
-        >
+        <Menu mode="inline" defaultSelectedKeys={['1']}>
           <Item key="1">Dashboard</Item>
           <Item key="2">Parent Settings</Item>
           <Item key="3">Help</Item>
