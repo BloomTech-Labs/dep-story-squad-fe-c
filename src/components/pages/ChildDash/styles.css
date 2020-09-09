@@ -3,8 +3,13 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 20vh;
+  height: 25vh;
   border: 2.5px solid #292929;
+  padding: 1%;
+}
+
+.dash-btn-container img {
+  height: 100%;
 }
 
 .dash-btn-container.mission {
