@@ -2,7 +2,7 @@ import React from 'react';
 
 import RenderChildDash from './RenderChildDash';
 
-import './styles.css';
+import './styles.less';
 
 const ChildDashContainer = () => {
   return <RenderChildDash />;

@@ -1,34 +1,38 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Header } from '../../common/';
 
 const RenderChildDash = () => {
   return (
-    <div>
+    <div className="dashboard-container">
       <Header title={'Story Squad'} />
-      <div className="dash-btn-container mission">
-        <Link>
-          <img src="/images/mission-btn.png" alt="accept the mission artwork" />
-        </Link>
-      </div>
-      <div className="dash-btn-container avatar">
-        <Link>
-          <img src="/images/avatar-btn.png" alt="change avatar artwork" />
-        </Link>
-      </div>
-      <div className="dash-btn-container passport">
-        <Link>
-          <img
-            src="/images/passport-btn.png"
-            alt="adventure passport artwork"
-          />
-        </Link>
-      </div>
-      <div className="dash-btn-container trophy">
-        <Link>
-          <img src="/images/trophy-btn.png" alt="trophy room artwork" />
-        </Link>
-      </div>
+
+      <button className="dash-btn-container mission">
+        <img src="/images/mission-btn.png" alt="accept the mission artwork" />
+      </button>
+
+      <button
+        className="dash-btn-container avatar"
+        /* Feature not implemented yet. if a user clicks the button an alert is displayed with the feedback */
+        onClick={() => alert('Feature not availble yet')}
+      >
+        <img src="/images/avatar-btn.png" alt="change avatar artwork" />
+      </button>
+
+      <button
+        className="dash-btn-container passport"
+        /* Feature not implemented yet. if a user clicks the button an alert is displayed with the feedback */
+        onClick={() => alert('Feature not availble yet')}
+      >
+        <img src="/images/passport-btn.png" alt="adventure passport artwork" />
+      </button>
+
+      <button
+        className="dash-btn-container trophy"
+        /* Feature not implemented yet. if a user clicks the button an alert is displayed with the feedback */
+        onClick={() => alert('Feature not availble yet')}
+      >
+        <img src="/images/trophy-btn.png" alt="trophy room artwork" />
+      </button>
     </div>
   );
 };
