@@ -1,14 +1,15 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+// styles
+import './loader.less';
+// components
+import { Spin } from 'antd';
 
-function LoadingComponent(props) {
-  const { message } = props;
-
-  return <div>{message}</div>;
+function LoadingComponent() {
+  return (
+    <div data-testid="spinnerCont" className="loader">
+      <Spin data-testid="antSpinner" size="large" />
+    </div>
+  );
 }
 
 export default LoadingComponent;
-
-LoadingComponent.propTypes = {
-  message: PropTypes.string.isRequired,
-};
