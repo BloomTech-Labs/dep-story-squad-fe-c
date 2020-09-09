@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import RenderParentDash from './RenderParentDash';
-import { ChildSignup, DashHome, LinkButton, ParentNav } from './components';
+import { DashHome, LinkButton, ParentNav } from './components';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 test('ParentDash renders without errors', () => {
@@ -10,10 +10,6 @@ test('ParentDash renders without errors', () => {
       <RenderParentDash />
     </Router>
   );
-});
-
-test('ChildSignup renders without errors', () => {
-  render(<ChildSignup />);
 });
 
 test('Nav renders without errors', () => {

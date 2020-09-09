@@ -11,10 +11,13 @@ const DashHome = () => {
   return (
     <>
       <Layout>
-        <Header style={{ background: 'white', width: '100%' }}>
-          <h1 style={{ fontFamily: 'Bangers' }}>Story Squad</h1>
+        <Header
+          className="parent-header"
+          style={{ background: 'white', width: '100%' }}
+        >
+          <h1>Story Squad</h1>
         </Header>
-        <Content className="Content" style={{ background: 'white' }}>
+        <Content className="Content">
           <LinkButton className="AddCard" to="/login/add">
             Add a Child
           </LinkButton>
