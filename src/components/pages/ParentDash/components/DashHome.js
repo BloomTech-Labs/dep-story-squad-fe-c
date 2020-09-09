@@ -15,7 +15,9 @@ const DashHome = () => {
           <h1 style={{ fontFamily: 'Bangers' }}>Story Squad</h1>
         </Header>
         <Content className="Content" style={{ background: 'white' }}>
-          <LinkButton to="/login/add">Add a Child</LinkButton>
+          <LinkButton className="AddCard" to="/login/add">
+            Add a Child
+          </LinkButton>
         </Content>
       </Layout>
     </>
