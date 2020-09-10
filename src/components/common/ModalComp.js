@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Modal } from 'antd';
-import { UserForm } from './UserForm';
 import { useHistory } from 'react-router-dom';
 
 // styles

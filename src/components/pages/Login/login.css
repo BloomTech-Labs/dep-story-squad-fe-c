@@ -75,7 +75,7 @@
   color: #ffffff;
   /* Header-Nero */
 
-  text-shadow: -7px 0 black, 0 7px black, 7px 0 black, 0 -7px black;
+  -webkit-text-stroke: 3px black;
   text-align: center;
   margin-top: -18%;
 }
