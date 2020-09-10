@@ -2,7 +2,7 @@ import React from 'react';
 
 import RenderMissionDash from './RenderMissionDash';
 
-import './styles/less';
+import './styles.less';
 
 const MissionDashContainer = () => {
   return <RenderMissionDash />;
