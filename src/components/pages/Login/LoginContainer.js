@@ -9,6 +9,7 @@ import { config } from '../../../utils/oktaConfig';
 
 // TESTING, DELETE THIS LATER AS NEEDED
 import { PINForm } from '../../common';
+import { Button } from '../../common';
 import { ModalComp } from '../../common';
 
 const LoginContainer = props => {
@@ -68,7 +69,9 @@ const LoginContainer = props => {
         </div>{' '}
       </div>
       {/* TESTING, DELETE LATER AS NEEDED */}
-      <ModalComp DispComponent={PINForm} />
+      <ModalComp>
+        <PINForm />
+      </ModalComp>
     </>
   );
 };
