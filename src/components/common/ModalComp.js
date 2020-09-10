@@ -5,7 +5,7 @@ import { Modal } from 'antd';
 import './Modal.less';
 import PropTypes from 'prop-types';
 
-const ModalComp = ({ DispComponent }) => {
+const ModalComp = props => {
   const [showModal, setShowModal] = useState(true);
 
   const handleCancel = () => {
@@ -22,14 +22,15 @@ const ModalComp = ({ DispComponent }) => {
         onCancel={handleCancel}
       >
         {/* the component to display inside the modal, from props */}
-        <DispComponent setShowModal={setShowModal} />
+        {/* <DispComponent setShowModal={setShowModal} /> */}
+        {props.children}
       </Modal>
     </div>
   );
 };
 
 ModalComp.propTypes = {
-  DispComponent: PropTypes.func.isRequired,
+  DispComponent: PropTypes.object.isRequired,
 };
 
 export default ModalComp;
