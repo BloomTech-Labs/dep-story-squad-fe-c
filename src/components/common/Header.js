@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './header-styles.less';
+
 // Header element that takes in a string as a prop and displays it as the title
 const Header = ({ title }) => {
   return (
