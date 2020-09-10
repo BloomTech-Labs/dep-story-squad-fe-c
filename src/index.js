@@ -18,6 +18,9 @@ import { HomePage } from './components/pages/Home';
 import { ExampleDataViz } from './components/pages/ExampleDataViz';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
+import { ParentDash } from './components/pages/ParentDash';
+import { ModalComp } from './components/common';
+import UserForm from './components/common/UserForm';
 
 ReactDOM.render(
   <Router>
@@ -43,7 +46,13 @@ function App() {
     <Security {...config} onAuthRequired={authHandler}>
       <Switch>
         <Route path="/login" component={LoginPage} />
-        <Route path="/implicit/callback" component={LoginCallback} />
+        {/* <Route path="/user-form" component={ModalComp} /> */}
+        <Route path="/implicit/callback">
+          {' '}
+          <ModalComp>
+            <UserForm />
+          </ModalComp>{' '}
+        </Route>
         {/* any of the routes you need secured should be registered as SecureRoutes */}
         <SecureRoute
           path="/"
@@ -51,6 +60,7 @@ function App() {
           component={() => <HomePage LoadingComponent={LoadingComponent} />}
         />
         <SecureRoute path="/example-list" component={ExampleListPage} />
+        <SecureRoute path="/parent-dashboard" component={ParentDash} />
         <SecureRoute path="/profile-list" component={ProfileListPage} />
         <SecureRoute path="/datavis" component={ExampleDataViz} />
         <Route component={NotFoundPage} />

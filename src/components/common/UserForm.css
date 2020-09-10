@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+.userButton {
+  display: flex;
+  flex-direction: column;
+}
+
+.userButton button {
+  background-color: #007aff;
+  color: #ffffff;
+  margin: auto, 0;
+  border: 0px solid transparent;
+  border-radius: 10px;
+  padding: 12px 75px;
+  font-size: 18px;
+  width: 70%;
+  text-align: center;
+  margin: 2.5%;
+  margin-left: 15%;
+}
+
+.userText {
+  text-align: center;
+  margin: 2%;
+  font-family: 'Nunito', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 33px;
+}
+
+.ant-modal-content {
+  width: 70%;
+  margin: 0 auto;
+}
