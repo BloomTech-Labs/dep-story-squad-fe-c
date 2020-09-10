@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import OktaSignIn from '@okta/okta-signin-widget';
 import '@okta/okta-signin-widget/dist/css/okta-sign-in.min.css';
+import LoginTextArea from './LoginTextArea';
+import './login.css';
+import bgimage from './img/bglogin.jpg';
 
 import { config } from '../../../utils/oktaConfig';
 
@@ -25,7 +28,7 @@ const LoginContainer = props => {
       // add your custom logo to your signing/register widget here.
       i18n: {
         en: {
-          'primaryauth.title': 'Welcome to Labs Basic SPA Please sign in',
+          'primaryauth.title': 'Welcome back, Sign in to Continue',
           // change title for your app
         },
       },
@@ -52,10 +55,21 @@ const LoginContainer = props => {
   }, []);
 
   return (
-    <div id="sign-in-widget">
+    <>
+      {' '}
+      <img className="bglogin" src={bgimage} alt="Underwater background" />
+      <div className="logo">
+        <h1>STORY SQUAD</h1>
+      </div>
+      <div className="loginarea">
+        <div id="sign-in-widget" />
+        <div className="textarealogin">
+          <LoginTextArea />
+        </div>{' '}
+      </div>
       {/* TESTING, DELETE LATER AS NEEDED */}
       <ModalComp DispComponent={PINForm} />
-    </div>
+    </>
   );
 };
 
