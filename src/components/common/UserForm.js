@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useLocalStorage } from '../../utils/hooks';
 
 //styles
 import './UserForm.css';
@@ -10,23 +11,15 @@ function UserForm(props) {
     return;
   };
 
-  const layout = {
-    labelCol: {
-      span: 8,
-    },
-    wrapperCol: {
-      span: 16,
-    },
-  };
-
   const handleChange = value => {
     console.log(value);
-    return setUserValue(value);
+    setUserValue(value);
   };
 
-  const handleSubmit = () => {
-    console.log('submitted!!!');
+  const handleSubmit = value => {
+    console.log('submitted!!!', value);
     // need an axios call here to the back-end
+    setUserValue(value);
     return;
   };
   return (
@@ -38,9 +31,9 @@ function UserForm(props) {
         </h3>
       </div>
       <div className="userButton">
-        <button>Parent</button>
-        <button>Child 1</button>
-        <button>Child 2</button>
+        <button onClick={handleSubmit}>Parent</button>
+        <button onClick={handleSubmit}>Child 1</button>
+        <button onClick={handleSubmit}>Child 2</button>
       </div>
     </div>
   );
