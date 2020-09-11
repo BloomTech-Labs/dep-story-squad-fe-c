@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import RenderChildDash from './RenderChildDash';
 
 import './styles.less';
 
-const ChildDashContainer = () => {
+const ChildDashContainer = props => {
+  const { setHeaderTitle } = props;
+
+  useEffect(() => {
+    //setHeaderTitle('Story Squad');
+  }, []);
+
   return <RenderChildDash />;
 };
 
