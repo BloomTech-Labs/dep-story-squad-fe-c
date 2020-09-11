@@ -1,80 +1,94 @@
+// see README.md in components/common dir for more info
+
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
+// components
 import PinInput from 'react-pin-input';
-
-import { Form, Input } from 'antd';
 
 // styles
 import './PINForm.less';
 
-function PINForm(props) {
-  const [formValue, setFormValue] = useState();
+const PINForm = ({
+  showModal,
+  setShowModal,
+  formSubmissionData,
+  setFormSubmissionData,
+}) => {
+  const [formValue, setFormValue] = useState('');
 
-  const onFinish = () => {
-    return;
-  };
-
-  const layout = {
-    labelCol: {
-      span: 8,
-    },
-    wrapperCol: {
-      span: 16,
-    },
-  };
+  // from back-end pin validation
+  const [validationError, setValidationError] = useState(
+    'Pin and account type validation errors'
+  );
 
   const handleChange = value => {
-    console.log(value);
-    return setFormValue(value);
+    setFormValue(value);
   };
 
   const handleSubmit = () => {
-    console.log('submitted!!!');
-    // need an axios call here to the back-end
-    return;
+    // TODO: need an axios call here to the back-end
+
+    // sends form data to modal component
+    setFormSubmissionData({
+      ...formSubmissionData,
+      pin: formValue,
+    });
+    // if validationError don't submit
+    // else: call Modal submit func and send data
+
+    // TODO: redirect to appropriate dashboard page
+    //  ............
+    // close modal
+    setShowModal(false);
   };
 
   return (
-    <div>
-      <Form
-        className="pinForm"
-        layout={layout}
-        name="control-hooks"
-        onFinish={onFinish}
-      >
-        <Form.Item
-          name="PIN"
-          label="PIN"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <PinInput
-            length={4}
-            initialValue=""
-            // secret= {false}
-            onChange={(value, index) => {
-              handleChange(value);
-            }}
-            type="numeric"
-            inputMode="number"
-            style={{ padding: '10px' }}
-            inputStyle={{ borderColor: 'blue' }}
-            inputFocusStyle={{ borderColor: 'darkBlue' }}
-            onComplete={(value, index) => {
-              handleSubmit();
-            }}
-            autoSelect={true}
-          />
-        </Form.Item>
-      </Form>
+    // REMOVE STYLES!!
+    <div
+      style={{
+        marginTop: '12%',
+        width: '100%',
+        flexDirection: 'column',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <label>
+        Enter PIN:
+        <PinInput
+          formValue={formValue}
+          handleChange={handleChange}
+          length={4}
+          initialValue=""
+          // secret= {false}
+          onChange={(value, index) => {
+            handleChange(value);
+          }}
+          type="numeric"
+          inputMode="number"
+          inputStyle={{ borderColor: 'blue' }}
+          inputFocusStyle={{ borderColor: 'green' }}
+          onComplete={(value, index) => {
+            handleSubmit();
+          }}
+          autoSelect={true}
+        />
+      </label>
+
+      <div style={{ color: 'red' }} className="pinFormError">
+        {validationError}
+      </div>
     </div>
   );
-}
+};
 
-PINForm.propTypes = {};
+PINForm.propTypes = {
+  showModal: PropTypes.bool,
+  setShowModal: PropTypes.func,
+  setFormSubmissionData: PropTypes.func.isRequired,
+  formSubmissionData: PropTypes.bool.isRequired,
+};
 
 export default PINForm;
