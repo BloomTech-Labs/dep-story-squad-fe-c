@@ -5,10 +5,12 @@ import RenderChildDash from './RenderChildDash';
 import './styles.less';
 
 const ChildDashContainer = props => {
+  // sets state held in <App />
   const { setHeaderTitle } = props;
 
   useEffect(() => {
-    //setHeaderTitle('Story Squad');
+    // Whenever this component mounts update the <Header /> title
+    setHeaderTitle('Story Squad');
   }, []);
 
   return <RenderChildDash />;
