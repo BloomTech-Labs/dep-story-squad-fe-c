@@ -9,8 +9,7 @@ import { config } from '../../../utils/oktaConfig';
 
 // TESTING, DELETE THIS LATER AS NEEDED
 import { PINForm } from '../../common';
-import { Button } from '../../common';
-import { ModalComp } from '../../common';
+import { FormModalComp } from '../../common';
 
 const LoginContainer = props => {
   useEffect(() => {
@@ -69,9 +68,9 @@ const LoginContainer = props => {
         </div>{' '}
       </div>
       {/* TESTING, DELETE LATER AS NEEDED */}
-      <ModalComp>
+      <FormModalComp>
         <PINForm />
-      </ModalComp>
+      </FormModalComp>
     </>
   );
 };
