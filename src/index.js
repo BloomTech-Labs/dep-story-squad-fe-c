@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import {
   BrowserRouter as Router,
@@ -18,6 +18,7 @@ import { HomePage } from './components/pages/Home';
 import { ExampleDataViz } from './components/pages/ExampleDataViz';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
+import { Header } from './components/common';
 
 ReactDOM.render(
   <Router>
@@ -39,8 +40,12 @@ function App() {
     history.push('/login');
   };
 
+  // This state will hold the title that appears in the <Header />
+  const [headerTitle, setHeaderTitle] = useState('Story Squad');
+
   return (
     <Security {...config} onAuthRequired={authHandler}>
+      <Header title={headerTitle} />
       <Switch>
         <Route path="/login" component={() => <LoginPage />} />
 
