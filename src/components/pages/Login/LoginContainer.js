@@ -5,6 +5,10 @@ import LoginTextArea from './LoginTextArea';
 import './login.css';
 import bgimage from './img/bglogin.jpg';
 
+// TEST CODE, DELETE
+import { FormModalComp } from '../../common';
+import { PINForm } from '../../common';
+
 import { config } from '../../../utils/oktaConfig';
 
 const LoginContainer = props => {
