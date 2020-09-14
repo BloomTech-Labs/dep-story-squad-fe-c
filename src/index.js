@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import {
   BrowserRouter as Router,
@@ -18,10 +18,14 @@ import { HomePage } from './components/pages/Home';
 import { ExampleDataViz } from './components/pages/ExampleDataViz';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
+
 import { ParentDash } from './components/pages/ParentDash';
-import { ModalComp } from './components/common';
+import { FormModalComp } from './components/common';
 import { MissionDash } from './components/pages/MissionDash';
 import UserForm from './components/common/UserForm';
+
+import { Header } from './components/common';
+
 
 ReactDOM.render(
   <Router>
@@ -43,8 +47,12 @@ function App() {
     history.push('/login');
   };
 
+  // This state will hold the title that appears in the <Header />
+  const [headerTitle, setHeaderTitle] = useState('Story Squad');
+
   return (
     <Security {...config} onAuthRequired={authHandler}>
+      <Header title={headerTitle} />
       <Switch>
         <Route path="/login" component={LoginPage} />
         <Route path="/mission" component={MissionDash} />
@@ -53,14 +61,17 @@ function App() {
           {' '}
           <LoginCallback />
         </SecureRoute>
+        <Route path="/login" component={() => <LoginPage />} />
+
+        <Route path="/implicit/callback" component={LoginCallback} />
         {/* any of the routes you need secured should be registered as SecureRoutes */}
         <SecureRoute
           path="/"
           exact
           component={() => (
-            <ModalComp>
+            <FormModalComp>
               <UserForm />
-            </ModalComp>
+            </FormModalComp>
           )}
         />
         <SecureRoute path="/example-list" component={ExampleListPage} />
