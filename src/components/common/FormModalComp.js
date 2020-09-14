@@ -34,8 +34,9 @@ const ModalComp = props => {
   };
 
   return (
-    <div className="modal">
+    <div className="modal" data-testid="formModalCont">
       <Modal
+        data-testid="formModal"
         style={{
           boxSizing: 'border-box',
           padding: '2%',
@@ -51,17 +52,15 @@ const ModalComp = props => {
       >
         {/* the component(s) to display inside the modal, from props */}
         {elements.map(ele => {
-          return <div key={ele.length * Math.random()}>{ele}</div>;
+          return <div key={Math.random() * Date.now()}>{ele}</div>;
         })}
       </Modal>
-      {console.log('elements: ', elements)}
-      {console.log('formSubmissionData: ', formSubmissionData)}
     </div>
   );
 };
 
 ModalComp.propTypes = {
-  props: PropTypes.node.isRequired,
+  props: PropTypes.node,
 };
 
 export default ModalComp;
