@@ -7,7 +7,7 @@ import bgimage from './img/bglogin.jpg';
 
 import { config } from '../../../utils/oktaConfig';
 
-const LoginContainer = () => {
+const LoginContainer = props => {
   useEffect(() => {
     const { pkce, issuer, clientId, redirectUri, scopes } = config;
     // destructure your config so that you can pass it into the required fields in your widget.

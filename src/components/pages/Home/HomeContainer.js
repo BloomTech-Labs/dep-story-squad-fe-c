@@ -27,7 +27,6 @@ function HomeContainer({ LoadingComponent }) {
       });
     return () => (isSubscribed = false);
   }, [memoAuthService]);
-
   return (
     <>
       {authState.isAuthenticated && !userInfo && <LoadingComponent />}
