@@ -12,7 +12,7 @@ const ModalComp = props => {
 
   // stores 'formdata' from each form in form sequence til ready for submission. formsubmissionData ex:
   // {
-  // pin: {data},
+  // pin: {'1234'},
   // form2: {data}
   // }
   const [formSubmissionData, setFormSubmissionData] = useState({});

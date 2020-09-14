@@ -7,10 +7,6 @@ import bgimage from './img/bglogin.jpg';
 
 import { config } from '../../../utils/oktaConfig';
 
-// TESTING, DELETE THIS LATER AS NEEDED
-import { PINForm } from '../../common';
-import { FormModalComp } from '../../common';
-
 const LoginContainer = props => {
   useEffect(() => {
     const { pkce, issuer, clientId, redirectUri, scopes } = config;
@@ -67,10 +63,6 @@ const LoginContainer = props => {
           <LoginTextArea />
         </div>{' '}
       </div>
-      {/* TESTING, DELETE LATER AS NEEDED */}
-      <FormModalComp>
-        <PINForm />
-      </FormModalComp>
     </>
   );
 };
