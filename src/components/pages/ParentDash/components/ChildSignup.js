@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Layout } from 'antd';
 import '../dash.css';
@@ -11,20 +11,30 @@ const ChildSignup = () => {
     username: '',
     grade: '',
     pin: '',
+    dys: false,
   });
 
+  useEffect(() => {}, [signup]);
+
   const handleChange = e => {
+    e.persist();
     setSignup({
       ...signup,
       [e.target.name]: e.target.value,
     });
-    console.log(signup);
+  };
+
+  const handleToggle = () => {
+    setSignup({
+      ...signup,
+      dys: !signup.dys,
+    });
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(signup);
     push('/login');
+    console.log('sent', signup);
   };
 
   return (
@@ -56,11 +66,11 @@ const ChildSignup = () => {
               onChange={handleChange}
               value={signup.pin}
             />
-            <div>
+            <div classname="dysBtn">
               <label>Dyslexia</label>
               <label className="switch">
-                <input type="checkbox" />
-                <span class="slider round"></span>
+                <input type="checkbox" onChange={handleToggle} />
+                <span className="slider round"></span>
               </label>
             </div>
             <input className="subBtn" type="submit" value="Add Child" />

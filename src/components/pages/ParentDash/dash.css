@@ -66,6 +66,12 @@ h1 {
   color: white;
 }
 
+.signupForm .dysBtn {
+  left: 100px; 
+  display: flex;
+  justify-content: flex-end;
+}
+
 .switch {
   position: relative;
   align-content: end;
