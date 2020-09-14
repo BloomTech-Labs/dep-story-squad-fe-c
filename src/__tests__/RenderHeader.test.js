@@ -6,10 +6,10 @@ describe('<Header /> test suite', () => {
   test('header displays title passed in via props', () => {
     const { getByText, rerender } = render(<Header title={'Testing Title'} />);
 
-    const title = getByText(/testing title/i);
-    expect(title.textContent).toBe('Testing Title');
-    expect(title.className).toBe('header-title');
+    const h1 = getByText(/testing title/i);
+    expect(h1.textContent).toBe('Testing Title');
+    expect(h1.className).toBe('header-title');
     rerender(<Header title={'Changed The Title'} />);
-    expect(title.textContent).toBe('Changed The Title');
+    expect(h1.textContent).toBe('Changed The Title');
   });
 });
