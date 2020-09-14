@@ -4,7 +4,7 @@ import React, { useState, Children, cloneElement } from 'react';
 import { Modal } from 'antd';
 
 // styles
-import './FormModal.less';
+import './FormModalComp.less';
 import PropTypes from 'prop-types';
 
 const ModalComp = props => {
@@ -12,7 +12,7 @@ const ModalComp = props => {
 
   // stores 'formdata' from each form in form sequence til ready for submission. formsubmissionData ex:
   // {
-  // pin: {data},
+  // pin: {'1234'},
   // form2: {data}
   // }
   const [formSubmissionData, setFormSubmissionData] = useState({});
@@ -34,8 +34,9 @@ const ModalComp = props => {
   };
 
   return (
-    <div className="modal">
+    <div className="modal" data-testid="formModalCont">
       <Modal
+        data-testid="formModal"
         style={{
           boxSizing: 'border-box',
           padding: '2%',
@@ -51,17 +52,15 @@ const ModalComp = props => {
       >
         {/* the component(s) to display inside the modal, from props */}
         {elements.map(ele => {
-          return <div key={ele.length * Math.random()}>{ele}</div>;
+          return <div key={Math.random() * Date.now()}>{ele}</div>;
         })}
       </Modal>
-      {console.log('elements: ', elements)}
-      {console.log('formSubmissionData: ', formSubmissionData)}
     </div>
   );
 };
 
 ModalComp.propTypes = {
-  props: PropTypes.node.isRequired,
+  props: PropTypes.node,
 };
 
 export default ModalComp;

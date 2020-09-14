@@ -6,6 +6,7 @@ const Button = props => {
   // contains a click property for your use onClick
   return (
     <button
+      data-testid={'button'}
       onClick={props.handleClick}
       disabled={props.isDisabled}
       className={props.classType || 'primary'}
