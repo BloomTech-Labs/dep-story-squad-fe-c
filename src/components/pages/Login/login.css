@@ -56,3 +56,20 @@
   padding-left: 35%;
   color: black;
 }
+
+.logo h1 {
+  font-family: 'Bangers', cursive;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 72px;
+  line-height: 77px;
+  /* Block Background-White */
+
+  color: #ffffff;
+  /* Header-Nero */
+
+  -webkit-text-stroke: 3px black;
+  text-align: center;
+  margin-top: -18%;
+}
+
