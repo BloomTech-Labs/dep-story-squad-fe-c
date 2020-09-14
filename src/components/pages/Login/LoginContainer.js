@@ -66,9 +66,6 @@ const LoginContainer = props => {
         <div className="textarealogin">
           <LoginTextArea />
         </div>{' '}
-        <FormModalComp>
-          <PINForm />
-        </FormModalComp>
       </div>
     </>
   );
