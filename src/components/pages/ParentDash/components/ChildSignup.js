@@ -66,7 +66,7 @@ const ChildSignup = () => {
               onChange={handleChange}
               value={signup.pin}
             />
-            <div classname="dysBtn">
+            <div className="dysBtn">
               <label>Dyslexia</label>
               <label className="switch">
                 <input type="checkbox" onChange={handleToggle} />
