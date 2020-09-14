@@ -3,7 +3,6 @@ import OktaSignIn from '@okta/okta-signin-widget';
 import '@okta/okta-signin-widget/dist/css/okta-sign-in.min.css';
 import LoginTextArea from './LoginTextArea';
 import './login.css';
-import bgimage from './img/bglogin.jpg';
 
 // TEST CODE, DELETE
 import { FormModalComp } from '../../common';
@@ -56,16 +55,9 @@ const LoginContainer = props => {
 
   return (
     <>
-      {' '}
-      <img className="bglogin" src={bgimage} alt="Underwater background" />
-      <div className="logo">
-        <h1>STORY SQUAD</h1>
-      </div>
       <div className="loginarea">
         <div id="sign-in-widget" />
-        <div className="textarealogin">
-          <LoginTextArea />
-        </div>{' '}
+        <LoginTextArea />
       </div>
     </>
   );

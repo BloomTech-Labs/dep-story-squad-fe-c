@@ -1,10 +1,8 @@
 import React from 'react';
-import { Header } from '../../common';
 
 const RenderMissionDash = () => {
   return (
     <div className="dashboard-container">
-      <Header title={'Mission'} />
       <button className="mission-btn-container read">
         <input className="progress-check" type="checkbox" />
         <img src="/images/read-icon.png" />

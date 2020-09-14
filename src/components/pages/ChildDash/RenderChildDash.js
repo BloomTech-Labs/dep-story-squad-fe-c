@@ -1,11 +1,8 @@
 import React from 'react';
-import { Header } from '../../common/';
 
 const RenderChildDash = () => {
   return (
     <div className="dashboard-container">
-      <Header title={'Story Squad'} />
-
       <button className="dash-btn-container mission">
         <img src="/images/mission-btn.png" alt="accept the mission artwork" />
       </button>
