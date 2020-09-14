@@ -87,8 +87,8 @@ const PINForm = ({
 PINForm.propTypes = {
   showModal: PropTypes.bool,
   setShowModal: PropTypes.func,
-  setFormSubmissionData: PropTypes.func.isRequired,
-  formSubmissionData: PropTypes.bool.isRequired,
+  setFormSubmissionData: PropTypes.func,
+  formSubmissionData: PropTypes.bool,
 };
 
 export default PINForm;
