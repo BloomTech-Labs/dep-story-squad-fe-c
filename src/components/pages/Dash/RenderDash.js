@@ -1,4 +1,4 @@
-import { ParentDash } from './components/pages/ParentDash';
+import { ParentDash } from '../ParentDash';
 import React, { useEffect, useState } from 'react';
 
 const RenderDash = () => {
