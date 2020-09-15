@@ -28,11 +28,7 @@ const RenderParentDash = () => {
   return (
     <>
       <Layout style={{ background: 'white', height: '100vh' }}>
-        <ParentNav
-          handleClick={handleClick}
-          current={current}
-          setCurrent={setCurrent}
-        />
+        <ParentNav handleClick={handleClick} current={current} />
         {currentPage()}
       </Layout>
     </>
