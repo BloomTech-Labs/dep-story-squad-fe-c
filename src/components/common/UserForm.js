@@ -1,25 +1,25 @@
 import React, { useState } from 'react';
-import { useLocalStorage } from '../../utils/hooks';
 
 //styles
 import './UserForm.css';
 
-function UserForm(props) {
+function UserForm({ setFormSubmissionData, formSubmissionData }) {
   const [userValue, setUserValue] = useState();
-
-  const onSubmit = () => {
-    return;
-  };
-
-  const handleChange = value => {
-    console.log(value);
-    setUserValue(value);
-  };
 
   const handleSubmit = value => {
     console.log('submitted!!!', value);
-    // need an axios call here to the back-end
+    // set component state
     setUserValue(value);
+
+    // send data to FormModalComp state to store until ready to submit to BE
+    setFormSubmissionData({
+      ...formSubmissionData,
+      user: userValue,
+    });
+    // hide this form
+
+    // show next form
+
     return;
   };
   return (
