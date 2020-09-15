@@ -18,6 +18,7 @@ import { HomePage } from './components/pages/Home';
 import { ExampleDataViz } from './components/pages/ExampleDataViz';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
+import { Dash } from './components/pages/Dash';
 
 import { ParentDash } from './components/pages/ParentDash';
 import { FormModalComp } from './components/common';
@@ -25,7 +26,6 @@ import { MissionDash } from './components/pages/MissionDash';
 import UserForm from './components/common/UserForm';
 
 import { Header } from './components/common';
-
 
 ReactDOM.render(
   <Router>
@@ -61,9 +61,6 @@ function App() {
           {' '}
           <LoginCallback />
         </SecureRoute>
-        <Route path="/login" component={() => <LoginPage />} />
-
-        <Route path="/implicit/callback" component={LoginCallback} />
         {/* any of the routes you need secured should be registered as SecureRoutes */}
         <SecureRoute
           path="/"
@@ -74,10 +71,10 @@ function App() {
             </FormModalComp>
           )}
         />
-        <SecureRoute path="/example-list" component={ExampleListPage} />
-        <SecureRoute path="/parent-dashboard" component={ParentDash} />
-        <SecureRoute path="/profile-list" component={ProfileListPage} />
-        <SecureRoute path="/datavis" component={ExampleDataViz} />
+        <SecureRoute
+          path="/dashboard"
+          component={() => <Dash setHeaderTitle={setHeaderTitle} />}
+        />
         <Route component={NotFoundPage} />
       </Switch>
     </Security>
