@@ -2,6 +2,7 @@ import React from 'react';
 import { render, cleanup, act } from '@testing-library/react';
 
 import { List } from '../components/common';
+import { LoadingComponent } from '../components/common';
 
 afterEach(() => {
   cleanup();
@@ -23,13 +24,13 @@ describe('<List /> test suite', () => {
         <List
           // return an unresolved promise to test initial component state
           getItemsData={jest.fn(() => new Promise(() => {}))}
-          LoadingComponent={() => <div>Loading...</div>}
+          LoadingComponent={() => <LoadingComponent />}
           RenderItems={RenderItems}
         />
       );
     });
 
-    expect(rendered.getByText('Loading...').textContent).toBe('Loading...');
+    expect(rendered.getByTestId('spinnerCont'));
   });
   test('renders item data', async () => {
     let rendered;
