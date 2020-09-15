@@ -24,6 +24,8 @@ describe('FormModalComp', () => {
     expect(getByTestId(/formModal/i)).toBeInTheDocument();
   });
 
+  test('modal component pushes to login when canceled', () => {});
+
   test('modal renders child component(s)', () => {
     const { getByTestId } = render(
       <FormModalComp>
