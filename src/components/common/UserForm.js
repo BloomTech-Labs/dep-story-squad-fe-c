@@ -3,7 +3,12 @@ import React, { useState } from 'react';
 //styles
 import './UserForm.css';
 
-function UserForm({ setFormSubmissionData, formSubmissionData }) {
+function UserForm({
+  setFormSubmissionData,
+  formSubmissionData,
+  setFormVisibility,
+  formVisibility,
+}) {
   const [userValue, setUserValue] = useState();
 
   const handleSubmit = value => {
@@ -17,8 +22,16 @@ function UserForm({ setFormSubmissionData, formSubmissionData }) {
       user: userValue,
     });
     // hide this form
-
     // show next form
+    // state: {
+    //   userForm: true,
+    //   pinForm: false
+    // }
+    setFormVisibility({
+      ...formVisibility,
+      userForm: false,
+      PinForm: true,
+    });
 
     return;
   };

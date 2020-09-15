@@ -1,6 +1,6 @@
 // see README.md in components/common dir for more info
 
-import React, { useState, Children, cloneElement } from 'react';
+import React, { useEffect, useState, Children, cloneElement } from 'react';
 import { Modal } from 'antd';
 
 // styles
@@ -9,6 +9,10 @@ import PropTypes from 'prop-types';
 
 const ModalComp = props => {
   const [showModal, setShowModal] = useState(true);
+  const { formVisibility, setFormVisibility } = useState({
+    userForm: true,
+    pinForm: false,
+  });
 
   // stores 'formdata' from each form in form sequence til ready for submission. formsubmissionData ex:
   // {
@@ -22,12 +26,21 @@ const ModalComp = props => {
   // get props into the 'props.children' forms
   for (let i = 0; i < elements.length; i++) {
     elements[i] = cloneElement(elements[i], {
+      setFormVisibility: { setFormVisibility },
+      formVisibility: { formVisibility },
       setFormSubmissionData: setFormSubmissionData,
       formSubmissionData: formSubmissionData,
       showModal: showModal,
       setShowModal: setShowModal,
     });
   }
+
+  useEffect(() => {
+    // setsVisibility of child forms
+    elements.forEach(ele => {
+      console.log('ele: ', ele);
+    });
+  }, [formVisibility, elements]);
 
   const handleCancel = () => {
     setShowModal(false);
