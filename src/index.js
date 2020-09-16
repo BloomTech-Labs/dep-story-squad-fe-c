@@ -11,21 +11,16 @@ import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 import 'antd/dist/antd.less';
 
 import { NotFoundPage } from './components/pages/NotFound';
-import { ExampleListPage } from './components/pages/ExampleList';
-import { ProfileListPage } from './components/pages/ProfileList';
 import { LoginPage } from './components/pages/Login';
-import { HomePage } from './components/pages/Home';
-import { ExampleDataViz } from './components/pages/ExampleDataViz';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
+import { Dash } from './components/pages/Dash';
 
-import { ParentDash } from './components/pages/ParentDash';
 import { FormModalComp } from './components/common';
 import { MissionDash } from './components/pages/MissionDash';
 import UserForm from './components/common/UserForm';
 
 import { Header } from './components/common';
-
 
 ReactDOM.render(
   <Router>
@@ -49,35 +44,38 @@ function App() {
 
   // This state will hold the title that appears in the <Header />
   const [headerTitle, setHeaderTitle] = useState('Story Squad');
+  const [userType, setUserType] = useState(null);
 
   return (
     <Security {...config} onAuthRequired={authHandler}>
       <Header title={headerTitle} />
       <Switch>
         <Route path="/login" component={LoginPage} />
-        <Route path="/mission" component={MissionDash} />
-        {/* <Route path="/user-form" component={ModalComp} /> */}
+
         <SecureRoute path="/implicit/callback">
           {' '}
           <LoginCallback />
         </SecureRoute>
-        <Route path="/login" component={() => <LoginPage />} />
-
-        <Route path="/implicit/callback" component={LoginCallback} />
         {/* any of the routes you need secured should be registered as SecureRoutes */}
         <SecureRoute
           path="/"
           exact
           component={() => (
             <FormModalComp>
-              <UserForm />
+              <UserForm setUserType={setUserType} />
             </FormModalComp>
           )}
         />
-        <SecureRoute path="/example-list" component={ExampleListPage} />
-        <SecureRoute path="/parent-dashboard" component={ParentDash} />
-        <SecureRoute path="/profile-list" component={ProfileListPage} />
-        <SecureRoute path="/datavis" component={ExampleDataViz} />
+        <SecureRoute
+          path="/dashboard"
+          component={() => (
+            <Dash setHeaderTitle={setHeaderTitle} userType={userType} />
+          )}
+        />
+        <SecureRoute
+          path="/mission"
+          component={() => <MissionDash setHeaderTitle={setHeaderTitle} />}
+        />
         <Route component={NotFoundPage} />
       </Switch>
     </Security>
