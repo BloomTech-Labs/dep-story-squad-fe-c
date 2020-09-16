@@ -8,10 +8,10 @@ const ChildDashContainer = props => {
   // sets state held in <App />
   const { setHeaderTitle } = props;
 
+  // Whenever this component mounts update the <Header /> title
   useEffect(() => {
-    // Whenever this component mounts update the <Header /> title
     setHeaderTitle('Story Squad');
-  }, []);
+  }, [setHeaderTitle]);
 
   return <RenderChildDash />;
 };
