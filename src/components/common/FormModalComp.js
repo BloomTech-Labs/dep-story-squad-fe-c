@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, Children, cloneElement } from 'react';
 import { Modal } from 'antd';
+import { useHistory, withRouter } from 'react-router-dom';
 
 // styles
 import './FormModalComp.less';
@@ -9,10 +10,14 @@ import PropTypes from 'prop-types';
 
 const ModalComp = props => {
   const [showModal, setShowModal] = useState(true);
+
+  const history = useHistory();
+
   const { formVisibility, setFormVisibility } = useState({
     userForm: true,
     pinForm: false,
   });
+
 
   // stores 'formdata' from each form in form sequence til ready for submission. formsubmissionData ex:
   // {
@@ -43,6 +48,7 @@ const ModalComp = props => {
   }, [formVisibility, elements]);
 
   const handleCancel = () => {
+    history.push('/login');
     setShowModal(false);
   };
 
