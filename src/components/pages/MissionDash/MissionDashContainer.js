@@ -8,8 +8,8 @@ const MissionDashContainer = props => {
   // sets state held in <App />
   const { setHeaderTitle } = props;
 
+  // Whenever this component mounts update the <Header /> title
   useEffect(() => {
-    // Whenever this component mounts update the <Header /> title
     setHeaderTitle('Mission');
   }, [setHeaderTitle]);
 
