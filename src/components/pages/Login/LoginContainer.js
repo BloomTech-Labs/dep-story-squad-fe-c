@@ -11,6 +11,9 @@ import { PINForm } from '../../common';
 import { config } from '../../../utils/oktaConfig';
 
 const LoginContainer = props => {
+  // sets state held in <App />
+  const { setHeaderTitle } = props;
+
   useEffect(() => {
     const { pkce, issuer, clientId, redirectUri, scopes } = config;
     // destructure your config so that you can pass it into the required fields in your widget.
@@ -52,6 +55,11 @@ const LoginContainer = props => {
       }
     );
   }, []);
+
+  useEffect(() => {
+    // Whenever this component mounts update the <Header /> title
+    setHeaderTitle('Story Squad');
+  }, [setHeaderTitle]);
 
   return (
     <>
