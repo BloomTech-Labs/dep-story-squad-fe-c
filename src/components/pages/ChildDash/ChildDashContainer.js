@@ -11,7 +11,7 @@ const ChildDashContainer = props => {
   useEffect(() => {
     // Whenever this component mounts update the <Header /> title
     setHeaderTitle('Story Squad');
-  }, []);
+  }, [setHeaderTitle]);
 
   return <RenderChildDash />;
 };
