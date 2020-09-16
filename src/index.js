@@ -50,7 +50,10 @@ function App() {
     <Security {...config} onAuthRequired={authHandler}>
       <Header title={headerTitle} />
       <Switch>
-        <Route path="/login" component={LoginPage} />
+        <Route
+          path="/login"
+          component={() => <LoginPage setHeaderTitle={setHeaderTitle} />}
+        />
 
         <SecureRoute path="/implicit/callback">
           {' '}

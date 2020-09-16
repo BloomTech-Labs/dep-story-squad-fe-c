@@ -18,7 +18,6 @@ const ModalComp = props => {
     pinForm: false,
   });
 
-
   // stores 'formdata' from each form in form sequence til ready for submission. formsubmissionData ex:
   // {
   // pin: {'1234'},
