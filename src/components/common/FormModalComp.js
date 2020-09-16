@@ -2,7 +2,7 @@
 
 import React, { useState, Children, cloneElement } from 'react';
 import { Modal } from 'antd';
-import { useHistory } from 'react-router-dom';
+import { useHistory, withRouter } from 'react-router-dom';
 
 // styles
 import './FormModalComp.less';
