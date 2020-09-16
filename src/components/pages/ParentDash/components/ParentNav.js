@@ -1,10 +1,9 @@
 import React from 'react';
 import '../dash.css';
-
 import { Layout, Menu } from 'antd';
 
 // Nav bar for parent dash
-const Nav = () => {
+const Nav = props => {
   const { Header, Sider } = Layout;
   const { Item } = Menu;
 
@@ -25,11 +24,15 @@ const Nav = () => {
         >
           Welcome Back
         </Header>
-        <Menu mode="inline" defaultSelectedKeys={['1']}>
-          <Item key="1">Dashboard</Item>
-          <Item key="2">Parent Settings</Item>
-          <Item key="3">Help</Item>
-          <Item key="4">Log out</Item>
+        <Menu
+          mode="inline"
+          selectedKeys={[props.current]}
+          onClick={props.handleClick}
+        >
+          <Item key="home">Dashboard</Item>
+          <Item key="settings">Parent Settings</Item>
+          <Item key="help">Help</Item>
+          <Item key="logout">Log out</Item>
         </Menu>
       </Sider>
     </>
