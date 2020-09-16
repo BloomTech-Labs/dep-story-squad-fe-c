@@ -1,7 +1,8 @@
 // see README.md in components/common dir for more info
 
-import React, { useEffect, useState, Children, cloneElement } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Modal } from 'antd';
+import { UserForm, PINForm } from '../common';
 
 // styles
 import './FormModalComp.less';
@@ -15,35 +16,20 @@ const ModalComp = props => {
   });
 
   // stores 'formdata' from each form in form sequence til ready for submission. formsubmissionData ex:
-  // {
-  // pin: {'1234'},
-  // form2: {data}
-  // }
-  const [formSubmissionData, setFormSubmissionData] = useState({});
-
-  let elements = Children.toArray(props.children);
-
-  // get props into the 'props.children' forms
-  for (let i = 0; i < elements.length; i++) {
-    elements[i] = cloneElement(elements[i], {
-      setFormVisibility: { setFormVisibility },
-      formVisibility: { formVisibility },
-      setFormSubmissionData: setFormSubmissionData,
-      formSubmissionData: formSubmissionData,
-      showModal: showModal,
-      setShowModal: setShowModal,
-    });
-  }
-
-  useEffect(() => {
-    // setsVisibility of child forms
-    elements.forEach(ele => {
-      console.log('ele: ', ele);
-    });
-  }, [formVisibility, elements]);
+  const [formSubmissionData, setFormSubmissionData] = useState({
+    // pin: {'1234'},
+    // userForm: {'child'}
+  });
 
   const handleCancel = () => {
     setShowModal(false);
+  };
+
+  const mainSubmit = formSubmissionData => {
+    // axios call here to verify account and PIN
+    // if errors display errors
+    // else, submit form and close modal, redirect to dash
+    return;
   };
 
   return (
@@ -63,17 +49,25 @@ const ModalComp = props => {
         footer={null}
         onCancel={handleCancel}
       >
-        {/* the component(s) to display inside the modal, from props */}
-        {elements.map(ele => {
-          return <div key={Math.random() * Date.now()}>{ele}</div>;
-        })}
+        <UserForm
+          formVisibility={formVisibility}
+          setFormVisibility={setFormVisibility}
+          formSubmissionData={formSubmissionData}
+          setFormSubmissionData={setFormSubmissionData}
+        />
+        <PINForm
+          mainSubmit={mainSubmit}
+          setShowModal={setShowModal}
+          formVisibility={formVisibility}
+          setFormVisibility={setFormVisibility}
+          formSubmissionData={formSubmissionData}
+          setFormSubmissionData={setFormSubmissionData}
+        />
       </Modal>
     </div>
   );
 };
 
-ModalComp.propTypes = {
-  props: PropTypes.node,
-};
+ModalComp.propTypes = {};
 
 export default ModalComp;
