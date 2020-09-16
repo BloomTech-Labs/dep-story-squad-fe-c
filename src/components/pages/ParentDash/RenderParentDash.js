@@ -6,10 +6,20 @@ import { Layout } from 'antd';
 import { ParentNav, DashHome, ChildSignup } from './components';
 
 // ParentDash component that contains a nav bar and routes to the various components
-const RenderParentDash = () => {
+const RenderParentDash = props => {
+  // sets state held in <App />
+  const { setHeaderTitle } = props;
+
   const [current, setCurrent] = useState('home');
 
   useEffect(() => {}, [current]);
+
+  // Whenever this component mounts update the <Header /> title
+  useEffect(() => {
+    // The parent dashboard shouldn't have the header displayed
+    // setting title to null will cause the <Header /> to not be rendered
+    setHeaderTitle(null);
+  }, [setHeaderTitle]);
 
   const currentPage = () => {
     if (current === 'home') {

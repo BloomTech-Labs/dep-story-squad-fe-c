@@ -2,7 +2,9 @@
 
 import React, { useEffect, useState } from 'react';
 import { Modal } from 'antd';
+
 import { UserForm, PINForm } from '../common';
+import { useHistory } from 'react-router-dom';
 
 // styles
 import './FormModalComp.less';
@@ -10,6 +12,9 @@ import PropTypes from 'prop-types';
 
 const ModalComp = props => {
   const [showModal, setShowModal] = useState(true);
+
+  const history = useHistory();
+
   const { formVisibility, setFormVisibility } = useState({
     userForm: true,
     pinForm: false,
@@ -22,6 +27,7 @@ const ModalComp = props => {
   });
 
   const handleCancel = () => {
+    history.push('/login');
     setShowModal(false);
   };
 
