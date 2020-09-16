@@ -11,7 +11,7 @@ const MissionDashContainer = props => {
   useEffect(() => {
     // Whenever this component mounts update the <Header /> title
     setHeaderTitle('Mission');
-  }, []);
+  }, [setHeaderTitle]);
 
   return <RenderMissionDash />;
 };
