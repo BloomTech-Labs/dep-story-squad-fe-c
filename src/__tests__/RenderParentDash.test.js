@@ -1,13 +1,18 @@
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
-import RenderParentDash from './RenderParentDash';
-import { DashHome, LinkButton, ParentNav, ChildSignup } from './components';
+import RenderParentDash from '../components/pages/ParentDash/RenderParentDash';
+import {
+  DashHome,
+  LinkButton,
+  ParentNav,
+  ChildSignup,
+} from '../components/pages/ParentDash/components';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 test('ParentDash renders without errors', () => {
   render(
     <Router>
-      <RenderParentDash />
+      <RenderParentDash setHeaderTitle={() => null} title={null} />
     </Router>
   );
 });
