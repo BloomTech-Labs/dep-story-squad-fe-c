@@ -3,10 +3,6 @@ import OktaSignIn from '@okta/okta-signin-widget';
 import '@okta/okta-signin-widget/dist/css/okta-sign-in.min.css';
 import LoginTextArea from './LoginTextArea';
 
-// TEST CODE, DELETE
-import { FormModalComp } from '../../common';
-import { PINForm } from '../../common';
-
 import { config } from '../../../utils/oktaConfig';
 
 const LoginContainer = props => {

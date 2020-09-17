@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { UserForm } from '../components/common';
+import UserForm from '../components/common/accountPinModal/UserForm';
 
 describe('UserForm component', () => {
   test('renders in the dom', () => {

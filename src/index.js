@@ -16,13 +16,11 @@ import { NotFoundPage } from './components/pages/NotFound';
 import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
 
-import { LoadingComponent } from './components/common';
 import { Dash } from './components/pages/Dash';
-import { FormModalComp } from './components/common';
+import { AccountPinModal } from './components/common';
 import { MissionDash } from './components/pages/MissionDash';
-import UserForm from './components/common/UserForm';
 
-import { Header } from './components/common';
+import { Header } from './components/common/';
 
 ReactDOM.render(
   <Router>
@@ -65,11 +63,7 @@ function App() {
         <SecureRoute
           path="/"
           exact
-          component={() => (
-            <FormModalComp>
-              <UserForm setUserType={setUserType} />
-            </FormModalComp>
-          )}
+          component={() => <AccountPinModal setUserType={setUserType} />}
         />
         <SecureRoute
           path="/dashboard"
