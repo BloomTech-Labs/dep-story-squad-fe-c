@@ -1,54 +1,47 @@
 // see README.md in components/common dir for more info
 
-import React, { useEffect, useState, Children, cloneElement } from 'react';
+import React, { useState } from 'react';
 import { Modal } from 'antd';
-import { useHistory, withRouter } from 'react-router-dom';
+import { UserForm, PINForm } from '../common';
+import { useHistory } from 'react-router-dom';
 
 // styles
 import './FormModalComp.less';
-import PropTypes from 'prop-types';
 
 const ModalComp = props => {
   const [showModal, setShowModal] = useState(true);
 
   const history = useHistory();
 
-  const { formVisibility, setFormVisibility } = useState({
+  const [formVisibility, setFormVisibility] = useState({
     userForm: true,
     pinForm: false,
   });
 
+  // from back-end pin validation
+  const [validationError, setValidationError] = useState(
+    'Pin and account type validation errors'
+  );
+
   // stores 'formdata' from each form in form sequence til ready for submission. formsubmissionData ex:
-  // {
-  // pin: {'1234'},
-  // form2: {data}
-  // }
-  const [formSubmissionData, setFormSubmissionData] = useState({});
-
-  let elements = Children.toArray(props.children);
-
-  // get props into the 'props.children' forms
-  for (let i = 0; i < elements.length; i++) {
-    elements[i] = cloneElement(elements[i], {
-      setFormVisibility: { setFormVisibility },
-      formVisibility: { formVisibility },
-      setFormSubmissionData: setFormSubmissionData,
-      formSubmissionData: formSubmissionData,
-      showModal: showModal,
-      setShowModal: setShowModal,
-    });
-  }
-
-  useEffect(() => {
-    // setsVisibility of child forms
-    elements.forEach(ele => {
-      console.log('ele: ', ele);
-    });
-  }, [formVisibility, elements]);
+  const [formSubmissionData, setFormSubmissionData] = useState({
+    // pin: {'1234'},
+    // userForm: {'child'}
+  });
 
   const handleCancel = () => {
     history.push('/login');
     setShowModal(false);
+  };
+
+  // called from the pinForm on submit
+  const mainSubmit = () => {
+    // axios call here to verify account and PIN
+    // if errors display errors
+    // else, submit form
+    // render loader
+    // close modal, redirect to dash
+    history.push('/login');
   };
 
   return (
@@ -68,17 +61,33 @@ const ModalComp = props => {
         footer={null}
         onCancel={handleCancel}
       >
-        {/* the component(s) to display inside the modal, from props */}
-        {elements.map(ele => {
-          return <div key={Math.random() * Date.now()}>{ele}</div>;
-        })}
+        {formVisibility.userForm && (
+          <UserForm
+            formVisibility={formVisibility}
+            setFormVisibility={setFormVisibility}
+            formSubmissionData={formSubmissionData}
+            setFormSubmissionData={setFormSubmissionData}
+          />
+        )}
+        {formVisibility.pinForm && (
+          <PINForm
+            mainSubmit={mainSubmit}
+            setShowModal={setShowModal}
+            formVisibility={formVisibility}
+            setFormVisibility={setFormVisibility}
+            formSubmissionData={formSubmissionData}
+            setFormSubmissionData={setFormSubmissionData}
+          />
+        )}
+        {validationError && (
+          <div style={{ color: 'red' }} className="pinFormError">
+            {validationError}
+          </div>
+        )}
       </Modal>
+      {console.log('formSubmissionData: ', formSubmissionData)}
     </div>
   );
-};
-
-ModalComp.propTypes = {
-  props: PropTypes.node,
 };
 
 export default ModalComp;
