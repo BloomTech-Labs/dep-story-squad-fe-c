@@ -5,7 +5,6 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import { FormInput } from '../components/common';
 import { Button } from '../components/common';
-import { BrowserRouter as Router } from 'react-router-dom';
 
 describe('FormModalComp', () => {
   test('modal container renders in the DOM', () => {
