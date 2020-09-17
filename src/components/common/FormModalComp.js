@@ -1,8 +1,9 @@
 // see README.md in components/common dir for more info
 
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal } from 'antd';
 import { UserForm, PINForm } from '../common';
+import { useHistory } from 'react-router-dom';
 
 // styles
 import './FormModalComp.less';
@@ -10,7 +11,10 @@ import PropTypes from 'prop-types';
 
 const ModalComp = props => {
   const [showModal, setShowModal] = useState(true);
-  const { formVisibility, setFormVisibility } = useState({
+
+  const history = useHistory();
+
+  const [formVisibility, setFormVisibility] = useState({
     userForm: true,
     pinForm: false,
   });
@@ -22,6 +26,7 @@ const ModalComp = props => {
   });
 
   const handleCancel = () => {
+    history.push('/login');
     setShowModal(false);
   };
 
@@ -49,21 +54,27 @@ const ModalComp = props => {
         footer={null}
         onCancel={handleCancel}
       >
-        <UserForm
-          formVisibility={formVisibility}
-          setFormVisibility={setFormVisibility}
-          formSubmissionData={formSubmissionData}
-          setFormSubmissionData={setFormSubmissionData}
-        />
-        <PINForm
-          mainSubmit={mainSubmit}
-          setShowModal={setShowModal}
-          formVisibility={formVisibility}
-          setFormVisibility={setFormVisibility}
-          formSubmissionData={formSubmissionData}
-          setFormSubmissionData={setFormSubmissionData}
-        />
+        {formVisibility.userForm && (
+          <UserForm
+            formVisibility={formVisibility}
+            setFormVisibility={setFormVisibility}
+            formSubmissionData={formSubmissionData}
+            setFormSubmissionData={setFormSubmissionData}
+          />
+        )}
+        {formVisibility.pinForm && (
+          <PINForm
+            mainSubmit={mainSubmit}
+            setShowModal={setShowModal}
+            formVisibility={formVisibility}
+            setFormVisibility={setFormVisibility}
+            formSubmissionData={formSubmissionData}
+            setFormSubmissionData={setFormSubmissionData}
+          />
+        )}
       </Modal>
+      {console.log('visibility: ', formVisibility)}
+      {console.log('formData: ', formSubmissionData)}
     </div>
   );
 };
