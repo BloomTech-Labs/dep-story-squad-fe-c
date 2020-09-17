@@ -1,5 +1,4 @@
 import React from 'react';
-import '../dash.css';
 import { Layout, Menu } from 'antd';
 
 // Nav bar for parent dash

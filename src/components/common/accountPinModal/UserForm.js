@@ -1,8 +1,5 @@
 import React from 'react';
 
-//styles
-import './UserForm.less';
-
 function UserForm({
   setFormSubmissionData,
   formSubmissionData,

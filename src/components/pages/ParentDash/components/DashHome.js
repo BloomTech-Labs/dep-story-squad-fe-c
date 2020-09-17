@@ -1,5 +1,4 @@
 import React from 'react';
-import '../dash.css';
 
 import { Layout } from 'antd';
 import { LinkButton } from './index';
