@@ -1,7 +1,7 @@
 import React from 'react';
 // styles
 // spinner size is controlled in the theme-overrides.js file
-import './loader.less';
+
 // components
 import { Spin } from 'antd';
 

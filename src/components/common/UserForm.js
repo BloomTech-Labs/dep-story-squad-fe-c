@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 
-//styles
-import './UserForm.css';
-
 function UserForm({
   setFormSubmissionData,
   formSubmissionData,
