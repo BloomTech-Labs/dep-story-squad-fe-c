@@ -3,13 +3,14 @@
 import React, { useState } from 'react';
 import { Modal } from 'antd';
 
-import { UserForm, PINForm } from '../common';
+import UserForm from './UserForm';
+import PINForm from './PINForm';
 import { useHistory } from 'react-router-dom';
 
 // styles
-import './FormModalComp.less';
+import './AccountPinModal.less';
 
-const ModalComp = props => {
+const AccountPinModal = props => {
   const [showModal, setShowModal] = useState(true);
 
   const history = useHistory();
@@ -86,9 +87,8 @@ const ModalComp = props => {
           </div>
         )}
       </Modal>
-      {console.log('formSubmissionData: ', formSubmissionData)}
     </div>
   );
 };
 
-export default ModalComp;
+export default AccountPinModal;

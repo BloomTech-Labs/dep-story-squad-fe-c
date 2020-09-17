@@ -1,7 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { PINForm } from '../components/common';
-import { FormModalComp } from '../components/common';
+import PINForm from '../components/common/accountPinModal/PINForm';
 
 describe('PINForm component', () => {
   test('renders in the dom', () => {
@@ -12,6 +11,6 @@ describe('PINForm component', () => {
         }}
       />
     );
-    expect(getByLabelText(/Enter Pin:/i)).toBeInTheDocument();
+    expect(getByLabelText(/Enter Pin/i)).toBeInTheDocument();
   });
 });
