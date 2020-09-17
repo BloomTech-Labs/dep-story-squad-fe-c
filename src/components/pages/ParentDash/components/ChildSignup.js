@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Layout } from 'antd';
-import '../dash.css';
 
 // Signup form to add children to parent account
 const ChildSignup = () => {
