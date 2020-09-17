@@ -1,6 +1,6 @@
 // see README.md in components/common dir for more info
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Modal } from 'antd';
 
 import { UserForm, PINForm } from '../common';
@@ -8,17 +8,21 @@ import { useHistory } from 'react-router-dom';
 
 // styles
 import './FormModalComp.less';
-import PropTypes from 'prop-types';
 
 const ModalComp = props => {
   const [showModal, setShowModal] = useState(true);
 
   const history = useHistory();
 
-  const { formVisibility, setFormVisibility } = useState({
+  const [formVisibility, setFormVisibility] = useState({
     userForm: true,
     pinForm: false,
   });
+
+  // from back-end pin validation
+  const [validationError, setValidationError] = useState(
+    'Pin and account type validation errors'
+  );
 
   // stores 'formdata' from each form in form sequence til ready for submission. formsubmissionData ex:
   const [formSubmissionData, setFormSubmissionData] = useState({
@@ -31,11 +35,14 @@ const ModalComp = props => {
     setShowModal(false);
   };
 
-  const mainSubmit = formSubmissionData => {
+  // called from the pinForm on submit
+  const mainSubmit = () => {
     // axios call here to verify account and PIN
     // if errors display errors
-    // else, submit form and close modal, redirect to dash
-    return;
+    // else, submit form
+    // render loader
+    // close modal, redirect to dash
+    history.push('/login');
   };
 
   return (
@@ -55,25 +62,33 @@ const ModalComp = props => {
         footer={null}
         onCancel={handleCancel}
       >
-        <UserForm
-          formVisibility={formVisibility}
-          setFormVisibility={setFormVisibility}
-          formSubmissionData={formSubmissionData}
-          setFormSubmissionData={setFormSubmissionData}
-        />
-        <PINForm
-          mainSubmit={mainSubmit}
-          setShowModal={setShowModal}
-          formVisibility={formVisibility}
-          setFormVisibility={setFormVisibility}
-          formSubmissionData={formSubmissionData}
-          setFormSubmissionData={setFormSubmissionData}
-        />
+        {formVisibility.userForm && (
+          <UserForm
+            formVisibility={formVisibility}
+            setFormVisibility={setFormVisibility}
+            formSubmissionData={formSubmissionData}
+            setFormSubmissionData={setFormSubmissionData}
+          />
+        )}
+        {formVisibility.pinForm && (
+          <PINForm
+            mainSubmit={mainSubmit}
+            setShowModal={setShowModal}
+            formVisibility={formVisibility}
+            setFormVisibility={setFormVisibility}
+            formSubmissionData={formSubmissionData}
+            setFormSubmissionData={setFormSubmissionData}
+          />
+        )}
+        {validationError && (
+          <div style={{ color: 'red' }} className="pinFormError">
+            {validationError}
+          </div>
+        )}
       </Modal>
+      {console.log('formSubmissionData: ', formSubmissionData)}
     </div>
   );
 };
-
-ModalComp.propTypes = {};
 
 export default ModalComp;

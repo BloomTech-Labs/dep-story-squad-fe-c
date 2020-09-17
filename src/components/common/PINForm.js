@@ -1,6 +1,6 @@
 // see README.md in components/common dir for more info
 
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 // components
@@ -9,38 +9,13 @@ import PinInput from 'react-pin-input';
 // styles
 import './PINForm.less';
 
-const PINForm = ({
-  showModal,
-  setShowModal,
-  formSubmissionData,
-  setFormSubmissionData,
-}) => {
-  const [formValue, setFormValue] = useState('');
-
-  // from back-end pin validation
-  const [validationError, setValidationError] = useState(
-    'Pin and account type validation errors'
-  );
-
+const PINForm = ({ mainSubmit, formSubmissionData, setFormSubmissionData }) => {
   const handleChange = value => {
-    setFormValue(value);
-  };
-
-  const handleSubmit = () => {
-    // TODO: need an axios call here to the back-end
-
     // sends form data to modal component
     setFormSubmissionData({
       ...formSubmissionData,
-      pin: formValue,
+      pin: value,
     });
-    // if validationError don't submit
-    // else: call Modal submit func and send data
-
-    // TODO: redirect to appropriate dashboard page
-    //  ............
-    // close modal
-    setShowModal(false);
   };
 
   return (
@@ -58,7 +33,7 @@ const PINForm = ({
       <label>
         Enter PIN:
         <PinInput
-          formValue={formValue}
+          formValue={formSubmissionData.pinform}
           handleChange={handleChange}
           length={4}
           initialValue=""
@@ -71,15 +46,11 @@ const PINForm = ({
           inputStyle={{ borderColor: 'blue' }}
           inputFocusStyle={{ borderColor: 'green' }}
           onComplete={(value, index) => {
-            handleSubmit();
+            mainSubmit();
           }}
           autoSelect={true}
         />
       </label>
-
-      <div style={{ color: 'red' }} className="pinFormError">
-        {validationError}
-      </div>
     </div>
   );
 };
@@ -88,7 +59,7 @@ PINForm.propTypes = {
   showModal: PropTypes.bool,
   setShowModal: PropTypes.func,
   setFormSubmissionData: PropTypes.func,
-  formSubmissionData: PropTypes.bool,
+  formSubmissionData: PropTypes.object,
 };
 
 export default PINForm;
