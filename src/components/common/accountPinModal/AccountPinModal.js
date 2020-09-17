@@ -87,7 +87,6 @@ const AccountPinModal = props => {
           </div>
         )}
       </Modal>
-      {console.log('formSubmissionData: ', formSubmissionData)}
     </div>
   );
 };

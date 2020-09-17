@@ -10,7 +10,6 @@ function UserForm({
   formVisibility,
 }) {
   const handleSubmit = e => {
-    console.log('submit event!!!');
     // send data to Modal state to store until ready to submit to BE
     setFormSubmissionData({
       ...formSubmissionData,
@@ -23,12 +22,10 @@ function UserForm({
     //   pinForm: false
     // }
     // TODO: add an animation transition between these forms
-    console.log('before formVisibility: ', formVisibility);
     setFormVisibility({
       userForm: false,
       pinForm: true,
     });
-    console.log('after formVisibility: ', formVisibility);
   };
   return (
     <div className="userForm">
