@@ -6,9 +6,6 @@ import { Modal } from 'antd';
 import { UserForm, PINForm } from '../common';
 import { useHistory } from 'react-router-dom';
 
-// styles
-import './FormModalComp.less';
-
 const ModalComp = props => {
   const [showModal, setShowModal] = useState(true);
 
