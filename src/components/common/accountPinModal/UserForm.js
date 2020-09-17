@@ -1,7 +1,4 @@
-import React, { useState } from 'react';
-
-//styles
-import './UserForm.css';
+import React from 'react';
 
 function UserForm({
   setFormSubmissionData,
@@ -10,8 +7,7 @@ function UserForm({
   formVisibility,
 }) {
   const handleSubmit = e => {
-    console.log('submit event!!!');
-    // send data to FormModalComp state to store until ready to submit to BE
+    // send data to Modal state to store until ready to submit to BE
     setFormSubmissionData({
       ...formSubmissionData,
       userForm: e.target.value,
@@ -23,12 +19,10 @@ function UserForm({
     //   pinForm: false
     // }
     // TODO: add an animation transition between these forms
-    console.log('before formVisibility: ', formVisibility);
     setFormVisibility({
       userForm: false,
       pinForm: true,
     });
-    console.log('after formVisibility: ', formVisibility);
   };
   return (
     <div className="userForm">
