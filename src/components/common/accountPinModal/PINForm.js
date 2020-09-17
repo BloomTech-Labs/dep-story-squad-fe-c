@@ -20,16 +20,7 @@ const PINForm = ({ mainSubmit, formSubmissionData, setFormSubmissionData }) => {
 
   return (
     // REMOVE STYLES!!
-    <div
-      style={{
-        marginTop: '12%',
-        width: '100%',
-        flexDirection: 'column',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
+    <div className="pinFormCont">
       <label>
         Enter PIN:
         <PinInput
@@ -43,8 +34,8 @@ const PINForm = ({ mainSubmit, formSubmissionData, setFormSubmissionData }) => {
           }}
           type="numeric"
           inputMode="number"
-          inputStyle={{ borderColor: 'blue' }}
-          inputFocusStyle={{ borderColor: 'green' }}
+          inputStyle={{ borderColor: '#6CEAE5' }}
+          inputFocusStyle={{ borderColor: 'blue' }}
           onComplete={(value, index) => {
             mainSubmit();
           }}
