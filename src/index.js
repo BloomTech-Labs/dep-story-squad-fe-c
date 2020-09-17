@@ -14,8 +14,8 @@ import { NotFoundPage } from './components/pages/NotFound';
 import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
 
+import { LoadingComponent } from './components/common';
 import { Dash } from './components/pages/Dash';
-
 import { FormModalComp } from './components/common';
 import { MissionDash } from './components/pages/MissionDash';
 import UserForm from './components/common/UserForm';

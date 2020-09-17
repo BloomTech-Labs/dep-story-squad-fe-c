@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Modal } from 'antd';
+
 import { UserForm, PINForm } from '../common';
 import { useHistory } from 'react-router-dom';
 

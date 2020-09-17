@@ -3,6 +3,9 @@ import { render, fireEvent } from '@testing-library/react';
 import { FormModalComp } from '../components/common';
 import { BrowserRouter as Router } from 'react-router-dom';
 
+import { FormInput } from '../components/common';
+import { Button } from '../components/common';
+
 describe('FormModalComp', () => {
   test('modal container renders in the DOM', () => {
     const { getByTestId } = render(<FormModalComp />);
@@ -30,4 +33,5 @@ describe('FormModalComp', () => {
     console.log('HERE', global.window.location.pathname);
     await expect(global.window.location.pathname).toEqual('/login');
   });
+
 });
