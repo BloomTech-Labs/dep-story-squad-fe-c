@@ -3,17 +3,12 @@ import { ParentDash } from '../ParentDash';
 import { ChildDash } from '../ChildDash';
 
 const RenderDash = props => {
-  const currentPage = () => {
-    if (props.current === 'parent') {
-      return <ParentDash />;
-    } else if (props.current === 'child') {
-      return <ChildDash />;
-    } else {
-      return null;
-    }
+  const dash = {
+    parent: <ParentDash setHeaderTitle={props.setHeaderTitle} />,
+    child: <ChildDash setHeaderTitle={props.setHeaderTitle} />,
+    null: null,
   };
-
-  return <>{currentPage()}</>;
+  return <>{dash[props.userType]}</>;
 };
 
 export default RenderDash;
