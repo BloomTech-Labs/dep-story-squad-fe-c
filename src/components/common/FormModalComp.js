@@ -1,13 +1,12 @@
 // see README.md in components/common dir for more info
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Modal } from 'antd';
 import { UserForm, PINForm } from '../common';
 import { useHistory } from 'react-router-dom';
 
 // styles
 import './FormModalComp.less';
-import PropTypes from 'prop-types';
 
 const ModalComp = props => {
   const [showModal, setShowModal] = useState(true);
@@ -18,6 +17,11 @@ const ModalComp = props => {
     userForm: true,
     pinForm: false,
   });
+
+  // from back-end pin validation
+  const [validationError, setValidationError] = useState(
+    'Pin and account type validation errors'
+  );
 
   // stores 'formdata' from each form in form sequence til ready for submission. formsubmissionData ex:
   const [formSubmissionData, setFormSubmissionData] = useState({
@@ -30,11 +34,14 @@ const ModalComp = props => {
     setShowModal(false);
   };
 
-  const mainSubmit = formSubmissionData => {
+  // called from the pinForm on submit
+  const mainSubmit = () => {
     // axios call here to verify account and PIN
     // if errors display errors
-    // else, submit form and close modal, redirect to dash
-    return;
+    // else, submit form
+    // render loader
+    // close modal, redirect to dash
+    history.push('/login');
   };
 
   return (
@@ -72,13 +79,15 @@ const ModalComp = props => {
             setFormSubmissionData={setFormSubmissionData}
           />
         )}
+        {validationError && (
+          <div style={{ color: 'red' }} className="pinFormError">
+            {validationError}
+          </div>
+        )}
       </Modal>
-      {console.log('visibility: ', formVisibility)}
-      {console.log('formData: ', formSubmissionData)}
+      {console.log('formSubmissionData: ', formSubmissionData)}
     </div>
   );
 };
-
-ModalComp.propTypes = {};
 
 export default ModalComp;
