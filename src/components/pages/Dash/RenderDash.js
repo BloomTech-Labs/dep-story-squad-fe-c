@@ -5,7 +5,7 @@ import { ChildDash } from '../ChildDash';
 const RenderDash = props => {
   const dash = {
     parent: <ParentDash setHeaderTitle={props.setHeaderTitle} />,
-    child: <ChildDash />,
+    child: <ChildDash setHeaderTitle={props.setHeaderTitle} />,
     null: null,
   };
   return <>{dash[props.userType]}</>;
