@@ -13,7 +13,7 @@ import 'antd/dist/antd.less';
 import { NotFoundPage } from './components/pages/NotFound';
 import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
-import { LoadingComponent } from './components/common';
+
 import { Dash } from './components/pages/Dash';
 
 import { FormModalComp } from './components/common';

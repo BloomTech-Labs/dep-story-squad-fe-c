@@ -9,17 +9,12 @@ function UserForm({
   setFormVisibility,
   formVisibility,
 }) {
-  const [userValue, setUserValue] = useState();
-
-  const handleSubmit = value => {
-    console.log('submitted!!!', value);
-    // set component state
-    setUserValue(value);
-
+  const handleSubmit = e => {
+    console.log('submit event!!!');
     // send data to FormModalComp state to store until ready to submit to BE
     setFormSubmissionData({
       ...formSubmissionData,
-      user: userValue,
+      userForm: e.target.value,
     });
     // hide this form
     // show next form
@@ -27,13 +22,13 @@ function UserForm({
     //   userForm: true,
     //   pinForm: false
     // }
+    // TODO: add an animation transition between these forms
+    console.log('before formVisibility: ', formVisibility);
     setFormVisibility({
-      ...formVisibility,
       userForm: false,
-      PinForm: true,
+      pinForm: true,
     });
-
-    return;
+    console.log('after formVisibility: ', formVisibility);
   };
   return (
     <div className="userForm">
@@ -44,9 +39,15 @@ function UserForm({
         </h3>
       </div>
       <div className="userButton">
-        <button onClick={handleSubmit}>Parent</button>
-        <button onClick={handleSubmit}>Child 1</button>
-        <button onClick={handleSubmit}>Child 2</button>
+        <button onClick={e => handleSubmit(e)} value="parent">
+          Parent
+        </button>
+        <button onClick={e => handleSubmit(e)} value="child1">
+          Child 1
+        </button>
+        <button onClick={e => handleSubmit(e)} value="child2">
+          Child 2
+        </button>
       </div>
     </div>
   );
