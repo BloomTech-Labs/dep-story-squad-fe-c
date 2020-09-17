@@ -6,9 +6,6 @@ import PropTypes from 'prop-types';
 // components
 import PinInput from 'react-pin-input';
 
-// styles
-import './PINForm.less';
-
 const PINForm = ({ mainSubmit, formSubmissionData, setFormSubmissionData }) => {
   const handleChange = value => {
     // sends form data to modal component

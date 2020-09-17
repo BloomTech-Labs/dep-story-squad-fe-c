@@ -2,8 +2,6 @@ import React, { useEffect } from 'react';
 
 import RenderMissionDash from './RenderMissionDash';
 
-import './styles.less';
-
 const MissionDashContainer = props => {
   // sets state held in <App />
   const { setHeaderTitle } = props;

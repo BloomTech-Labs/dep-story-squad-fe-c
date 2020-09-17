@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Route } from 'react-router-dom';
-import './dash.css';
 
 import { Layout } from 'antd';
 import { ParentNav, DashHome, ChildSignup } from './components';

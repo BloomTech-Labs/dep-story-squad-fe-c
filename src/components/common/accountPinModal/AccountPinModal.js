@@ -8,9 +8,6 @@ import UserForm from './UserForm';
 import PINForm from './PINForm';
 import { useHistory } from 'react-router-dom';
 
-// styles
-import './AccountPinModal.less';
-
 const AccountPinModal = props => {
   const [showModal, setShowModal] = useState(true);
 

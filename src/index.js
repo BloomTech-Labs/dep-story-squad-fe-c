@@ -8,6 +8,8 @@ import {
 } from 'react-router-dom';
 import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 
+// Styles imports
+import './styles/index.less';
 import 'antd/dist/antd.less';
 
 import { NotFoundPage } from './components/pages/NotFound';
@@ -15,7 +17,7 @@ import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
 
 import { Dash } from './components/pages/Dash';
-import { AccountPinModal } from './components/common';
+import { AccountPinModal } from './components/common/';
 import { MissionDash } from './components/pages/MissionDash';
 
 import { Header } from './components/common/';
