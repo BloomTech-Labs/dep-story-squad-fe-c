@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { FormModalComp } from '../components/common';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import { FormInput } from '../components/common';
 import { Button } from '../components/common';
@@ -34,22 +35,4 @@ describe('FormModalComp', () => {
     await expect(global.window.location.pathname).toEqual('/login');
   });
 
-  test('modal renders child component(s)', () => {
-    const { getByTestId } = render(
-      <FormModalComp>
-        <Button buttonText="Test Button" />
-        <FormInput
-          labelId="formInput"
-          type="text"
-          id="formInput"
-          name="formInput"
-          placeholder="placeholderText"
-        />
-      </FormModalComp>
-    );
-    const form = getByTestId('formInput');
-    const button = getByTestId('button');
-    expect(button).toBeInTheDocument();
-    expect(form).toBeInTheDocument();
-  });
 });
