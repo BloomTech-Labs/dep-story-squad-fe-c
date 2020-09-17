@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import OktaSignIn from '@okta/okta-signin-widget';
 import '@okta/okta-signin-widget/dist/css/okta-sign-in.min.css';
 import LoginTextArea from './LoginTextArea';
-import './login.css';
 
 // TEST CODE, DELETE
 import { FormModalComp } from '../../common';
