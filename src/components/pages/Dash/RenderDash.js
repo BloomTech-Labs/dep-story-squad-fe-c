@@ -1,14 +1,13 @@
+import React from 'react';
 import { ParentDash } from '../ParentDash';
-import React, { useEffect, useState } from 'react';
+import { ChildDash } from '../ChildDash';
 
-const RenderDash = () => {
-  const [current, setCurrent] = useState(null);
-
-  useEffect(() => {}, [current]);
-
+const RenderDash = props => {
   const currentPage = () => {
-    if (current === 'parent') {
+    if (props.current === 'parent') {
       return <ParentDash />;
+    } else if (props.current === 'child') {
+      return <ChildDash />;
     } else {
       return null;
     }
