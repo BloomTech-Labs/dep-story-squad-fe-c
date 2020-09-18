@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Modal } from 'antd';
 
+// components
 import UserForm from './UserForm';
 import PINForm from './PINForm';
 import { useHistory } from 'react-router-dom';
@@ -48,11 +49,7 @@ const AccountPinModal = props => {
       <Modal
         data-testid="formModal"
         style={{
-          boxSizing: 'border-box',
-          padding: '2%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
+          width: '100%',
         }}
         closable
         // displayed 'label' text for the modal header
@@ -79,9 +76,7 @@ const AccountPinModal = props => {
           />
         )}
         {validationError && (
-          <div style={{ color: 'red' }} className="pinFormError">
-            {validationError}
-          </div>
+          <div className="pinFormError">{validationError}</div>
         )}
       </Modal>
     </div>

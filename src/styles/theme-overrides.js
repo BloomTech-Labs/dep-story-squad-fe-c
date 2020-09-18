@@ -26,18 +26,8 @@ module.exports = {
   '@spin-dot-size-lg': '40px',
 
   // Modal
-  // '@modal-header-padding-vertical': '@padding-md',
-  // '@modal-header-padding-horizontal': '@padding-lg',
-  // '@modal-body-padding': '@padding-lg',
-  '@modal-header-bg': 'lightGreen',
-  // '@modal-header-padding': '@modal-header-padding-vertical @modal-header-padding-horizontal',
-  // '@modal-header-border-width': '@border-width-base',
   '@modal-header-border-style': '@border-style-base',
-  '@modal-header-title-line-height': '22px',
-  '@modal-header-title-font-size': '@font-size-lg',
   '@modal-header-border-color-split': '@border-color-split',
-  // '@modal-header-close-size': '56px',
   '@modal-content-bg': '@component-background',
-  '@modal-heading-color': '@heading-color',
   '@modal-close-color': '@text-color-secondary',
 };
