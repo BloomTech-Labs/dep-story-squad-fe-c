@@ -4,6 +4,7 @@ function UserForm({
   setFormSubmissionData,
   formSubmissionData,
   setFormVisibility,
+  userAccounts,
   formVisibility,
 }) {
   const handleSubmit = e => {
@@ -33,7 +34,18 @@ function UserForm({
         </h3>
       </div>
       <div className="userButton">
-        <button onClick={e => handleSubmit(e)} value="parent">
+        {userAccounts.map(account => {
+          return (
+            <button
+              key={Math.random() * Date.now()}
+              value={account}
+              onClick={e => handleSubmit(e)}
+            >
+              {account}
+            </button>
+          );
+        })}
+        {/* <button onClick={e => handleSubmit(e)} value="parent">
           Parent
         </button>
         <button onClick={e => handleSubmit(e)} value="child1">
@@ -41,7 +53,7 @@ function UserForm({
         </button>
         <button onClick={e => handleSubmit(e)} value="child2">
           Child 2
-        </button>
+        </button> */}
       </div>
     </div>
   );
