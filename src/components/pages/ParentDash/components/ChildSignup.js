@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Layout } from 'antd';
+import { Layout, Switch } from 'antd';
+import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
 
 // Signup form to add children to parent account
 const ChildSignup = () => {
@@ -67,10 +68,11 @@ const ChildSignup = () => {
             />
             <div className="dysBtn">
               <label>Dyslexia</label>
-              <label className="switch">
-                <input type="checkbox" onChange={handleToggle} />
-                <span className="slider round"></span>
-              </label>
+              <Switch
+                checkedChildren="On"
+                unCheckedChildren="Off"
+                onChange={handleToggle}
+              />
             </div>
             <input className="subBtn" type="submit" value="Add Child" />
           </form>
