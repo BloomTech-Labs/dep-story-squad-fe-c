@@ -40,6 +40,7 @@ function UserForm({
               key={Math.random() * Date.now()}
               value={account}
               onClick={e => handleSubmit(e)}
+              data-testid={account}
             >
               {account}
             </button>

@@ -13,4 +13,13 @@ describe('UserForm component', () => {
       )
     ).toBeInTheDocument();
   });
+
+  test('dynamically renders buttons', () => {
+    const { getByTestId } = render(
+      <UserForm userAccounts={['Dad', 'Child1', 'Child2']} />
+    );
+    expect(getByTestId(/Dad/i)).toBeInTheDocument();
+    expect(getByTestId(/Child1/i)).toBeInTheDocument();
+    expect(getByTestId(/Child2/i)).toBeInTheDocument();
+  });
 });
