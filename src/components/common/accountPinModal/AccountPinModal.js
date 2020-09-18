@@ -10,7 +10,7 @@ import { useHistory } from 'react-router-dom';
 
 const AccountPinModal = props => {
   const [showModal, setShowModal] = useState(true);
-
+  const [userAccounts, setUserAccounts] = useState(['Dad', 'Child1', 'Child2']);
   const history = useHistory();
 
   const [formVisibility, setFormVisibility] = useState({
@@ -59,6 +59,8 @@ const AccountPinModal = props => {
       >
         {formVisibility.userForm && (
           <UserForm
+            userAccounts={userAccounts}
+            setUserAccounts={setUserAccounts}
             formVisibility={formVisibility}
             setFormVisibility={setFormVisibility}
             formSubmissionData={formSubmissionData}
