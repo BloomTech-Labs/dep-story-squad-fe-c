@@ -24,6 +24,9 @@ const Nav = props => {
           Welcome Back
         </Header>
         <Menu
+          style={{
+            background: 'white',
+          }}
           mode="inline"
           selectedKeys={[props.current]}
           onClick={props.handleClick}
