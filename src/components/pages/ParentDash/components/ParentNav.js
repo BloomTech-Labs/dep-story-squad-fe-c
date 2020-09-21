@@ -9,20 +9,18 @@ const Nav = props => {
   return (
     <>
       <Sider
+        breakpoint="lg"
+        collapsedWidth="0"
+        onBreakpoint={broken => {
+          console.log(broken);
+        }}
+        onCollapse={(collapsed, type) => {
+          console.log(collapsed, type);
+        }}
         style={{ borderRight: '1px solid #949494' }}
         width={253}
         theme="light"
       >
-        <Header
-          style={{
-            background: 'white',
-            textAlign: 'center',
-            fontSize: '22px',
-            margin: '10px 0',
-          }}
-        >
-          Welcome Back
-        </Header>
         <Menu
           style={{
             background: 'white',
@@ -31,6 +29,16 @@ const Nav = props => {
           selectedKeys={[props.current]}
           onClick={props.handleClick}
         >
+          <Header
+            style={{
+              background: 'white',
+              textAlign: 'center',
+              fontSize: '22px',
+              margin: '10px 0',
+            }}
+          >
+            Welcome Back
+          </Header>
           <Item key="home">Dashboard</Item>
           <Item key="settings">Parent Settings</Item>
           <Item key="help">Help</Item>
