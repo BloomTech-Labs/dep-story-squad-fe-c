@@ -12,7 +12,7 @@ const DashHome = () => {
       <Layout>
         <Header
           className="parent-header"
-          style={{ background: 'white', width: '100%' }}
+          style={{ background: '#fafafa', width: '100%' }}
         >
           <h1>Story Squad</h1>
         </Header>
