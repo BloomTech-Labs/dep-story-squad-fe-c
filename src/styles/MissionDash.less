@@ -1,0 +1,104 @@
+// Panel that groups Write and Draw buttons together on right side desktop view
+.right-panel {
+  width: 100%;
+
+  .MQ(@desktop, {width: 55%;});
+}
+
+.mission-btn-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 28.33vh;
+  border: 2.5px solid @black;
+  padding: 1%;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  .mission-btn-icon {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: all 0.3s ease;
+  }
+
+  // Progress checkboxes
+  .progress-check {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  // <img>s inside the buttons
+  img {
+    height: 35%;
+  }
+
+  &:hover .mission-btn-icon {
+    transform: scale(1.1);
+  }
+
+  //Button text
+  h3 {
+    margin: 0;
+    color: @black;
+    font-size: 3rem;
+  }
+  //--------------------------
+
+  // background colors of specific buttons in the child dashboard
+  &.read {
+    background: @green;
+
+    &:hover {
+      background: lighten(@green, 14%);
+    }
+
+    .MQ(@desktop, {width: 45%; height: 75vh;});
+  }
+
+  &.write {
+    background: @red;
+
+    &:hover {
+      background: lighten(@red, 14%);
+    }
+
+    img {
+      margin-left: 25px;
+    }
+
+    .MQ(@desktop, {height: 37.5vh;});
+  }
+
+  &.draw {
+    background: @yellow;
+
+    &:hover {
+      background: lighten(@yellow, 14%);
+    }
+
+    img {
+      margin-left: 10px;
+    }
+
+    .MQ(@desktop, {height: 37.5vh;});
+  }
+
+  // Media Query for desktop
+  .MQ(
+      @desktop,
+      {// dashboard buttons for child dash
+        &.mission {width: 52%;} &.avatar {width: 48%;} &.passport {width: 48%;} &.trophy
+        {width: 52%;} &.mission,
+      &.avatar,
+      &.passport,
+      &.trophy {height: 37.5vh;}}
+    )
+    ;;
+}
