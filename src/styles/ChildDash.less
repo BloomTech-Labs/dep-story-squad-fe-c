@@ -46,5 +46,30 @@
   &.trophy {
     background: @blue;
   }
-  //---------------------------------------------------------------
+
+  @media screen and (min-width: 800px) {
+    // dashboard buttons for child dash
+    &.mission {
+      width: 52%;
+    }
+
+    &.avatar {
+      width: 48%;
+    }
+
+    &.passport {
+      width: 48%;
+    }
+
+    &.trophy {
+      width: 52%;
+    }
+
+    &.mission,
+    &.avatar,
+    &.passport,
+    &.trophy {
+      height: 37.5vh;
+    }
+  }
 }
