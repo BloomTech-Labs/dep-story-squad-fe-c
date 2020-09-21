@@ -5,6 +5,10 @@
   background: @white;
 }
 
+.Layout {
+  background: @white;
+}
+
 .AddCard {
   height: 176px;
   width: 343px;
@@ -13,6 +17,10 @@
   box-sizing: border-box;
   border-radius: 14px;
   font-size: 36px;
+}
+
+.AddCard .icon {
+  margin-right: 10px;
 }
 
 .parent-header h1 {
@@ -35,19 +43,22 @@
   background: @cyan;
   border-radius: 14px;
   width: 674px;
-  height: 334px;
+  height: 364px;
   display: flex;
   justify-content: center;
   margin: 0 auto;
+  // Media Query for signupForm
+  .minMQ(@desktop, {width: 80vw;});
 }
 
 .signupForm form {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-content: center;
-  width: 40%;
+  margin: 0 auto;
+  width: 45%;
   height: 100%;
+  .minMQ(@desktop, {width: 60vw;});
 }
 
 .signupForm input {
@@ -56,17 +67,25 @@
   background: rgba(255, 255, 255, 0.75);
 }
 
-.signupForm .subBtn {
+.signupForm .submitBtn {
   background: @btn-blue;
   border-radius: 14px;
   color: white;
 }
 
 .signupForm .dysBtn {
-  left: 100px;
   display: flex;
   justify-content: flex-end;
+  margin-right: 10px;
 }
 
+.signupForm .dysLbl {
+  margin-right: 10px;
+}
 
-
+.signupForm .cancel {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 10px;
+  text-decoration: underline;
+}
