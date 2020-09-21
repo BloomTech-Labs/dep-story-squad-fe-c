@@ -82,14 +82,15 @@ const ChildSignup = () => {
               />
             </div>
             <input className="submitBtn" type="submit" value="Add Child" />
-            <div
+            <a
+              href="/login"
               className="cancel"
               onClick={() => {
                 push('/login');
               }}
             >
               Cancel
-            </div>
+            </a>
           </form>
         </div>
       </Content>
