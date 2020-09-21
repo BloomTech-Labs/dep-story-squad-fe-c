@@ -51,6 +51,7 @@ const AccountPinModal = props => {
         style={{
           width: '100%',
         }}
+        destroyOnClose
         closable
         // displayed 'label' text for the modal header
         visible={showModal}

@@ -5,7 +5,6 @@ function UserForm({
   formSubmissionData,
   setFormVisibility,
   userAccounts,
-  formVisibility,
 }) {
   const handleSubmit = e => {
     // send data to Modal state to store until ready to submit to BE
@@ -45,15 +44,6 @@ function UserForm({
             </button>
           );
         })}
-        {/* <button onClick={e => handleSubmit(e)} value="parent">
-          Parent
-        </button>
-        <button onClick={e => handleSubmit(e)} value="child1">
-          Child 1
-        </button>
-        <button onClick={e => handleSubmit(e)} value="child2">
-          Child 2
-        </button> */}
       </div>
     </div>
   );
