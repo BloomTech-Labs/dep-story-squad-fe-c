@@ -1,0 +1,6 @@
+// Media Query Mixin
+.MQ(@maxWidth; @rules) {
+  @media only screen and (min-width: @maxWidth) {
+    @rules();
+  }
+}
