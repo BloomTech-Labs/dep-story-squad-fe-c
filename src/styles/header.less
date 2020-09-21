@@ -20,4 +20,11 @@
     bottom: 0;
     width: 100%;
   }
+
+  // Media Query for desktop
+  .MQ(
+    @desktop,
+    {height: 25vh; .header-title {font-size: 3.25rem; -webkit-text-stroke: 3px @black;}
+      img {height: 95%;}}
+  );
 }
