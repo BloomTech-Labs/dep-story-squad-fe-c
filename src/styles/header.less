@@ -21,16 +21,10 @@
     width: 100%;
   }
 
-  @media screen and (min-width: 800px) {
-    height: 25vh;
-
-    .header-title {
-      font-size: 3.25rem;
-      -webkit-text-stroke: 3px @black;
-    }
-
-    img {
-      height: 95%;
-    }
-  }
+  // Media Query for desktop
+  .MQ(
+    @desktop,
+    {height: 25vh; .header-title {font-size: 3.25rem; -webkit-text-stroke: 3px @black;}
+      img {height: 95%;}}
+  );
 }

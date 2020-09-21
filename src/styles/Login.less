@@ -52,23 +52,11 @@
   }
   //okta login widget ---------------------------
 
-  @media screen and (min-width: 800px) {
-    flex-direction: row-reverse;
-
-    .textarealogin {
-      width: 50%;
-      display: flex;
-      flex-wrap: wrap;
-      align-content: center;
-      font-size: 1.25rem;
-    }
-
-    #sign-in-widget {
-      width: 40%;
-
-      .auth-container {
-        margin: 5%;
-      }
-    }
-  }
+  // Media Query for desktop
+  .MQ(
+    @desktop,
+    {flex-direction: row-reverse; .textarealogin {width: 50%; display: flex;
+      flex-wrap: wrap; align-content: center; font-size: 1.25rem;} #sign-in-widget
+      {width: 40%; .auth-container {margin: 5%;}}}
+  );
 }
