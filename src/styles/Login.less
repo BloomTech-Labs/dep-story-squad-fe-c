@@ -1,49 +1,74 @@
 .loginarea {
   display: flex;
   flex-wrap: wrap;
-}
 
-.textarealogin {
-  width: 100%;
-  margin: 3%;
-  padding: 0 3%;
-  line-height: 1.5;
-  font-size: 1rem;
-}
+  .textarealogin {
+    width: 100%;
+    margin: 3%;
+    padding: 0 3%;
+    line-height: 1.5;
+    font-size: 1rem;
+  }
 
-#sign-in-widget {
-  width: 100%;
-  margin: 0 auto;
-  background: #fafafa;
-}
+  //okta login widget ---------------------------
+  #sign-in-widget {
+    width: 100%;
+    margin: 0 auto;
 
-.okta-form-title {
-  text-align: center;
-  font-size: 24px;
-  line-height: 22px;
-  color: rgba(60, 60, 67, 0.6);
-}
+    .auth-header {
+      display: none;
+    }
 
-.o-form-fieldset-container {
-  text-align: center;
-}
+    .okta-form-title {
+      text-align: center;
+      font-size: 24px;
+      line-height: 22px;
+      color: rgba(60, 60, 67, 0.6);
+    }
 
-.o-form-button-bar {
-  margin-top: 6%;
-  text-align: center;
-  margin-bottom: 5%;
-}
+    .o-form-fieldset-container {
+      text-align: center;
+    }
 
-#okta-signin-username {
-  appearance: none;
-  width: 70%;
-}
+    .o-form-button-bar {
+      margin-top: 6%;
+      text-align: center;
+      margin-bottom: 5%;
+    }
 
-#okta-signin-password {
-  width: 70%;
-}
+    #okta-signin-username {
+      appearance: none;
+      width: 70%;
+    }
 
-.js-help {
-  padding-left: 35%;
-  color: black;
+    #okta-signin-password {
+      width: 70%;
+    }
+
+    .js-help {
+      padding-left: 35%;
+      color: black;
+    }
+  }
+  //okta login widget ---------------------------
+
+  @media screen and (min-width: 800px) {
+    flex-direction: row-reverse;
+
+    .textarealogin {
+      width: 50%;
+      display: flex;
+      flex-wrap: wrap;
+      align-content: center;
+      font-size: 1.25rem;
+    }
+
+    #sign-in-widget {
+      width: 40%;
+
+      .auth-container {
+        margin: 5%;
+      }
+    }
+  }
 }
