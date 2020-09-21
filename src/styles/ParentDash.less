@@ -47,6 +47,8 @@
   display: flex;
   justify-content: center;
   margin: 0 auto;
+  // Media Query for signupForm
+  .minMQ(@desktop, {width: 80vw;});
 }
 
 .signupForm form {
@@ -56,6 +58,7 @@
   margin: 0 auto;
   width: 45%;
   height: 100%;
+  .minMQ(@desktop, {width: 60vw;});
 }
 
 .signupForm input {
