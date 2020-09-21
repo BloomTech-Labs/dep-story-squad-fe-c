@@ -1,0 +1,6 @@
+// Media Query Mixin
+.media(@maxWidth; @rules) {
+  @media only screen and (max-width: @maxWidth) {
+    @rules();
+  }
+}
