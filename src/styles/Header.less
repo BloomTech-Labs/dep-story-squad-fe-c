@@ -1,0 +1,30 @@
+.storysquad-header {
+  position: relative;
+  width: 100%;
+  height: 15vh;
+  background: @cyan;
+
+  .header-title {
+    position: absolute;
+    width: 100%;
+    color: @white;
+    font-family: 'Bangers', cursive;
+    font-size: 2.25rem;
+    text-align: center;
+    -webkit-text-stroke: 2px @black;
+    z-index: 5;
+  }
+
+  img {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+
+  // Media Query for desktop
+  .MQ(
+    @desktop,
+    {height: 25vh; .header-title {font-size: 3.25rem; -webkit-text-stroke: 3px @black;}
+      img {height: 95%;}}
+  );
+}
