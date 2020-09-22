@@ -6,6 +6,7 @@ import {
   LinkButton,
   ParentNav,
   ChildSignup,
+  Help,
 } from '../components/pages/ParentDash/components';
 import { BrowserRouter as Router } from 'react-router-dom';
 
@@ -18,7 +19,11 @@ test('ParentDash renders without errors', () => {
 });
 
 test('Nav renders without errors', () => {
-  render(<ParentNav />);
+  render(
+    <Router>
+      <ParentNav />
+    </Router>
+  );
 });
 
 test('DashHome renders without errors', () => {
@@ -43,4 +48,8 @@ test('Child signup form renders without errors', () => {
       <ChildSignup />
     </Router>
   );
+});
+
+test('Help page renders without errors', () => {
+  render(<Help />);
 });
