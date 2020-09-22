@@ -1,9 +1,13 @@
 import React from 'react';
 
-const RenderChildDash = () => {
+const RenderChildDash = ({ history }) => {
   return (
     <div className="dashboard-container">
-      <button className="dash-btn-container mission">
+      <button
+        className="dash-btn-container mission"
+        /* Clicking button pushes user to the mission dashboard */
+        onClick={() => history.push('/mission')}
+      >
         <img src="/images/mission-btn.png" alt="accept the mission artwork" />
       </button>
 
