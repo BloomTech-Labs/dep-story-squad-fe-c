@@ -40,7 +40,7 @@ const ChildSignup = () => {
   return (
     <Layout className="parent-layout" style={{ background: 'white' }}>
       <Header className="parent-header" style={{ background: 'white' }}>
-        <h1 style={{ fontFamily: 'Bangers' }}>Add a Child</h1>
+        <h1>Add a Child</h1>
       </Header>
       <Content>
         <div className="signupForm">

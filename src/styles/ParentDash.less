@@ -17,26 +17,24 @@
   box-sizing: border-box;
   border-radius: 14px;
   font-size: 36px;
-}
-
-.AddCard .icon {
-  margin-right: 10px;
-}
-
-.parent-header h1 {
-  text-align: center;
-  font-size: 48px;
-  color: @dark-blue;
+  .icon {
+    margin-right: 10px;
+  }
 }
 
 .parent-layout {
-  background: 'white';
+  background: @white;
   height: '100vh';
 }
 
 .parent-header {
-  background: 'white';
+  background: @white;
   width: '100%';
+  h1 {
+    text-align: center;
+    font-size: 48px;
+    color: @dark-blue;
+  }
 }
 
 .signupForm {
@@ -49,43 +47,53 @@
   margin: 0 auto;
   // Media Query for signupForm
   .minMQ(@desktop, {width: 80vw;});
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    width: 45%;
+    height: 100%;
+    .minMQ(@desktop, {width: 60vw;});
+  }
+  input {
+    padding: 8px;
+    margin: 10px;
+    background: rgba(255, 255, 255, 0.75);
+  }
+  .submitBtn {
+    background: @btn-blue;
+    border-radius: 14px;
+    color: white;
+  }
+  .dysBtn {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10px;
+  }
+  .dysLbl {
+    margin-right: 10px;
+  }
+  .cancel {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10px;
+    text-decoration: underline;
+  }
 }
 
-.signupForm form {
+.contact {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   margin: 0 auto;
-  width: 45%;
-  height: 100%;
-  .minMQ(@desktop, {width: 60vw;});
-}
-
-.signupForm input {
-  padding: 8px;
-  margin: 10px;
-  background: rgba(255, 255, 255, 0.75);
-}
-
-.signupForm .submitBtn {
-  background: @btn-blue;
-  border-radius: 14px;
-  color: white;
-}
-
-.signupForm .dysBtn {
-  display: flex;
-  justify-content: flex-end;
-  margin-right: 10px;
-}
-
-.signupForm .dysLbl {
-  margin-right: 10px;
-}
-
-.signupForm .cancel {
-  display: flex;
-  justify-content: flex-end;
-  margin-right: 10px;
-  text-decoration: underline;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 40vh;
+  h2 {
+    font-size: 36px;
+    color: black;
+    font-family: 'Nunito';
+  }
+  p {
+    font-size: 24px;
+  }
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Layout, Menu } from 'antd';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 // Nav bar for parent dash
 const Nav = props => {
@@ -43,9 +44,15 @@ const Nav = props => {
           selectedKeys={[props.current]}
           onClick={props.handleClick}
         >
-          <Item key="home">Dashboard</Item>
+          <Item key="home">
+            <Link to="/login" />
+            Dashboard
+          </Item>
           <Item key="settings">Parent Settings</Item>
-          <Item key="help">Help</Item>
+          <Item key="help">
+            <Link to="/login/help" />
+            Help
+          </Item>
           <Item key="logout">Log out</Item>
         </Menu>
       </Sider>
