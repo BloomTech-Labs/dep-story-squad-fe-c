@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // we will define a bunch of API calls here.
-const apiUrl = `${process.env.REACT_APP_API_URI}/profiles`;
+const apiUrl = `${process.env.REACT_APP_API_URI}`;
 
 const sleep = time =>
   new Promise(resolve => {
@@ -49,4 +49,18 @@ const getProfileData = authState => {
   }
 };
 
-export { sleep, getExampleData, getProfileData, getDSData };
+// gets associated accounts for logged in user
+const getAccounts = bearer => {
+  return axios
+    .get(`${apiUrl}auth/login`, {
+      headers: { Authorization: `Bearer ${bearer}` },
+    })
+    .then(res => {
+      return res.data;
+    })
+    .catch(err => {
+      return err;
+    });
+};
+
+export { sleep, getExampleData, getProfileData, getDSData, getAccounts };

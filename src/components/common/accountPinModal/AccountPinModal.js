@@ -7,10 +7,14 @@ import { Modal } from 'antd';
 import UserForm from './UserForm';
 import PINForm from './PINForm';
 import { useHistory } from 'react-router-dom';
+import { LoadingComponent } from '../LoadingComponent';
 
 const AccountPinModal = props => {
   const [showModal, setShowModal] = useState(true);
-  const [userAccounts, setUserAccounts] = useState(['Dad', 'Child1', 'Child2']);
+  const [isLoading, setIsLoading] = useState(true);
+  const loggedInUser = JSON.parse(
+    window.localStorage.getItem('okta-token-storage')
+  );
   const history = useHistory();
 
   const [formVisibility, setFormVisibility] = useState({
@@ -60,8 +64,9 @@ const AccountPinModal = props => {
       >
         {formVisibility.userForm && (
           <UserForm
-            userAccounts={userAccounts}
-            setUserAccounts={setUserAccounts}
+            loggedInUser={loggedInUser}
+            isLoading={isLoading}
+            setIsLoading={setIsLoading}
             formVisibility={formVisibility}
             setFormVisibility={setFormVisibility}
             formSubmissionData={formSubmissionData}
@@ -70,6 +75,9 @@ const AccountPinModal = props => {
         )}
         {formVisibility.pinForm && (
           <PINForm
+            loggedInUser={loggedInUser}
+            isLoading={isLoading}
+            setIsLoading={setIsLoading}
             mainSubmit={mainSubmit}
             setShowModal={setShowModal}
             formVisibility={formVisibility}
@@ -82,6 +90,7 @@ const AccountPinModal = props => {
           <div className="pinFormError">{validationError}</div>
         )}
       </Modal>
+      {console.log('loggedInUser: ', loggedInUser)}
     </div>
   );
 };
