@@ -22,13 +22,14 @@ const Nav = props => {
           position: 'absolute',
           borderRight: '1px solid #949494',
           height: '100%',
+          background: '#fafafa',
         }}
         width={253}
         theme="light"
       >
         <Header
           style={{
-            background: 'white',
+            background: '#fafafa',
             textAlign: 'center',
             fontSize: '22px',
             margin: '10px 0',
@@ -38,7 +39,7 @@ const Nav = props => {
         </Header>
         <Menu
           style={{
-            background: 'white',
+            background: '#fafafa',
           }}
           mode="inline"
           selectedKeys={[props.current]}
