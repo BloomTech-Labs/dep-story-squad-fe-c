@@ -1,6 +1,6 @@
 import React from 'react';
 
-const RenderChildDash = ({ history }) => {
+const RenderChildDash = ({ history, messagePopup }) => {
   return (
     <div className="dashboard-container">
       <button
@@ -14,7 +14,7 @@ const RenderChildDash = ({ history }) => {
       <button
         className="dash-btn-container avatar"
         /* Feature not implemented yet. if a user clicks the button an alert is displayed with the feedback */
-        onClick={() => alert('Feature not availble yet')}
+        onClick={messagePopup}
       >
         <img src="/images/avatar-btn.png" alt="change avatar artwork" />
       </button>
@@ -22,7 +22,7 @@ const RenderChildDash = ({ history }) => {
       <button
         className="dash-btn-container passport"
         /* Feature not implemented yet. if a user clicks the button an alert is displayed with the feedback */
-        onClick={() => alert('Feature not availble yet')}
+        onClick={messagePopup}
       >
         <img src="/images/passport-btn.png" alt="adventure passport artwork" />
       </button>
@@ -30,7 +30,7 @@ const RenderChildDash = ({ history }) => {
       <button
         className="dash-btn-container trophy"
         /* Feature not implemented yet. if a user clicks the button an alert is displayed with the feedback */
-        onClick={() => alert('Feature not availble yet')}
+        onClick={messagePopup}
       >
         <img src="/images/trophy-btn.png" alt="trophy room artwork" />
       </button>
