@@ -1,4 +1,3 @@
-import React from 'react';
 import { Modal } from 'antd';
 
 // displays a modal with a message to the user
