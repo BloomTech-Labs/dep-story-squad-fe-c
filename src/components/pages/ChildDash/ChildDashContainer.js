@@ -19,15 +19,13 @@ const ChildDashContainer = props => {
   }, [setHeaderTitle]);
 
   // displays a modal with a message to the user
-  const messagePopup = (message, title) => {
+  const messagePopup = message => {
     return Modal.info({
-      title: title ? title : '',
       content: (
         <div>
           <p>{message}</p>
         </div>
       ),
-      onOk() {},
     });
   };
 
