@@ -1,21 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-export class getStories extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      img: '',
-    };
-  }
+const apiUrl = `${process.env.REACT_APP_API_URI}`;
 
-  componentDidMount() {
-    axios.get('https://story-squad-c-api.herokuapp.com/api/child/:1/mission');
-  }
+export const GetStories = props => {
+  useEffect(() => {
+    axios.get(`${apiUrl}/api/child/${props.id}/mission`).then(res => {});
+  }, [props]);
 
-  render() {
-    return <div></div>;
-  }
-}
-
-export default getStories;
+  return <div></div>;
+};
