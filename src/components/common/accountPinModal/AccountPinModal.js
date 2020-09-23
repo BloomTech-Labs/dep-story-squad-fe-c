@@ -9,7 +9,7 @@ import UserForm from './UserForm';
 import PINForm from './PINForm';
 import { useHistory } from 'react-router-dom';
 
-const AccountPinModal = props => {
+const AccountPinModal = () => {
   const [showModal, setShowModal] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const loadingRef = useRef(isLoading);
@@ -81,8 +81,6 @@ const AccountPinModal = props => {
             isLoading={isLoading}
             formVisibility={formVisibility}
             setFormVisibility={setFormVisibility}
-            formSubmissionData={formSubmissionData}
-            setFormSubmissionData={setFormSubmissionData}
           />
         )}
         {formVisibility.pinForm && (

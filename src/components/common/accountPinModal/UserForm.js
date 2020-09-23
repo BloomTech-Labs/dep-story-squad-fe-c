@@ -1,19 +1,12 @@
 import React from 'react';
 import LoadingComponent from '../LoadingComponent';
+import { useLocalStorage } from '../../../utils/hooks';
 
-function UserForm({
-  setFormSubmissionData,
-  formSubmissionData,
-  setFormVisibility,
-  isLoading,
-  accounts,
-}) {
+function UserForm({ setFormVisibility, isLoading, accounts }) {
+  const [userType, setUserType] = useLocalStorage('user', null);
   const handleSubmit = e => {
     // send data to Modal state to store until ready to submit to BE
-    setFormSubmissionData({
-      ...formSubmissionData,
-      userForm: e.target.value,
-    });
+    setUserType(e.target.value);
     // hide this form
     // show next form
     // state: {
@@ -44,7 +37,7 @@ function UserForm({
             return (
               <button
                 key={Math.random() * Date.now()}
-                value={account.name}
+                value={account.type}
                 onClick={e => handleSubmit(e)}
               >
                 {account.name}
