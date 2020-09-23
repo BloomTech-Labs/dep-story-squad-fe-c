@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { getAccounts } from '../../../api';
+import React from 'react';
 import LoadingComponent from '../LoadingComponent';
 
 function UserForm({
@@ -7,23 +6,8 @@ function UserForm({
   formSubmissionData,
   setFormVisibility,
   isLoading,
-  setIsLoading,
-  loggedInUser,
+  accounts,
 }) {
-  const [parentAccount, setParentAccount] = useState();
-  const [childAccounts, setChildAccounts] = useState([]);
-
-  useEffect(() => {
-    getAccounts(loggedInUser.idToken.value).then(res => {
-      setParentAccount(res.data.parent.name);
-      // convert res.data.children obj => array
-      for (const [, value] of Object.entries(res.data.children)) {
-        setChildAccounts([...childAccounts, value]);
-      }
-      setIsLoading(false);
-    });
-  }, [loggedInUser]);
-
   const handleSubmit = e => {
     // send data to Modal state to store until ready to submit to BE
     setFormSubmissionData({
@@ -55,23 +39,18 @@ function UserForm({
       <div className="userButton">
         {isLoading && <LoadingComponent />}
 
-        {!isLoading && (
-          <button value={parentAccount} onClick={e => handleSubmit(e)}>
-            {parentAccount}
-          </button>
-        )}
-
-        {childAccounts.map(child => {
-          return (
-            <button
-              key={Math.random() * Date.now()}
-              value={child.name}
-              onClick={e => handleSubmit(e)}
-            >
-              {child.name}
-            </button>
-          );
-        })}
+        {!isLoading &&
+          accounts.map(account => {
+            return (
+              <button
+                key={Math.random() * Date.now()}
+                value={account.name}
+                onClick={e => handleSubmit(e)}
+              >
+                {account.name}
+              </button>
+            );
+          })}
       </div>
     </div>
   );
