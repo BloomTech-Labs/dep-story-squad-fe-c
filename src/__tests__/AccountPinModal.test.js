@@ -2,17 +2,36 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { AccountPinModal } from '../components/common';
 import { BrowserRouter as Router } from 'react-router-dom';
+import ShallowRenderer from 'react-shallow-renderer';
+import { axios } from 'axios';
+
+// jest.mock('axios');
 
 describe('AccountPinModal', () => {
+  window.localStorage.setItem(
+    'okta-token-storage',
+    JSON.stringify({
+      idToken: {
+        value:
+          'eyJraWQiOiJxaUhsZllkbzFzSTEtRnJ6LXNBZUtMT0dEY0lDM2R2d2tpOXNXMkhPNGk0IiwiYWxnIjoiUlMyNTYifQ',
+      },
+    })
+  );
+
   test('modal container renders in the DOM', () => {
-    const { getByTestId } = render(<AccountPinModal />);
-    expect(getByTestId('formModalCont')).toBeInTheDocument();
+    const renderer = new ShallowRenderer();
+    renderer.render(<AccountPinModal />);
+
+    const result = renderer.getRenderOutput();
+    expect(result.key).toEqual('formModalCont');
   });
 
   test('modal component renders in the DOM', () => {
-    const { getByTestId } = render(<AccountPinModal />);
+    const renderer = new ShallowRenderer();
+    renderer.render(<AccountPinModal />);
+    const result = renderer.getRenderOutput();
 
-    expect(getByTestId(/formModal/i)).toBeInTheDocument();
+    expect(result.props.children.key).toEqual('formModal');
   });
 
   test('modal component pushes to login when canceled', async () => {
@@ -23,7 +42,6 @@ describe('AccountPinModal', () => {
       </Router>
     );
 
-    // const buttonX = getByRole('button', { name: 'Close' });
     const buttonX = getByLabelText('Close');
 
     fireEvent.click(buttonX);
