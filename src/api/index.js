@@ -49,4 +49,7 @@ const getProfileData = authState => {
   }
 };
 
+// creating axios call to render the pdf stories to be read once the "Read" section is selected on the mission page.
+const getStories = () => {};
+
 export { sleep, getExampleData, getProfileData, getDSData };
