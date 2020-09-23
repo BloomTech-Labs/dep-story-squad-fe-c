@@ -10,6 +10,7 @@ const Nav = props => {
   return (
     <>
       <Sider
+        className="parentNav"
         breakpoint="lg"
         collapsedWidth="0"
         onBreakpoint={broken => {
@@ -18,12 +19,7 @@ const Nav = props => {
         onCollapse={(collapsed, type) => {
           console.log(collapsed, type);
         }}
-        style={{
-          position: 'absolute',
-          borderRight: '1px solid #949494',
-          height: '100%',
-          background: '#fafafa',
-        }}
+        style={{ borderRight: '1px solid #949494', background: '#fafafa' }}
         width={253}
         theme="light"
       >

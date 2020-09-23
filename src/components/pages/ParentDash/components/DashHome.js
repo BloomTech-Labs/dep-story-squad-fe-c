@@ -14,7 +14,7 @@ const DashHome = ({ userInfo }) => {
     console.log('user', userInfo);
     if (userInfo) {
       return (
-        <>
+        <div className="dashCards">
           {userInfo.map(child => (
             <ChildCard child={child} key={child.id} />
           ))}
@@ -22,7 +22,7 @@ const DashHome = ({ userInfo }) => {
             <PlusCircleOutlined className="icon" />
             Add a Child
           </LinkButton>
-        </>
+        </div>
       );
     } else {
       return <h2 style={{ color: 'black' }}>Loading...</h2>;
