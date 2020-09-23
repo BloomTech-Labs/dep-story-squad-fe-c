@@ -12,23 +12,20 @@ import { useHistory } from 'react-router-dom';
 const AccountPinModal = props => {
   const [showModal, setShowModal] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
+
   const loggedInUser = JSON.parse(
     window.localStorage.getItem('okta-token-storage')
   );
+
   const [accounts, setAccounts] = useState([]);
   const history = useHistory();
-
   const [formVisibility, setFormVisibility] = useState({
     userForm: true,
     pinForm: false,
   });
-
-  // from back-end pin validation
   const [validationError, setValidationError] = useState(
     'Pin and account type validation errors'
   );
-
-  // stores 'formdata' from each form in form sequence til ready for submission. formsubmissionData ex:
   const [formSubmissionData, setFormSubmissionData] = useState({
     // pin: {'1234'},
     // userForm: {'child'}
@@ -56,13 +53,15 @@ const AccountPinModal = props => {
   useEffect(() => {
     getAccounts(loggedInUser.idToken.value).then(res => {
       setAccounts(res.accounts);
+      console.log('data: ', res.accounts);
       setLoading();
     });
   }, []);
 
   return (
-    <div className="modal" data-testid="formModalCont">
+    <div className="modal" data-testid="formModalCont" key="formModalCont">
       <Modal
+        key="formModal"
         data-testid="formModal"
         style={{
           width: '100%',
