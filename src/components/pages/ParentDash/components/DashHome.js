@@ -7,6 +7,14 @@ import { PlusCircleOutlined } from '@ant-design/icons';
 const DashHome = ({ userInfo }) => {
   const { Header, Content } = Layout;
 
+  const Home = userInfo => {
+    if (userInfo) {
+      return userInfo.map(child => <ChildCard child={child} key={child.id} />);
+    } else {
+      return <h2>Loading...</h2>;
+    }
+  };
+
   return (
     <>
       <Layout>
@@ -17,9 +25,7 @@ const DashHome = ({ userInfo }) => {
           <h1>Story Squad</h1>
         </Header>
         <Content className="Content">
-          {userInfo.map(child => (
-            <ChildCard child={child} key={child.id} />
-          ))}
+          {Home(userInfo)}
           <LinkButton className="Card" to="/login/add">
             <PlusCircleOutlined className="icon" />
             Add a Child
