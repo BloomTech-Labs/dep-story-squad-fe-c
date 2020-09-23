@@ -53,7 +53,6 @@ const AccountPinModal = props => {
   useEffect(() => {
     getAccounts(loggedInUser.idToken.value).then(res => {
       setAccounts(res.accounts);
-      console.log('data: ', res.accounts);
       setLoading();
     });
   }, []);

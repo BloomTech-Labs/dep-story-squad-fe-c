@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import LoadingComponent from '../LoadingComponent';
 
 function UserForm({
@@ -26,8 +26,6 @@ function UserForm({
       pinForm: true,
     });
   };
-
-  useEffect(() => {}, [isLoading]);
 
   return (
     <div className="userForm">
