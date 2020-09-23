@@ -1,11 +1,13 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { getByDisplayValue, render } from '@testing-library/react';
 import UserForm from '../components/common/accountPinModal/UserForm';
 
 describe('UserForm component', () => {
   test('renders in the dom', () => {
     const { getByText } = render(
-      <UserForm userAccounts={['Dad', 'Child1', 'Child2']} />
+      <UserForm
+        accounts={[{ name: 'Dad' }, { name: 'Child1' }, { name: 'Child2' }]}
+      />
     );
     expect(
       getByText(
@@ -14,12 +16,15 @@ describe('UserForm component', () => {
     ).toBeInTheDocument();
   });
 
-  test('dynamically renders buttons', () => {
-    const { getByTestId } = render(
-      <UserForm userAccounts={['Dad', 'Child1', 'Child2']} />
+  test('should render buttons dynamically', () => {
+    const { getByText } = render(
+      <UserForm
+        accounts={[{ name: 'Dad' }, { name: 'Child1' }, { name: 'Child2' }]}
+      />
     );
-    expect(getByTestId(/Dad/i)).toBeInTheDocument();
-    expect(getByTestId(/Child1/i)).toBeInTheDocument();
-    expect(getByTestId(/Child2/i)).toBeInTheDocument();
+
+    expect(getByText('Dad')).toBeInTheDocument();
+    expect(getByText('Child1')).toBeInTheDocument();
+    expect(getByText('Child2')).toBeInTheDocument();
   });
 });

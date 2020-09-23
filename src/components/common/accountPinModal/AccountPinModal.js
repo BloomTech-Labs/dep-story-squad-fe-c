@@ -1,7 +1,8 @@
 // see README.md in components/common dir for more info
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Modal } from 'antd';
+import { getAccounts } from '../../../api';
 
 // components
 import UserForm from './UserForm';
@@ -10,20 +11,21 @@ import { useHistory } from 'react-router-dom';
 
 const AccountPinModal = props => {
   const [showModal, setShowModal] = useState(true);
-  const [userAccounts, setUserAccounts] = useState(['Dad', 'Child1', 'Child2']);
-  const history = useHistory();
+  const [isLoading, setIsLoading] = useState(true);
 
+  const loggedInUser = JSON.parse(
+    window.localStorage.getItem('okta-token-storage')
+  );
+
+  const [accounts, setAccounts] = useState([]);
+  const history = useHistory();
   const [formVisibility, setFormVisibility] = useState({
     userForm: true,
     pinForm: false,
   });
-
-  // from back-end pin validation
   const [validationError, setValidationError] = useState(
     'Pin and account type validation errors'
   );
-
-  // stores 'formdata' from each form in form sequence til ready for submission. formsubmissionData ex:
   const [formSubmissionData, setFormSubmissionData] = useState({
     // pin: {'1234'},
     // userForm: {'child'}
@@ -44,9 +46,21 @@ const AccountPinModal = props => {
     history.push('/login');
   };
 
+  const setLoading = useCallback(() => {
+    setIsLoading(!isLoading);
+  }, []);
+
+  useEffect(() => {
+    getAccounts(loggedInUser.idToken.value).then(res => {
+      setAccounts(res.accounts);
+      setLoading();
+    });
+  }, []);
+
   return (
-    <div className="modal" data-testid="formModalCont">
+    <div className="modal" data-testid="formModalCont" key="formModalCont">
       <Modal
+        key="formModal"
         data-testid="formModal"
         style={{
           width: '100%',
@@ -60,8 +74,9 @@ const AccountPinModal = props => {
       >
         {formVisibility.userForm && (
           <UserForm
-            userAccounts={userAccounts}
-            setUserAccounts={setUserAccounts}
+            accounts={accounts}
+            loggedInUser={loggedInUser}
+            isLoading={isLoading}
             formVisibility={formVisibility}
             setFormVisibility={setFormVisibility}
             formSubmissionData={formSubmissionData}
@@ -70,6 +85,9 @@ const AccountPinModal = props => {
         )}
         {formVisibility.pinForm && (
           <PINForm
+            loggedInUser={loggedInUser}
+            isLoading={isLoading}
+            setIsLoading={setIsLoading}
             mainSubmit={mainSubmit}
             setShowModal={setShowModal}
             formVisibility={formVisibility}
