@@ -19,7 +19,10 @@ const AccountPinModal = () => {
     window.localStorage.getItem('okta-token-storage')
   );
   const tokenRef = useRef(loggedInUser.idToken.value);
-  const [accounts, setAccounts] = useState([]);
+  const [accounts, setAccounts] = useLocalStorage('accounts', null);
+
+  const [curUser, setCurUser] = useState({});
+
   const history = useHistory();
   const [formVisibility, setFormVisibility] = useState({
     userForm: true,
@@ -32,22 +35,16 @@ const AccountPinModal = () => {
     // pin: {'1234'},
     // userForm: {'child'}
   });
-  const [userType, setUserType] = useLocalStorage('user', null);
 
   const handleCancel = () => {
     history.push('/login');
     setShowModal(false);
   };
-  console.log('loggedinuser: ', loggedInUser);
-  console.log('accounts: ', accounts);
 
   // called from the pinForm on submit
   const mainSubmit = () => {
-    const id = loggedInUser.idToken.claims.sub;
-
-    console.log('id: ', id);
-    console.log('token: ', tokenRef.current);
-    const url = userType;
+    const id = curUser.id;
+    const url = curUser.type;
 
     axios
       .post(
@@ -65,14 +62,11 @@ const AccountPinModal = () => {
         console.log(res.data);
         history.push('/dashboard');
       })
-      .catch(err => {
-        console.log(err.message);
-      });
 
-    // if errors display errors
-    // else, submit form
-    // render loader
-    // close modal, redirect to dash
+      .catch(err => {
+        // if errors display errors
+        setValidationError('Invalid PIN');
+      });
   };
 
   const setLoading = useCallback(() => {
@@ -85,7 +79,7 @@ const AccountPinModal = () => {
         setAccounts(res.accounts);
         setLoading();
       })
-      .catch(err => setValidationError('Invalid Credentials'));
+      .catch(err => setValidationError('Server Error'));
   }, [setLoading]);
 
   return (
@@ -105,6 +99,7 @@ const AccountPinModal = () => {
       >
         {formVisibility.userForm && (
           <UserForm
+            setCurUser={setCurUser}
             accounts={accounts}
             loggedInUser={loggedInUser}
             isLoading={isLoading}

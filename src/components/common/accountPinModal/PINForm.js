@@ -20,7 +20,7 @@ const PINForm = ({ mainSubmit, formSubmissionData, setFormSubmissionData }) => {
       console.log('pin');
       mainSubmit();
     }
-  }, [formSubmissionData.pin]);
+  }, [formSubmissionData.pin, mainSubmit]);
 
   return (
     // REMOVE STYLES!!

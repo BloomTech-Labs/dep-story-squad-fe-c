@@ -2,19 +2,17 @@ import React from 'react';
 import LoadingComponent from '../LoadingComponent';
 import { useLocalStorage } from '../../../utils/hooks';
 
-function UserForm({ setFormVisibility, isLoading, accounts }) {
-  const [, setUserType] = useLocalStorage('user', null);
+function UserForm({ setFormVisibility, isLoading, accounts, setCurUser }) {
+  const [, setUserType] = useLocalStorage('userType', null);
 
   const handleSubmit = e => {
-    // send data to Modal state to store until ready to submit to BE
-    setUserType(e.target.value);
-    // hide this form
-    // show next form
-    // state: {
-    //   userForm: true,
-    //   pinForm: false
-    // }
-    // TODO: add an animation transition between these forms
+    setUserType(e.target.getAttribute('data-type'));
+    // send data to Modal
+    setCurUser({
+      id: e.target.getAttribute('data-id'),
+      type: e.target.getAttribute('data-type'),
+    });
+
     setFormVisibility({
       userForm: false,
       pinForm: true,
@@ -37,8 +35,9 @@ function UserForm({ setFormVisibility, isLoading, accounts }) {
           accounts.map(account => {
             return (
               <button
+                data-type={account.type}
+                data-id={account.id}
                 key={Math.random() * Date.now()}
-                value={account.type}
                 onClick={e => handleSubmit(e)}
               >
                 {account.name}
