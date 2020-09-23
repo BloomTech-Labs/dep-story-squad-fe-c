@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 
+import { messagePopup } from '../../../utils/message-popup';
+
 import RenderMissionDash from './RenderMissionDash';
 
 const MissionDashContainer = props => {
@@ -11,7 +13,7 @@ const MissionDashContainer = props => {
     setHeaderTitle('Mission');
   }, [setHeaderTitle]);
 
-  return <RenderMissionDash />;
+  return <RenderMissionDash messagePopup={messagePopup} />;
 };
 
 export default MissionDashContainer;
