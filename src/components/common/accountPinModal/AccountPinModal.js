@@ -3,6 +3,8 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Modal } from 'antd';
 import { getAccounts } from '../../../api';
+import axios from 'axios';
+import { useLocalStorage } from '../../../utils/hooks';
 
 // components
 import UserForm from './UserForm';
@@ -30,20 +32,47 @@ const AccountPinModal = () => {
     // pin: {'1234'},
     // userForm: {'child'}
   });
+  const [userType, setUserType] = useLocalStorage('user', null);
 
   const handleCancel = () => {
     history.push('/login');
     setShowModal(false);
   };
+  console.log('loggedinuser: ', loggedInUser);
+  console.log('accounts: ', accounts);
 
   // called from the pinForm on submit
   const mainSubmit = () => {
-    // axios call here to verify account and PIN
+    const id = loggedInUser.idToken.claims.sub;
+
+    console.log('id: ', id);
+    console.log('token: ', tokenRef.current);
+    const url = userType;
+
+    axios
+      .post(
+        `https://story-squad-c-api.herokuapp.com/${url}/${id}`,
+        {
+          pin: `${formSubmissionData.pin}`,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${tokenRef.current}`,
+          },
+        }
+      )
+      .then(res => {
+        console.log(res.data);
+        history.push('/dashboard');
+      })
+      .catch(err => {
+        console.log(err.message);
+      });
+
     // if errors display errors
     // else, submit form
     // render loader
     // close modal, redirect to dash
-    history.push('/login');
   };
 
   const setLoading = useCallback(() => {

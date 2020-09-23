@@ -3,7 +3,8 @@ import LoadingComponent from '../LoadingComponent';
 import { useLocalStorage } from '../../../utils/hooks';
 
 function UserForm({ setFormVisibility, isLoading, accounts }) {
-  const [userType, setUserType] = useLocalStorage('user', null);
+  const [, setUserType] = useLocalStorage('user', null);
+
   const handleSubmit = e => {
     // send data to Modal state to store until ready to submit to BE
     setUserType(e.target.value);

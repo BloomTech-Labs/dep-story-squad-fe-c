@@ -1,6 +1,6 @@
 // see README.md in components/common dir for more info
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 // components
@@ -15,6 +15,13 @@ const PINForm = ({ mainSubmit, formSubmissionData, setFormSubmissionData }) => {
     });
   };
 
+  useEffect(() => {
+    if (formSubmissionData.pin && formSubmissionData.pin.length === 4) {
+      console.log('pin');
+      mainSubmit();
+    }
+  }, [formSubmissionData.pin]);
+
   return (
     // REMOVE STYLES!!
     <div className="pinFormCont">
@@ -24,6 +31,7 @@ const PINForm = ({ mainSubmit, formSubmissionData, setFormSubmissionData }) => {
           formValue={formSubmissionData.pinform}
           handleChange={handleChange}
           length={4}
+          focus
           initialValue=""
           // secret= {false}
           onChange={(value, index) => {
@@ -33,9 +41,7 @@ const PINForm = ({ mainSubmit, formSubmissionData, setFormSubmissionData }) => {
           inputMode="number"
           inputStyle={{ borderColor: '#6CEAE5' }}
           inputFocusStyle={{ borderColor: 'blue' }}
-          onComplete={(value, index) => {
-            mainSubmit();
-          }}
+          // onComplete={(value, index) => {}}
           autoSelect={true}
         />
       </label>
