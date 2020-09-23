@@ -48,4 +48,12 @@ describe('AccountPinModal', () => {
     console.log('HERE', global.window.location.pathname);
     await expect(global.window.location.pathname).toEqual('/login');
   });
+
+  test('modal pushes to dashboard on submit', () => {
+    const { getByLabelText } = render(
+      <Router>
+        <AccountPinModal />
+      </Router>
+    );
+  });
 });

@@ -22,7 +22,7 @@ const AccountPinModal = () => {
   const [accounts, setAccounts] = useLocalStorage('accounts', null);
 
   const [curUser, setCurUser] = useState({});
-
+  const [, setCurUserToken] = useLocalStorage('curUserToken', null);
   const history = useHistory();
   const [formVisibility, setFormVisibility] = useState({
     userForm: true,
@@ -59,7 +59,8 @@ const AccountPinModal = () => {
         }
       )
       .then(res => {
-        console.log(res.data);
+        console.log('res: ', res.data.token);
+        setCurUserToken(res.data.token);
         history.push('/dashboard');
       })
 
