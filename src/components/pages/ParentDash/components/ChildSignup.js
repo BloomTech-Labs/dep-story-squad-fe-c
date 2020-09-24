@@ -43,10 +43,7 @@ const ChildSignup = ({ userInfo, setUserInfo }) => {
     console.log(signup);
     addChild(tokenRef.current, id, signup)
       .then(res => {
-        setUserInfo({
-          ...userInfo,
-          signup,
-        });
+        setUserInfo([...userInfo, signup]);
         console.log(res);
       })
       .catch(err => {
@@ -87,7 +84,7 @@ const ChildSignup = ({ userInfo, setUserInfo }) => {
             <input
               type="text"
               name="pin"
-              placeholder="Set PIN"
+              placeholder="Set 4 PIN"
               onChange={handleChange}
               value={signup.pin}
             />
