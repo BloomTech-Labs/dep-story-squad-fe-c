@@ -19,6 +19,8 @@ import { config } from './utils/oktaConfig';
 import { Dash } from './components/pages/Dash';
 import { AccountPinModal } from './components/common/';
 import { MissionDash } from './components/pages/MissionDash';
+// testing
+import { GetStories } from './components/pages/MissionDash/getStories';
 
 import { Header } from './components/common/';
 
