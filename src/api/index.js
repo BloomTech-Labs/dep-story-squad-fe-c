@@ -56,6 +56,7 @@ const getAccounts = bearer => {
       headers: { Authorization: `Bearer ${bearer}` },
     })
     .then(res => {
+      console.log(`${apiUrl}/auth/login`);
       return res.data;
     })
     .catch(err => {
@@ -63,4 +64,25 @@ const getAccounts = bearer => {
     });
 };
 
-export { sleep, getExampleData, getProfileData, getDSData, getAccounts };
+const getParentDash = (token, id) => {
+  return axios
+    .get(`${apiUrl}/parent/${id}/dashboard`, {
+      // Will need to be changed to JWT taken from the parent login
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then(res => {
+      return res.data.childData;
+    })
+    .catch(err => {
+      return err;
+    });
+};
+
+export {
+  sleep,
+  getExampleData,
+  getProfileData,
+  getDSData,
+  getAccounts,
+  getParentDash,
+};

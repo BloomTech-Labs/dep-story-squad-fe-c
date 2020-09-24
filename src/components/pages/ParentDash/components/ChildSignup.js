@@ -33,7 +33,7 @@ const ChildSignup = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    push('/login');
+    push('/dashboard');
     console.log('sent', signup);
   };
 
@@ -83,10 +83,10 @@ const ChildSignup = () => {
             </div>
             <input className="submitBtn" type="submit" value="Add Child" />
             <a
-              href="/login"
+              href="/dashboard"
               className="cancel"
               onClick={() => {
-                push('/login');
+                push('/dashboard');
               }}
             >
               Cancel

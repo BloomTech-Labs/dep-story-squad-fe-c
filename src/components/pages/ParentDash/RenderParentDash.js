@@ -1,30 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Switch } from 'react-router-dom';
 import { SecureRoute } from '@okta/okta-react';
-import axios from 'axios';
 import { Layout } from 'antd';
 import { ParentNav, DashHome, ChildSignup, Help } from './components';
-
-const testInfo = {
-  childData: [
-    {
-      id: 1,
-      name: 'Rasheed',
-      writing_score: 50,
-      current_mission: 1,
-      avatar_url:
-        'https://www.uokpl.rs/fpng/d/12-129858_kid-superhero-clipart.png',
-    },
-    {
-      id: 2,
-      name: 'Emmanuel',
-      writing_score: 50,
-      current_mission: 1,
-      avatar_url:
-        'https://www.uokpl.rs/fpng/d/12-129858_kid-superhero-clipart.png',
-    },
-  ],
-};
+import { getParentDash } from '../../../api';
 
 // ParentDash component that contains a nav bar and routes to the various components
 const RenderParentDash = props => {
@@ -32,30 +11,15 @@ const RenderParentDash = props => {
   const { setHeaderTitle } = props;
 
   // Keeps track of the state for ParentNav
-  const [current, setCurrent] = useState('home');
-  const [userInfo, setUserInfo] = useState(testInfo.childData);
+
+  const [userInfo, setUserInfo] = useState(null);
 
   const loggedUser = JSON.parse(
     window.localStorage.getItem('okta-token-storage')
   );
-
-  useEffect(() => {
-    // if (loggedUser) {
-    //   axios
-    //     .get(`${process.env.REACT_APP_API_URI}parent/${id}/dashboard`, {
-    //       // Will need to be changed to JWT taken from the parent login
-    //       headers: { Authorization: `Bearer ${loggedUser.idToken.value}` },
-    //     })
-    //     .then(res => {
-    //       console.log(res.data);
-    //       setUserInfo(res.data.childData);
-    //     })
-    //     .catch(err => {
-    //       return err;
-    //     });
-    // }
-    console.log(userInfo);
-  });
+  const token = JSON.parse(window.localStorage.getItem('curUserToken'));
+  const tokenRef = useRef(token);
+  const id = loggedUser.idToken.claims.sub;
 
   // Whenever this component mounts update the <Header /> title
   useEffect(() => {
@@ -64,23 +28,38 @@ const RenderParentDash = props => {
     setHeaderTitle(null);
   }, [setHeaderTitle]);
 
+  useEffect(() => {
+    if (token) {
+      getParentDash(tokenRef.current, id)
+        .then(res => {
+          console.log(res);
+          setUserInfo(res);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  }, []);
+
   // Keeps track of state for Nav Bar
-  const handleClick = e => {
-    setCurrent(e.key);
-  };
+
   return (
     <>
       <Layout style={{ background: '#fafafa', height: '100vh' }}>
-        <ParentNav handleClick={handleClick} current={current} />
+        <ParentNav />
         <Switch>
           <>
             <SecureRoute
               exact
-              path={'/login'}
+              path={'/dashboard'}
               component={() => <DashHome userInfo={userInfo} />}
             />
-            <SecureRoute exact path={`/login/add`} component={ChildSignup} />
-            <SecureRoute exact path={'/login/help'} component={Help} />
+            <SecureRoute
+              exact
+              path={`/dashboard/add`}
+              component={ChildSignup}
+            />
+            <SecureRoute exact path={'/dashboard/help'} component={Help} />
           </>
         </Switch>
       </Layout>

@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Layout, Menu } from 'antd';
 import { Link } from 'react-router-dom';
 
 // Nav bar for parent dash
-const Nav = props => {
+const Nav = () => {
+  const [current, setCurrent] = useState('home');
   const { Header, Sider } = Layout;
   const { Item } = Menu;
+
+  const handleClick = e => {
+    setCurrent(e.key);
+  };
 
   return (
     <>
@@ -38,16 +43,16 @@ const Nav = props => {
             background: '#fafafa',
           }}
           mode="inline"
-          selectedKeys={[props.current]}
-          onClick={props.handleClick}
+          selectedKeys={[current]}
+          onClick={handleClick}
         >
           <Item key="home">
-            <Link to="/login" />
+            <Link to="/dashboard" />
             Dashboard
           </Item>
           <Item key="settings">Parent Settings</Item>
           <Item key="help">
-            <Link to="/login/help" />
+            <Link to="/dashboard/help" />
             Help
           </Item>
           <Item key="logout">Log out</Item>
