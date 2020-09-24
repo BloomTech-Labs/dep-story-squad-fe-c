@@ -55,24 +55,8 @@ const getLogin = bearer => {
     .get(`${apiUrl}/auth/login`, {
       headers: { Authorization: `Bearer ${bearer}` },
     })
-    .then(res => {
-      console.log(`${apiUrl}/auth/login`);
-      return res.data;
-    })
-    .catch(err => {
-      return err;
-    });
+    .catch(err => console.log(err));
 };
-
-
-const getParentDash = (token, id) => {
-  return axios
-    .get(`${apiUrl}/parent/${id}/dashboard`, {
-      // Will need to be changed to JWT taken from the parent login
-      headers: { Authorization: `Bearer ${token}` },
-    })
-    .then(res => {
-      return res.data.childData;
 
 // gets associated accounts for logged in user
 const getAccount = (url, pin, bearer) => {
@@ -87,7 +71,21 @@ const getAccount = (url, pin, bearer) => {
       }
     )
     .then(res => {
+      return res;
+    })
+    .catch(err => {
+      return err;
+    });
+};
 
+// gets data associated with the parent dash
+const getParentDash = (token, id) => {
+  return axios
+    .get(`${apiUrl}/parent/${id}/dashboard`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then(res => {
+      return res.data.childData;
     })
     .catch(err => {
       return err;
@@ -99,7 +97,7 @@ export {
   getExampleData,
   getProfileData,
   getDSData,
-  getParentDash,
   getLogin,
   getAccount,
+  getParentDash,
 };
