@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Layout } from 'antd';
 import { LinkButton, ChildCard } from './index';
 import { PlusCircleOutlined } from '@ant-design/icons';
@@ -7,6 +7,7 @@ import { PlusCircleOutlined } from '@ant-design/icons';
 const DashHome = ({ userInfo }) => {
   const { Header, Content } = Layout;
 
+  useEffect(() => {}, [userInfo]);
   const Home = userInfo => {
     if (userInfo) {
       return (
@@ -14,7 +15,7 @@ const DashHome = ({ userInfo }) => {
           {userInfo.map(child => (
             <ChildCard child={child} key={child.id} />
           ))}
-          <LinkButton className="Card" to="/dashboard/add">
+          <LinkButton className="Card" userInfo={userInfo} to="/dashboard/add">
             <PlusCircleOutlined className="icon" />
             Add a Child
           </LinkButton>

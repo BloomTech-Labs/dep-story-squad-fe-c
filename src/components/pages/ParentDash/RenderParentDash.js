@@ -14,12 +14,9 @@ const RenderParentDash = props => {
 
   const [userInfo, setUserInfo] = useState(null);
 
-  const loggedUser = JSON.parse(
-    window.localStorage.getItem('okta-token-storage')
-  );
   const token = JSON.parse(window.localStorage.getItem('curUserToken'));
   const tokenRef = useRef(token);
-  const id = loggedUser.idToken.claims.sub;
+  const id = JSON.parse(window.localStorage.getItem('curUserId'));
 
   // Whenever this component mounts update the <Header /> title
   useEffect(() => {
@@ -57,7 +54,9 @@ const RenderParentDash = props => {
             <SecureRoute
               exact
               path={`/dashboard/add`}
-              component={ChildSignup}
+              component={() => (
+                <ChildSignup setUserInfo={setUserInfo} userInfo={userInfo} />
+              )}
             />
             <SecureRoute exact path={'/dashboard/help'} component={Help} />
           </>
