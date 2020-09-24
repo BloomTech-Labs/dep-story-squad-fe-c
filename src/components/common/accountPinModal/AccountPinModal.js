@@ -36,15 +36,16 @@ const AccountPinModal = props => {
 
   // called from the pinForm on submit
   const mainSubmit = (type, id) => {
-    const url = `${type}/${id}`;
-
-    getAccount(url, formSubmissionData.pin, tokenRef.current)
-      .then(res => {
-        history.push('/dashboard');
-      })
-      .catch(err => {
-        setValidationError('Error: Invalid PIN');
-      });
+    if (accounts) {
+      const url = `${type}/${id}`;
+      getAccount(url, formSubmissionData.pin, tokenRef.current)
+        .then(res => {
+          history.push('/dashboard');
+        })
+        .catch(err => {
+          setValidationError('Error: Invalid PIN');
+        });
+    }
   };
 
   const setLoading = useCallback(() => {
