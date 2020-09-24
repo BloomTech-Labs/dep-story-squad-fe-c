@@ -51,11 +51,9 @@ const getProfileData = authState => {
 
 // gets associated accounts for logged in user
 const getLogin = bearer => {
-  return axios
-    .get(`${apiUrl}/auth/login`, {
-      headers: { Authorization: `Bearer ${bearer}` },
-    })
-    .catch(err => console.log(err));
+  return axios.get(`${apiUrl}/auth/login`, {
+    headers: { Authorization: `Bearer ${bearer}` },
+  });
 };
 
 // gets associated accounts for logged in user
@@ -92,6 +90,33 @@ const getParentDash = (token, id) => {
     });
 };
 
+// posts a child to the database
+const addChild = (token, id, body) => {
+  return axios
+    .post(`${apiUrl}/parent/${id}/children`, body, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+const deleteChild = (token, id, childId) => {
+  return axios
+    .delete(`${apiUrl}/parent/${id}/children/${childId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then(res => {
+      return res;
+    })
+    .catch(err => {
+      return err;
+    });
+};
+
 export {
   sleep,
   getExampleData,
@@ -100,4 +125,6 @@ export {
   getLogin,
   getAccount,
   getParentDash,
+  addChild,
+  deleteChild,
 };
