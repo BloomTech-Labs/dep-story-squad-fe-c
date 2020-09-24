@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Modal } from 'antd';
-import { getLogin, getAccount } from '../../../api';
+import { getLogin } from '../../../api';
 import { useLocalStorage } from '../../../utils/hooks';
 
 // components
@@ -34,20 +34,6 @@ const AccountPinModal = props => {
     setShowModal(false);
   };
 
-  // called from the pinForm on submit
-  const mainSubmit = (type, id) => {
-    if (accounts) {
-      const url = `${type}/${id}`;
-      getAccount(url, formSubmissionData.pin, tokenRef.current)
-        .then(res => {
-          history.push('/dashboard');
-        })
-        .catch(err => {
-          setValidationError('Error: Invalid PIN');
-        });
-    }
-  };
-
   const setLoading = useCallback(() => {
     setIsLoading(!loadingRef.current);
   }, []);
@@ -73,7 +59,6 @@ const AccountPinModal = props => {
         }}
         destroyOnClose
         closable
-        // displayed 'label' text for the modal header
         visible={showModal}
         footer={null}
         onCancel={handleCancel}
@@ -85,6 +70,7 @@ const AccountPinModal = props => {
             isLoading={isLoading}
             formVisibility={formVisibility}
             setFormVisibility={setFormVisibility}
+            setValidationError={setValidationError}
           />
         )}
         {formVisibility.pinForm && (
@@ -92,12 +78,13 @@ const AccountPinModal = props => {
             loggedInUser={loggedInUser}
             isLoading={isLoading}
             setIsLoading={setIsLoading}
-            mainSubmit={mainSubmit}
+            // mainSubmit={mainSubmit}
             setShowModal={setShowModal}
             formVisibility={formVisibility}
             setFormVisibility={setFormVisibility}
             formSubmissionData={formSubmissionData}
             setFormSubmissionData={setFormSubmissionData}
+            setValidationError={setValidationError}
           />
         )}
         {validationError && (

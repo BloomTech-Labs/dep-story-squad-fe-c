@@ -30,7 +30,8 @@ function UserForm({ setFormVisibility, isLoading, accounts }) {
 
       <div className="userButton">
         {isLoading && <LoadingComponent />}
-        {!isLoading &&
+
+        {accounts &&
           accounts.map(account => {
             return (
               <button
