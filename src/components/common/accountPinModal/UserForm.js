@@ -1,29 +1,24 @@
 import React from 'react';
+import LoadingComponent from '../LoadingComponent';
+import { useLocalStorage } from '../../../utils/hooks';
 
-function UserForm({
-  setFormSubmissionData,
-  formSubmissionData,
-  setFormVisibility,
-  userAccounts,
-}) {
+function UserForm({ setFormVisibility, isLoading, accounts, setCurUser }) {
+  const [, setUserType] = useLocalStorage('userType', null);
+
   const handleSubmit = e => {
-    // send data to Modal state to store until ready to submit to BE
-    setFormSubmissionData({
-      ...formSubmissionData,
-      userForm: e.target.value,
+    setUserType(e.target.getAttribute('data-type'));
+    // send data to Modal
+    setCurUser({
+      id: e.target.getAttribute('data-id'),
+      type: e.target.getAttribute('data-type'),
     });
-    // hide this form
-    // show next form
-    // state: {
-    //   userForm: true,
-    //   pinForm: false
-    // }
-    // TODO: add an animation transition between these forms
+
     setFormVisibility({
       userForm: false,
       pinForm: true,
     });
   };
+
   return (
     <div className="userForm">
       <div className="userText">
@@ -32,19 +27,23 @@ function UserForm({
           are.
         </h3>
       </div>
+
       <div className="userButton">
-        {userAccounts.map(account => {
-          return (
-            <button
-              key={Math.random() * Date.now()}
-              value={account}
-              onClick={e => handleSubmit(e)}
-              data-testid={account}
-            >
-              {account}
-            </button>
-          );
-        })}
+        {isLoading && <LoadingComponent />}
+
+        {!isLoading &&
+          accounts.map(account => {
+            return (
+              <button
+                data-type={account.type}
+                data-id={account.id}
+                key={Math.random() * Date.now()}
+                onClick={e => handleSubmit(e)}
+              >
+                {account.name}
+              </button>
+            );
+          })}
       </div>
     </div>
   );

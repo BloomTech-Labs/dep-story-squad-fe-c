@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 const useLocalStorage = (key, initialValue) => {
-  const [storage, setStorage] = useLocalStorage(null);
   //set state
   const [storedValue, setStoredValue] = useState(() => {
     // check if key already exists in localStorage

@@ -49,7 +49,18 @@ const getProfileData = authState => {
   }
 };
 
-// creating axios call to render the pdf stories to be read once the "Read" section is selected on the mission page.
-const getStories = () => {};
+// gets associated accounts for logged in user
+const getAccounts = bearer => {
+  return axios
+    .get(`${apiUrl}/auth/login`, {
+      headers: { Authorization: `Bearer ${bearer}` },
+    })
+    .then(res => {
+      return res.data;
+    })
+    .catch(err => {
+      return err;
+    });
+};
 
-export { sleep, getExampleData, getProfileData, getDSData };
+export { sleep, getExampleData, getProfileData, getDSData, getAccounts };

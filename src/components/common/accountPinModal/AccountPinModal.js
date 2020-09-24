@@ -1,29 +1,36 @@
 // see README.md in components/common dir for more info
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Modal } from 'antd';
+import { getAccounts } from '../../../api';
+import axios from 'axios';
+import { useLocalStorage } from '../../../utils/hooks';
 
 // components
 import UserForm from './UserForm';
 import PINForm from './PINForm';
 import { useHistory } from 'react-router-dom';
 
-const AccountPinModal = props => {
+const AccountPinModal = () => {
   const [showModal, setShowModal] = useState(true);
-  const [userAccounts, setUserAccounts] = useState(['Dad', 'Child1', 'Child2']);
-  const history = useHistory();
+  const [isLoading, setIsLoading] = useState(true);
+  const loadingRef = useRef(isLoading);
+  const loggedInUser = JSON.parse(
+    window.localStorage.getItem('okta-token-storage')
+  );
+  const tokenRef = useRef(loggedInUser.idToken.value);
+  const [accounts, setAccounts] = useLocalStorage('accounts', null);
 
+  const [curUser, setCurUser] = useState({});
+  const [, setCurUserToken] = useLocalStorage('curUserToken', null);
+  const history = useHistory();
   const [formVisibility, setFormVisibility] = useState({
     userForm: true,
     pinForm: false,
   });
-
-  // from back-end pin validation
   const [validationError, setValidationError] = useState(
     'Pin and account type validation errors'
   );
-
-  // stores 'formdata' from each form in form sequence til ready for submission. formsubmissionData ex:
   const [formSubmissionData, setFormSubmissionData] = useState({
     // pin: {'1234'},
     // userForm: {'child'}
@@ -36,17 +43,50 @@ const AccountPinModal = props => {
 
   // called from the pinForm on submit
   const mainSubmit = () => {
-    // axios call here to verify account and PIN
-    // if errors display errors
-    // else, submit form
-    // render loader
-    // close modal, redirect to dash
-    history.push('/login');
+    const id = curUser.id;
+    const url = curUser.type;
+
+    axios
+      .post(
+        `https://story-squad-c-api.herokuapp.com/${url}/${id}`,
+        {
+          pin: `${formSubmissionData.pin}`,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${tokenRef.current}`,
+          },
+        }
+      )
+      .then(res => {
+        console.log('res: ', res.data.token);
+        setCurUserToken(res.data.token);
+        history.push('/dashboard');
+      })
+
+      .catch(err => {
+        // if errors display errors
+        setValidationError('Invalid PIN');
+      });
   };
 
+  const setLoading = useCallback(() => {
+    setIsLoading(!loadingRef.current);
+  }, []);
+
+  useEffect(() => {
+    getAccounts(tokenRef.current)
+      .then(res => {
+        setAccounts(res.accounts);
+        setLoading();
+      })
+      .catch(err => setValidationError('Server Error'));
+  }, [setLoading]);
+
   return (
-    <div className="modal" data-testid="formModalCont">
+    <div className="modal" data-testid="formModalCont" key="formModalCont">
       <Modal
+        key="formModal"
         data-testid="formModal"
         style={{
           width: '100%',
@@ -60,16 +100,19 @@ const AccountPinModal = props => {
       >
         {formVisibility.userForm && (
           <UserForm
-            userAccounts={userAccounts}
-            setUserAccounts={setUserAccounts}
+            setCurUser={setCurUser}
+            accounts={accounts}
+            loggedInUser={loggedInUser}
+            isLoading={isLoading}
             formVisibility={formVisibility}
             setFormVisibility={setFormVisibility}
-            formSubmissionData={formSubmissionData}
-            setFormSubmissionData={setFormSubmissionData}
           />
         )}
         {formVisibility.pinForm && (
           <PINForm
+            loggedInUser={loggedInUser}
+            isLoading={isLoading}
+            setIsLoading={setIsLoading}
             mainSubmit={mainSubmit}
             setShowModal={setShowModal}
             formVisibility={formVisibility}
