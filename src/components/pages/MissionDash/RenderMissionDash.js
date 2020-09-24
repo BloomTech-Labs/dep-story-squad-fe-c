@@ -5,7 +5,9 @@ const RenderMissionDash = ({ messagePopup }) => {
     <div className="dashboard-container">
       <button
         className="mission-btn-container read"
-        onClick={() => messagePopup('This feature is not available yet!')}
+        onClick={() =>
+          messagePopup('warning', 'This feature is not available yet!')
+        }
       >
         <input className="progress-check" type="checkbox" />
         <div className="mission-btn-icon">
@@ -16,7 +18,9 @@ const RenderMissionDash = ({ messagePopup }) => {
       <div className="right-panel">
         <button
           className="mission-btn-container write"
-          onClick={() => messagePopup('This feature is not available yet!')}
+          onClick={() =>
+            messagePopup('warning', 'This feature is not available yet!')
+          }
         >
           <input className="progress-check" type="checkbox" />
           <div className="mission-btn-icon">
@@ -26,7 +30,9 @@ const RenderMissionDash = ({ messagePopup }) => {
         </button>
         <button
           className="mission-btn-container draw"
-          onClick={() => messagePopup('This feature is not available yet!')}
+          onClick={() =>
+            messagePopup('warning', 'This feature is not available yet!')
+          }
         >
           <input className="progress-check" type="checkbox" />
           <div className="mission-btn-icon">
