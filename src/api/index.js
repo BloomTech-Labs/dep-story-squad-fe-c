@@ -55,12 +55,7 @@ const getLogin = bearer => {
     .get(`${apiUrl}/auth/login`, {
       headers: { Authorization: `Bearer ${bearer}` },
     })
-    .then(res => {
-      return res.data;
-    })
-    .catch(err => {
-      return err;
-    });
+    .catch(err => console.log(err));
 };
 
 // gets associated accounts for logged in user
@@ -83,6 +78,20 @@ const getAccount = (url, pin, bearer) => {
     });
 };
 
+// gets data associated with the parent dash
+const getParentDash = (token, id) => {
+  return axios
+    .get(`${apiUrl}/parent/${id}/dashboard`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then(res => {
+      return res.data.childData;
+    })
+    .catch(err => {
+      return err;
+    });
+};
+
 export {
   sleep,
   getExampleData,
@@ -90,4 +99,5 @@ export {
   getDSData,
   getLogin,
   getAccount,
+  getParentDash,
 };
