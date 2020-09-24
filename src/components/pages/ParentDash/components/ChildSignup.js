@@ -82,9 +82,9 @@ const ChildSignup = ({ userInfo, setUserInfo }) => {
               value={signup.grade}
             />
             <input
-              type="text"
+              type="password"
               name="pin"
-              placeholder="Set 4 PIN"
+              placeholder="Set 4 digit PIN"
               onChange={handleChange}
               value={signup.pin}
             />
