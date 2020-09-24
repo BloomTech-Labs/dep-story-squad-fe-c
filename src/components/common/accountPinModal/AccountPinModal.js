@@ -21,15 +21,12 @@ const AccountPinModal = props => {
   const [validationError, setValidationError] = useState('');
   const [formSubmissionData, setFormSubmissionData] = useState({});
 
-  // local Storage
   const loggedInUser = JSON.parse(
     window.localStorage.getItem('okta-token-storage')
   );
-  const [curUserId] = useLocalStorage('curUserId', null);
-  const [curUserType] = useLocalStorage('curUserType', null);
+  const [accounts, setAccounts] = useLocalStorage('accounts', null);
 
   const tokenRef = useRef(loggedInUser.idToken.value);
-  const [accounts, setAccounts] = useLocalStorage('accounts', null);
   const history = useHistory();
 
   const handleCancel = () => {
@@ -38,8 +35,8 @@ const AccountPinModal = props => {
   };
 
   // called from the pinForm on submit
-  const mainSubmit = () => {
-    const url = `${curUserType}/${curUserId}`;
+  const mainSubmit = (type, id) => {
+    const url = `${type}/${id}`;
 
     getAccount(url, formSubmissionData.pin, tokenRef.current)
       .then(res => {
@@ -62,7 +59,7 @@ const AccountPinModal = props => {
           setLoading();
         }
       })
-      .catch(err => setValidationError('Server Error'));
+      .catch(err => console.log('Server Error'));
   }, [setLoading, setAccounts, accounts]);
 
   return (

@@ -2,11 +2,15 @@
 
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useLocalStorage } from '../../../utils/hooks';
 
 // components
 import PinInput from 'react-pin-input';
 
 const PINForm = ({ mainSubmit, formSubmissionData, setFormSubmissionData }) => {
+  const [curUserId] = useLocalStorage('curUserId', null);
+  const [curUserType] = useLocalStorage('curUserType', null);
+
   const handleChange = value => {
     // sends form data to modal component
     setFormSubmissionData({
@@ -17,7 +21,7 @@ const PINForm = ({ mainSubmit, formSubmissionData, setFormSubmissionData }) => {
 
   useEffect(() => {
     if (formSubmissionData.pin && formSubmissionData.pin.length === 4) {
-      mainSubmit();
+      mainSubmit(curUserType, curUserId);
     }
   }, [formSubmissionData.pin, mainSubmit]);
 
