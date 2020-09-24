@@ -7,6 +7,7 @@ import {
   Switch,
 } from 'react-router-dom';
 import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
+import { useLocalStorage } from './utils/hooks';
 
 // Styles imports
 import './styles/index.less';
@@ -44,7 +45,7 @@ function App() {
 
   // This state will hold the title that appears in the <Header />
   const [headerTitle, setHeaderTitle] = useState('Story Squad');
-  const [userType, setUserType] = useState(null);
+  const [userType, setUserType] = useLocalStorage('userType', null);
 
   return (
     <Security {...config} onAuthRequired={authHandler}>

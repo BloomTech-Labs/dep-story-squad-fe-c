@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 import { SecureRoute } from '@okta/okta-react';
 
 import { Layout } from 'antd';

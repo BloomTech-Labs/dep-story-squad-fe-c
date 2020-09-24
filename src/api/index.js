@@ -52,7 +52,7 @@ const getProfileData = authState => {
 // gets associated accounts for logged in user
 const getAccounts = bearer => {
   return axios
-    .get(`${apiUrl}auth/login`, {
+    .get(`${apiUrl}/auth/login`, {
       headers: { Authorization: `Bearer ${bearer}` },
     })
     .then(res => {

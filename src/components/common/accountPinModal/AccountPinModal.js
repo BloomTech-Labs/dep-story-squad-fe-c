@@ -1,23 +1,28 @@
 // see README.md in components/common dir for more info
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Modal } from 'antd';
 import { getAccounts } from '../../../api';
+import axios from 'axios';
+import { useLocalStorage } from '../../../utils/hooks';
 
 // components
 import UserForm from './UserForm';
 import PINForm from './PINForm';
 import { useHistory } from 'react-router-dom';
 
-const AccountPinModal = props => {
+const AccountPinModal = () => {
   const [showModal, setShowModal] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
-
+  const loadingRef = useRef(isLoading);
   const loggedInUser = JSON.parse(
     window.localStorage.getItem('okta-token-storage')
   );
+  const tokenRef = useRef(loggedInUser.idToken.value);
+  const [accounts, setAccounts] = useLocalStorage('accounts', null);
 
-  const [accounts, setAccounts] = useState([]);
+  const [curUser, setCurUser] = useState({});
+  const [, setCurUserToken] = useLocalStorage('curUserToken', null);
   const history = useHistory();
   const [formVisibility, setFormVisibility] = useState({
     userForm: true,
@@ -38,24 +43,45 @@ const AccountPinModal = props => {
 
   // called from the pinForm on submit
   const mainSubmit = () => {
-    // axios call here to verify account and PIN
-    // if errors display errors
-    // else, submit form
-    // render loader
-    // close modal, redirect to dash
-    history.push('/login');
+    const id = curUser.id;
+    const url = curUser.type;
+
+    axios
+      .post(
+        `https://story-squad-c-api.herokuapp.com/${url}/${id}`,
+        {
+          pin: `${formSubmissionData.pin}`,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${tokenRef.current}`,
+          },
+        }
+      )
+      .then(res => {
+        console.log('res: ', res.data.token);
+        setCurUserToken(res.data.token);
+        history.push('/dashboard');
+      })
+
+      .catch(err => {
+        // if errors display errors
+        setValidationError('Invalid PIN');
+      });
   };
 
   const setLoading = useCallback(() => {
-    setIsLoading(!isLoading);
+    setIsLoading(!loadingRef.current);
   }, []);
 
   useEffect(() => {
-    getAccounts(loggedInUser.idToken.value).then(res => {
-      setAccounts(res.accounts);
-      setLoading();
-    });
-  }, []);
+    getAccounts(tokenRef.current)
+      .then(res => {
+        setAccounts(res.accounts);
+        setLoading();
+      })
+      .catch(err => setValidationError('Server Error'));
+  }, [setLoading]);
 
   return (
     <div className="modal" data-testid="formModalCont" key="formModalCont">
@@ -74,13 +100,12 @@ const AccountPinModal = props => {
       >
         {formVisibility.userForm && (
           <UserForm
+            setCurUser={setCurUser}
             accounts={accounts}
             loggedInUser={loggedInUser}
             isLoading={isLoading}
             formVisibility={formVisibility}
             setFormVisibility={setFormVisibility}
-            formSubmissionData={formSubmissionData}
-            setFormSubmissionData={setFormSubmissionData}
           />
         )}
         {formVisibility.pinForm && (
