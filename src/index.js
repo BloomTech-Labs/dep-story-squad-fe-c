@@ -7,7 +7,6 @@ import {
   Switch,
 } from 'react-router-dom';
 import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
-import { useLocalStorage } from './utils/hooks';
 
 // Styles imports
 import './styles/index.less';
@@ -45,19 +44,9 @@ function App() {
 
   // This state will hold the title that appears in the <Header />
   const [headerTitle, setHeaderTitle] = useState('Story Squad');
-  const [curUserType] = useLocalStorage('curUserType', null);
-
   return (
     <Security {...config} onAuthRequired={authHandler}>
       <Header title={headerTitle} />
-
-      {/* DELETE FOR PRODUCTION */}
-      <button
-        style={{ border: '1px solid black', padding: '5px' }}
-        onClick={() => window.localStorage.clear()}
-      >
-        clear storage
-      </button>
 
       <Switch>
         <Route
@@ -73,9 +62,7 @@ function App() {
         <SecureRoute path="/" exact component={() => <AccountPinModal />} />
         <SecureRoute
           path="/dashboard"
-          component={() => (
-            <Dash setHeaderTitle={setHeaderTitle} userType={curUserType} />
-          )}
+          component={() => <Dash setHeaderTitle={setHeaderTitle} />}
         />
         <SecureRoute
           path="/mission"

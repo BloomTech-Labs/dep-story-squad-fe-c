@@ -23,7 +23,7 @@ const PINForm = ({ mainSubmit, formSubmissionData, setFormSubmissionData }) => {
     if (formSubmissionData.pin && formSubmissionData.pin.length === 4) {
       mainSubmit(curUserType, curUserId);
     }
-  }, [formSubmissionData.pin, mainSubmit]);
+  }, [formSubmissionData.pin, mainSubmit, curUserId, curUserType]);
 
   return (
     <div className="pinFormCont">
