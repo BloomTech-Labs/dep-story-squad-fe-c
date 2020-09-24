@@ -50,7 +50,7 @@ const getProfileData = authState => {
 };
 
 // gets associated accounts for logged in user
-const getAccounts = bearer => {
+const getLogin = bearer => {
   return axios
     .get(`${apiUrl}/auth/login`, {
       headers: { Authorization: `Bearer ${bearer}` },
@@ -64,6 +64,7 @@ const getAccounts = bearer => {
     });
 };
 
+
 const getParentDash = (token, id) => {
   return axios
     .get(`${apiUrl}/parent/${id}/dashboard`, {
@@ -72,6 +73,21 @@ const getParentDash = (token, id) => {
     })
     .then(res => {
       return res.data.childData;
+
+// gets associated accounts for logged in user
+const getAccount = (url, pin, bearer) => {
+  return axios
+    .post(
+      `${apiUrl}/${url}`,
+      {
+        pin: `${pin}`,
+      },
+      {
+        headers: { Authorization: `Bearer ${bearer}` },
+      }
+    )
+    .then(res => {
+
     })
     .catch(err => {
       return err;
@@ -83,6 +99,7 @@ export {
   getExampleData,
   getProfileData,
   getDSData,
-  getAccounts,
   getParentDash,
+  getLogin,
+  getAccount,
 };

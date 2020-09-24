@@ -45,11 +45,20 @@ function App() {
 
   // This state will hold the title that appears in the <Header />
   const [headerTitle, setHeaderTitle] = useState('Story Squad');
-  const [userType, setUserType] = useLocalStorage('userType', null);
+  const [curUserType] = useLocalStorage('curUserType', null);
 
   return (
     <Security {...config} onAuthRequired={authHandler}>
       <Header title={headerTitle} />
+
+      {/* DELETE FOR PRODUCTION */}
+      <button
+        style={{ border: '1px solid black', padding: '5px' }}
+        onClick={() => window.localStorage.clear()}
+      >
+        clear storage
+      </button>
+
       <Switch>
         <Route
           path="/login"
@@ -61,15 +70,11 @@ function App() {
           <LoginCallback />
         </SecureRoute>
         {/* any of the routes you need secured should be registered as SecureRoutes */}
-        <SecureRoute
-          path="/"
-          exact
-          component={() => <AccountPinModal setUserType={setUserType} />}
-        />
+        <SecureRoute path="/" exact component={() => <AccountPinModal />} />
         <SecureRoute
           path="/dashboard"
           component={() => (
-            <Dash setHeaderTitle={setHeaderTitle} userType={userType} />
+            <Dash setHeaderTitle={setHeaderTitle} userType={curUserType} />
           )}
         />
         <SecureRoute
