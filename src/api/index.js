@@ -71,7 +71,7 @@ const getAccount = (url, pin, bearer) => {
       }
     )
     .then(res => {
-      return res;
+      return res.data;
     })
     .catch(err => {
       return err;
