@@ -56,7 +56,7 @@ const getLogin = bearer => {
       headers: { Authorization: `Bearer ${bearer}` },
     })
     .then(res => {
-      return res.data;
+      return res;
     })
     .catch(err => {
       return err;
@@ -76,7 +76,7 @@ const getAccount = (url, pin, bearer) => {
       }
     )
     .then(res => {
-      return res.data;
+      return res;
     })
     .catch(err => {
       return err;
