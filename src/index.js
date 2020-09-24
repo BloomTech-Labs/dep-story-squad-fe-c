@@ -51,6 +51,7 @@ function App() {
   return (
     <Security {...config} onAuthRequired={authHandler}>
       <Header title={headerTitle} />
+
       <Switch>
         <Route path="/stories" component={() => <GetStories />} />
         <Route
@@ -63,16 +64,10 @@ function App() {
           <LoginCallback />
         </SecureRoute>
         {/* any of the routes you need secured should be registered as SecureRoutes */}
-        <SecureRoute
-          path="/"
-          exact
-          component={() => <AccountPinModal setUserType={setUserType} />}
-        />
+        <SecureRoute path="/" exact component={() => <AccountPinModal />} />
         <SecureRoute
           path="/dashboard"
-          component={() => (
-            <Dash setHeaderTitle={setHeaderTitle} userType={userType} />
-          )}
+          component={() => <Dash setHeaderTitle={setHeaderTitle} />}
         />
         <SecureRoute
           path="/mission"

@@ -2,11 +2,15 @@
 
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useLocalStorage } from '../../../utils/hooks';
 
 // components
 import PinInput from 'react-pin-input';
 
 const PINForm = ({ mainSubmit, formSubmissionData, setFormSubmissionData }) => {
+  const [curUserId] = useLocalStorage('curUserId', null);
+  const [curUserType] = useLocalStorage('curUserType', null);
+
   const handleChange = value => {
     // sends form data to modal component
     setFormSubmissionData({
@@ -17,13 +21,11 @@ const PINForm = ({ mainSubmit, formSubmissionData, setFormSubmissionData }) => {
 
   useEffect(() => {
     if (formSubmissionData.pin && formSubmissionData.pin.length === 4) {
-      console.log('pin');
-      mainSubmit();
+      mainSubmit(curUserType, curUserId);
     }
-  }, [formSubmissionData.pin, mainSubmit]);
+  }, [formSubmissionData.pin, mainSubmit, curUserId, curUserType]);
 
   return (
-    // REMOVE STYLES!!
     <div className="pinFormCont">
       <label>
         Enter PIN:
@@ -33,7 +35,7 @@ const PINForm = ({ mainSubmit, formSubmissionData, setFormSubmissionData }) => {
           length={4}
           focus
           initialValue=""
-          // secret= {false}
+          secret
           onChange={(value, index) => {
             handleChange(value);
           }}
@@ -41,7 +43,6 @@ const PINForm = ({ mainSubmit, formSubmissionData, setFormSubmissionData }) => {
           inputMode="number"
           inputStyle={{ borderColor: '#6CEAE5' }}
           inputFocusStyle={{ borderColor: 'blue' }}
-          // onComplete={(value, index) => {}}
           autoSelect={true}
         />
       </label>
@@ -50,10 +51,9 @@ const PINForm = ({ mainSubmit, formSubmissionData, setFormSubmissionData }) => {
 };
 
 PINForm.propTypes = {
-  showModal: PropTypes.bool,
-  setShowModal: PropTypes.func,
   setFormSubmissionData: PropTypes.func,
   formSubmissionData: PropTypes.object,
+  mainSubmit: PropTypes.func,
 };
 
 export default PINForm;

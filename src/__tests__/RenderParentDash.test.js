@@ -11,6 +11,16 @@ import {
 import { BrowserRouter as Router } from 'react-router-dom';
 
 test('ParentDash renders without errors', () => {
+  window.localStorage.setItem(
+    'okta-token-storage',
+    JSON.stringify({
+      idToken: {
+        claims: {
+          sub: '00ulthapbErVUwVJy4x6',
+        },
+      },
+    })
+  );
   render(
     <Router>
       <RenderParentDash setHeaderTitle={() => null} title={null} />

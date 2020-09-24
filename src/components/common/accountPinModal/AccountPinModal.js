@@ -2,8 +2,7 @@
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Modal } from 'antd';
-import { getAccounts } from '../../../api';
-import axios from 'axios';
+import { getLogin, getAccount } from '../../../api';
 import { useLocalStorage } from '../../../utils/hooks';
 
 // components
@@ -11,30 +10,24 @@ import UserForm from './UserForm';
 import PINForm from './PINForm';
 import { useHistory } from 'react-router-dom';
 
-const AccountPinModal = () => {
+const AccountPinModal = props => {
   const [showModal, setShowModal] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const loadingRef = useRef(isLoading);
-  const loggedInUser = JSON.parse(
-    window.localStorage.getItem('okta-token-storage')
-  );
-  const tokenRef = useRef(loggedInUser.idToken.value);
-  const [accounts, setAccounts] = useLocalStorage('accounts', null);
-
-  const [curUser, setCurUser] = useState({});
-  const [, setCurUserToken] = useLocalStorage('curUserToken', null);
-  const history = useHistory();
   const [formVisibility, setFormVisibility] = useState({
     userForm: true,
     pinForm: false,
   });
-  const [validationError, setValidationError] = useState(
-    'Pin and account type validation errors'
+  const [validationError, setValidationError] = useState('');
+  const [formSubmissionData, setFormSubmissionData] = useState({});
+
+  const loggedInUser = JSON.parse(
+    window.localStorage.getItem('okta-token-storage')
   );
-  const [formSubmissionData, setFormSubmissionData] = useState({
-    // pin: {'1234'},
-    // userForm: {'child'}
-  });
+  const [accounts, setAccounts] = useLocalStorage('accounts', null);
+
+  const tokenRef = useRef(loggedInUser.idToken.value);
+  const history = useHistory();
 
   const handleCancel = () => {
     history.push('/login');
@@ -42,32 +35,17 @@ const AccountPinModal = () => {
   };
 
   // called from the pinForm on submit
-  const mainSubmit = () => {
-    const id = curUser.id;
-    const url = curUser.type;
-
-    axios
-      .post(
-        `https://story-squad-c-api.herokuapp.com/${url}/${id}`,
-        {
-          pin: `${formSubmissionData.pin}`,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${tokenRef.current}`,
-          },
-        }
-      )
-      .then(res => {
-        console.log('res: ', res.data.token);
-        setCurUserToken(res.data.token);
-        history.push('/dashboard');
-      })
-
-      .catch(err => {
-        // if errors display errors
-        setValidationError('Invalid PIN');
-      });
+  const mainSubmit = (type, id) => {
+    if (accounts) {
+      const url = `${type}/${id}`;
+      getAccount(url, formSubmissionData.pin, tokenRef.current)
+        .then(res => {
+          history.push('/dashboard');
+        })
+        .catch(err => {
+          setValidationError('Error: Invalid PIN');
+        });
+    }
   };
 
   const setLoading = useCallback(() => {
@@ -75,13 +53,15 @@ const AccountPinModal = () => {
   }, []);
 
   useEffect(() => {
-    getAccounts(tokenRef.current)
+    getLogin(tokenRef.current)
       .then(res => {
-        setAccounts(res.accounts);
-        setLoading();
+        if (!accounts) {
+          setAccounts(res.accounts);
+          setLoading();
+        }
       })
-      .catch(err => setValidationError('Server Error'));
-  }, [setLoading]);
+      .catch(err => console.log('Server Error'));
+  }, [setLoading, setAccounts, accounts]);
 
   return (
     <div className="modal" data-testid="formModalCont" key="formModalCont">
@@ -100,7 +80,6 @@ const AccountPinModal = () => {
       >
         {formVisibility.userForm && (
           <UserForm
-            setCurUser={setCurUser}
             accounts={accounts}
             loggedInUser={loggedInUser}
             isLoading={isLoading}
