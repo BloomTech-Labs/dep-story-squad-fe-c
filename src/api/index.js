@@ -117,6 +117,12 @@ const deleteChild = (token, id, childId) => {
     });
 };
 
+const getStory = (token, id) => {
+  return axios.get(`${apiUrl}/child/${id}/mission`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+};
+
 export {
   sleep,
   getExampleData,
@@ -127,4 +133,5 @@ export {
   getParentDash,
   addChild,
   deleteChild,
+  getStory,
 };

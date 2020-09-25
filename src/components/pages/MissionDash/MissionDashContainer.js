@@ -1,10 +1,7 @@
 import React, { useEffect } from 'react';
-
-import { messagePopup } from '../../../utils/message-popup';
-
-import RenderMissionDash from './RenderMissionDash';
-
 import { useHistory } from 'react-router-dom';
+import { messagePopup } from '../../../utils/message-popup';
+import RenderMissionDash from './RenderMissionDash';
 
 const MissionDashContainer = props => {
   // sets state held in <App />

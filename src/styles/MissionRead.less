@@ -1,0 +1,53 @@
+.pdf-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+
+  canvas {
+    border: 1px solid @black;
+    margin: 2%;
+    box-shadow: 2px 2px 8px 0px @black;
+  }
+
+  .prev-page-btn,
+  .next-page-btn,
+  .reading-done-btn {
+    position: absolute;
+    border-radius: 7px;
+    color: @white;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .prev-page-btn,
+  .next-page-btn {
+    top: 48%;
+    background: @blue;
+    padding: 10px;
+
+    &:hover {
+      background: lighten(@blue, 14%);
+    }
+
+    &:disabled {
+      background: lighten(@blue, 25%);
+      cursor: initial;
+    }
+  }
+
+  .prev-page-btn {
+    left: 5%;
+  }
+
+  .next-page-btn {
+    right: 5%;
+  }
+
+  .reading-done-btn {
+    top: 25px;
+    background: @red;
+    padding: 8px;
+  }
+}
