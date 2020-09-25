@@ -4,8 +4,6 @@ import { useLocalStorage } from '../../../utils/hooks';
 import { getStory } from '../../../api';
 import RenderMissionRead from './RenderMissionRead';
 
-const apiUrl = `${process.env.REACT_APP_API_URI}`;
-
 const ContainerMissionRead = () => {
   // URL to the PDF of the story to display
   const [story, setStory] = useState('');
@@ -13,8 +11,8 @@ const ContainerMissionRead = () => {
   // holds the current page of the PDF to display
   const [page, setPage] = useState(1);
 
-  const [curUserId, setCurUserId] = useLocalStorage('curUserId', null);
-  const [curUserToken, setCurUserToken] = useLocalStorage('curUserToken', null);
+  const [curUserId] = useLocalStorage('curUserId', null);
+  const [curUserToken] = useLocalStorage('curUserToken', null);
   const id = curUserId;
   const token = curUserToken;
 

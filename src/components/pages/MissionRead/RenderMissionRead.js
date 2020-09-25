@@ -8,7 +8,7 @@ const RenderMissionRead = props => {
     <div className="pdf-container">
       {story && (
         <Pdf file={story} page={page}>
-          {({ pdfDocument, pdfPage, canvas }) => (
+          {({ pdfDocument, canvas }) => (
             <>
               {!pdfDocument && <span>Loading...</span>}
               {canvas}
