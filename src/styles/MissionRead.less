@@ -10,8 +10,14 @@
   }
 
   .prev-page-btn,
-  .next-page-btn {
+  .next-page-btn,
+  .reading-done-btn {
     position: absolute;
+    cursor: pointer;
+  }
+
+  .prev-page-btn,
+  .next-page-btn {
     top: 48%;
   }
 
@@ -21,5 +27,15 @@
 
   .next-page-btn {
     right: 5%;
+  }
+
+  .reading-done-btn {
+    background: @red;
+    color: @white;
+    outline: none;
+    border: none;
+    border-radius: 7px;
+    padding: 8px;
+    top: 25px;
   }
 }

@@ -71,7 +71,10 @@ function App() {
           exact
           component={() => <MissionDash setHeaderTitle={setHeaderTitle} />}
         />
-        <SecureRoute path="/mission/read" component={() => <MissionRead />} />
+        <SecureRoute
+          path="/mission/read"
+          component={() => <MissionRead setHeaderTitle={setHeaderTitle} />}
+        />
         <Route component={NotFoundPage} />
       </Switch>
     </Security>

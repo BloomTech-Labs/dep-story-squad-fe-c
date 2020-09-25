@@ -7,7 +7,6 @@ const RenderMissionRead = props => {
     page,
     setPage,
     readingDone,
-    setReadingDone,
     checkProgress,
     missionComplete,
   } = props;
@@ -43,13 +42,11 @@ const RenderMissionRead = props => {
           )}
         </Pdf>
       )}
-      <button
-        disabled={!readingDone}
-        className="reading-done-btn"
-        onClick={missionComplete}
-      >
-        Back to Mission
-      </button>
+      {readingDone && (
+        <button className="reading-done-btn" onClick={missionComplete}>
+          Back to Mission
+        </button>
+      )}
     </div>
   );
 };

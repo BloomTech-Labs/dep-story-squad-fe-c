@@ -5,7 +5,7 @@ import { useLocalStorage } from '../../../utils/hooks';
 import { getStory } from '../../../api';
 import RenderMissionRead from './RenderMissionRead';
 
-const ContainerMissionRead = () => {
+const ContainerMissionRead = ({ setHeaderTitle }) => {
   const history = useHistory();
 
   // URL to the PDF of the story to display
@@ -22,6 +22,7 @@ const ContainerMissionRead = () => {
   const id = curUserId;
   const token = curUserToken;
 
+  // API call to get the PDF story
   useEffect(() => {
     getStory(token, id)
       .then(res => {
@@ -30,12 +31,19 @@ const ContainerMissionRead = () => {
       .catch(err => console.log({ err }));
   }, [token, id]);
 
+  // sets the header title
+  useEffect(() => {
+    setHeaderTitle('Read');
+  }, []);
+
+  // returns user to mission dashboard once story is read
   const missionComplete = e => {
     e.preventDefault();
 
     history.push('/mission');
   };
 
+  // checks story progress and displays button after story is complete
   const checkProgress = (e, pageNum, lastPage) => {
     e.preventDefault();
     // advance the page num
