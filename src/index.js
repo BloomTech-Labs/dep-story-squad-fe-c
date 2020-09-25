@@ -52,7 +52,6 @@ function App() {
       <Header title={headerTitle} />
 
       <Switch>
-        <Route path="/mission/read" component={() => <MissionRead />} />
         <Route
           path="/login"
           component={() => <LoginPage setHeaderTitle={setHeaderTitle} />}
@@ -72,6 +71,7 @@ function App() {
           path="/mission"
           component={() => <MissionDash setHeaderTitle={setHeaderTitle} />}
         />
+        <SecureRoute path="/mission/read" component={() => <MissionRead />} />
         <Route component={NotFoundPage} />
       </Switch>
     </Security>
