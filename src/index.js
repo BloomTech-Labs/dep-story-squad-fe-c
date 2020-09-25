@@ -53,7 +53,7 @@ function App() {
       <Header title={headerTitle} />
 
       <Switch>
-        <Route path="/stories" component={() => <GetStories />} />
+        <Route path="/mission/read" component={() => <GetStories />} />
         <Route
           path="/login"
           component={() => <LoginPage setHeaderTitle={setHeaderTitle} />}

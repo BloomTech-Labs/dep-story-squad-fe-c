@@ -1,13 +1,11 @@
 import React from 'react';
 
-const RenderMissionDash = ({ messagePopup }) => {
+const RenderMissionDash = ({ history, messagePopup }) => {
   return (
     <div className="dashboard-container">
       <button
         className="mission-btn-container read"
-        onClick={() =>
-          messagePopup('warning', 'This feature is not available yet!')
-        }
+        onClick={() => history.push('/mission/read')}
       >
         <input className="progress-check" type="checkbox" />
         <div className="mission-btn-icon">
