@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useLocalStorage } from '../../../utils/hooks';
 
 import RenderMissionRead from './RenderMissionRead';
+import { getStory } from '../../../api';
 
 const apiUrl = `${process.env.REACT_APP_API_URI}`;
 
@@ -19,12 +20,8 @@ const ContainerMissionRead = () => {
   const token = curUserToken;
 
   useEffect(() => {
-    axios
-      .get(`${apiUrl}/child/${id}/mission`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
+    getStory(token, id)
       .then(res => {
-        console.log('stories', res.data);
         setStory(res.data.read);
       })
       .catch(err => console.log({ err }));
