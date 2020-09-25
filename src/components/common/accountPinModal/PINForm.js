@@ -37,7 +37,7 @@ const PINForm = ({
     const url = `${curUserType}/${curUserId}`;
     getAccount(url, formSubmissionData.pin, tokenRef.current)
       .then(res => {
-        setCurUserToken(res.token);
+        setCurUserToken(res.data.token);
         history.push('/dashboard');
       })
       .catch(err => {

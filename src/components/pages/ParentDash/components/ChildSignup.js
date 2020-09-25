@@ -1,18 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Layout, Switch } from 'antd';
+import { addChild } from '../../../../api';
 
 // Signup form to add children to parent account
-const ChildSignup = () => {
+const ChildSignup = ({ userInfo, setUserInfo }) => {
   const { push } = useHistory();
   const { Header, Content } = Layout;
   const [signup, setSignup] = useState({
     name: '',
     username: '',
-    grade: '',
+    avatar_url:
+      'https://www.uokpl.rs/fpng/d/12-129858_kid-superhero-clipart.png',
     pin: '',
-    dys: false,
+    grade: '',
+    dyslexic: false,
   });
+
+  const token = JSON.parse(window.localStorage.getItem('curUserToken'));
+  const tokenRef = useRef(token);
+  const id = JSON.parse(window.localStorage.getItem('curUserId'));
 
   useEffect(() => {}, [signup]);
 
@@ -27,14 +34,22 @@ const ChildSignup = () => {
   const handleToggle = () => {
     setSignup({
       ...signup,
-      dys: !signup.dys,
+      dyslexic: !signup.dyslexic,
     });
   };
 
   const handleSubmit = e => {
     e.preventDefault();
+    console.log(signup);
+    addChild(tokenRef.current, id, signup)
+      .then(res => {
+        setUserInfo([...userInfo, signup]);
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
     push('/dashboard');
-    console.log('sent', signup);
   };
 
   return (
@@ -67,9 +82,9 @@ const ChildSignup = () => {
               value={signup.grade}
             />
             <input
-              type="text"
+              type="password"
               name="pin"
-              placeholder="Set PIN"
+              placeholder="Set 4 digit PIN"
               onChange={handleChange}
               value={signup.pin}
             />
