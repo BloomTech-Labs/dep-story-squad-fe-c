@@ -2,7 +2,15 @@ import React from 'react';
 import Pdf from '@mikecousins/react-pdf';
 
 const RenderMissionRead = props => {
-  const { story, page, setPage } = props;
+  const {
+    story,
+    page,
+    setPage,
+    readingDone,
+    setReadingDone,
+    checkProgress,
+    missionComplete,
+  } = props;
 
   return (
     <div className="pdf-container">
@@ -25,7 +33,7 @@ const RenderMissionRead = props => {
                   <button
                     className="next-page-btn"
                     disabled={page === pdfDocument.numPages}
-                    onClick={() => setPage(page + 1)}
+                    onClick={e => checkProgress(e, page, pdfDocument.numPages)}
                   >
                     {'>'}
                   </button>
@@ -35,6 +43,13 @@ const RenderMissionRead = props => {
           )}
         </Pdf>
       )}
+      <button
+        disabled={!readingDone}
+        className="reading-done-btn"
+        onClick={missionComplete}
+      >
+        Back to Mission
+      </button>
     </div>
   );
 };
