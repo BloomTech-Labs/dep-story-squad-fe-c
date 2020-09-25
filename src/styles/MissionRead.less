@@ -13,12 +13,27 @@
   .next-page-btn,
   .reading-done-btn {
     position: absolute;
+    border-radius: 7px;
+    color: @white;
+    font-weight: bold;
+    outline: none;
+    border: none;
     cursor: pointer;
   }
 
   .prev-page-btn,
   .next-page-btn {
     top: 48%;
+    background: @blue;
+    padding: 10px;
+
+    &:hover {
+      background: lighten(@blue, 14%);
+    }
+
+    &:disabled {
+      background: lighten(@blue, 25%);
+    }
   }
 
   .prev-page-btn {
@@ -30,12 +45,8 @@
   }
 
   .reading-done-btn {
-    background: @red;
-    color: @white;
-    outline: none;
-    border: none;
-    border-radius: 7px;
-    padding: 8px;
     top: 25px;
+    background: @red;
+    padding: 8px;
   }
 }
