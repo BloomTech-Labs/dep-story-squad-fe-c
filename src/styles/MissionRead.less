@@ -1,0 +1,25 @@
+.pdf-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+
+  canvas {
+    border: 1px solid @black;
+    margin: 2%;
+    box-shadow: 2px 2px 8px 0px @black;
+  }
+
+  .prev-page-btn,
+  .next-page-btn {
+    position: absolute;
+    top: 48%;
+  }
+
+  .prev-page-btn {
+    left: 5%;
+  }
+
+  .next-page-btn {
+    right: 5%;
+  }
+}
