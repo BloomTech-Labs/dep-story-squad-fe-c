@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Switch } from 'react-router-dom';
 import { SecureRoute } from '@okta/okta-react';
-
 import { Layout } from 'antd';
 import { ParentNav, DashHome, ChildSignup, Help } from './components';
+import { getParentDash } from '../../../api';
 
 // ParentDash component that contains a nav bar and routes to the various components
 const RenderParentDash = props => {
@@ -11,9 +11,12 @@ const RenderParentDash = props => {
   const { setHeaderTitle } = props;
 
   // Keeps track of the state for ParentNav
-  const [current, setCurrent] = useState('home');
 
-  useEffect(() => {}, [current]);
+  const [userInfo, setUserInfo] = useState(null);
+
+  const token = JSON.parse(window.localStorage.getItem('curUserToken'));
+  const tokenRef = useRef(token);
+  const id = JSON.parse(window.localStorage.getItem('curUserId'));
 
   // Whenever this component mounts update the <Header /> title
   useEffect(() => {
@@ -22,19 +25,40 @@ const RenderParentDash = props => {
     setHeaderTitle(null);
   }, [setHeaderTitle]);
 
+  useEffect(() => {
+    if (token) {
+      getParentDash(tokenRef.current, id)
+        .then(res => {
+          console.log(res);
+          setUserInfo(res);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  }, []);
+
   // Keeps track of state for Nav Bar
-  const handleClick = e => {
-    setCurrent(e.key);
-  };
+
   return (
     <>
       <Layout style={{ background: '#fafafa', height: '100vh' }}>
-        <ParentNav handleClick={handleClick} current={current} />
+        <ParentNav />
         <Switch>
           <>
-            <SecureRoute exact path={'/login'} component={DashHome} />
-            <SecureRoute exact path={`/login/add`} component={ChildSignup} />
-            <SecureRoute exact path={'/login/help'} component={Help} />
+            <SecureRoute
+              exact
+              path={'/dashboard'}
+              component={() => <DashHome userInfo={userInfo} />}
+            />
+            <SecureRoute
+              exact
+              path={`/dashboard/add`}
+              component={() => (
+                <ChildSignup setUserInfo={setUserInfo} userInfo={userInfo} />
+              )}
+            />
+            <SecureRoute exact path={'/dashboard/help'} component={Help} />
           </>
         </Switch>
       </Layout>

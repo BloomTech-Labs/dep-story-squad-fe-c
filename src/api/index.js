@@ -51,16 +51,9 @@ const getProfileData = authState => {
 
 // gets associated accounts for logged in user
 const getLogin = bearer => {
-  return axios
-    .get(`${apiUrl}/auth/login`, {
-      headers: { Authorization: `Bearer ${bearer}` },
-    })
-    .then(res => {
-      return res;
-    })
-    .catch(err => {
-      return err;
-    });
+  return axios.get(`${apiUrl}/auth/login`, {
+    headers: { Authorization: `Bearer ${bearer}` },
+  });
 };
 
 // gets associated accounts for logged in user
@@ -83,6 +76,47 @@ const getAccount = (url, pin, bearer) => {
     });
 };
 
+// gets data associated with the parent dash
+const getParentDash = (token, id) => {
+  return axios
+    .get(`${apiUrl}/parent/${id}/dashboard`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then(res => {
+      return res.data.childData;
+    })
+    .catch(err => {
+      return err;
+    });
+};
+
+// posts a child to the database
+const addChild = (token, id, body) => {
+  return axios
+    .post(`${apiUrl}/parent/${id}/children`, body, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+const deleteChild = (token, id, childId) => {
+  return axios
+    .delete(`${apiUrl}/parent/${id}/children/${childId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then(res => {
+      return res;
+    })
+    .catch(err => {
+      return err;
+    });
+};
+
 export {
   sleep,
   getExampleData,
@@ -90,4 +124,7 @@ export {
   getDSData,
   getLogin,
   getAccount,
+  getParentDash,
+  addChild,
+  deleteChild,
 };

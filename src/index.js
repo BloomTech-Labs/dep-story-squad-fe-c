@@ -19,6 +19,8 @@ import { config } from './utils/oktaConfig';
 import { Dash } from './components/pages/Dash';
 import { AccountPinModal } from './components/common/';
 import { MissionDash } from './components/pages/MissionDash';
+// testing
+import { GetStories } from './components/pages/MissionDash/getStories';
 
 import { Header } from './components/common/';
 
@@ -44,11 +46,14 @@ function App() {
 
   // This state will hold the title that appears in the <Header />
   const [headerTitle, setHeaderTitle] = useState('Story Squad');
+  const [userType, setUserType] = useState(null);
+
   return (
     <Security {...config} onAuthRequired={authHandler}>
       <Header title={headerTitle} />
 
       <Switch>
+        <Route path="/stories" component={() => <GetStories />} />
         <Route
           path="/login"
           component={() => <LoginPage setHeaderTitle={setHeaderTitle} />}
