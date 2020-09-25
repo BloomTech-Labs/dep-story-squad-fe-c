@@ -42,7 +42,7 @@ const AccountPinModal = props => {
     getLogin(tokenRef.current)
       .then(res => {
         if (!accounts) {
-          setAccounts(res.accounts);
+          setAccounts(res.accounts.data);
           setLoading();
         }
       })
