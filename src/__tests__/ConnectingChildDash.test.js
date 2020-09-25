@@ -14,3 +14,9 @@ describe('<GetStories /> test suite', () => {
     render(<GetStories />);
   });
 });
+
+describe('<GetStories /> test suite', () => {
+  test('renders without errors', () => {
+    render(<GetStories />);
+  });
+});
