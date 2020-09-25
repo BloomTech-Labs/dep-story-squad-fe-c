@@ -1,1 +1,1 @@
-export { default as MissionRead } from './ContainerMissionRead';
+export { default as MissionRead } from './MissionReadContainer';
