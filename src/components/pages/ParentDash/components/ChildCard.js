@@ -4,7 +4,12 @@ import { messagePopup } from '../../../../utils/message-popup';
 const ChildCard = ({ child }) => {
   return (
     <div className="Card Child">
-      <a href="/dashboard" className="cancel" onClick={() => {}}>
+      <a
+        className="cancel"
+        onClick={() =>
+          messagePopup('warning', 'This feature is not available yet!')
+        }
+      >
         Delete
       </a>
       <h2>{child.name}</h2>
