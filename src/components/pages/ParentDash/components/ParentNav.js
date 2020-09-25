@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Layout, Menu } from 'antd';
-import { Link } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 
 // Nav bar for parent dash
 const Nav = () => {
-  const [current, setCurrent] = useState('home');
   const { Header, Sider } = Layout;
   const { Item } = Menu;
+  const { push } = useHistory();
+  const location = useLocation();
 
   const handleClick = e => {
-    setCurrent(e.key);
+    push(e.key);
   };
 
   return (
@@ -43,19 +44,13 @@ const Nav = () => {
             background: '#fafafa',
           }}
           mode="inline"
-          selectedKeys={[current]}
+          selectedKeys={[`${location.pathname}`]}
           onClick={handleClick}
         >
-          <Item key="home">
-            <Link to="/dashboard" />
-            Dashboard
-          </Item>
-          <Item key="settings">Parent Settings</Item>
-          <Item key="help">
-            <Link to="/dashboard/help" />
-            Help
-          </Item>
-          <Item key="logout">Log out</Item>
+          <Item key="/dashboard">Dashboard</Item>
+          <Item key="/dashboard/settings">Parent Settings</Item>
+          <Item key="/dashboard/help">Help</Item>
+          <Item key="/dashboard/logout">Log out</Item>
         </Menu>
       </Sider>
     </>

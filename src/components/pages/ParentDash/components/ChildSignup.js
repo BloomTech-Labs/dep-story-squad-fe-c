@@ -40,7 +40,6 @@ const ChildSignup = ({ userInfo, setUserInfo }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(signup);
     addChild(tokenRef.current, id, signup)
       .then(res => {
         setUserInfo([...userInfo, signup]);

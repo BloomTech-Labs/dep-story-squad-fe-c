@@ -29,7 +29,6 @@ const RenderParentDash = props => {
     if (token) {
       getParentDash(tokenRef.current, id)
         .then(res => {
-          console.log(res);
           setUserInfo(res);
         })
         .catch(err => {

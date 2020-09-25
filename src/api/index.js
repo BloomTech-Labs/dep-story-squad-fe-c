@@ -92,29 +92,15 @@ const getParentDash = (token, id) => {
 
 // posts a child to the database
 const addChild = (token, id, body) => {
-  return axios
-    .post(`${apiUrl}/parent/${id}/children`, body, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-    .then(res => {
-      console.log(res);
-    })
-    .catch(err => {
-      console.log(err);
-    });
+  return axios.post(`${apiUrl}/parent/${id}/children`, body, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
 };
 
 const deleteChild = (token, id, childId) => {
-  return axios
-    .delete(`${apiUrl}/parent/${id}/children/${childId}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-    .then(res => {
-      return res;
-    })
-    .catch(err => {
-      return err;
-    });
+  return axios.delete(`${apiUrl}/parent/${id}/children/${childId}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
 };
 
 export {
