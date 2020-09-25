@@ -69,6 +69,7 @@ function App() {
         />
         <SecureRoute
           path="/mission"
+          exact
           component={() => <MissionDash setHeaderTitle={setHeaderTitle} />}
         />
         <SecureRoute path="/mission/read" component={() => <MissionRead />} />
