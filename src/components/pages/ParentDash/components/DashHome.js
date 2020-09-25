@@ -15,7 +15,7 @@ const DashHome = ({ userInfo }) => {
           {userInfo.map(child => (
             <ChildCard child={child} key={child.id} />
           ))}
-          <LinkButton className="Card" userInfo={userInfo} to="/dashboard/add">
+          <LinkButton className="Card" to="/dashboard/add">
             <PlusCircleOutlined className="icon" />
             Add a Child
           </LinkButton>
