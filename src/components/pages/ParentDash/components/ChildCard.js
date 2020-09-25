@@ -1,4 +1,5 @@
 import React from 'react';
+import { messagePopup } from '../../../../utils/message-popup';
 
 const ChildCard = ({ child }) => {
   return (
@@ -7,11 +8,13 @@ const ChildCard = ({ child }) => {
         Delete
       </a>
       <h2>{child.name}</h2>
-      <input
+      <button
         className="submitBtn"
-        value={`${child.name}'s Settings`}
         readOnly={true}
-      />
+        onClick={() =>
+          messagePopup('warning', 'This feature is not available yet!')
+        }
+      >{`${child.name}'s Settings`}</button>
     </div>
   );
 };
