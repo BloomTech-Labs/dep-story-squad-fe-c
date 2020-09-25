@@ -34,7 +34,7 @@ const ContainerMissionRead = ({ setHeaderTitle }) => {
   // sets the header title
   useEffect(() => {
     setHeaderTitle('Read');
-  }, []);
+  }, [setHeaderTitle]);
 
   // returns user to mission dashboard once story is read
   const missionComplete = e => {
