@@ -19,8 +19,7 @@ import { config } from './utils/oktaConfig';
 import { Dash } from './components/pages/Dash';
 import { AccountPinModal } from './components/common/';
 import { MissionDash } from './components/pages/MissionDash';
-// testing
-import { GetStories } from './components/pages/MissionDash/getStories';
+import { MissionRead } from './components/pages/MissionRead';
 
 import { Header } from './components/common/';
 
@@ -53,7 +52,7 @@ function App() {
       <Header title={headerTitle} />
 
       <Switch>
-        <Route path="/stories" component={() => <GetStories />} />
+        <Route path="/mission/read" component={() => <MissionRead />} />
         <Route
           path="/login"
           component={() => <LoginPage setHeaderTitle={setHeaderTitle} />}
