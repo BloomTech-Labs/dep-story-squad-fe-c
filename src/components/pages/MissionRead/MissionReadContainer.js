@@ -5,7 +5,7 @@ import { useLocalStorage } from '../../../utils/hooks';
 import { getStory } from '../../../api';
 import RenderMissionRead from './RenderMissionRead';
 
-const ContainerMissionRead = ({ setHeaderTitle }) => {
+const MissionReadContainer = ({ setHeaderTitle }) => {
   const history = useHistory();
 
   // URL to the PDF of the story to display
@@ -68,4 +68,4 @@ const ContainerMissionRead = ({ setHeaderTitle }) => {
   );
 };
 
-export default ContainerMissionRead;
+export default MissionReadContainer;
