@@ -6,7 +6,7 @@ import PDFViewer from 'pdf-viewer-reactjs';
 
 const apiUrl = `${process.env.REACT_APP_API_URI}`;
 
-export const GetStories = props => {
+const GetStories = props => {
   const [story, setStory] = useState('');
 
   const [curUserId, setCurUserId] = useLocalStorage('curUserId', null);
@@ -27,12 +27,16 @@ export const GetStories = props => {
   }, [props, token, id]);
 
   return story ? (
-    <PDFViewer
-      document={{
-        url: story,
-      }}
-    />
+    <div className="pdfview">
+      <PDFViewer
+        document={{
+          url: story,
+        }}
+      />
+    </div>
   ) : (
     <p>Hello</p>
   );
 };
+
+export default GetStories;
