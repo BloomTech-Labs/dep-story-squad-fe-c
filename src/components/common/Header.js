@@ -1,8 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useRecoilValue } from 'recoil';
+import { headerTitle } from '../../state/atoms';
 
 // Header element that takes in a string as a prop and displays it as the title
-const Header = ({ title }) => {
+const Header = () => {
+  const title = useRecoilValue(headerTitle);
+
   return (
     // If the title is null do not render the header
     !title ? null : (
