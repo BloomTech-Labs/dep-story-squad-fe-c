@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Switch } from 'react-router-dom';
 import { SecureRoute } from '@okta/okta-react';
 import { Layout } from 'antd';
-import { ParentNav, DashHome, ChildSignup, Help } from './components';
+import { ParentNav, DashHome, ChildSignup, Help, Logout } from './components';
 import { getParentDash } from '../../../api';
 
 // ParentDash component that contains a nav bar and routes to the various components
@@ -58,6 +58,7 @@ const RenderParentDash = props => {
               )}
             />
             <SecureRoute exact path={'/dashboard/help'} component={Help} />
+            <SecureRoute exact path={'/dashboard/logout'} component={Logout} />
           </>
         </Switch>
       </Layout>
