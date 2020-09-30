@@ -23,12 +23,12 @@ const Logout = () => {
         <div className="contentCard">
           <div className="logout">
             <h3>What would you like to do?</h3>
-            <button className="submitBtn" onClick={() => logout(authService)}>
+            <button className="submitBtn" onClick={e => logout(e, authService)}>
               Logout
             </button>
             <button
               className="submitBtn"
-              onClick={() => switchUser(curUser, push)}
+              onClick={e => switchUser(e, curUser, push)}
             >
               Switch Users
             </button>
