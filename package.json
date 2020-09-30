@@ -19,7 +19,8 @@
     "react-pin-input": "^0.9.5",
     "react-plotly.js": "^2.4.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^3.4.3"
+    "react-scripts": "^3.4.3",
+    "recoil": "0.0.13"
   },
   "scripts": {
     "start": "craco start",
