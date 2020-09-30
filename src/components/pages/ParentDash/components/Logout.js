@@ -3,22 +3,16 @@ import { useHistory } from 'react-router-dom';
 import { Layout } from 'antd';
 import { useOktaAuth } from '@okta/okta-react';
 
+// Utils
+import { logout } from '../../../../utils/logout';
+import { switchUser } from '../../../../utils/switchUser';
+
 const Logout = () => {
   const { push } = useHistory();
   const { Header, Content } = Layout;
   const { authService } = useOktaAuth();
 
-  const switchUser = () => {
-    localStorage.removeItem('curUserType');
-    localStorage.removeItem('curUserId');
-    localStorage.removeItem('curUserName');
-    push('/');
-  };
-
-  const logout = () => {
-    authService.logout();
-    window.localStorage.clear();
-  };
+  const curUser = ['curUserType', 'curUserId', 'curUserName'];
 
   return (
     <Layout className="parent-layout" style={{ background: 'white' }}>
@@ -29,10 +23,13 @@ const Logout = () => {
         <div className="contentCard">
           <div className="logout">
             <h3>What would you like to do?</h3>
-            <button className="submitBtn" onClick={logout}>
+            <button className="submitBtn" onClick={e => logout(e, authService)}>
               Logout
             </button>
-            <button className="submitBtn" onClick={switchUser}>
+            <button
+              className="submitBtn"
+              onClick={e => switchUser(e, curUser, push)}
+            >
               Switch Users
             </button>
           </div>
