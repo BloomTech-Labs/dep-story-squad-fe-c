@@ -57,7 +57,7 @@ const ChildSignup = ({ userInfo, setUserInfo }) => {
         <h1>Add a Child</h1>
       </Header>
       <Content>
-        <div className="signupForm">
+        <div className="contentCard">
           <form onSubmit={handleSubmit}>
             <input
               type="text"

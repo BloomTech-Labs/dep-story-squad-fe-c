@@ -81,14 +81,17 @@
   }
 }
 
-.signupForm {
+.contentCard {
   background: @cyan;
   border-radius: 14px;
   width: 674px;
   height: 364px;
   display: flex;
   justify-content: center;
+  align-content: center;
   margin: 0 auto;
+  flex-direction: column;
+  outline: none;
   // Media Query for signupForm
   .minMQ(@desktop, {width: 80vw;});
   form {
@@ -123,6 +126,21 @@
     justify-content: flex-end;
     margin-right: 10px;
     text-decoration: underline;
+  }
+  .logout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    width: 45%;
+    height: 100%;
+    h3 {
+      font-size: 30px;
+      color: @black;
+    }
+    button {
+      margin: 1vh 0;
+    }
   }
 }
 
