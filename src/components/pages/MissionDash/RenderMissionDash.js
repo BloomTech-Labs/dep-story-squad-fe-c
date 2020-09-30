@@ -16,9 +16,7 @@ const RenderMissionDash = ({ history, messagePopup }) => {
       <div className="right-panel">
         <button
           className="mission-btn-container write"
-          onClick={() =>
-            messagePopup('warning', 'This feature is not available yet!')
-          }
+          onClick={() => history.push('/mission/write')}
         >
           <input className="progress-check" type="checkbox" />
           <div className="mission-btn-icon">
