@@ -38,6 +38,19 @@ const apiAuthGet = authHeader => {
   return axios.get(apiUrl, { headers: authHeader });
 };
 
+const apiAuthPost = (
+  endpoint,
+  payload,
+  contentType = 'application/json',
+  authHeader
+) => {
+  return axios.post(
+    `${apiUrl}/${endpoint}`,
+    { payload },
+    { headers: { ContentType: contentType }, authHeader }
+  );
+};
+
 const getProfileData = authState => {
   try {
     return apiAuthGet(getAuthHeader(authState)).then(response => response.data);
@@ -58,22 +71,30 @@ const getLogin = bearer => {
 
 // gets associated accounts for logged in user
 const getAccount = (url, pin, bearer) => {
-  return axios
-    .post(
-      `${apiUrl}/${url}`,
-      {
-        pin: `${pin}`,
-      },
-      {
-        headers: { Authorization: `Bearer ${bearer}` },
-      }
-    )
-    .then(res => {
-      return res;
-    })
-    .catch(err => {
-      return err;
-    });
+  return axios.post(
+    `${apiUrl}/${url}`,
+    {
+      pin: `${pin}`,
+    },
+    {
+      headers: { Authorization: `Bearer ${bearer}` },
+    }
+  );
+};
+
+const getData = (url, userToken) => {
+  return axios.get(`${apiUrl}/${url}`, {
+    headers: { Authorization: `Bearer ${userToken}` },
+  });
+};
+
+const uploadSubmissionData = (url, formData, userToken) => {
+  return axios.post(`${apiUrl}/${url}`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
 };
 
 // gets data associated with the parent dash
@@ -120,4 +141,6 @@ export {
   addChild,
   deleteChild,
   getStory,
+  uploadSubmissionData,
+  getData,
 };
