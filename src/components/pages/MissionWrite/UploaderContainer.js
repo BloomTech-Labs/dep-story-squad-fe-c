@@ -10,7 +10,7 @@ import { useHistory } from 'react-router-dom';
 import { uploadSubmissionData, getData } from '../../../api';
 
 const Uploader = () => {
-  const history = useHistory();
+  const { push } = useHistory();
   const [fileList, setFileList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -49,7 +49,6 @@ const Uploader = () => {
   const onSubmit = e => {
     setIsLoading(true);
     e.preventDefault();
-    console.log('submitting...');
     // build formData
     const formData = new FormData();
 
@@ -62,8 +61,7 @@ const Uploader = () => {
     uploadSubmissionData(endpoint, formData, curUserToken)
       .then(res => {
         setIsLoading(false);
-        history.push('/mission');
-        console.log('uploadRes: ', res);
+        push('/mission');
       })
       .catch(err => {
         console.log('Upload Failed: ', err.message);
