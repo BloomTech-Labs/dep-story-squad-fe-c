@@ -8,6 +8,9 @@ import {
 } from 'react-router-dom';
 import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 
+// provider for Recoil state
+import { RecoilRoot } from 'recoil';
+
 // Styles imports
 import './styles/index.less';
 import 'antd/dist/antd.less';
@@ -27,7 +30,9 @@ import { Header } from './components/common/';
 ReactDOM.render(
   <Router>
     <React.StrictMode>
-      <App />
+      <RecoilRoot>
+        <App />
+      </RecoilRoot>
     </React.StrictMode>
   </Router>,
   document.getElementById('root')
