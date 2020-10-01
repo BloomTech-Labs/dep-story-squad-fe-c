@@ -38,9 +38,30 @@ const apiAuthGet = authHeader => {
   return axios.get(apiUrl, { headers: authHeader });
 };
 
+const apiAuthPost = (payload, contentType = 'application/json', authHeader) => {
+  return axios.post(
+    apiUrl,
+    { payload },
+    { headers: { ContentType: contentType }, authHeader }
+  );
+};
+
 const getProfileData = authState => {
   try {
     return apiAuthGet(getAuthHeader(authState)).then(response => response.data);
+  } catch (error) {
+    return new Promise(() => {
+      console.log(error);
+      return [];
+    });
+  }
+};
+
+const uploadSubmissionData = (payload, contentType, authState) => {
+  try {
+    return apiAuthPost(payload, contentType, getAuthHeader(authState)).then(
+      response => response.data
+    );
   } catch (error) {
     return new Promise(() => {
       console.log(error);
@@ -120,4 +141,5 @@ export {
   addChild,
   deleteChild,
   getStory,
+  uploadSubmissionData,
 };
