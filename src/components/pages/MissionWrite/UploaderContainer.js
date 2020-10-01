@@ -12,6 +12,7 @@ import { message } from 'antd';
 import { uploadSubmissionData, getData } from '../../../api';
 
 const Uploader = () => {
+  // extract push from useHistory for navigation
   const { push } = useHistory();
 
   const [fileList, setFileList] = useState([]);
