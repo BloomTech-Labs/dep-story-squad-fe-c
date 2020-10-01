@@ -29,11 +29,17 @@ const Header = ({ title }) => {
             <button
               disabled={!window.localStorage.getItem('okta-token-storage')}
               type="button"
+              onClick={() => push('/dashboard')}
+            >
+              Home
+            </button>
+            <button
+              disabled={!window.localStorage.getItem('okta-token-storage')}
+              type="button"
               onClick={e => switchUser(e, curUser, push)}
             >
               Change User
             </button>
-            <br />
             <button
               disabled={!window.localStorage.getItem('okta-token-storage')}
               type="button"
