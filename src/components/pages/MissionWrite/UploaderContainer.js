@@ -6,16 +6,23 @@ import { useLocalStorage } from '../../../utils/hooks';
 import { LoadingComponent } from '../../common';
 import { useHistory } from 'react-router-dom';
 
+import { message } from 'antd';
+
 // api
 import { uploadSubmissionData, getData } from '../../../api';
 
 const Uploader = () => {
-  const history = useHistory();
+  const { push } = useHistory();
+
   const [fileList, setFileList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const onChange = ({ fileList: newFileList }) => {
-    setFileList(newFileList);
+  const onChange = ({ file, fileList: newFileList }) => {
+    if (file.type === 'image/png' || file.type === 'image/jpeg') {
+      setFileList(newFileList);
+    } else {
+      message.error(`${file.name} is not a png or jpg file`);
+    }
   };
 
   const [userId] = useLocalStorage('curUserId');
@@ -62,7 +69,7 @@ const Uploader = () => {
     uploadSubmissionData(endpoint, formData, curUserToken)
       .then(res => {
         setIsLoading(false);
-        history.push('/mission');
+        push('/mission');
         console.log('uploadRes: ', res);
       })
       .catch(err => {
