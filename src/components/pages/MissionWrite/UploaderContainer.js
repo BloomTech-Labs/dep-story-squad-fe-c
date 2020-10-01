@@ -4,9 +4,6 @@ import React, { useState } from 'react';
 import RenderUploader from './RenderUploader';
 import { useLocalStorage } from '../../../utils/hooks';
 
-// okta
-import { useOktaAuth } from '@okta/okta-react';
-
 // api
 import { uploadSubmissionData, getData } from '../../../api';
 
@@ -17,7 +14,6 @@ const Uploader = () => {
     setFileList(newFileList);
   };
 
-  const { authState } = useOktaAuth();
   const [userId] = useLocalStorage('curUserId');
   const [curUserToken] = useLocalStorage('curUserToken');
   let missionId = '';
