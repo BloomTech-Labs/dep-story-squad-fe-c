@@ -6,7 +6,10 @@ const RenderMissionWrite = props => {
 
   return (
     <>
-      <p>Submit your side quest</p>
+      <p className="text-box">
+        A sidekick does something completely out of character, and everyone must
+        figure out why.
+      </p>
       <Uploader />
     </>
   );
