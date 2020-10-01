@@ -12,12 +12,14 @@ import { message } from 'antd';
 import { uploadSubmissionData, getData } from '../../../api';
 
 const Uploader = () => {
-  // extract push from useHistory for navigation
-  const { push } = useHistory();
-
   const [fileList, setFileList] = useState([]);
-
   const [isLoading, setIsLoading] = useState(false);
+
+  const [userId] = useLocalStorage('curUserId');
+  const [curUserToken] = useLocalStorage('curUserToken');
+  let missionId = '';
+
+  const { push } = useHistory();
 
   const onChange = ({ file, fileList: newFileList }) => {
     if (file.type === 'image/png' || file.type === 'image/jpeg') {
@@ -26,10 +28,6 @@ const Uploader = () => {
       message.error(`${file.name} is not a png or jpg file`);
     }
   };
-
-  const [userId] = useLocalStorage('curUserId');
-  const [curUserToken] = useLocalStorage('curUserToken');
-  let missionId = '';
 
   getData(`child/${userId}/mission`, curUserToken)
     .then(res => {
