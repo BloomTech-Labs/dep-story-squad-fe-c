@@ -13,7 +13,6 @@ import { uploadSubmissionData, getData } from '../../../api';
 
 const Uploader = () => {
   const { push } = useHistory();
-
   const [fileList, setFileList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -56,7 +55,6 @@ const Uploader = () => {
   const onSubmit = e => {
     setIsLoading(true);
     e.preventDefault();
-    console.log('submitting...');
     // build formData
     const formData = new FormData();
 
@@ -70,7 +68,6 @@ const Uploader = () => {
       .then(res => {
         setIsLoading(false);
         push('/mission');
-        console.log('uploadRes: ', res);
       })
       .catch(err => {
         console.log('Upload Failed: ', err.message);
