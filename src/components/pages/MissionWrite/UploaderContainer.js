@@ -51,7 +51,7 @@ const Uploader = () => {
     // '/api/child/userId/mission/:missionID'
     const endpoint = `api/child/${userId}/mission/${missionId}`;
     fileList.forEach(file => {
-      formData.append('writing: ', file);
+      formData.append('images: ', file);
     });
     // endpoint, payload, userToken
     uploadSubmissionData(endpoint, formData, curUserToken)
