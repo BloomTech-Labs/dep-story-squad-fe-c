@@ -15,7 +15,7 @@ const RenderUploader = ({ fileList, onChange, onPreview, onSubmit }) => {
         beforeUpload={() => false}
         multiple
       >
-        {fileList.length < 5 && '+ Add Page'}
+        {fileList.length < 5 && 'Add Page'}
       </Upload>
       <button onClick={e => onSubmit(e)}>Upload Story</button>
     </div>
