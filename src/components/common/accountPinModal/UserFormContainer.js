@@ -3,9 +3,6 @@ import RenderUserForm from './RenderUserForm';
 import PropTypes from 'prop-types';
 import { useLocalStorage } from '../../../utils/hooks';
 
-// styles
-import '../../../styles/UserForm.less';
-
 const UserFormContainer = ({ setFormVisibility, isLoading, accounts }) => {
   const [, setCurUserType] = useLocalStorage('curUserType', null);
   const [, setCurUserName] = useLocalStorage('curUserName', null);
