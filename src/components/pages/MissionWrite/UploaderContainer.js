@@ -49,7 +49,6 @@ const Uploader = () => {
   const onSubmit = e => {
     setIsLoading(true);
     e.preventDefault();
-    console.log('submitting...');
     // build formData
     const formData = new FormData();
 
