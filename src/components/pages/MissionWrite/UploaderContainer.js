@@ -3,12 +3,16 @@
 import React, { useState } from 'react';
 import RenderUploader from './RenderUploader';
 import { useLocalStorage } from '../../../utils/hooks';
+import { LoadingComponent } from '../../common';
+import { useHistory } from 'react-router-dom';
 
 // api
 import { uploadSubmissionData, getData } from '../../../api';
 
 const Uploader = () => {
+  const history = useHistory();
   const [fileList, setFileList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onChange = ({ fileList: newFileList }) => {
     setFileList(newFileList);
@@ -43,6 +47,7 @@ const Uploader = () => {
   };
 
   const onSubmit = e => {
+    setIsLoading(true);
     e.preventDefault();
     console.log('submitting...');
     // build formData
@@ -56,6 +61,8 @@ const Uploader = () => {
     // endpoint, payload, userToken
     uploadSubmissionData(endpoint, formData, curUserToken)
       .then(res => {
+        setIsLoading(false);
+        history.push('/mission');
         console.log('uploadRes: ', res);
       })
       .catch(err => {
@@ -64,12 +71,15 @@ const Uploader = () => {
   };
 
   return (
-    <RenderUploader
-      fileList={fileList}
-      onChange={onChange}
-      onPreview={onPreview}
-      onSubmit={onSubmit}
-    />
+    <>
+      <RenderUploader
+        fileList={fileList}
+        onChange={onChange}
+        onPreview={onPreview}
+        onSubmit={onSubmit}
+      />
+      {isLoading && <LoadingComponent />}
+    </>
   );
 };
 
