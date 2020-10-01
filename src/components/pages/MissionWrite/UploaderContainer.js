@@ -13,7 +13,9 @@ import { uploadSubmissionData, getData } from '../../../api';
 
 const Uploader = () => {
   const { push } = useHistory();
+
   const [fileList, setFileList] = useState([]);
+
   const [isLoading, setIsLoading] = useState(false);
 
   const onChange = ({ file, fileList: newFileList }) => {
