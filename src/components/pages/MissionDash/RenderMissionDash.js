@@ -7,7 +7,10 @@ const RenderMissionDash = ({ history, messagePopup }) => {
         className="mission-btn-container read"
         onClick={() => history.push('/mission/read')}
       >
-        <input className="progress-check" type="checkbox" />
+        <div className="progress-check">
+          <img src="images/check-incomplete.png  " alt="" />
+        </div>
+
         <div className="mission-btn-icon">
           <img src="/images/read-icon.png" alt="" />
           <h3>READ</h3>
@@ -18,7 +21,9 @@ const RenderMissionDash = ({ history, messagePopup }) => {
           className="mission-btn-container write"
           onClick={() => history.push('/mission/write')}
         >
-          <input className="progress-check" type="checkbox" />
+          <div className="progress-check">
+            <img src="images/check-done.png" alt="" />
+          </div>
           <div className="mission-btn-icon">
             <img src="/images/write-icon.png" alt="" />
             <h3>WRITE</h3>
@@ -30,7 +35,9 @@ const RenderMissionDash = ({ history, messagePopup }) => {
             messagePopup('warning', 'This feature is not available yet!')
           }
         >
-          <input className="progress-check" type="checkbox" />
+          <div className="progress-check">
+            <img src="images/check-done.png" alt="" />
+          </div>
           <div className="mission-btn-icon">
             <img src="/images/draw-icon.png" alt="" />
             <h3>DRAW</h3>

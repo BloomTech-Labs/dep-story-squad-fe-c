@@ -1,11 +1,22 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { authService } from '@okta/okta-react';
+// Recoil
 import { useRecoilValue } from 'recoil';
 import { headerTitle } from '../../state/atoms';
+// Utils
+import { logout } from '../../utils/logout';
+import { switchUser } from '../../utils/switchUser';
 
 // Header element that takes in a string as a prop and displays it as the title
 const Header = () => {
+  // Global state
   const title = useRecoilValue(headerTitle);
+
+  // Local state
+  const curUser = ['curUserType', 'curUserId', 'curUserName'];
+  const { push } = useHistory();
 
   return (
     // If the title is null do not render the header
@@ -15,6 +26,29 @@ const Header = () => {
         <h1 className="header-title">{title}</h1>
         {/* Background image of the header */}
         <img src="/images/header-image.png" alt="underwater shark cityscape" />
+        <div className="logout-btns">
+          <button
+            disabled={!window.localStorage.getItem('okta-token-storage')}
+            type="button"
+            onClick={() => push('/dashboard')}
+          >
+            Home
+          </button>
+          <button
+            disabled={!window.localStorage.getItem('okta-token-storage')}
+            type="button"
+            onClick={e => switchUser(e, curUser, push)}
+          >
+            Change User
+          </button>
+          <button
+            disabled={!window.localStorage.getItem('okta-token-storage')}
+            type="button"
+            onClick={e => logout(e, authService)}
+          >
+            Logout
+          </button>
+        </div>
       </header>
     )
   );
