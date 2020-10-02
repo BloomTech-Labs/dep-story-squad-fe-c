@@ -53,15 +53,16 @@ const Uploader = () => {
     const formData = new FormData();
 
     // '/api/child/userId/mission/:missionID'
-    const endpoint = `api/child/${userId}/mission/${missionId}`;
+    const endpoint = `child/${userId}/mission/write`;
     fileList.forEach(file => {
       formData.append('images: ', file);
     });
     // endpoint, payload, userToken
     uploadSubmissionData(endpoint, formData, curUserToken)
       .then(res => {
+        console.log('submisisonRes: ', res.data);
         setIsLoading(false);
-        push('/mission');
+        // push('/mission');
       })
       .catch(err => {
         console.log('Upload Failed: ', err.message);
