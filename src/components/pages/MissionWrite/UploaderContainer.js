@@ -25,7 +25,7 @@ const Uploader = () => {
     if (file.type === 'image/png' || file.type === 'image/jpeg') {
       setFileList(newFileList);
     } else {
-      message.error(`${file.name} is not a png or jpg file`);
+      message.error(`${file.name} is not a PNG or JPG file`);
     }
   };
 
