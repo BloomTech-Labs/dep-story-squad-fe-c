@@ -2,14 +2,14 @@
 import React from 'react';
 
 // Ant Design
-import { Upload } from 'antd';
+import { message, Upload } from 'antd';
 
 const RenderUploader = ({
   fileList,
   onChange,
   onPreview,
   onSubmit,
-  validationMessage,
+  errorState,
 }) => {
   return (
     <div className="upload-container">
@@ -23,17 +23,12 @@ const RenderUploader = ({
       >
         {fileList.length < 5 && `Add Page ${fileList.length + 1}`}
       </Upload>
-
-      {/* error & success class in global styles */}
-      {validationMessage.error && (
-        <div className="validationMessage error">{validationMessage.error}</div>
-      )}
-
-      {validationMessage.success && (
-        <div className="validationMessage success">
-          {validationMessage.success}
-        </div>
-      )}
+      <button
+        disabled={errorState || !fileList.length}
+        onClick={e => onSubmit(e)}
+      >
+        Upload
+      </button>
     </div>
   );
 };
