@@ -17,7 +17,9 @@ const RenderUploader = ({ fileList, onChange, onPreview, onSubmit }) => {
       >
         {fileList.length < 5 && `Add Page ${fileList.length + 1}`}
       </Upload>
-      <button onClick={e => onSubmit(e)}>Upload</button>
+      <button className="upload-btn" onClick={e => onSubmit(e)}>
+        Upload
+      </button>
     </div>
   );
 };
