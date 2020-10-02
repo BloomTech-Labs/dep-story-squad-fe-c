@@ -13,6 +13,10 @@ const Uploader = () => {
   const { push } = useHistory();
   const [fileList, setFileList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [validationMessage, setValidationMessage] = useState({
+    success: null,
+    error: null,
+  });
 
   const onChange = ({ fileList: newFileList }) => {
     setFileList(newFileList);
@@ -52,7 +56,7 @@ const Uploader = () => {
     // build formData
     const formData = new FormData();
 
-    // '/api/child/userId/mission/:missionID'
+    // 'child/userId/mission'
     const endpoint = `child/${userId}/mission/write`;
     fileList.forEach(file => {
       formData.append('images: ', file);
@@ -60,11 +64,15 @@ const Uploader = () => {
     // endpoint, payload, userToken
     uploadSubmissionData(endpoint, formData, curUserToken)
       .then(res => {
-        console.log('submisisonRes: ', res.data);
-        setIsLoading(false);
-        // push('/mission');
+        console.log('submisisonRes: ', res);
+        setValidationMessage({ success: res.data.message, error: null });
+        setTimeout(() => {
+          setIsLoading(false);
+          push('/mission');
+        }, 2000);
       })
       .catch(err => {
+        setValidationMessage({ success: null, error: err.message });
         console.log('Upload Failed: ', err.message);
       });
   };
@@ -72,6 +80,7 @@ const Uploader = () => {
   return (
     <>
       <RenderUploader
+        validationMessage={validationMessage}
         fileList={fileList}
         onChange={onChange}
         onPreview={onPreview}
