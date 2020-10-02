@@ -7,8 +7,11 @@ const RenderMissionWrite = props => {
   return (
     <>
       <p className="text-box">
-        A sidekick does something completely out of character, and everyone must
-        figure out why.
+        Imagine and write down a scene from Finn’s Little League tryouts. (In
+        case you’re wondering, flipperball is a lot like soccer, and your job is
+        to imagine how Finn performed as the coaches looked on.) Write your
+        story with a pencil and no more than 5 sheets of loose-leaf paper, then
+        take a photo and upload it to Story Squad.
       </p>
       <Uploader />
     </>
