@@ -14,6 +14,7 @@ import { uploadSubmissionData, getData } from '../../../api';
 const Uploader = () => {
   const [fileList, setFileList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [errorState, setErrorState] = useState(false);
 
   const [userId] = useLocalStorage('curUserId');
   const [curUserToken] = useLocalStorage('curUserToken');
@@ -24,7 +25,9 @@ const Uploader = () => {
   const onChange = ({ file, fileList: newFileList }) => {
     if (file.type === 'image/png' || file.type === 'image/jpeg') {
       setFileList(newFileList);
+      setErrorState(false);
     } else {
+      setErrorState(true);
       message.error(`${file.name} is not a PNG or JPG file`);
     }
   };
@@ -59,25 +62,33 @@ const Uploader = () => {
     // build formData
     const formData = new FormData();
 
-    // '/api/child/userId/mission/:missionID'
-    const endpoint = `api/child/${userId}/mission/${missionId}`;
+    // 'child/userId/mission'
+    const endpoint = `child/${userId}/mission/write`;
     fileList.forEach(file => {
       formData.append('images: ', file);
     });
     // endpoint, payload, userToken
     uploadSubmissionData(endpoint, formData, curUserToken)
       .then(res => {
-        setIsLoading(false);
-        push('/mission');
+        console.log('submisisonRes: ', res);
+        setErrorState(false);
+        message.success('Upload Successful');
+        setTimeout(() => {
+          setIsLoading(false);
+          push('/mission');
+        }, 2000);
       })
       .catch(err => {
-        console.log('Upload Failed: ', err.message);
+        setErrorState(true);
+        message.error(err.messag);
+        console.log('Error: ', err.message);
       });
   };
 
   return (
     <>
       <RenderUploader
+        errorState={errorState}
         fileList={fileList}
         onChange={onChange}
         onPreview={onPreview}

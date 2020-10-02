@@ -40,5 +40,12 @@
     padding: 2%;
     font-size: 1rem;
     cursor: pointer;
+
+    &:disabled {
+      cursor: initial;
+      background-color: lighten(@red, 14%);
+      border-color: lighten(@black, 14%);
+      transition: 0.3 ease;
+    }
   }
 }
