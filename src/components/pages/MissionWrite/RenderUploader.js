@@ -21,9 +21,8 @@ const RenderUploader = ({
         beforeUpload={() => false}
         multiple
       >
-        {fileList.length < 5 && '+ Add Page'}
+        {fileList.length < 5 && `Add Page ${fileList.length + 1}`}
       </Upload>
-      <button onClick={e => onSubmit(e)}>Upload Story</button>
 
       {/* error & success class in global styles */}
       {validationMessage.error && (
