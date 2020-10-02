@@ -6,21 +6,28 @@ import { useLocalStorage } from '../../../utils/hooks';
 import { LoadingComponent } from '../../common';
 import { useHistory } from 'react-router-dom';
 
+import { message } from 'antd';
+
 // api
 import { uploadSubmissionData, getData } from '../../../api';
 
 const Uploader = () => {
-  const { push } = useHistory();
   const [fileList, setFileList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
-  const onChange = ({ fileList: newFileList }) => {
-    setFileList(newFileList);
-  };
 
   const [userId] = useLocalStorage('curUserId');
   const [curUserToken] = useLocalStorage('curUserToken');
   let missionId = '';
+
+  const { push } = useHistory();
+
+  const onChange = ({ file, fileList: newFileList }) => {
+    if (file.type === 'image/png' || file.type === 'image/jpeg') {
+      setFileList(newFileList);
+    } else {
+      message.error(`${file.name} is not a PNG or JPG file`);
+    }
+  };
 
   getData(`child/${userId}/mission`, curUserToken)
     .then(res => {
