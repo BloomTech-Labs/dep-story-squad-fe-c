@@ -24,6 +24,7 @@ const RenderUploader = ({
         {fileList.length < 5 && `Add Page ${fileList.length + 1}`}
       </Upload>
       <button
+        className="upload-btn"
         disabled={errorState || !fileList.length}
         onClick={e => onSubmit(e)}
       >
