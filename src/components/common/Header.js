@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useOktaAuth } from '@okta/okta-react';
 
+import MenuButton from './MenuButton';
+
 // Utils
 import { switchUser } from '../../utils/switchUser';
 import { logout } from '../../utils/logout';
@@ -21,6 +23,7 @@ const Header = ({ title }) => {
         <h1 className="header-title">{title}</h1>
         {/* Background image of the header */}
         <img src="/images/header-image.png" alt="underwater shark cityscape" />
+        <MenuButton />
         <div className="logout-btns">
           <button
             disabled={!window.localStorage.getItem('okta-token-storage')}
