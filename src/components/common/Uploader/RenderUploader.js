@@ -6,12 +6,12 @@ import { Upload } from 'antd';
 
 const RenderUploader = ({
   fileList,
+  fileLimit,
   onChange,
   onPreview,
   onSubmit,
   errorState,
 }) => {
-  const fileLimit = 5;
   return (
     <div className="upload-container">
       <Upload

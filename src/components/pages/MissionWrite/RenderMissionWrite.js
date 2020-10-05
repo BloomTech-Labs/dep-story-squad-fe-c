@@ -1,7 +1,7 @@
 import React from 'react';
-import Uploader from './UploaderContainer';
+import Uploader from '../../common/Uploader/UploaderContainer';
 
-const RenderMissionWrite = props => {
+const RenderMissionWrite = ({ fileLimit, uploadURL }) => {
   // no stateful logic allowed. only use props passed from container component
 
   return (
@@ -13,7 +13,7 @@ const RenderMissionWrite = props => {
         story with a pencil and no more than 5 sheets of loose-leaf paper, then
         take a photo and upload it to Story Squad.
       </p>
-      <Uploader />
+      <Uploader fileLimit={fileLimit} uploadURL={uploadURL} />
     </>
   );
 };
