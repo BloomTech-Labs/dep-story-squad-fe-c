@@ -62,7 +62,7 @@ const Uploader = ({ fileLimit, uploadURL }) => {
     // 'child/userId/mission'
     const endpoint = uploadURL;
     fileList.forEach(file => {
-      formData.append('images', file.originFileObj);
+      formData.append('image', file.originFileObj);
     });
     // endpoint, payload, userToken
     uploadSubmissionData(endpoint, formData, curUserToken)
