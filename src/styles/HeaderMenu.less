@@ -1,0 +1,24 @@
+.storysquad-header {
+  .header-menu {
+    position: fixed;
+    top: 5px;
+    right: -100%;
+    z-index: 10;
+    background: @black;
+    transition: all 0.3s ease;
+
+    button {
+      width: 100%;
+      text-align: center;
+      cursor: pointer;
+
+      &:disabled {
+        cursor: initial;
+      }
+    }
+  }
+
+  .header-menu.open {
+    right: 45px;
+  }
+}
