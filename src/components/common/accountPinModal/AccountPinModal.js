@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Modal } from 'antd';
-import { getLogin } from '../../../api';
+import { getUserAccounts } from '../../../api';
 import { useLocalStorage } from '../../../utils/hooks';
 
 // components
@@ -37,7 +37,7 @@ const AccountPinModal = props => {
   }, []);
 
   useEffect(() => {
-    getLogin(tokenRef.current)
+    getUserAccounts(tokenRef.current)
       .then(res => {
         if (!accounts) {
           setAccounts(res.data.accounts);

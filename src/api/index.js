@@ -14,11 +14,28 @@ const getExampleData = () => {
     .then(response => response.data);
 };
 
+// Okta login header
 const getAuthHeader = authState => {
   if (!authState.isAuthenticated) {
     throw new Error('Not authenticated');
   }
   return { Authorization: `Bearer ${authState.idToken}` };
+};
+
+// get token for curUser
+const getUserToken = () => {
+  const userToken = JSON.parse(window.localStorage.getItem('curUserToken'));
+  if (!userToken) {
+    throw new Error('Not authenticated');
+  }
+  return userToken;
+};
+
+// gets the Okta token
+const getOktaToken = () => {
+  const token = JSON.parse(window.localStorage.getItem('okta-token-storage'))
+    .idToken.value;
+  return token;
 };
 
 const getDSData = (url, authState) => {
@@ -38,19 +55,6 @@ const apiAuthGet = authHeader => {
   return axios.get(apiUrl, { headers: authHeader });
 };
 
-const apiAuthPost = (
-  endpoint,
-  payload,
-  contentType = 'application/json',
-  authHeader
-) => {
-  return axios.post(
-    `${apiUrl}/${endpoint}`,
-    { payload },
-    { headers: { ContentType: contentType }, authHeader }
-  );
-};
-
 const getProfileData = authState => {
   try {
     return apiAuthGet(getAuthHeader(authState)).then(response => response.data);
@@ -63,13 +67,12 @@ const getProfileData = authState => {
 };
 
 // gets associated accounts for logged in user
-const getLogin = bearer => {
+const getUserAccounts = () => {
   return axios.get(`${apiUrl}/auth/login`, {
-    headers: { Authorization: `Bearer ${bearer}` },
+    headers: { Authorization: `Bearer ${getOktaToken()}` },
   });
 };
 
-// gets associated accounts for logged in user
 const getAccount = (url, pin, bearer) => {
   return axios.post(
     `${apiUrl}/${url}`,
@@ -88,11 +91,13 @@ const getData = (url, userToken) => {
   });
 };
 
-const uploadSubmissionData = (url, formData, userToken) => {
+// https://story-squad-c-api.herokuapp.com/multer/multi-image-upload-test
+const uploadSubmissionData = (url, formData) => {
+  console.log('token: ', getUserToken());
   return axios.post(`${apiUrl}/${url}`, formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
-      Authorization: `Bearer ${userToken}`,
+      Authorization: `Bearer ${getUserToken()}`,
     },
   });
 };
@@ -135,7 +140,7 @@ export {
   getExampleData,
   getProfileData,
   getDSData,
-  getLogin,
+  getUserAccounts,
   getAccount,
   getParentDash,
   addChild,

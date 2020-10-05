@@ -32,21 +32,12 @@ const Uploader = () => {
     }
   };
 
-  getData(`child/${userId}/mission`, curUserToken)
-    .then(res => {
-      missionId = res.data.mission_id;
-      console.log('getDataRes: ', res);
-    })
-    .catch(err => {
-      console.log('getData error: ', err.message);
-    });
-
   const onPreview = async file => {
     let src = file.url;
     if (!src) {
       src = await new Promise(resolve => {
         const reader = new FileReader();
-        reader.readAsDataURL(file.originFileObj);
+        reader.readAsDataURL(file);
         reader.onload = () => resolve(reader.result);
       });
     }
@@ -57,6 +48,7 @@ const Uploader = () => {
   };
 
   const onSubmit = e => {
+    console.log('fileList: ', fileList);
     setIsLoading(true);
     e.preventDefault();
     // build formData
@@ -65,10 +57,11 @@ const Uploader = () => {
     // 'child/userId/mission'
     const endpoint = `child/${userId}/mission/write`;
     fileList.forEach(file => {
-      formData.append('images: ', file);
+      formData.append('images', file.originFileObj);
     });
+
     // endpoint, payload, userToken
-    uploadSubmissionData(endpoint, formData, curUserToken)
+    uploadSubmissionData(endpoint, formData)
       .then(res => {
         console.log('submisisonRes: ', res);
         setErrorState(false);
@@ -80,8 +73,8 @@ const Uploader = () => {
       })
       .catch(err => {
         setErrorState(true);
-        message.error(err.messag);
-        console.log('Error: ', err.message);
+        message.error(err.message);
+        console.log('Error: ', err);
       });
   };
 
