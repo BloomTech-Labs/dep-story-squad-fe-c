@@ -1,9 +1,8 @@
 // Uploader logic
-
 import React, { useState } from 'react';
 import RenderUploader from './RenderUploader';
 import { useLocalStorage } from '../../../utils/hooks';
-import { LoadingComponent } from '../../common';
+import { LoadingComponent } from '..';
 import { useHistory } from 'react-router-dom';
 
 import { message } from 'antd';
@@ -11,14 +10,12 @@ import { message } from 'antd';
 // api
 import { uploadSubmissionData, getData } from '../../../api';
 
-const Uploader = () => {
+const Uploader = ({ fileLimit, uploadURL }) => {
   const [fileList, setFileList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errorState, setErrorState] = useState(false);
 
-  const [userId] = useLocalStorage('curUserId');
   const [curUserToken] = useLocalStorage('curUserToken');
-  let missionId = '';
 
   const { push } = useHistory();
 
@@ -32,14 +29,14 @@ const Uploader = () => {
     }
   };
 
-  getData(`child/${userId}/mission`, curUserToken)
-    .then(res => {
-      missionId = res.data.mission_id;
-      console.log('getDataRes: ', res);
-    })
-    .catch(err => {
-      console.log('getData error: ', err.message);
-    });
+  // getData(`child/${userId}/mission`, curUserToken)
+  //   .then(res => {
+  //     missionId = res.data.mission_id;
+  //     console.log('getDataRes: ', res);
+  //   })
+  //   .catch(err => {
+  //     console.log('getData error: ', err.message);
+  //   });
 
   const onPreview = async file => {
     let src = file.url;
@@ -63,9 +60,9 @@ const Uploader = () => {
     const formData = new FormData();
 
     // 'child/userId/mission'
-    const endpoint = `child/${userId}/mission/write`;
+    const endpoint = uploadURL;
     fileList.forEach(file => {
-      formData.append('images: ', file);
+      formData.append('images', file.originFileObj);
     });
     // endpoint, payload, userToken
     uploadSubmissionData(endpoint, formData, curUserToken)
@@ -80,7 +77,7 @@ const Uploader = () => {
       })
       .catch(err => {
         setErrorState(true);
-        message.error(err.messag);
+        message.error(err.message);
         console.log('Error: ', err.message);
       });
   };
@@ -90,6 +87,7 @@ const Uploader = () => {
       <RenderUploader
         errorState={errorState}
         fileList={fileList}
+        fileLimit={fileLimit}
         onChange={onChange}
         onPreview={onPreview}
         onSubmit={onSubmit}
