@@ -32,14 +32,14 @@ const Uploader = () => {
     }
   };
 
-  getData(`child/${userId}/mission`, curUserToken)
-    .then(res => {
-      missionId = res.data.mission_id;
-      console.log('getDataRes: ', res);
-    })
-    .catch(err => {
-      console.log('getData error: ', err.message);
-    });
+  // getData(`child/${userId}/mission`, curUserToken)
+  //   .then(res => {
+  //     missionId = res.data.mission_id;
+  //     console.log('getDataRes: ', res);
+  //   })
+  //   .catch(err => {
+  //     console.log('getData error: ', err.message);
+  //   });
 
   const onPreview = async file => {
     let src = file.url;
@@ -65,7 +65,7 @@ const Uploader = () => {
     // 'child/userId/mission'
     const endpoint = `child/${userId}/mission/write`;
     fileList.forEach(file => {
-      formData.append('images: ', file);
+      formData.append('images', file.originFileObj);
     });
     // endpoint, payload, userToken
     uploadSubmissionData(endpoint, formData, curUserToken)
@@ -80,7 +80,7 @@ const Uploader = () => {
       })
       .catch(err => {
         setErrorState(true);
-        message.error(err.messag);
+        message.error(err.message);
         console.log('Error: ', err.message);
       });
   };
