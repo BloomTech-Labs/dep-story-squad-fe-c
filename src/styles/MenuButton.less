@@ -1,0 +1,32 @@
+// Styles for <Header /> menu button -------------
+.storysquad-header {
+  .menu-btn {
+    width: 50px;
+    height: 38px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 15;
+    cursor: pointer;
+
+    .menu-bar {
+      height: 5px;
+      background: @black;
+      margin: 5px;
+      transition: all 0.3s ease;
+    }
+
+    // These styles create the menu button animation transforming to an X
+    #bar-one.open {
+      transform: rotate(-45deg) translate(-6px, 8px);
+    }
+
+    #bar-two.open {
+      opacity: 0;
+    }
+
+    #bar-three.open {
+      transform: rotate(45deg) translate(-7px, -8px);
+    }
+  }
+}
