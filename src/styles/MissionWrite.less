@@ -1,6 +1,7 @@
 .text-box {
   width: 75%;
   background: @green;
+  color: @black;
   margin: 5% auto;
   border: 2.5px solid @black;
   border-radius: 7px;
@@ -29,7 +30,7 @@
     justify-content: center;
   }
 
-  button {
+  .upload-btn {
     width: 50%;
     background: @red;
     color: @white;
@@ -43,6 +44,7 @@
     &:disabled {
       cursor: initial;
       background-color: lighten(@red, 14%);
+      border-color: lighten(@black, 14%);
       transition: 0.3 ease;
     }
   }
