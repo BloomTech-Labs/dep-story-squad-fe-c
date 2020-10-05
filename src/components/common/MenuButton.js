@@ -1,22 +1,19 @@
-import React, { useRef } from 'react';
+import React from 'react';
 
-const MenuButton = () => {
-  // Refs to menu bars
-  const refBarOne = useRef();
-  const refBarTwo = useRef();
-  const refBarThree = useRef();
-
+const MenuButton = ({ refBarOne, refBarTwo, refBarThree, refNavMenu }) => {
   // "Opens/Closes" nav menu in <Header /> when clicked
   const onClick = () => {
     // Get the current Refs to the menu bars
     const barOne = refBarOne.current;
     const barTwo = refBarTwo.current;
     const barThree = refBarThree.current;
+    const navMenu = refNavMenu.current;
 
     // Toggle the class names to trigger CSS animations
     barOne.classList.toggle('open');
     barTwo.classList.toggle('open');
     barThree.classList.toggle('open');
+    navMenu.classList.toggle('open');
   };
 
   return (

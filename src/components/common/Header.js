@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useOktaAuth } from '@okta/okta-react';
 
 import MenuButton from './MenuButton';
+import HeaderMenu from './HeaderMenu';
 
 // Utils
 import { switchUser } from '../../utils/switchUser';
@@ -15,6 +16,12 @@ const Header = ({ title }) => {
   const { push } = useHistory();
   const curUser = ['curUserType', 'curUserId', 'curUserName'];
 
+  // Refs to menu and menu button bars
+  const refBarOne = useRef();
+  const refBarTwo = useRef();
+  const refBarThree = useRef();
+  const refNavMenu = useRef();
+
   return (
     // If the title is null do not render the header
     !title ? null : (
@@ -23,30 +30,20 @@ const Header = ({ title }) => {
         <h1 className="header-title">{title}</h1>
         {/* Background image of the header */}
         <img src="/images/header-image.png" alt="underwater shark cityscape" />
-        <MenuButton />
-        <div className="logout-btns">
-          <button
-            disabled={!window.localStorage.getItem('okta-token-storage')}
-            type="button"
-            onClick={() => push('/dashboard')}
-          >
-            Home
-          </button>
-          <button
-            disabled={!window.localStorage.getItem('okta-token-storage')}
-            type="button"
-            onClick={e => switchUser(e, curUser, push)}
-          >
-            Change User
-          </button>
-          <button
-            disabled={!window.localStorage.getItem('okta-token-storage')}
-            type="button"
-            onClick={e => logout(e, authService)}
-          >
-            Logout
-          </button>
-        </div>
+        <MenuButton
+          refBarOne={refBarOne}
+          refBarTwo={refBarTwo}
+          refBarThree={refBarThree}
+          refNavMenu={refNavMenu}
+        />
+        <HeaderMenu
+          curUser={curUser}
+          authService={authService}
+          push={push}
+          switchUser={switchUser}
+          logout={logout}
+          refNavMenu={refNavMenu}
+        />
       </header>
     )
   );
