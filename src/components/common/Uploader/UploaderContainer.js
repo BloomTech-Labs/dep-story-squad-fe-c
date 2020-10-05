@@ -15,7 +15,6 @@ const Uploader = ({ fileLimit, uploadURL }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorState, setErrorState] = useState(false);
 
-  const [userId] = useLocalStorage('curUserId');
   const [curUserToken] = useLocalStorage('curUserToken');
 
   const { push } = useHistory();
