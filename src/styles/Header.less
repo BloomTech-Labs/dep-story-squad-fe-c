@@ -21,28 +21,6 @@
     width: 100%;
   }
 
-  .logout-btns {
-    position: absolute;
-    top: 5px;
-    right: -100%;
-    z-index: 10;
-    transition: all 0.3s ease;
-
-    button {
-      width: 100%;
-      text-align: center;
-      cursor: pointer;
-
-      &:disabled {
-        cursor: initial;
-      }
-    }
-  }
-
-  .logout-btns.open {
-    right: 45px;
-  }
-
   // Media Query for desktop
   .MQ(
     @desktop,
