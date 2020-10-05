@@ -21,6 +21,7 @@ const Header = ({ title }) => {
   const refBarTwo = useRef();
   const refBarThree = useRef();
   const refNavMenu = useRef();
+  const refMenuBtn = useRef();
 
   return (
     // If the title is null do not render the header
@@ -35,6 +36,7 @@ const Header = ({ title }) => {
           refBarTwo={refBarTwo}
           refBarThree={refBarThree}
           refNavMenu={refNavMenu}
+          refMenuBtn={refMenuBtn}
         />
         <HeaderMenu
           curUser={curUser}
@@ -43,6 +45,7 @@ const Header = ({ title }) => {
           switchUser={switchUser}
           logout={logout}
           refNavMenu={refNavMenu}
+          refMenuBtn={refMenuBtn}
         />
       </header>
     )

@@ -1,6 +1,12 @@
 import React from 'react';
 
-const MenuButton = ({ refBarOne, refBarTwo, refBarThree, refNavMenu }) => {
+const MenuButton = ({
+  refBarOne,
+  refBarTwo,
+  refBarThree,
+  refNavMenu,
+  refMenuBtn,
+}) => {
   // "Opens/Closes" nav menu in <Header /> when clicked
   const onClick = () => {
     // Get the current Refs to the menu bars
@@ -17,7 +23,7 @@ const MenuButton = ({ refBarOne, refBarTwo, refBarThree, refNavMenu }) => {
   };
 
   return (
-    <div className="menu-btn" onClick={onClick}>
+    <div ref={refMenuBtn} className="menu-btn" onClick={onClick}>
       <div id="bar-one" ref={refBarOne} className="menu-bar"></div>
       <div id="bar-two" ref={refBarTwo} className="menu-bar"></div>
       <div id="bar-three" ref={refBarThree} className="menu-bar"></div>
