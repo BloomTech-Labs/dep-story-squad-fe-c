@@ -1,14 +1,17 @@
 import React from 'react';
 
-const RenderMissionDash = ({ history, messagePopup }) => {
+const RenderMissionDash = ({ beginMission, missionReqs }) => {
   return (
     <div className="dashboard-container">
       <button
         className="mission-btn-container read"
-        onClick={() => history.push('/mission/read')}
+        onClick={() => beginMission('read', '/mission/read', 'Mission Locked!')}
       >
         <div className="progress-check">
-          <img src="images/check-incomplete.png  " alt="" />
+          <img
+            src={`images/check-${missionReqs.read ? 'done' : 'incomplete'}.png`}
+            alt=""
+          />
         </div>
 
         <div className="mission-btn-icon">
@@ -19,10 +22,21 @@ const RenderMissionDash = ({ history, messagePopup }) => {
       <div className="right-panel">
         <button
           className="mission-btn-container write"
-          onClick={() => history.push('/mission/write')}
+          onClick={() =>
+            beginMission(
+              'write',
+              '/mission/write',
+              'You need to complete the Read mission first!'
+            )
+          }
         >
           <div className="progress-check">
-            <img src="images/check-done.png" alt="" />
+            <img
+              src={`images/check-${
+                missionReqs.write ? 'done' : 'incomplete'
+              }.png`}
+              alt=""
+            />
           </div>
           <div className="mission-btn-icon">
             <img src="/images/write-icon.png" alt="" />
@@ -32,11 +46,20 @@ const RenderMissionDash = ({ history, messagePopup }) => {
         <button
           className="mission-btn-container draw"
           onClick={() =>
-            messagePopup('warning', 'This feature is not available yet!')
+            beginMission(
+              'draw',
+              '/mission/draw',
+              'You need to complete the Write mission first!'
+            )
           }
         >
           <div className="progress-check">
-            <img src="images/check-done.png" alt="" />
+            <img
+              src={`images/check-${
+                missionReqs.draw ? 'done' : 'incomplete'
+              }.png`}
+              alt=""
+            />
           </div>
           <div className="mission-btn-icon">
             <img src="/images/draw-icon.png" alt="" />
