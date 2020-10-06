@@ -4,13 +4,29 @@
     top: 5px;
     right: -100%;
     z-index: 10;
-    background: @black;
     transition: all 0.3s ease;
-
+    border: 2px solid @grey;
+    
     button {
       width: 100%;
       text-align: center;
       cursor: pointer;
+      border: none;
+      padding: 5px 0;
+      
+      &:hover{
+        background-color: @red;
+      }
+
+      span{
+        display: flex;
+        justify-content: center;
+      }
+
+      &:hover span{
+        transition: all 0.3s ease;
+        transform: scale(1.2);
+      }
 
       &:disabled {
         cursor: initial;
