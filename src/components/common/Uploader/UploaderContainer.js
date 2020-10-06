@@ -8,7 +8,7 @@ import { useHistory } from 'react-router-dom';
 import { message } from 'antd';
 
 // api
-import { uploadSubmissionData, getData } from '../../../api';
+import { uploadSubmissionData } from '../../../api';
 
 const Uploader = ({ fileLimit, uploadURL }) => {
   const [fileList, setFileList] = useState([]);
@@ -75,6 +75,7 @@ const Uploader = ({ fileLimit, uploadURL }) => {
 
   return (
     <>
+      <div className="loaderCont">{isLoading && <LoadingComponent />}</div>
       <RenderUploader
         errorState={errorState}
         fileList={fileList}
@@ -84,7 +85,6 @@ const Uploader = ({ fileLimit, uploadURL }) => {
         onSubmit={onSubmit}
         push={push}
       />
-      {isLoading && <LoadingComponent />}
     </>
   );
 };
