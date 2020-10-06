@@ -31,9 +31,7 @@ const RenderMissionDash = ({ history, messagePopup }) => {
         </button>
         <button
           className="mission-btn-container draw"
-          onClick={() =>
-            messagePopup('warning', 'This feature is not available yet!')
-          }
+          onClick={() => history.push('/mission/draw')}
         >
           <div className="progress-check">
             <img src="images/check-done.png" alt="" />
