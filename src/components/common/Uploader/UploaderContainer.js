@@ -29,15 +29,6 @@ const Uploader = ({ fileLimit, uploadURL }) => {
     }
   };
 
-  // getData(`child/${userId}/mission`, curUserToken)
-  //   .then(res => {
-  //     missionId = res.data.mission_id;
-  //     console.log('getDataRes: ', res);
-  //   })
-  //   .catch(err => {
-  //     console.log('getData error: ', err.message);
-  //   });
-
   const onPreview = async file => {
     let src = file.url;
     if (!src) {
@@ -62,7 +53,7 @@ const Uploader = ({ fileLimit, uploadURL }) => {
     // 'child/userId/mission'
     const endpoint = uploadURL;
     fileList.forEach(file => {
-      formData.append('images', file.originFileObj);
+      formData.append('image', file.originFileObj);
     });
     // endpoint, payload, userToken
     uploadSubmissionData(endpoint, formData, curUserToken)
@@ -91,6 +82,7 @@ const Uploader = ({ fileLimit, uploadURL }) => {
         onChange={onChange}
         onPreview={onPreview}
         onSubmit={onSubmit}
+        push={push}
       />
       {isLoading && <LoadingComponent />}
     </>
