@@ -5,7 +5,7 @@ const RenderMissionDash = ({ beginMission, missionReqs }) => {
     <div className="dashboard-container">
       <button
         className="mission-btn-container read"
-        onClick={() => beginMission('read', '/mission/read', 'Mission Locked!')}
+        onClick={() => beginMission('read', '/mission/read', '')}
       >
         <div className="progress-check">
           <img
@@ -26,7 +26,7 @@ const RenderMissionDash = ({ beginMission, missionReqs }) => {
             beginMission(
               'write',
               '/mission/write',
-              'You need to complete the Read mission first!'
+              'Complete the Read mission first!'
             )
           }
         >
@@ -49,7 +49,7 @@ const RenderMissionDash = ({ beginMission, missionReqs }) => {
             beginMission(
               'draw',
               '/mission/draw',
-              'You need to complete the Write mission first!'
+              'Complete the Write mission first!'
             )
           }
         >

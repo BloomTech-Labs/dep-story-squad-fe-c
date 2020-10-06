@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { messagePopup } from '../../../utils/message-popup';
 import RenderMissionDash from './RenderMissionDash';
@@ -14,14 +14,14 @@ const MissionDashContainer = props => {
   }, [setHeaderTitle]);
 
   // hard coded for development/testing
-  const missionReqs = {
-    read: false,
+  const [missionReqs, setMissionState] = useState({
+    read: true,
     write: false,
     draw: false,
-  };
+  });
 
-  // Checks if mission requirements have been met and then pushes to mission URL
-  // or displays message popup with the requirements
+  // Checks if mission requirements have been met and then pushes
+  // to mission URL or displays message popup with the requirements
   const beginMission = (mission, missionURL, message) => {
     switch (mission) {
       case 'read':
