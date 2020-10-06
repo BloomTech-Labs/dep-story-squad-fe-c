@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useOktaAuth } from '@okta/okta-react';
 
@@ -14,6 +14,10 @@ import { logout } from '../../utils/logout';
 const Header = ({ title }) => {
   const { authService } = useOktaAuth();
   const { push } = useHistory();
+  // Location is needed to hide the menu button on the Login Page
+  const location = useLocation();
+  const loginPage = location.pathname.match(/login/);
+
   const curUser = ['curUserType', 'curUserId', 'curUserName'];
 
   // Refs to menu and menu button bars
@@ -31,22 +35,27 @@ const Header = ({ title }) => {
         <h1 className="header-title">{title}</h1>
         {/* Background image of the header */}
         <img src="/images/header-image.png" alt="underwater shark cityscape" />
-        <MenuButton
-          refBarOne={refBarOne}
-          refBarTwo={refBarTwo}
-          refBarThree={refBarThree}
-          refNavMenu={refNavMenu}
-          refMenuBtn={refMenuBtn}
-        />
-        <HeaderMenu
-          curUser={curUser}
-          authService={authService}
-          push={push}
-          switchUser={switchUser}
-          logout={logout}
-          refNavMenu={refNavMenu}
-          refMenuBtn={refMenuBtn}
-        />
+
+        {loginPage ? null : (
+          <>
+            <MenuButton
+              refBarOne={refBarOne}
+              refBarTwo={refBarTwo}
+              refBarThree={refBarThree}
+              refNavMenu={refNavMenu}
+              refMenuBtn={refMenuBtn}
+            />
+            <HeaderMenu
+              curUser={curUser}
+              authService={authService}
+              push={push}
+              switchUser={switchUser}
+              logout={logout}
+              refNavMenu={refNavMenu}
+              refMenuBtn={refMenuBtn}
+            />
+          </>
+        )}
       </header>
     )
   );
