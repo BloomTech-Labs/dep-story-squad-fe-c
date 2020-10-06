@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import RenderMisisonWrite from './RenderMissionWrite';
+import RenderMissionWrite from './RenderMissionWrite';
 
 import { getData } from '../../../api';
 
@@ -31,7 +31,7 @@ const MissionWriteContainer = ({ setHeaderTitle }) => {
   }, [setHeaderTitle]);
 
   return (
-    <RenderMisisonWrite
+    <RenderMissionWrite
       fileLimit={fileLimit}
       uploadURL={uploadURL}
       missionPrompt={missionPrompt}
