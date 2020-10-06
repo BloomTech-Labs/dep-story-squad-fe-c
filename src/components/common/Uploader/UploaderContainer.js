@@ -8,7 +8,7 @@ import { useHistory } from 'react-router-dom';
 import { message } from 'antd';
 
 // api
-import { uploadSubmissionData, getData } from '../../../api';
+import { uploadSubmissionData } from '../../../api';
 
 const Uploader = ({ fileLimit, uploadURL }) => {
   const [fileList, setFileList] = useState([]);
