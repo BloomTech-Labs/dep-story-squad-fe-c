@@ -75,7 +75,7 @@ const Uploader = ({ fileLimit, uploadURL }) => {
 
   return (
     <>
-      <div className="loaderCont">{<LoadingComponent />}</div>
+      <div className="loaderCont">{isLoading && <LoadingComponent />}</div>
       <RenderUploader
         errorState={errorState}
         fileList={fileList}
