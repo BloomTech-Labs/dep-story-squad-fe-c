@@ -39,6 +39,7 @@ const HeaderMenu = ({
       >
         Home
       </button>
+
       <button
         disabled={!window.localStorage.getItem('okta-token-storage')}
         type="button"
@@ -46,6 +47,7 @@ const HeaderMenu = ({
       >
         Change User
       </button>
+
       <button
         disabled={!window.localStorage.getItem('okta-token-storage')}
         type="button"
