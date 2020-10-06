@@ -37,7 +37,7 @@ const HeaderMenu = ({
         type="button"
         onClick={goHome}
       >
-        Home
+        <span>Home</span>
       </button>
 
       <button
@@ -45,7 +45,7 @@ const HeaderMenu = ({
         type="button"
         onClick={e => changeUser(e)}
       >
-        Change User
+        <span>Change User</span>
       </button>
 
       <button
@@ -53,7 +53,7 @@ const HeaderMenu = ({
         type="button"
         onClick={e => userLogout(e)}
       >
-        Logout
+        <span>Logout</span>
       </button>
     </div>
   );

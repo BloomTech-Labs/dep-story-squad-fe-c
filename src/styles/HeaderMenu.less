@@ -16,6 +16,16 @@
         background-color: @red;
       }
 
+      span{
+        display: flex;
+        justify-content: center;
+      }
+
+      &:hover span{
+        transition: all 0.3s ease;
+        transform: scale(1.2);
+      }
+
       &:disabled {
         cursor: initial;
       }
