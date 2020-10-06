@@ -3,7 +3,13 @@ import React from 'react';
 import { render } from '@testing-library/react';
 
 describe('<RenderMissionDash /> test suite', () => {
+  const missionReqs = {
+    read: true,
+    write: true,
+    draw: false,
+  };
+
   test('renders without errors', () => {
-    render(<RenderMissionDash />);
+    render(<RenderMissionDash missionReqs={missionReqs} />);
   });
 });
