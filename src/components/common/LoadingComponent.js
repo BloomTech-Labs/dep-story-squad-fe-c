@@ -10,7 +10,7 @@ function LoadingComponent() {
       {/* takes an optional "tip" prop as text to display under the spinner: (tip= 'loading...') 
       size options: "small", "default", "large" */}
       {/* <Spin data-testid="antSpinner" size="large" /> */}
-      <img src="/images/shark-spinner.gif" data-testid="antSpinner alt="spinnerShark" />
+      <img src="/images/shark-spinner.gif" data-testid="antSpinner" alt="spinnerShark" />
     </div>
   );
 }
