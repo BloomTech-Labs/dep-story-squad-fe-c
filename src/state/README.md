@@ -4,7 +4,7 @@
 
 `Recoil` is a global state management library for `React` still in development by the team at Facebook. It has been opened up to the public and available for use in other projects. It is only compatible with `Functional Components`. It cannot be used by `Class Components` currently. Some features that are in development are unstable and are not reccommended for use. `Recoil` provides a simple yet powerful solution to implementing a global state management setup in your applications.
 
-Find out more about `Recoil` [here](https://recoiljs.org/)
+Find out more about `Recoil` <a href="https://recoiljs.org/" target="_blank">here</a>
 
 ---
 
