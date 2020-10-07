@@ -1,6 +1,6 @@
 import React from 'react';
 
-function LoadingComponent() {
+const LoadingComponent = () => {
   return (
     <div data-testid="spinnerCont" className="loader">
       <img
@@ -10,6 +10,6 @@ function LoadingComponent() {
       />
     </div>
   );
-}
+};
 
 export default LoadingComponent;

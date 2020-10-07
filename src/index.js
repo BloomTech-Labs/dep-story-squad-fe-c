@@ -17,7 +17,7 @@ import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
 
 import { Dash } from './components/pages/Dash';
-import { AccountPinModal } from './components/common/';
+import AccountPinModal from './components/pages/AccountPinModal/AccountPinModal';
 import { MissionDash } from './components/pages/MissionDash';
 import { MissionRead } from './components/pages/MissionRead';
 import { MissionWrite } from './components/pages/MissionWrite';
