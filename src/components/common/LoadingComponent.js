@@ -5,7 +5,7 @@ function LoadingComponent() {
     <div data-testid="spinnerCont" className="loader">
       <img
         src="/images/shark-spinner.gif"
-        data-testid="antSpinner"
+        data-testid="spinnerShark"
         alt="spinnerShark"
       />
     </div>
