@@ -1,12 +1,14 @@
 # Recoil - Global State Management
 
-`Recoil` is a gloabl state management library for `React` still in development by the team at Facebook. It has been opened up to the public and available for use in other projects. It is only compatable with `Functional` Components using `Hooks` in `React`. It cannot currently be use with `Class` Components. `Recoil` provides a simple yet powerful solution to implementing a global state management solution in your applications.
+## What is `Recoil`?
+
+`Recoil` is a global state management library for `React` still in development by the team at Facebook. It has been opened up to the public and available for use in other projects. It is only compatible with `Functional` Components using `Hooks` in `React`. It cannot currently be use with `Class` Components. `Recoil` provides a simple yet powerful solution to implementing a global state management solution in your applications.
 
 `Recoil` state is divided into 2 main categories:
 
 ---
 
-`Atoms`
+### `Atoms`
 
 > A piece of global state that can be accessed by any component in the app
 
@@ -15,17 +17,19 @@
 ```js
 import { atom } from 'recoil';
 
-const myAtom = atom({
+export const myAtom = atom({
+  // key must be unique
   key: 'myAtom',
+  // initial value when the app loads or is refreshed
   default: initialAtomValue,
 });
 ```
 
 ---
 
-`Selectors`
+### `Selectors`
 
-> derived global state. think of this as an atom that has been passed into a pure function to return a different value from the atom's value
+> Derived global state. Think of this as an atom that has been passed into a pure function to return a new value
 
 - Example `Selector`
 
@@ -33,8 +37,10 @@ const myAtom = atom({
 import { selector } from 'recoil';
 import { myAtom } from 'path/to/atom-file';
 
-const mySelector = selector({
+export const mySelector = selector({
+  // key must be unique
   key: 'mySelector',
+  // function that returns a derived value from the atom
   get: ({ get }) => {
     const value = get(myAtom);
 
@@ -64,6 +70,8 @@ const MyComponent = () => {
     </div>
   );
 };
+
+export default MyComponent;
 ```
 
 ---
