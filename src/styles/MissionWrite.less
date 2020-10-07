@@ -1,12 +1,20 @@
 .text-box {
   width: 75%;
   background: @green;
-  margin: 5% auto;
+  color: @black;
+  margin: 5% auto 0 auto;
   border: 2.5px solid @black;
   border-radius: 7px;
   padding: 5%;
   font-size: 1rem;
   font-weight: bold;
+}
+
+.loaderCont{
+  display: block;
+  min-height: 50px;
+  margin: 1% 0;
+  width: 100%;
 }
 
 .upload-container,
@@ -29,11 +37,17 @@
     justify-content: center;
   }
 
-  button {
-    width: 50%;
+  .file-limit-text {
+    width: 100%;
+    margin: 0;
+    text-align: center;
+  }
+
+  .upload-btn {
+    width: 30%;
     background: @red;
     color: @white;
-    margin: 5%;
+    margin: 2.5%;
     border: 2.5px solid @black;
     border-radius: 7px;
     padding: 2%;
@@ -43,6 +57,7 @@
     &:disabled {
       cursor: initial;
       background-color: lighten(@red, 14%);
+      border-color: lighten(@black, 14%);
       transition: 0.3 ease;
     }
   }

@@ -2,14 +2,16 @@
 import React from 'react';
 
 // Ant Design
-import { message, Upload } from 'antd';
+import { Upload } from 'antd';
 
 const RenderUploader = ({
   fileList,
+  fileLimit,
   onChange,
   onPreview,
   onSubmit,
   errorState,
+  push,
 }) => {
   return (
     <div className="upload-container">
@@ -21,9 +23,14 @@ const RenderUploader = ({
         beforeUpload={() => false}
         multiple
       >
-        {fileList.length < 5 && `Add Page ${fileList.length + 1}`}
+        {fileList.length < fileLimit && 'Add Page'}
       </Upload>
+      <p className="file-limit-text">{`${fileList.length} / ${fileLimit}`}</p>
+      <button className="upload-btn" onClick={() => push('/mission')}>
+        Back to Mission
+      </button>
       <button
+        className="upload-btn"
         disabled={errorState || !fileList.length}
         onClick={e => onSubmit(e)}
       >

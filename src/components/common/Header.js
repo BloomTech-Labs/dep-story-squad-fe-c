@@ -1,7 +1,10 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useRef } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useOktaAuth } from '@okta/okta-react';
+
+import MenuButton from './MenuButton';
+import HeaderMenu from './HeaderMenu';
 
 // Utils
 import { switchUser } from '../../utils/switchUser';
@@ -11,7 +14,18 @@ import { logout } from '../../utils/logout';
 const Header = ({ title }) => {
   const { authService } = useOktaAuth();
   const { push } = useHistory();
+  // Location is needed to hide the menu button on the Login Page
+  const location = useLocation();
+  const loginPage = location.pathname.match(/login/);
+
   const curUser = ['curUserType', 'curUserId', 'curUserName'];
+
+  // Refs to menu and menu button bars
+  const refBarOne = useRef();
+  const refBarTwo = useRef();
+  const refBarThree = useRef();
+  const refNavMenu = useRef();
+  const refMenuBtn = useRef();
 
   return (
     // If the title is null do not render the header
@@ -21,29 +35,27 @@ const Header = ({ title }) => {
         <h1 className="header-title">{title}</h1>
         {/* Background image of the header */}
         <img src="/images/header-image.png" alt="underwater shark cityscape" />
-        <div className="logout-btns">
-          <button
-            disabled={!window.localStorage.getItem('okta-token-storage')}
-            type="button"
-            onClick={() => push('/dashboard')}
-          >
-            Home
-          </button>
-          <button
-            disabled={!window.localStorage.getItem('okta-token-storage')}
-            type="button"
-            onClick={e => switchUser(e, curUser, push)}
-          >
-            Change User
-          </button>
-          <button
-            disabled={!window.localStorage.getItem('okta-token-storage')}
-            type="button"
-            onClick={e => logout(e, authService)}
-          >
-            Logout
-          </button>
-        </div>
+
+        {loginPage ? null : (
+          <>
+            <MenuButton
+              refBarOne={refBarOne}
+              refBarTwo={refBarTwo}
+              refBarThree={refBarThree}
+              refNavMenu={refNavMenu}
+              refMenuBtn={refMenuBtn}
+            />
+            <HeaderMenu
+              curUser={curUser}
+              authService={authService}
+              push={push}
+              switchUser={switchUser}
+              logout={logout}
+              refNavMenu={refNavMenu}
+              refMenuBtn={refMenuBtn}
+            />
+          </>
+        )}
       </header>
     )
   );
