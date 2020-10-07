@@ -24,6 +24,7 @@ import { AccountPinModal } from './components/common/';
 import { MissionDash } from './components/pages/MissionDash';
 import { MissionRead } from './components/pages/MissionRead';
 import { MissionWrite } from './components/pages/MissionWrite';
+import { MissionDraw } from './components/pages/MissionDraw';
 
 import { Header } from './components/common/';
 
@@ -84,6 +85,10 @@ function App() {
         <SecureRoute
           path="/mission/write"
           component={() => <MissionWrite setHeaderTitle={setHeaderTitle} />}
+        />
+        <SecureRoute
+          path="/mission/draw"
+          component={() => <MissionDraw setHeaderTitle={setHeaderTitle} />}
         />
         <Route component={NotFoundPage} />
       </Switch>

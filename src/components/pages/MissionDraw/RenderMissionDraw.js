@@ -1,9 +1,7 @@
 import React from 'react';
 import Uploader from '../../common/Uploader/UploaderContainer';
 
-const RenderMissionWrite = ({ fileLimit, uploadURL, missionPrompt }) => {
-  // no stateful logic allowed. only use props passed from container component
-
+const RenderMissionDraw = ({ fileLimit, uploadURL, missionPrompt }) => {
   return (
     <>
       <p className="text-box">{missionPrompt}</p>
@@ -12,4 +10,4 @@ const RenderMissionWrite = ({ fileLimit, uploadURL, missionPrompt }) => {
   );
 };
 
-export default RenderMissionWrite;
+export default RenderMissionDraw;

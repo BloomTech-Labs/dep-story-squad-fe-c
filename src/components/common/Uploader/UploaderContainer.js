@@ -1,35 +1,33 @@
 // Uploader logic
-
 import React, { useState } from 'react';
 import RenderUploader from './RenderUploader';
 import { useLocalStorage } from '../../../utils/hooks';
-import { LoadingComponent } from '../../common';
+import { LoadingComponent } from '..';
 import { useHistory } from 'react-router-dom';
 
-// api
-import { uploadSubmissionData, getData } from '../../../api';
+import { message } from 'antd';
 
-const Uploader = () => {
-  const { push } = useHistory();
+// api
+import { uploadSubmissionData } from '../../../api';
+
+const Uploader = ({ fileLimit, uploadURL }) => {
   const [fileList, setFileList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [errorState, setErrorState] = useState(false);
 
-  const onChange = ({ fileList: newFileList }) => {
-    setFileList(newFileList);
-  };
-
-  const [userId] = useLocalStorage('curUserId');
   const [curUserToken] = useLocalStorage('curUserToken');
-  let missionId = '';
 
-  getData(`child/${userId}/mission`, curUserToken)
-    .then(res => {
-      missionId = res.data.mission_id;
-      console.log('getDataRes: ', res);
-    })
-    .catch(err => {
-      console.log('getData error: ', err.message);
-    });
+  const { push } = useHistory();
+
+  const onChange = ({ file, fileList: newFileList }) => {
+    if (file.type === 'image/png' || file.type === 'image/jpeg') {
+      setFileList(newFileList);
+      setErrorState(false);
+    } else {
+      setErrorState(true);
+      message.error(`${file.name} is not a PNG or JPG file`);
+    }
+  };
 
   const onPreview = async file => {
     let src = file.url;
@@ -52,31 +50,41 @@ const Uploader = () => {
     // build formData
     const formData = new FormData();
 
-    // '/api/child/userId/mission/:missionID'
-    const endpoint = `api/child/${userId}/mission/${missionId}`;
+    // 'child/userId/mission'
+    const endpoint = uploadURL;
     fileList.forEach(file => {
-      formData.append('images: ', file);
+      formData.append('image', file.originFileObj);
     });
     // endpoint, payload, userToken
     uploadSubmissionData(endpoint, formData, curUserToken)
       .then(res => {
-        setIsLoading(false);
-        push('/mission');
+        console.log('submisisonRes: ', res);
+        setErrorState(false);
+        message.success('Upload Successful');
+        setTimeout(() => {
+          setIsLoading(false);
+          push('/mission');
+        }, 2000);
       })
       .catch(err => {
-        console.log('Upload Failed: ', err.message);
+        setErrorState(true);
+        message.error(err.message);
+        console.log('Error: ', err.message);
       });
   };
 
   return (
     <>
+      <div className="loaderCont">{isLoading && <LoadingComponent />}</div>
       <RenderUploader
+        errorState={errorState}
         fileList={fileList}
+        fileLimit={fileLimit}
         onChange={onChange}
         onPreview={onPreview}
         onSubmit={onSubmit}
+        push={push}
       />
-      {isLoading && <LoadingComponent />}
     </>
   );
 };
