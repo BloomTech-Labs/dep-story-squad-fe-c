@@ -26,7 +26,7 @@ const MissionDrawContainer = () => {
     getData(`child/${userId}/mission`, curUserToken).then(res => {
       setMissionPrompt(res.data.draw);
     });
-  }, [setMissionPrompt]);
+  }, [userId, curUserToken, setMissionPrompt]);
 
   // sets the header title
   useEffect(() => {

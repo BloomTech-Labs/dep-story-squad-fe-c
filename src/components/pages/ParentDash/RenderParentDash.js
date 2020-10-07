@@ -37,7 +37,7 @@ const RenderParentDash = props => {
           console.log(err);
         });
     }
-  }, []);
+  }, [id, token]);
 
   // Keeps track of state for Nav Bar
 

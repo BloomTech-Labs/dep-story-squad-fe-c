@@ -26,7 +26,7 @@ const MissionWriteContainer = () => {
     getData(`child/${userId}/mission`, curUserToken).then(res => {
       setMissionPrompt(res.data.write);
     });
-  }, [setMissionPrompt]);
+  }, [userId, curUserToken, setMissionPrompt]);
 
   // sets the header title
   useEffect(() => {

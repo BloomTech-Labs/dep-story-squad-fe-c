@@ -17,7 +17,7 @@ const MissionDashContainer = props => {
   }, [setHeaderTitle]);
 
   // hard coded for development/testing
-  const [missionReqs, setMissionState] = useState({
+  const [missionReqs] = useState({
     read: true,
     write: false,
     draw: false,
