@@ -7,6 +7,6 @@ describe('Loading Common Component', () => {
   test('it should mount a div container for the spinner', () => {
     const { getByTestId } = render(<LoadingComponent />);
     expect(getByTestId(/spinnerCont/i));
-    expect(getByTestId(/antSpinner/i));
+    expect(getByTestId(/spinnerShark/i));
   });
 });
