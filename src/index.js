@@ -50,46 +50,22 @@ function App() {
     history.push('/login');
   };
 
-  // This state will hold the title that appears in the <Header />
-  const [headerTitle, setHeaderTitle] = useState('Story Squad');
-
   return (
     <Security {...config} onAuthRequired={authHandler}>
-      <Header title={headerTitle} />
+      <Header />
 
       <Switch>
-        <Route
-          path="/login"
-          component={() => <LoginPage setHeaderTitle={setHeaderTitle} />}
-        />
+        <Route path="/login" component={() => <LoginPage />} />
 
-        <SecureRoute path="/implicit/callback">
-          {' '}
-          <LoginCallback />
-        </SecureRoute>
+        <SecureRoute path="/implicit/callback" component={LoginCallback} />
+
         {/* any of the routes you need secured should be registered as SecureRoutes */}
         <SecureRoute path="/" exact component={() => <AccountPinModal />} />
-        <SecureRoute
-          path="/dashboard"
-          component={() => <Dash setHeaderTitle={setHeaderTitle} />}
-        />
-        <SecureRoute
-          path="/mission"
-          exact
-          component={() => <MissionDash setHeaderTitle={setHeaderTitle} />}
-        />
-        <SecureRoute
-          path="/mission/read"
-          component={() => <MissionRead setHeaderTitle={setHeaderTitle} />}
-        />
-        <SecureRoute
-          path="/mission/write"
-          component={() => <MissionWrite setHeaderTitle={setHeaderTitle} />}
-        />
-        <SecureRoute
-          path="/mission/draw"
-          component={() => <MissionDraw setHeaderTitle={setHeaderTitle} />}
-        />
+        <SecureRoute path="/dashboard" component={() => <Dash />} />
+        <SecureRoute path="/mission" exact component={() => <MissionDash />} />
+        <SecureRoute path="/mission/read" component={() => <MissionRead />} />
+        <SecureRoute path="/mission/write" component={() => <MissionWrite />} />
+        <SecureRoute path="/mission/draw" component={() => <MissionDraw />} />
         <Route component={NotFoundPage} />
       </Switch>
     </Security>

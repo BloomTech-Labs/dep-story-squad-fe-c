@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import RenderMissionWrite from './RenderMissionWrite';
 
+import { useLocalStorage } from '../../../utils/hooks';
 import { getData } from '../../../api';
 
-import { useLocalStorage } from '../../../utils/hooks';
+import { useSetRecoilState } from 'recoil';
+import { headerTitle } from '../../../state/atoms';
 
-const MissionWriteContainer = ({ setHeaderTitle }) => {
+const MissionWriteContainer = () => {
+  const setHeaderTitle = useSetRecoilState(headerTitle);
   // Current user's Id for submitting files to API
   const [userId] = useLocalStorage('curUserId');
   // Current user's token
