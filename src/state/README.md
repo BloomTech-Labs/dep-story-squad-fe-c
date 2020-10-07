@@ -4,6 +4,10 @@
 
 `Recoil` is a global state management library for `React` still in development by the team at Facebook. It has been opened up to the public and available for use in other projects. It is only compatible with `Functional` Components using `Hooks` in `React`. It cannot currently be use with `Class` Components. `Recoil` provides a simple yet powerful solution to implementing a global state management solution in your applications.
 
+---
+
+## Using `Recoil`
+
 `Recoil` state is divided into 2 main categories:
 
 ---
@@ -12,7 +16,7 @@
 
 > A piece of global state that can be accessed by any component in the app
 
-- Example `Atom`:
+- Example `Atom`
 
 ```js
 import { atom } from 'recoil';
@@ -53,7 +57,7 @@ export const mySelector = selector({
 
 `Atoms` can be "subscribed" to by components using one of several `Recoil` Hooks in a manner similar to the `useState` Hook in `React`.
 
-- Example `Component`:
+- Example `Component`
 
 ```js
 import React from 'react';
