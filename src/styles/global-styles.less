@@ -11,6 +11,7 @@ body {
   color: @txt-lite;
   background: @white;
   box-sizing: border-box;
+  max-width: 100%;
 
   h1,
   h2,
@@ -21,5 +22,17 @@ body {
     font-family: @primary;
     color: @white;
     -webkit-text-stroke: @black;
+  }
+
+  .ant-modal .ant-btn {
+    background: @red;
+    color: @white;
+    border: 2px solid @black;
+    border-radius: 7px;
+
+    &:hover {
+      background: lighten(@red, 10%);
+      border-color: lighten(@black, 10%);
+    }
   }
 }

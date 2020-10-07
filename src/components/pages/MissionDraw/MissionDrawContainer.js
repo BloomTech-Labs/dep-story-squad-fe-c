@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import RenderMissionWrite from './RenderMissionWrite';
+import RenderMissionDraw from './RenderMissionDraw';
 
 import { useLocalStorage } from '../../../utils/hooks';
 import { getData } from '../../../api';
@@ -7,7 +7,7 @@ import { getData } from '../../../api';
 import { useSetRecoilState } from 'recoil';
 import { headerTitle } from '../../../state/atoms';
 
-const MissionWriteContainer = () => {
+const MissionDrawContainer = () => {
   const setHeaderTitle = useSetRecoilState(headerTitle);
   // Current user's Id for submitting files to API
   const [userId] = useLocalStorage('curUserId');
@@ -15,26 +15,26 @@ const MissionWriteContainer = () => {
   const [curUserToken] = useLocalStorage('curUserToken', null);
   // File limit controls the number of images that can be uploaded
   // 5 for a Story submission and 1 for a Illustration
-  const fileLimit = 5;
+  const fileLimit = 1;
   // The endpoint to send the submission to when making a POST request
-  const uploadURL = `child/${userId}/mission/write`;
+  const uploadURL = `child/${userId}/mission/draw`;
   // Text to be displayed in the mission prompt text box
   const [missionPrompt, setMissionPrompt] = useState('Loading...');
 
   // Get the text for mission prompt
   useEffect(() => {
     getData(`child/${userId}/mission`, curUserToken).then(res => {
-      setMissionPrompt(res.data.write);
+      setMissionPrompt(res.data.draw);
     });
   }, [userId, curUserToken, setMissionPrompt]);
 
   // sets the header title
   useEffect(() => {
-    setHeaderTitle('Pencils Ready?');
+    setHeaderTitle('Ready, Set... Draw!');
   }, [setHeaderTitle]);
 
   return (
-    <RenderMissionWrite
+    <RenderMissionDraw
       fileLimit={fileLimit}
       uploadURL={uploadURL}
       missionPrompt={missionPrompt}
@@ -42,4 +42,4 @@ const MissionWriteContainer = () => {
   );
 };
 
-export default MissionWriteContainer;
+export default MissionDrawContainer;

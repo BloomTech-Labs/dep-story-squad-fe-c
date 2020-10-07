@@ -1,11 +1,11 @@
 import React from 'react';
-import { getByDisplayValue, render } from '@testing-library/react';
-import UserForm from '../components/common/accountPinModal/UserForm';
+import { render } from '@testing-library/react';
+import UserFormContainer from '../components/common/accountPinModal/UserFormContainer';
 
 describe('UserForm component', () => {
   test('renders in the dom', () => {
     const { getByText } = render(
-      <UserForm
+      <UserFormContainer
         accounts={[{ name: 'Dad' }, { name: 'Child1' }, { name: 'Child2' }]}
       />
     );
@@ -18,7 +18,7 @@ describe('UserForm component', () => {
 
   test('should render buttons dynamically', () => {
     const { getByText } = render(
-      <UserForm
+      <UserFormContainer
         accounts={[{ name: 'Dad' }, { name: 'Child1' }, { name: 'Child2' }]}
       />
     );

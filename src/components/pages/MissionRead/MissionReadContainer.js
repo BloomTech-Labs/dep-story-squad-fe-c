@@ -5,8 +5,13 @@ import { useLocalStorage } from '../../../utils/hooks';
 import { getStory } from '../../../api';
 import RenderMissionRead from './RenderMissionRead';
 
-const MissionReadContainer = ({ setHeaderTitle }) => {
-  const history = useHistory();
+import { useSetRecoilState } from 'recoil';
+import { headerTitle } from '../../../state/atoms';
+
+const MissionReadContainer = () => {
+  const setHeaderTitle = useSetRecoilState(headerTitle);
+
+  const { push } = useHistory();
 
   // URL to the PDF of the story to display
   const [story, setStory] = useState('');
@@ -40,7 +45,7 @@ const MissionReadContainer = ({ setHeaderTitle }) => {
   const missionComplete = e => {
     e.preventDefault();
 
-    history.push('/mission');
+    push('/mission');
   };
 
   // checks story progress and displays button after story is complete

@@ -1,12 +1,10 @@
-// see README.md in components/common dir for more info
-
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Modal } from 'antd';
 import { getLogin } from '../../../api';
 import { useLocalStorage } from '../../../utils/hooks';
 
 // components
-import UserForm from './UserForm';
+import UserFormContainer from './UserFormContainer';
 import PINForm from './PINForm';
 import { useHistory } from 'react-router-dom';
 
@@ -15,7 +13,7 @@ const AccountPinModal = props => {
   const [isLoading, setIsLoading] = useState(true);
   const loadingRef = useRef(isLoading);
   const [formVisibility, setFormVisibility] = useState({
-    userForm: true,
+    userFormContainer: true,
     pinForm: false,
   });
   const [validationError, setValidationError] = useState('');
@@ -63,12 +61,10 @@ const AccountPinModal = props => {
         footer={null}
         onCancel={handleCancel}
       >
-        {formVisibility.userForm && (
-          <UserForm
+        {formVisibility.userFormContainer && (
+          <UserFormContainer
             accounts={accounts}
-            loggedInUser={loggedInUser}
             isLoading={isLoading}
-            formVisibility={formVisibility}
             setFormVisibility={setFormVisibility}
             setValidationError={setValidationError}
           />
@@ -78,7 +74,6 @@ const AccountPinModal = props => {
             loggedInUser={loggedInUser}
             isLoading={isLoading}
             setIsLoading={setIsLoading}
-            // mainSubmit={mainSubmit}
             setShowModal={setShowModal}
             formVisibility={formVisibility}
             setFormVisibility={setFormVisibility}

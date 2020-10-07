@@ -1,14 +1,14 @@
-import { MissionWrite } from '../components/pages/MissionWrite';
+import { MissionDraw } from '../components/pages/MissionDraw';
 import React from 'react';
 import { render } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-describe('<MissionWrite /> test suite', () => {
+describe('<MissionDraw /> test suite', () => {
   test('renders without errors', () => {
     const setHeaderTitle = () => 'Test Title';
     render(
       <Router>
-        <MissionWrite setHeaderTitle={setHeaderTitle} />
+        <MissionDraw setHeaderTitle={setHeaderTitle} />
       </Router>
     );
   });

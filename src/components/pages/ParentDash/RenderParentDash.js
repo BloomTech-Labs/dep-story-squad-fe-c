@@ -5,10 +5,12 @@ import { Layout } from 'antd';
 import { ParentNav, DashHome, ChildSignup, Help, Logout } from './components';
 import { getParentDash } from '../../../api';
 
+import { useSetRecoilState } from 'recoil';
+import { headerTitle } from '../../../state/atoms';
+
 // ParentDash component that contains a nav bar and routes to the various components
 const RenderParentDash = props => {
-  // sets state held in <App />
-  const { setHeaderTitle } = props;
+  const setHeaderTitle = useSetRecoilState(headerTitle);
 
   // Keeps track of the state for ParentNav
 
@@ -35,7 +37,7 @@ const RenderParentDash = props => {
           console.log(err);
         });
     }
-  }, []);
+  }, [id, token]);
 
   // Keeps track of state for Nav Bar
 

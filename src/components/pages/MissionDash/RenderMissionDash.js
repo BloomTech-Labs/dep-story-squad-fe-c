@@ -1,13 +1,19 @@
 import React from 'react';
 
-const RenderMissionDash = ({ history, messagePopup }) => {
+const RenderMissionDash = ({ beginMission, missionReqs }) => {
   return (
     <div className="dashboard-container">
       <button
         className="mission-btn-container read"
-        onClick={() => history.push('/mission/read')}
+        onClick={() => beginMission('read', '/mission/read', '')}
       >
-        <input className="progress-check" type="checkbox" />
+        <div className="progress-check">
+          <img
+            src={`images/check-${missionReqs.read ? 'done' : 'incomplete'}.png`}
+            alt=""
+          />
+        </div>
+
         <div className="mission-btn-icon">
           <img src="/images/read-icon.png" alt="" />
           <h3>READ</h3>
@@ -16,9 +22,22 @@ const RenderMissionDash = ({ history, messagePopup }) => {
       <div className="right-panel">
         <button
           className="mission-btn-container write"
-          onClick={() => history.push('/mission/write')}
+          onClick={() =>
+            beginMission(
+              'write',
+              '/mission/write',
+              'Complete the Read mission first!'
+            )
+          }
         >
-          <input className="progress-check" type="checkbox" />
+          <div className="progress-check">
+            <img
+              src={`images/check-${
+                missionReqs.write ? 'done' : 'incomplete'
+              }.png`}
+              alt=""
+            />
+          </div>
           <div className="mission-btn-icon">
             <img src="/images/write-icon.png" alt="" />
             <h3>WRITE</h3>
@@ -27,10 +46,21 @@ const RenderMissionDash = ({ history, messagePopup }) => {
         <button
           className="mission-btn-container draw"
           onClick={() =>
-            messagePopup('warning', 'This feature is not available yet!')
+            beginMission(
+              'draw',
+              '/mission/draw',
+              'Complete the Write mission first!'
+            )
           }
         >
-          <input className="progress-check" type="checkbox" />
+          <div className="progress-check">
+            <img
+              src={`images/check-${
+                missionReqs.draw ? 'done' : 'incomplete'
+              }.png`}
+              alt=""
+            />
+          </div>
           <div className="mission-btn-icon">
             <img src="/images/draw-icon.png" alt="" />
             <h3>DRAW</h3>
