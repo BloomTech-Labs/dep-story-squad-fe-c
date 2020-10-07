@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // components
-import LoadingComponent from '../LoadingComponent';
+import { LoadingComponent } from '../../../common';
 
 const RenderUserForm = ({ handleSubmit, isLoading, accounts }) => {
   return (

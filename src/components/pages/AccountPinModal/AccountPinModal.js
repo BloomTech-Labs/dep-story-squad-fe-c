@@ -4,14 +4,13 @@ import { getLogin } from '../../../api';
 import { useLocalStorage } from '../../../utils/hooks';
 
 // components
-import UserFormContainer from './UserFormContainer';
-import PINForm from './PINForm';
+import UserFormContainer from './UserForm/UserFormContainer';
+import PinFormContainer from './PinForm/PinFormContainer';
 import { useHistory } from 'react-router-dom';
 
 const AccountPinModal = props => {
   const [showModal, setShowModal] = useState(true);
-  const [isLoading, setIsLoading] = useState(true);
-  const loadingRef = useRef(isLoading);
+  const [isLoading, setIsLoading] = useState(false);
   const [formVisibility, setFormVisibility] = useState({
     userFormContainer: true,
     pinForm: false,
@@ -22,9 +21,9 @@ const AccountPinModal = props => {
   const loggedInUser = JSON.parse(
     window.localStorage.getItem('okta-token-storage')
   );
+  const loggedInUserToken = loggedInUser.idToken.value;
   const [accounts, setAccounts] = useLocalStorage('accounts', null);
 
-  const tokenRef = useRef(loggedInUser.idToken.value);
   const history = useHistory();
 
   const handleCancel = () => {
@@ -33,18 +32,18 @@ const AccountPinModal = props => {
   };
 
   const setLoading = useCallback(() => {
-    setIsLoading(!loadingRef.current);
+    setIsLoading(!isLoading);
   }, []);
 
   useEffect(() => {
-    getLogin(tokenRef.current)
+    getLogin(loggedInUserToken)
       .then(res => {
         if (!accounts) {
           setAccounts(res.data.accounts);
           setLoading();
         }
       })
-      .catch(err => console.log('Server Error'));
+      .catch(err => console.log('Server Error: ', err.message));
   }, [setLoading, setAccounts, accounts]);
 
   return (
@@ -70,13 +69,8 @@ const AccountPinModal = props => {
           />
         )}
         {formVisibility.pinForm && (
-          <PINForm
-            loggedInUser={loggedInUser}
-            isLoading={isLoading}
-            setIsLoading={setIsLoading}
-            setShowModal={setShowModal}
-            formVisibility={formVisibility}
-            setFormVisibility={setFormVisibility}
+          <PinFormContainer
+            loggedInUserToken={loggedInUserToken}
             formSubmissionData={formSubmissionData}
             setFormSubmissionData={setFormSubmissionData}
             setValidationError={setValidationError}

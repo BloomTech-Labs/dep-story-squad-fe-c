@@ -1,7 +1,7 @@
 import React from 'react';
 import RenderUserForm from './RenderUserForm';
 import PropTypes from 'prop-types';
-import { useLocalStorage } from '../../../utils/hooks';
+import { useLocalStorage } from '../../../../utils/hooks';
 
 const UserFormContainer = ({ setFormVisibility, isLoading, accounts }) => {
   const [, setCurUserType] = useLocalStorage('curUserType', null);
