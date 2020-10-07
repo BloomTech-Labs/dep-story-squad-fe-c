@@ -22,9 +22,6 @@ module.exports = {
   // 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
   // 'Noto Color Emoji';
 
-  // Spin
-  '@spin-dot-size-lg': '40px',
-
   // Modal
   '@modal-header-border-style': '@border-style-base',
   '@modal-header-border-color-split': '@border-color-split',
