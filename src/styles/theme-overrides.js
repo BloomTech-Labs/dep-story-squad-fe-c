@@ -18,10 +18,6 @@ module.exports = {
     '0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05)',
   '@component-background': '#eee',
 
-  //   @font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-  // 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-  // 'Noto Color Emoji';
-
   // Modal
   '@modal-header-border-style': '@border-style-base',
   '@modal-header-border-color-split': '@border-color-split',
