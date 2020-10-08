@@ -4,16 +4,16 @@ import { ChildDash } from '../ChildDash';
 
 // recoil
 import { useRecoilValue } from 'recoil';
-import { userState } from '../../../state/userState';
+import { currentUserState } from '../../../state/userState';
 
 const RenderDash = props => {
-  const { curUserType } = useRecoilValue(userState);
+  const { curUserType } = useRecoilValue(currentUserState);
 
   useEffect(() => {}, [curUserType]);
 
   const dash = {
-    parent: <ParentDash setHeaderTitle={props.setHeaderTitle} />,
-    child: <ChildDash setHeaderTitle={props.setHeaderTitle} />,
+    parent: <ParentDash />,
+    child: <ChildDash />,
     null: null,
   };
   return <>{dash[curUserType]}</>;

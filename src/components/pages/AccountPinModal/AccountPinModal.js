@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 // recoil
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { userState } from '../../../state/atoms';
+import { userState } from '../../../state/userState';
 
 // components
 import { Modal } from 'antd';
