@@ -1,35 +1,29 @@
 import Header from '../components/common/Header';
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { RecoilRoot } from 'recoil';
 import { render } from '@testing-library/react';
+
+jest.mock('@okta/okta-react', () => ({
+  useOktaAuth: () => {
+    return {
+      authService: {},
+    };
+  },
+}));
 
 describe('<Header /> test suite', () => {
   test('header displays title passed in via props', () => {
-    const { getByText, rerender } = render(
-      <div>
-        <Header title={'Testing Title'} />
-      </div>
+    const { getByText } = render(
+      <Router>
+        <RecoilRoot>
+          <Header />
+        </RecoilRoot>
+      </Router>
     );
 
-    const h1 = getByText(/testing title/i);
-    expect(h1.textContent).toBe('Testing Title');
+    const h1 = getByText(/story squad/i);
+    expect(h1.textContent).toBe('Story Squad');
     expect(h1.className).toBe('header-title');
-    rerender(
-      <div>
-        <Header title={'Changed The Title'} />
-      </div>
-    );
-    expect(h1.textContent).toBe('Changed The Title');
-  });
-
-  test('header does not render when title is set to null', () => {
-    const { queryByTestId } = render(
-      <div>
-        <Header title={null} />
-      </div>
-    );
-
-    const header = queryByTestId('header');
-
-    expect(header).not.toBeInTheDocument();
   });
 });
