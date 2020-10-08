@@ -5,7 +5,7 @@ import { useLocalStorage } from '../../../utils/hooks';
 import { getData } from '../../../api';
 
 import { useSetRecoilState } from 'recoil';
-import { headerTitle } from '../../../state/atoms';
+import { headerTitle } from '../../../state/headerTitle';
 
 const MissionDrawContainer = () => {
   const setHeaderTitle = useSetRecoilState(headerTitle);

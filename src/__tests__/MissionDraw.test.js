@@ -6,13 +6,12 @@ import { RecoilRoot } from 'recoil';
 
 describe('<MissionDraw /> test suite', () => {
   test('renders without errors', () => {
-    const setHeaderTitle = () => 'Test Title';
     render(
-      <RecoilRoot>
-        <Router>
+      <Router>
+        <RecoilRoot>
           <MissionDraw />
-        </Router>
-      </RecoilRoot>
+        </RecoilRoot>
+      </Router>
     );
   });
 });

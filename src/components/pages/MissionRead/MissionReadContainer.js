@@ -6,7 +6,7 @@ import { getStory } from '../../../api';
 import RenderMissionRead from './RenderMissionRead';
 
 import { useSetRecoilState } from 'recoil';
-import { headerTitle } from '../../../state/atoms';
+import { headerTitle } from '../../../state/headerTitle';
 
 const MissionReadContainer = () => {
   const setHeaderTitle = useSetRecoilState(headerTitle);

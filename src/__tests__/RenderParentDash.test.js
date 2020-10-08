@@ -23,18 +23,20 @@ test('ParentDash renders without errors', () => {
     })
   );
   render(
-    <RecoilRoot>
-      <Router>
-        <RenderParentDash setHeaderTitle={() => null} title={null} />
-      </Router>
-    </RecoilRoot>
+    <Router>
+      <RecoilRoot>
+        <RenderParentDash title={null} />
+      </RecoilRoot>
+    </Router>
   );
 });
 
 test('Nav renders without errors', () => {
   render(
     <Router>
-      <ParentNav />
+      <RecoilRoot>
+        <ParentNav />
+      </RecoilRoot>
     </Router>
   );
 });
@@ -42,7 +44,9 @@ test('Nav renders without errors', () => {
 test('DashHome renders without errors', () => {
   render(
     <Router>
-      <DashHome />
+      <RecoilRoot>
+        <DashHome />
+      </RecoilRoot>
     </Router>
   );
 });
@@ -50,7 +54,9 @@ test('DashHome renders without errors', () => {
 test('LinkButton renders without errors', () => {
   render(
     <Router>
-      <LinkButton to="/login/add">Here's a Button</LinkButton>
+      <RecoilRoot>
+        <LinkButton to="/login/add">Here's a Button</LinkButton>
+      </RecoilRoot>
     </Router>
   );
 });
@@ -58,7 +64,9 @@ test('LinkButton renders without errors', () => {
 test('Child signup form renders without errors', () => {
   render(
     <Router>
-      <ChildSignup />
+      <RecoilRoot>
+        <ChildSignup />
+      </RecoilRoot>
     </Router>
   );
 });

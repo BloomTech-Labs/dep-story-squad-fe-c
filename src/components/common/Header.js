@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 // Recoil
 import { useRecoilValue } from 'recoil';
-import { headerTitle } from '../../state/atoms';
+import { headerTitle } from '../../state/headerTitle';
 import { useOktaAuth } from '@okta/okta-react';
 
 import MenuButton from './MenuButton';

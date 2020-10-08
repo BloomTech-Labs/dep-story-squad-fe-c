@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 // recoil
 import { useSetRecoilState } from 'recoil';
-import { userState } from '../../../../state/atoms';
+import { userState } from '../../../../state/userState';
 
 // components
 import RenderUserForm from './RenderUserForm';
