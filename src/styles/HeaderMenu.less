@@ -1,31 +1,29 @@
 .storysquad-header {
   .header-menu {
+    background: @white;
+    width: 45%;
+    height: 22vh;
     position: fixed;
     top: 5px;
     right: -100%;
     z-index: 10;
     transition: all 0.3s ease;
-    border: 2px solid @grey;
-    
+
+    .MQ(@desktop, {width: 30%;});
+
     button {
       width: 100%;
-      text-align: center;
-      cursor: pointer;
+      height: 33.33%;
       border: none;
-      padding: 5px 0;
-      
-      &:hover{
-        background-color: @red;
-      }
+      padding: 5px 0 5px 20%;
+      text-align: left;
+      cursor: pointer;
+      transition: background, padding 0.5s ease;
 
-      span{
-        display: flex;
-        justify-content: center;
-      }
-
-      &:hover span{
-        transition: all 0.3s ease;
-        transform: scale(1.2);
+      &:hover {
+        background: @red;
+        color: @white;
+        padding-left: 30%;
       }
 
       &:disabled {
