@@ -3,8 +3,8 @@ import { getAccount, getLogin } from '../../../api';
 import { useHistory } from 'react-router-dom';
 
 // recoil
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { userState } from '../../../state/userState';
+import { useRecoilState } from 'recoil';
+import { currentUserState } from '../../../state/userState';
 
 // components
 import { Modal } from 'antd';
@@ -26,11 +26,10 @@ const AccountPinModal = props => {
     window.localStorage.getItem('okta-token-storage')
   ).idToken.value;
 
-  const setCurUserToken = useSetRecoilState(userState);
+  const [currentUser, setCurrentUser] = useRecoilState(currentUserState);
+  const { curUserId, curUserType } = currentUser;
 
   const [accounts, setAccounts] = useState(null);
-
-  const { curUserType, curUserId } = useRecoilValue(userState);
 
   const mainSubmit = () => {
     const url = `${curUserType}/${curUserId}`;
@@ -38,7 +37,7 @@ const AccountPinModal = props => {
       .then(res => {
         // fire selector to set localstorage
 
-        setCurUserToken({ curUserToken: res.data.token });
+        setCurrentUser({ ...currentUser, curUserToken: res.data.token });
         console.log('userState: ', curUserType);
         history.push('/dashboard');
       })
