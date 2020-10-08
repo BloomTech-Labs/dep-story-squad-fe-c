@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react';
 import { ParentDash } from '../ParentDash';
 import { ChildDash } from '../ChildDash';
-import { useLocalStorage } from '../../../utils/hooks';
+
+// recoil
+import { useRecoilValue } from 'recoil';
+import { userState } from '../../../state/atoms';
 
 const RenderDash = props => {
-  const [curUserType] = useLocalStorage('curUserType', null);
+  const curUserType = useRecoilValue(userState).curUserType;
 
   useEffect(() => {}, [curUserType]);
 

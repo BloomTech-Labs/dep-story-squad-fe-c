@@ -1,51 +1,69 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { Modal } from 'antd';
-import { getLogin } from '../../../api';
+import React, { useState, useEffect } from 'react';
+import { getAccount, getLogin } from '../../../api';
+import { useHistory } from 'react-router-dom';
+
+//utils
 import { useLocalStorage } from '../../../utils/hooks';
 
+// recoil
+import { useRecoilValue } from 'recoil';
+import { userState } from '../../../state/atoms';
+
 // components
-import UserFormContainer from './UserFormContainer';
-import PINForm from './PINForm';
-import { useHistory } from 'react-router-dom';
+import { Modal } from 'antd';
+import UserFormContainer from './UserForm/UserFormContainer';
+import PinFormContainer from './PinForm/PinFormContainer';
 
 const AccountPinModal = props => {
   const [showModal, setShowModal] = useState(true);
-  const [isLoading, setIsLoading] = useState(true);
-  const loadingRef = useRef(isLoading);
+  const [validationError, setValidationError] = useState('');
+  const history = useHistory();
+  const [formSubmissionData, setFormSubmissionData] = useState({});
+
   const [formVisibility, setFormVisibility] = useState({
     userFormContainer: true,
     pinForm: false,
   });
-  const [validationError, setValidationError] = useState('');
-  const [formSubmissionData, setFormSubmissionData] = useState({});
 
-  const loggedInUser = JSON.parse(
+  const authToken = JSON.parse(
     window.localStorage.getItem('okta-token-storage')
-  );
-  const [accounts, setAccounts] = useLocalStorage('accounts', null);
+  ).idToken.value;
 
-  const tokenRef = useRef(loggedInUser.idToken.value);
-  const history = useHistory();
+  const [, setCurUserToken] = useLocalStorage('curUserToken', null);
+
+  const [accounts, setAccounts] = useState(null);
+
+  const userType = useRecoilValue(userState).curUserType;
+  const userId = useRecoilValue(userState).curUserId;
+
+  const mainSubmit = () => {
+    const url = `${userType}/${userId}`;
+    getAccount(url, formSubmissionData.pin, authToken)
+      .then(res => {
+        setCurUserToken(res.data.token);
+        history.push('/dashboard');
+      })
+      .catch(err => {
+        if (err) {
+          setValidationError('Error: Invalid PIN');
+        }
+      });
+  };
 
   const handleCancel = () => {
     history.push('/login');
     setShowModal(false);
   };
 
-  const setLoading = useCallback(() => {
-    setIsLoading(!loadingRef.current);
-  }, []);
-
   useEffect(() => {
-    getLogin(tokenRef.current)
+    getLogin(authToken)
       .then(res => {
         if (!accounts) {
           setAccounts(res.data.accounts);
-          setLoading();
         }
       })
-      .catch(err => console.log('Server Error'));
-  }, [setLoading, setAccounts, accounts]);
+      .catch(err => console.log('Server Error: ', err.message));
+  }, [setAccounts, accounts]);
 
   return (
     <div className="modal" data-testid="formModalCont" key="formModalCont">
@@ -64,24 +82,21 @@ const AccountPinModal = props => {
         {formVisibility.userFormContainer && (
           <UserFormContainer
             accounts={accounts}
-            isLoading={isLoading}
             setFormVisibility={setFormVisibility}
             setValidationError={setValidationError}
           />
         )}
+
         {formVisibility.pinForm && (
-          <PINForm
-            loggedInUser={loggedInUser}
-            isLoading={isLoading}
-            setIsLoading={setIsLoading}
-            setShowModal={setShowModal}
-            formVisibility={formVisibility}
-            setFormVisibility={setFormVisibility}
+          <PinFormContainer
+            authToken={authToken}
+            mainSubmit={mainSubmit}
             formSubmissionData={formSubmissionData}
             setFormSubmissionData={setFormSubmissionData}
             setValidationError={setValidationError}
           />
         )}
+
         {validationError && (
           <div className="pinFormError">{validationError}</div>
         )}
