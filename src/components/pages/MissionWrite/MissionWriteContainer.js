@@ -7,7 +7,8 @@ import { getData } from '../../../api';
 // recoil
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 
-import { headerTitle, userState } from '../../../state/atoms';
+import { headerTitle } from '../../../state/headerTitle';
+import { userState } from '../../../state/userState';
 
 const MissionWriteContainer = () => {
   const setHeaderTitle = useSetRecoilState(headerTitle);

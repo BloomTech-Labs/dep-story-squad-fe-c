@@ -4,7 +4,7 @@ import { messagePopup } from '../../../utils/message-popup';
 import RenderMissionDash from './RenderMissionDash';
 
 import { useSetRecoilState } from 'recoil';
-import { headerTitle } from '../../../state/atoms';
+import { headerTitle } from '../../../state/headerTitle';
 
 const MissionDashContainer = props => {
   const setHeaderTitle = useSetRecoilState(headerTitle);

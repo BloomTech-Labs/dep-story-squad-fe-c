@@ -6,7 +6,7 @@ import LoginTextArea from './LoginTextArea';
 import { config } from '../../../utils/oktaConfig';
 
 import { useResetRecoilState } from 'recoil';
-import { headerTitle } from '../../../state/atoms';
+import { headerTitle } from '../../../state/headerTitle';
 
 const LoginContainer = props => {
   const setHeaderTitle = useResetRecoilState(headerTitle);

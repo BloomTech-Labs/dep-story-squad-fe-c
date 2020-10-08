@@ -7,7 +7,7 @@ import { useLocalStorage } from '../../../utils/hooks';
 
 // recoil
 import { useRecoilValue } from 'recoil';
-import { userState } from '../../../state/atoms';
+import { userState } from '../../../state/userState';
 
 // components
 import { Modal } from 'antd';

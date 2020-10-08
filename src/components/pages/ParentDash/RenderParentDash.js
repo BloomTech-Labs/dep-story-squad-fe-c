@@ -6,7 +6,8 @@ import { ParentNav, DashHome, ChildSignup, Help, Logout } from './components';
 import { getParentDash } from '../../../api';
 
 import { useSetRecoilState, useRecoilValue } from 'recoil';
-import { headerTitle, userState } from '../../../state/atoms';
+import { headerTitle } from '../../../state/headerTitle';
+import { userState } from '../../../state/userState';
 
 // ParentDash component that contains a nav bar and routes to the various components
 const RenderParentDash = props => {

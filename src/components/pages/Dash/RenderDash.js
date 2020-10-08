@@ -4,7 +4,7 @@ import { ChildDash } from '../ChildDash';
 
 // recoil
 import { useRecoilValue } from 'recoil';
-import { userState } from '../../../state/atoms';
+import { userState } from '../../../state/userState';
 
 const RenderDash = props => {
   const curUserType = useRecoilValue(userState).curUserType;
