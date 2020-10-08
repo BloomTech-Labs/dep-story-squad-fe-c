@@ -38,7 +38,6 @@ const AccountPinModal = props => {
 
   const mainSubmit = () => {
     const url = `${userType}/${userId}`;
-    console.log('url: ', url);
     getAccount(url, formSubmissionData.pin, authToken)
       .then(res => {
         setCurUserToken(res.data.token);

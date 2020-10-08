@@ -4,13 +4,16 @@ import RenderMissionWrite from './RenderMissionWrite';
 import { useLocalStorage } from '../../../utils/hooks';
 import { getData } from '../../../api';
 
-import { useSetRecoilState } from 'recoil';
-import { headerTitle } from '../../../state/atoms';
+// recoil
+import { useSetRecoilState, useRecoilValue } from 'recoil';
+
+import { headerTitle, userState } from '../../../state/atoms';
 
 const MissionWriteContainer = () => {
   const setHeaderTitle = useSetRecoilState(headerTitle);
   // Current user's Id for submitting files to API
-  const [userId] = useLocalStorage('curUserId');
+  const userId = useRecoilValue(userState).curUserId;
+
   // Current user's token
   const [curUserToken] = useLocalStorage('curUserToken', null);
   // File limit controls the number of images that can be uploaded
