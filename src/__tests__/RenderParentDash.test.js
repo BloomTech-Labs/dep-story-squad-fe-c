@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { RecoilRoot } from 'recoil';
 import RenderParentDash from '../components/pages/ParentDash/RenderParentDash';
 import {
   DashHome,
@@ -9,7 +10,6 @@ import {
   Help,
 } from '../components/pages/ParentDash/components';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { RecoilRoot } from 'recoil';
 
 test('ParentDash renders without errors', () => {
   window.localStorage.setItem(
