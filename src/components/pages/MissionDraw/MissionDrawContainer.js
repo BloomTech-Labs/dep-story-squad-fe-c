@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import RenderMissionDraw from './RenderMissionDraw';
 
 import { getData } from '../../../api';
-
+// Recoil imports
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { headerTitle } from '../../../state/headerTitle';
 import { currentUserState } from '../../../state/userState';
