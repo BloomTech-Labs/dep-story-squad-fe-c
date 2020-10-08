@@ -5,8 +5,8 @@ import { Layout } from 'antd';
 import { ParentNav, DashHome, ChildSignup, Help, Logout } from './components';
 import { getParentDash } from '../../../api';
 
-import { useSetRecoilState } from 'recoil';
-import { headerTitle } from '../../../state/atoms';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
+import { headerTitle, userState } from '../../../state/atoms';
 
 // ParentDash component that contains a nav bar and routes to the various components
 const RenderParentDash = props => {
@@ -18,8 +18,7 @@ const RenderParentDash = props => {
 
   const token = JSON.parse(window.localStorage.getItem('curUserToken'));
   const tokenRef = useRef(token);
-  const id = JSON.parse(window.localStorage.getItem('curUserId'));
-
+  const id = useRecoilValue(userState).curUserId;
   // Whenever this component mounts update the <Header /> title
   useEffect(() => {
     // The parent dashboard shouldn't have the header displayed
