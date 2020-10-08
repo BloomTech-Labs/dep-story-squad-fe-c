@@ -2,6 +2,7 @@ import Header from '../components/common/Header';
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { render } from '@testing-library/react';
+import { RecoilRoot } from 'recoil';
 
 jest.mock('@okta/okta-react', () => ({
   useOktaAuth: () => {
@@ -14,17 +15,17 @@ jest.mock('@okta/okta-react', () => ({
 describe('<Header /> test suite', () => {
   test('header displays title passed in via props', () => {
     const { getByText, rerender } = render(
-      <Router>
-        <Header title={'Testing Title'} />
-      </Router>
+      <RecoilRoot>
+        <Router>
+          <Header />
+        </Router>
+      </RecoilRoot>
     );
 
     const h1 = getByText(/testing title/i);
-    expect(h1.textContent).toBe('Testing Title');
-    expect(h1.className).toBe('header-title');
     rerender(
       <Router>
-        <Header title={'Changed The Title'} />
+        <Header />
       </Router>
     );
     expect(h1.textContent).toBe('Changed The Title');

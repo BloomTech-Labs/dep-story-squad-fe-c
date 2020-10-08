@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { RecoilRoot } from 'recoil';
 import RenderParentDash from '../components/pages/ParentDash/RenderParentDash';
 import {
   DashHome,
@@ -22,9 +23,11 @@ test('ParentDash renders without errors', () => {
     })
   );
   render(
-    <Router>
-      <RenderParentDash setHeaderTitle={() => null} title={null} />
-    </Router>
+    <RecoilRoot>
+      <Router>
+        <RenderParentDash setHeaderTitle={() => null} title={null} />
+      </Router>
+    </RecoilRoot>
   );
 });
 

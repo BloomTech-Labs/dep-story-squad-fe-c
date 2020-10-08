@@ -7,7 +7,7 @@ import { useRecoilValue } from 'recoil';
 import { userState } from '../../../state/atoms';
 
 const RenderDash = props => {
-  const curUserType = useRecoilValue(userState).curUserType;
+  const { curUserType } = useRecoilValue(userState);
 
   useEffect(() => {}, [curUserType]);
 

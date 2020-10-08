@@ -8,7 +8,7 @@ describe('<MissionWrite /> test suite', () => {
     const setHeaderTitle = () => 'Test Title';
     render(
       <Router>
-        <MissionWrite setHeaderTitle={setHeaderTitle} />
+        <MissionWrite />
       </Router>
     );
   });
