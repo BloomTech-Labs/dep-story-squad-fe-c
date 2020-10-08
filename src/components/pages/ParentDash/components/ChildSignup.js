@@ -3,6 +3,9 @@ import { useHistory } from 'react-router-dom';
 import { Layout, Switch } from 'antd';
 import { addChild } from '../../../../api';
 
+import { useRecoilState } from 'recoil';
+import { currentUserState } from '../../../../state/userState';
+
 // Signup form to add children to parent account
 const ChildSignup = ({ userInfo, setUserInfo }) => {
   const { push } = useHistory();
@@ -17,9 +20,7 @@ const ChildSignup = ({ userInfo, setUserInfo }) => {
     dyslexic: false,
   });
 
-  const token = JSON.parse(window.localStorage.getItem('curUserToken'));
-  const tokenRef = useRef(token);
-  const id = JSON.parse(window.localStorage.getItem('curUserId'));
+  const { curUserToken, curUserId } = useRecoilState(currentUserState);
 
   useEffect(() => {}, [signup]);
 
@@ -40,7 +41,7 @@ const ChildSignup = ({ userInfo, setUserInfo }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    addChild(tokenRef.current, id, signup)
+    addChild(curUserToken, curUserId, signup)
       .then(res => {
         setUserInfo([...userInfo, signup]);
         console.log(res);
