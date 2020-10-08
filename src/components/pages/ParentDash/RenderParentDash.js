@@ -13,9 +13,7 @@ import { currentUserState } from '../../../state/userState';
 const RenderParentDash = () => {
   const setHeaderTitle = useSetRecoilState(headerTitle);
   const [userInfo, setUserInfo] = useState(null);
-  const [currentUser] = useRecoilState(currentUserState);
-  const token = currentUser.curUserToken;
-  const id = currentUser.curUserId;
+  const { curUserToken, curUserId } = useRecoilState(currentUserState);
 
   // Whenever this component mounts update the <Header /> title
   useEffect(() => {
@@ -26,7 +24,7 @@ const RenderParentDash = () => {
 
   useEffect(() => {
     if (token) {
-      getParentDash(token, id)
+      getParentDash(curUserToken, curUserId)
         .then(res => {
           setUserInfo(res);
         })
@@ -34,7 +32,7 @@ const RenderParentDash = () => {
           console.log(err);
         });
     }
-  }, [id, token]);
+  }, [curUserId, curUserToken]);
 
   return (
     <>
