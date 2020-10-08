@@ -1,7 +1,6 @@
 import React from 'react';
 
 const HeaderMenu = ({
-  curUser,
   authService,
   push,
   switchUser,
@@ -21,7 +20,7 @@ const HeaderMenu = ({
   // Callback that fires when Change User button in nav menu is clicked
   const changeUser = event => {
     menuBtn.click();
-    switchUser(event, curUser, push);
+    switchUser(event, push);
   };
 
   // Callback that fires when Logout button in nav menu is clicked
