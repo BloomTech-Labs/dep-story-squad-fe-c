@@ -23,7 +23,7 @@ const RenderParentDash = () => {
   }, [setHeaderTitle]);
 
   useEffect(() => {
-    if (token) {
+    if (curUserToken) {
       getParentDash(curUserToken, curUserId)
         .then(res => {
           setUserInfo(res);
