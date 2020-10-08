@@ -22,6 +22,7 @@ const RenderUploader = ({
         onPreview={onPreview}
         beforeUpload={() => false}
         multiple
+        accept={'image/png, image/jpeg'}
       >
         {fileList.length < fileLimit && 'Add Page'}
       </Upload>

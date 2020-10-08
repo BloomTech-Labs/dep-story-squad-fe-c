@@ -1,11 +1,8 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import { AccountPinModal } from '../components/common';
+import AccountPinModal from '../components/pages/AccountPinModal/AccountPinModal';
 import { BrowserRouter as Router } from 'react-router-dom';
 import ShallowRenderer from 'react-shallow-renderer';
-import { axios } from 'axios';
-
-// jest.mock('axios');
 
 describe('AccountPinModal', () => {
   window.localStorage.setItem(
@@ -47,13 +44,5 @@ describe('AccountPinModal', () => {
     fireEvent.click(buttonX);
     console.log('HERE', global.window.location.pathname);
     await expect(global.window.location.pathname).toEqual('/login');
-  });
-
-  test('modal pushes to dashboard on submit', () => {
-    const { getByLabelText } = render(
-      <Router>
-        <AccountPinModal />
-      </Router>
-    );
   });
 });

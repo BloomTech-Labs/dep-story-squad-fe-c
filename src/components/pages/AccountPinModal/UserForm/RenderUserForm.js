@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // components
-import LoadingComponent from '../LoadingComponent';
+import { LoadingComponent } from '../../../common';
 
-const RenderUserForm = ({ handleSubmit, isLoading, accounts }) => {
+const RenderUserForm = ({ handleSubmit, accounts }) => {
   return (
     <div className="userForm">
       <div className="userText">
@@ -15,22 +15,22 @@ const RenderUserForm = ({ handleSubmit, isLoading, accounts }) => {
       </div>
 
       <div className="userButton">
-        {isLoading && <LoadingComponent />}
-
-        {accounts &&
+        {!accounts ? (
+          <LoadingComponent />
+        ) : (
           accounts.map(account => {
             return (
               <button
                 data-type={account.type}
                 data-id={account.id}
-                data-name={account.name}
                 key={Math.random() * Date.now()}
                 onClick={e => handleSubmit(e)}
               >
                 {account.name}
               </button>
             );
-          })}
+          })
+        )}
       </div>
     </div>
   );

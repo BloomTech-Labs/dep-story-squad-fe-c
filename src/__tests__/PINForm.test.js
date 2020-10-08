@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import PINForm from '../components/common/accountPinModal/PINForm';
+import PinFormContainer from '../components/pages/AccountPinModal/PinForm/PinFormContainer';
 
 describe('PINForm component', () => {
   test('renders in the dom', () => {
@@ -14,7 +14,7 @@ describe('PINForm component', () => {
       })
     );
     const { getByLabelText } = render(
-      <PINForm
+      <PinFormContainer
         formSubmissionData={{
           pin: '',
         }}
