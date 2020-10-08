@@ -5,8 +5,14 @@ import { useLocalStorage } from '../../../utils/hooks';
 import { getStory } from '../../../api';
 import RenderMissionRead from './RenderMissionRead';
 
-const MissionReadContainer = ({ setHeaderTitle }) => {
-  const history = useHistory();
+import { useSetRecoilState, useRecoilValue } from 'recoil';
+import { headerTitle } from '../../../state/headerTitle';
+import { currentUserState } from '../../../state/userState';
+
+const MissionReadContainer = () => {
+  const setHeaderTitle = useSetRecoilState(headerTitle);
+
+  const { push } = useHistory();
 
   // URL to the PDF of the story to display
   const [story, setStory] = useState('');
@@ -17,30 +23,27 @@ const MissionReadContainer = ({ setHeaderTitle }) => {
   // state to track when a user has read the whole story
   const [readingDone, setReadingDone] = useState(false);
 
-  const [curUserId] = useLocalStorage('curUserId', null);
-  const [curUserToken] = useLocalStorage('curUserToken', null);
-  const id = curUserId;
-  const token = curUserToken;
+  const { curUserId, curUserToken } = useRecoilValue(currentUserState);
 
   // API call to get the PDF story
   useEffect(() => {
-    getStory(token, id)
+    getStory(curUserToken, curUserId)
       .then(res => {
         setStory(res.data.read);
       })
       .catch(err => console.log({ err }));
-  }, [token, id]);
+  }, [curUserToken, curUserId]);
 
   // sets the header title
   useEffect(() => {
-    setHeaderTitle('Read');
+    setHeaderTitle('Ready, Set... Read!');
   }, [setHeaderTitle]);
 
   // returns user to mission dashboard once story is read
   const missionComplete = e => {
     e.preventDefault();
 
-    history.push('/mission');
+    push('/mission');
   };
 
   // checks story progress and displays button after story is complete

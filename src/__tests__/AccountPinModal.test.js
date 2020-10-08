@@ -1,11 +1,9 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import { AccountPinModal } from '../components/common';
+import AccountPinModal from '../components/pages/AccountPinModal/AccountPinModal';
 import { BrowserRouter as Router } from 'react-router-dom';
 import ShallowRenderer from 'react-shallow-renderer';
-import { axios } from 'axios';
-
-// jest.mock('axios');
+import { RecoilRoot } from 'recoil';
 
 describe('AccountPinModal', () => {
   window.localStorage.setItem(
@@ -18,27 +16,13 @@ describe('AccountPinModal', () => {
     })
   );
 
-  test('modal container renders in the DOM', () => {
-    const renderer = new ShallowRenderer();
-    renderer.render(<AccountPinModal />);
-
-    const result = renderer.getRenderOutput();
-    expect(result.key).toEqual('formModalCont');
-  });
-
-  test('modal component renders in the DOM', () => {
-    const renderer = new ShallowRenderer();
-    renderer.render(<AccountPinModal />);
-    const result = renderer.getRenderOutput();
-
-    expect(result.props.children.key).toEqual('formModal');
-  });
-
   test('modal component pushes to login when canceled', async () => {
     // ant-modal-close-x
     const { getByLabelText } = render(
       <Router>
-        <AccountPinModal />
+        <RecoilRoot>
+          <AccountPinModal />
+        </RecoilRoot>
       </Router>
     );
 
@@ -47,13 +31,5 @@ describe('AccountPinModal', () => {
     fireEvent.click(buttonX);
     console.log('HERE', global.window.location.pathname);
     await expect(global.window.location.pathname).toEqual('/login');
-  });
-
-  test('modal pushes to dashboard on submit', () => {
-    const { getByLabelText } = render(
-      <Router>
-        <AccountPinModal />
-      </Router>
-    );
   });
 });

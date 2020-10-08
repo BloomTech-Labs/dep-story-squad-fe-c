@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { RecoilRoot } from 'recoil';
 import RenderParentDash from '../components/pages/ParentDash/RenderParentDash';
 import {
   DashHome,
@@ -23,7 +24,9 @@ test('ParentDash renders without errors', () => {
   );
   render(
     <Router>
-      <RenderParentDash setHeaderTitle={() => null} title={null} />
+      <RecoilRoot>
+        <RenderParentDash title={null} />
+      </RecoilRoot>
     </Router>
   );
 });
@@ -31,7 +34,9 @@ test('ParentDash renders without errors', () => {
 test('Nav renders without errors', () => {
   render(
     <Router>
-      <ParentNav />
+      <RecoilRoot>
+        <ParentNav />
+      </RecoilRoot>
     </Router>
   );
 });
@@ -39,7 +44,9 @@ test('Nav renders without errors', () => {
 test('DashHome renders without errors', () => {
   render(
     <Router>
-      <DashHome />
+      <RecoilRoot>
+        <DashHome />
+      </RecoilRoot>
     </Router>
   );
 });
@@ -47,7 +54,9 @@ test('DashHome renders without errors', () => {
 test('LinkButton renders without errors', () => {
   render(
     <Router>
-      <LinkButton to="/login/add">Here's a Button</LinkButton>
+      <RecoilRoot>
+        <LinkButton to="/login/add">Here's a Button</LinkButton>
+      </RecoilRoot>
     </Router>
   );
 });
@@ -55,7 +64,9 @@ test('LinkButton renders without errors', () => {
 test('Child signup form renders without errors', () => {
   render(
     <Router>
-      <ChildSignup />
+      <RecoilRoot>
+        <ChildSignup />
+      </RecoilRoot>
     </Router>
   );
 });
