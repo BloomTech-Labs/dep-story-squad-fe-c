@@ -1,22 +1,21 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Switch } from 'react-router-dom';
 import { SecureRoute } from '@okta/okta-react';
 import { Layout } from 'antd';
-import { ParentNav, DashHome, ChildSignup, Help } from './components';
+import { ParentNav, DashHome, ChildSignup, Help, Logout } from './components';
 import { getParentDash } from '../../../api';
 
+import { useSetRecoilState, useRecoilState } from 'recoil';
+import { headerTitle } from '../../../state/headerTitle';
+import { currentUserState } from '../../../state/userState';
+
 // ParentDash component that contains a nav bar and routes to the various components
-const RenderParentDash = props => {
-  // sets state held in <App />
-  const { setHeaderTitle } = props;
-
-  // Keeps track of the state for ParentNav
-
+const RenderParentDash = () => {
+  const setHeaderTitle = useSetRecoilState(headerTitle);
   const [userInfo, setUserInfo] = useState(null);
-
-  const token = JSON.parse(window.localStorage.getItem('curUserToken'));
-  const tokenRef = useRef(token);
-  const id = JSON.parse(window.localStorage.getItem('curUserId'));
+  const [currentUser] = useRecoilState(currentUserState);
+  const token = currentUser.curUserToken;
+  const id = currentUser.curUserId;
 
   // Whenever this component mounts update the <Header /> title
   useEffect(() => {
@@ -27,7 +26,7 @@ const RenderParentDash = props => {
 
   useEffect(() => {
     if (token) {
-      getParentDash(tokenRef.current, id)
+      getParentDash(token, id)
         .then(res => {
           setUserInfo(res);
         })
@@ -35,9 +34,7 @@ const RenderParentDash = props => {
           console.log(err);
         });
     }
-  }, []);
-
-  // Keeps track of state for Nav Bar
+  }, [id, token]);
 
   return (
     <>
@@ -58,6 +55,7 @@ const RenderParentDash = props => {
               )}
             />
             <SecureRoute exact path={'/dashboard/help'} component={Help} />
+            <SecureRoute exact path={'/dashboard/logout'} component={Logout} />
           </>
         </Switch>
       </Layout>
