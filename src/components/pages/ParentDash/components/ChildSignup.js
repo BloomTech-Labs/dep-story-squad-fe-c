@@ -20,9 +20,7 @@ const ChildSignup = ({ userInfo, setUserInfo }) => {
     dyslexic: false,
   });
 
-  const [currentUser] = useRecoilState(currentUserState);
-  const token = currentUser.curUserToken;
-  const id = currentUser.curUserId;
+  const { curUserToken, curUserId } = useRecoilState(currentUserState);
 
   useEffect(() => {}, [signup]);
 
@@ -43,7 +41,7 @@ const ChildSignup = ({ userInfo, setUserInfo }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    addChild(token, id, signup)
+    addChild(curUserToken, curUserId, signup)
       .then(res => {
         setUserInfo([...userInfo, signup]);
         console.log(res);
