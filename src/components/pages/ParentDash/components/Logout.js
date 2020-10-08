@@ -8,6 +8,7 @@ const Logout = () => {
   const { Header, Content } = Layout;
   const { authService } = useOktaAuth();
 
+  // clears the local storage that contains current user data so user can reselect at '/'
   const switchUser = () => {
     localStorage.removeItem('curUserType');
     localStorage.removeItem('curUserId');
