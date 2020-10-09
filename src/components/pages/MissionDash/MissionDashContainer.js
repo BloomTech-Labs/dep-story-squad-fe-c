@@ -7,8 +7,9 @@ import { useSetRecoilState } from 'recoil';
 import { headerTitle } from '../../../state/headerTitle';
 
 const MissionDashContainer = props => {
+  // Header title
   const setHeaderTitle = useSetRecoilState(headerTitle);
-
+  // Calback to push user to correct URL
   const { push } = useHistory();
 
   // Whenever this component mounts update the <Header /> title

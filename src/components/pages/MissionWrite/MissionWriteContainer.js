@@ -3,9 +3,8 @@ import RenderMissionWrite from './RenderMissionWrite';
 
 import { getData } from '../../../api';
 
-// recoil
+// Recoil imports
 import { useSetRecoilState, useRecoilValue } from 'recoil';
-
 import { headerTitle } from '../../../state/headerTitle';
 import { currentUserState } from '../../../state/userState';
 
