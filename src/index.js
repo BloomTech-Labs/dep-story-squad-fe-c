@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import {
   BrowserRouter as Router,
@@ -7,6 +7,9 @@ import {
   Switch,
 } from 'react-router-dom';
 import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
+
+// provider for Recoil state
+import { RecoilRoot } from 'recoil';
 
 // Styles imports
 import './styles/index.less';
@@ -28,7 +31,9 @@ import { Header } from './components/common/';
 ReactDOM.render(
   <Router>
     <React.StrictMode>
-      <App />
+      <RecoilRoot>
+        <App />
+      </RecoilRoot>
     </React.StrictMode>
   </Router>,
   document.getElementById('root')
@@ -45,46 +50,24 @@ function App() {
     history.push('/login');
   };
 
-  // This state will hold the title that appears in the <Header />
-  const [headerTitle, setHeaderTitle] = useState('Story Squad');
-
   return (
     <Security {...config} onAuthRequired={authHandler}>
-      <Header title={headerTitle} />
+      <Header />
 
       <Switch>
-        <Route
-          path="/login"
-          component={() => <LoginPage setHeaderTitle={setHeaderTitle} />}
-        />
+        <Route path="/login" component={() => <LoginPage />} />
 
         <SecureRoute path="/implicit/callback">
-          {' '}
           <LoginCallback />
         </SecureRoute>
+
         {/* any of the routes you need secured should be registered as SecureRoutes */}
         <SecureRoute path="/" exact component={() => <AccountPinModal />} />
-        <SecureRoute
-          path="/dashboard"
-          component={() => <Dash setHeaderTitle={setHeaderTitle} />}
-        />
-        <SecureRoute
-          path="/mission"
-          exact
-          component={() => <MissionDash setHeaderTitle={setHeaderTitle} />}
-        />
-        <SecureRoute
-          path="/mission/read"
-          component={() => <MissionRead setHeaderTitle={setHeaderTitle} />}
-        />
-        <SecureRoute
-          path="/mission/write"
-          component={() => <MissionWrite setHeaderTitle={setHeaderTitle} />}
-        />
-        <SecureRoute
-          path="/mission/draw"
-          component={() => <MissionDraw setHeaderTitle={setHeaderTitle} />}
-        />
+        <SecureRoute path="/dashboard" component={() => <Dash />} />
+        <SecureRoute path="/mission" exact component={() => <MissionDash />} />
+        <SecureRoute path="/mission/read" component={() => <MissionRead />} />
+        <SecureRoute path="/mission/write" component={() => <MissionWrite />} />
+        <SecureRoute path="/mission/draw" component={() => <MissionDraw />} />
         <Route component={NotFoundPage} />
       </Switch>
     </Security>

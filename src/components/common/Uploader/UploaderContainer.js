@@ -1,7 +1,6 @@
 // Uploader logic
 import React, { useState } from 'react';
 import RenderUploader from './RenderUploader';
-import { useLocalStorage } from '../../../utils/hooks';
 import { LoadingComponent } from '..';
 import { useHistory } from 'react-router-dom';
 
@@ -9,13 +8,15 @@ import { message } from 'antd';
 
 // api
 import { uploadSubmissionData } from '../../../api';
+import { useRecoilValue } from 'recoil';
+import { currentUserState } from '../../../state/userState';
 
 const Uploader = ({ fileLimit, uploadURL }) => {
   const [fileList, setFileList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errorState, setErrorState] = useState(false);
 
-  const [curUserToken] = useLocalStorage('curUserToken');
+  const { curUserToken } = useRecoilValue(currentUserState);
 
   const { push } = useHistory();
 

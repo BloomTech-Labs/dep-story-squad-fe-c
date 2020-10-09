@@ -3,9 +3,13 @@ import { useHistory } from 'react-router-dom';
 import { messagePopup } from '../../../utils/message-popup';
 import RenderMissionDash from './RenderMissionDash';
 
+import { useSetRecoilState } from 'recoil';
+import { headerTitle } from '../../../state/headerTitle';
+
 const MissionDashContainer = props => {
-  // sets state held in <App />
-  const { setHeaderTitle } = props;
+  // Header title
+  const setHeaderTitle = useSetRecoilState(headerTitle);
+  // Calback to push user to correct URL
   const { push } = useHistory();
 
   // Whenever this component mounts update the <Header /> title
@@ -14,7 +18,7 @@ const MissionDashContainer = props => {
   }, [setHeaderTitle]);
 
   // hard coded for development/testing
-  const [missionReqs, setMissionState] = useState({
+  const [missionReqs] = useState({
     read: true,
     write: false,
     draw: false,

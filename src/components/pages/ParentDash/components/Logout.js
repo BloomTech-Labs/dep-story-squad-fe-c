@@ -12,8 +12,6 @@ const Logout = () => {
   const { Header, Content } = Layout;
   const { authService } = useOktaAuth();
 
-  const curUser = ['curUserType', 'curUserId', 'curUserName'];
-
   return (
     <Layout className="parent-layout" style={{ background: 'white' }}>
       <Header className="parent-header" style={{ background: 'white' }}>
@@ -26,10 +24,7 @@ const Logout = () => {
             <button className="submitBtn" onClick={e => logout(e, authService)}>
               Logout
             </button>
-            <button
-              className="submitBtn"
-              onClick={e => switchUser(e, curUser, push)}
-            >
+            <button className="submitBtn" onClick={e => switchUser(e, push)}>
               Switch Users
             </button>
           </div>

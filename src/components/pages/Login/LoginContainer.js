@@ -5,9 +5,11 @@ import LoginTextArea from './LoginTextArea';
 
 import { config } from '../../../utils/oktaConfig';
 
+import { useResetRecoilState } from 'recoil';
+import { headerTitle } from '../../../state/headerTitle';
+
 const LoginContainer = props => {
-  // sets state held in <App />
-  const { setHeaderTitle } = props;
+  const setHeaderTitle = useResetRecoilState(headerTitle);
 
   useEffect(() => {
     const { pkce, issuer, clientId, redirectUri, scopes } = config;
@@ -53,7 +55,7 @@ const LoginContainer = props => {
 
   // Whenever this component mounts update the <Header /> title
   useEffect(() => {
-    setHeaderTitle('Story Squad');
+    setHeaderTitle();
   }, [setHeaderTitle]);
 
   return (

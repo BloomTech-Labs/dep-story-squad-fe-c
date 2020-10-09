@@ -1,24 +1,24 @@
 import React, { useRef } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { useOktaAuth } from '@okta/okta-react';
-
 import MenuButton from './MenuButton';
 import HeaderMenu from './HeaderMenu';
-
+// Recoil
+import { useRecoilValue } from 'recoil';
+import { headerTitle } from '../../state/headerTitle';
 // Utils
-import { switchUser } from '../../utils/switchUser';
 import { logout } from '../../utils/logout';
+import { switchUser } from '../../utils/switchUser';
 
-// Header element that takes in a string as a prop and displays it as the title
-const Header = ({ title }) => {
+const Header = () => {
+  // Header Title
+  const title = useRecoilValue(headerTitle);
+
   const { authService } = useOktaAuth();
   const { push } = useHistory();
   // Location is needed to hide the menu button on the Login Page
   const location = useLocation();
   const loginPage = location.pathname.match(/login/);
-
-  const curUser = ['curUserType', 'curUserId', 'curUserName'];
 
   // Refs to menu and menu button bars
   const refBarOne = useRef();
@@ -35,7 +35,7 @@ const Header = ({ title }) => {
         <h1 className="header-title">{title}</h1>
         {/* Background image of the header */}
         <img src="/images/header-image.png" alt="underwater shark cityscape" />
-
+        {/* Don't render the menu button on the Login page */}
         {loginPage ? null : (
           <>
             <MenuButton
@@ -46,7 +46,6 @@ const Header = ({ title }) => {
               refMenuBtn={refMenuBtn}
             />
             <HeaderMenu
-              curUser={curUser}
               authService={authService}
               push={push}
               switchUser={switchUser}
@@ -62,7 +61,3 @@ const Header = ({ title }) => {
 };
 
 export default Header;
-
-Header.propTypes = {
-  title: PropTypes.string,
-};

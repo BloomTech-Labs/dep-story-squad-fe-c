@@ -143,4 +143,5 @@ export {
   getStory,
   uploadSubmissionData,
   getData,
+  apiAuthPost,
 };
