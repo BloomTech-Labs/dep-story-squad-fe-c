@@ -8,25 +8,27 @@ import Column from 'antd/lib/table/Column';
 const RenderPinForm = ({ formSubmissionData, handleChange }) => {
   return (
     <div className="pinFormCont">
-      <label htmlFor="pinInput">Enter PIN:</label>
-      <PinInput
-        id="pinInput"
-        name="pinInput"
-        formValue={formSubmissionData.pin}
-        length={4}
-        focus
-        initialValue=""
-        // hide as you enter pin
-        secret
-        onChange={(value, index) => {
-          handleChange(value);
-        }}
-        type="numeric"
-        inputMode="number"
-        inputStyle={{ borderColor: '#6CEAE5' }}
-        inputFocusStyle={{ borderColor: 'blue' }}
-        autoSelect={true}
-      />
+      <label>
+        Enter PIN:
+        <PinInput
+          id="pinInput"
+          name="pinInput"
+          formValue={formSubmissionData.pin}
+          length={4}
+          focus
+          initialValue=""
+          // hide as you enter pin
+          secret
+          onChange={(value, index) => {
+            handleChange(value);
+          }}
+          type="numeric"
+          inputMode="number"
+          inputStyle={{ borderColor: '#6CEAE5' }}
+          inputFocusStyle={{ borderColor: 'blue' }}
+          autoSelect={true}
+        />
+      </label>
     </div>
   );
 };
