@@ -3,12 +3,15 @@ import { useHistory } from 'react-router-dom';
 import { messagePopup } from '../../../utils/message-popup';
 import RenderMissionDash from './RenderMissionDash';
 
-import { useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { headerTitle } from '../../../state/headerTitle';
+import { currentUserState } from '../../../state/userState';
 
 const MissionDashContainer = props => {
   // Header title
   const setHeaderTitle = useSetRecoilState(headerTitle);
+
+  const missionReqs = useRecoilValue(currentUserState).missionProgress;
   // Calback to push user to correct URL
   const { push } = useHistory();
 
@@ -17,12 +20,12 @@ const MissionDashContainer = props => {
     setHeaderTitle('Mission');
   }, [setHeaderTitle]);
 
-  // hard coded for development/testing
-  const [missionReqs] = useState({
-    read: true,
-    write: false,
-    draw: false,
-  });
+  // // hard coded for development/testing
+  // const [missionReqs] = useState({
+  //   read: true,
+  //   write: false,
+  //   draw: false,
+  // });
 
   // Checks if mission requirements have been met and then pushes
   // to mission URL or displays message popup with the requirements

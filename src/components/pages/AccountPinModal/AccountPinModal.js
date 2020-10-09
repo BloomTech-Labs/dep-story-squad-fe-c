@@ -37,8 +37,12 @@ const AccountPinModal = props => {
       .then(res => {
         // fire selector to set localstorage
 
-        setCurrentUser({ ...currentUser, curUserToken: res.data.token });
-        console.log('userState: ', curUserType);
+        setCurrentUser({
+          ...currentUser,
+          curUserToken: res.data.token,
+          missionProgress: res.data.mission_progress,
+        });
+        console.log('Res Data: ', res.data);
         history.push('/dashboard');
       })
       .catch(err => {
