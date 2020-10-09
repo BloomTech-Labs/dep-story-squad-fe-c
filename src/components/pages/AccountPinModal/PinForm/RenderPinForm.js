@@ -11,6 +11,7 @@ const RenderPinForm = ({ formSubmissionData, handleChange }) => {
       <label htmlFor="pinInput">Enter PIN:</label>
       <PinInput
         id="pinInput"
+        name="pinInput"
         formValue={formSubmissionData.pin}
         length={4}
         focus
