@@ -8,7 +8,7 @@ import Column from 'antd/lib/table/Column';
 const RenderPinForm = ({ formSubmissionData, handleChange }) => {
   return (
     <div className="pinFormCont">
-      <label>Enter PIN:</label>
+      <label htmlFor="pinInput">Enter PIN:</label>
       <PinInput
         name="pinInput"
         formValue={formSubmissionData.pin}
