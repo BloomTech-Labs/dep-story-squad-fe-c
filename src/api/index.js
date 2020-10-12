@@ -130,6 +130,17 @@ const getStory = (token, id) => {
   });
 };
 
+// Updates mission progress for the READ mission
+const updateReadProgress = (token, id) => {
+  return axios.put(
+    `${apiUrl}/child/${id}/mission/read`,
+    { progress: { read: true } },
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
+};
+
 export {
   sleep,
   getExampleData,
@@ -144,4 +155,5 @@ export {
   uploadSubmissionData,
   getData,
   apiAuthPost,
+  updateReadProgress,
 };
