@@ -22,7 +22,7 @@ const RenderPinForm = ({ formSubmissionData, handleChange }) => {
           inputMode="number"
           style={{ borderRadius: '4px' }}
           inputStyle={{ border: '3px solid #73adec', borderRadius: '7px' }}
-          inputFocusStyle={{ borderColor: '#0267c1' }}
+          inputFocusStyle={{ border: '3px solid #0267c1' }}
           autoSelect={true}
         />
       </label>

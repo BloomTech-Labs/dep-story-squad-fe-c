@@ -1,14 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { messagePopup } from '../../../utils/message-popup';
 import RenderMissionDash from './RenderMissionDash';
 
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { headerTitle } from '../../../state/headerTitle';
+import { currentUserState } from '../../../state/userState';
+import { getData } from '../../../api';
 
-const MissionDashContainer = props => {
+const MissionDashContainer = () => {
   // Header title
   const setHeaderTitle = useSetRecoilState(headerTitle);
+  // mission progress used to control checkbox images and restrict access to missions in order
+  const [curUser, setCurUser] = useRecoilState(currentUserState);
+  const { curUserId, curUserType, curUserToken } = curUser;
+  const missionReqs = curUser.missionProgress;
   // Calback to push user to correct URL
   const { push } = useHistory();
 
@@ -17,12 +23,25 @@ const MissionDashContainer = props => {
     setHeaderTitle('Mission');
   }, [setHeaderTitle]);
 
-  // hard coded for development/testing
-  const [missionReqs] = useState({
-    read: true,
-    write: false,
-    draw: false,
-  });
+  useEffect(() => {
+    getData(`${curUserType}/${curUserId}/progress`, curUserToken)
+      .then(res => {
+        const { read, write, draw } = res.data.progress;
+        console.log({ read }, { write }, { draw });
+        setCurUser({
+          ...curUser,
+          missionProgress: {
+            ...curUser.missionProgress,
+            read,
+            write,
+            draw,
+          },
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
 
   // Checks if mission requirements have been met and then pushes
   // to mission URL or displays message popup with the requirements

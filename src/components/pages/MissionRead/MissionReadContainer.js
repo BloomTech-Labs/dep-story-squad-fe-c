@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { getStory } from '../../../api';
+import { getStory, updateReadProgress } from '../../../api';
 import RenderMissionRead from './RenderMissionRead';
 // Recoil imports
-import { useSetRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import { headerTitle } from '../../../state/headerTitle';
 import { currentUserState } from '../../../state/userState';
 
@@ -12,6 +12,7 @@ const MissionReadContainer = () => {
   const setHeaderTitle = useSetRecoilState(headerTitle);
   // User details for API calls
   const { curUserId, curUserToken } = useRecoilValue(currentUserState);
+  const [curUser, setCurUser] = useRecoilState(currentUserState);
   // Callback to push user to correct URL
   const { push } = useHistory();
   // URL to the PDF of the story to display
@@ -38,6 +39,21 @@ const MissionReadContainer = () => {
   // returns user to mission dashboard once story is read
   const missionComplete = e => {
     e.preventDefault();
+
+    // Update the Read mission progress to true
+    const missionUpdate = {
+      ...curUser,
+      missionProgress: {
+        ...curUser.missionProgress,
+        read: true,
+      },
+    };
+    // Sends a PUT to the API and update the progress in the DB
+    updateReadProgress(curUserToken, curUserId).catch(err => {
+      console.log('error with read progress update: ', err);
+    });
+    // Update currentUserState mission progress
+    setCurUser(missionUpdate);
     // push back to mission dash
     push('/mission');
   };
