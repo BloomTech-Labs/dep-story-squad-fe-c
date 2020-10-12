@@ -74,6 +74,7 @@ const AccountPinModal = () => {
         data-testid="formModal"
         style={{
           width: '100%',
+          maxWidth: '100%',
         }}
         destroyOnClose
         closable

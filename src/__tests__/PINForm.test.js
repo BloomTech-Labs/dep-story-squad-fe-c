@@ -20,6 +20,6 @@ describe('PINForm component', () => {
         }}
       />
     );
-    expect(getByLabelText(/Enter Pin/i)).toBeInTheDocument();
+    expect(getByLabelText(/Enter PIN/i)).toBeInTheDocument();
   });
 });
