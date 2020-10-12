@@ -8,21 +8,21 @@ const RenderPinForm = ({ formSubmissionData, handleChange }) => {
   return (
     <div className="pinFormCont">
       <label>
-        Enter PIN:
+        <span className="label">Enter PIN:</span>
         <PinInput
           formValue={formSubmissionData.pin}
           length={4}
           focus
           initialValue=""
-          // hide as you enter pin
-          secret
+          secret // hides as you enter pin
           onChange={(value, index) => {
             handleChange(value);
           }}
           type="numeric"
           inputMode="number"
-          inputStyle={{ borderColor: '#6CEAE5' }}
-          inputFocusStyle={{ borderColor: 'blue' }}
+          style={{ borderRadius: '4px' }}
+          inputStyle={{ border: '3px solid #73adec', borderRadius: '7px' }}
+          inputFocusStyle={{ borderColor: '#0267c1' }}
           autoSelect={true}
         />
       </label>
