@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { messagePopup } from '../../../utils/message-popup';
 import RenderMissionDash from './RenderMissionDash';
@@ -6,12 +6,14 @@ import RenderMissionDash from './RenderMissionDash';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { headerTitle } from '../../../state/headerTitle';
 import { currentUserState } from '../../../state/userState';
+import { getData } from '../../../api';
 
-const MissionDashContainer = props => {
+const MissionDashContainer = () => {
   // Header title
   const setHeaderTitle = useSetRecoilState(headerTitle);
-
-  const missionReqs = useRecoilValue(currentUserState).missionProgress;
+  // mission progress used to control checkbox images and restrict access to missions in order
+  const curUser = useRecoilValue(currentUserState);
+  const missionReqs = curUser.missionProgress;
   // Calback to push user to correct URL
   const { push } = useHistory();
 
@@ -19,13 +21,6 @@ const MissionDashContainer = props => {
   useEffect(() => {
     setHeaderTitle('Mission');
   }, [setHeaderTitle]);
-
-  // // hard coded for development/testing
-  // const [missionReqs] = useState({
-  //   read: true,
-  //   write: false,
-  //   draw: false,
-  // });
 
   // Checks if mission requirements have been met and then pushes
   // to mission URL or displays message popup with the requirements

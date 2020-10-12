@@ -48,15 +48,16 @@ const Uploader = ({ fileLimit, uploadURL }) => {
     imgWindow.document.write(image.outerHTML);
   };
 
-  const updateProgress = () => {
+  const updateProgress = progress => {
     // Update the Write or Draw mission progress to true
     const missionUpdate = {
       ...curUser,
       missionProgress: {
         ...curUser.missionProgress,
-        [mission]: true,
+        [mission]: progress,
       },
     };
+    // Update currentUserState with mission progress changes
     setCurUser(missionUpdate);
   };
 
@@ -74,7 +75,7 @@ const Uploader = ({ fileLimit, uploadURL }) => {
     // endpoint, payload, userToken
     uploadSubmissionData(endpoint, formData, curUserToken)
       .then(res => {
-        updateProgress();
+        updateProgress(res.data.progress[mission]);
         console.log('submisisonRes: ', res);
         setErrorState(false);
         message.success('Upload Successful');

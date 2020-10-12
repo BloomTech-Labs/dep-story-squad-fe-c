@@ -11,7 +11,7 @@ import { Modal } from 'antd';
 import UserFormContainer from './UserForm/UserFormContainer';
 import PinFormContainer from './PinForm/PinFormContainer';
 
-const AccountPinModal = props => {
+const AccountPinModal = () => {
   const [showModal, setShowModal] = useState(true);
   const [validationError, setValidationError] = useState('');
   const history = useHistory();
@@ -42,7 +42,7 @@ const AccountPinModal = props => {
           curUserToken: res.data.token,
           missionProgress: res.data.mission_progress,
         });
-        console.log('Res Data: ', res.data);
+
         history.push('/dashboard');
       })
       .catch(err => {
