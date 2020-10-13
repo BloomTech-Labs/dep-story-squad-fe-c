@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { Layout, Switch } from 'antd';
 import { addChild } from '../../../../api';
 
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { currentUserState } from '../../../../state/userState';
 
 // Signup form to add children to parent account
@@ -20,7 +20,7 @@ const ChildSignup = ({ userInfo, setUserInfo }) => {
     dyslexic: false,
   });
 
-  const { curUserToken, curUserId } = useRecoilState(currentUserState);
+  const { curUserToken, curUserId } = useRecoilValue(currentUserState);
 
   useEffect(() => {}, [signup]);
 

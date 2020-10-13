@@ -5,7 +5,7 @@ import { Layout } from 'antd';
 import { ParentNav, DashHome, ChildSignup, Help, Logout } from './components';
 import { getParentDash } from '../../../api';
 
-import { useSetRecoilState, useRecoilState } from 'recoil';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { headerTitle } from '../../../state/headerTitle';
 import { currentUserState } from '../../../state/userState';
 
@@ -13,7 +13,7 @@ import { currentUserState } from '../../../state/userState';
 const RenderParentDash = () => {
   const setHeaderTitle = useSetRecoilState(headerTitle);
   const [userInfo, setUserInfo] = useState(null);
-  const { curUserToken, curUserId } = useRecoilState(currentUserState);
+  const { curUserToken, curUserId } = useRecoilValue(currentUserState);
 
   // Whenever this component mounts update the <Header /> title
   useEffect(() => {
