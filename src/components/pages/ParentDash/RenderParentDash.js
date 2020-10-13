@@ -5,14 +5,15 @@ import { Layout } from 'antd';
 import { ParentNav, DashHome, ChildSignup, Help, Logout } from './components';
 import { getParentDash } from '../../../api';
 
-import { useSetRecoilState, useRecoilValue } from 'recoil';
+import { useSetRecoilState, useRecoilValue, useRecoilState } from 'recoil';
 import { headerTitle } from '../../../state/headerTitle';
 import { currentUserState } from '../../../state/userState';
+import { parentInfoState } from '../../../state/parentInfo';
 
 // ParentDash component that contains a nav bar and routes to the various components
 const RenderParentDash = () => {
   const setHeaderTitle = useSetRecoilState(headerTitle);
-  const [userInfo, setUserInfo] = useState(null);
+  const [userInfo, setUserInfo] = useRecoilState(parentInfoState);
   const { curUserToken, curUserId } = useRecoilValue(currentUserState);
 
   // Whenever this component mounts update the <Header /> title

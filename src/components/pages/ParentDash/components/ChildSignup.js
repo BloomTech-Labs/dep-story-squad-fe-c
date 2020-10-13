@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Layout, Switch } from 'antd';
 import { addChild } from '../../../../api';
@@ -21,8 +21,6 @@ const ChildSignup = ({ userInfo, setUserInfo }) => {
   });
 
   const { curUserToken, curUserId } = useRecoilValue(currentUserState);
-
-  useEffect(() => {}, [signup]);
 
   const handleChange = e => {
     e.persist();
