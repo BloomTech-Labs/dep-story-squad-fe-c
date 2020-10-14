@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getAccount, getLogin } from '../../../api';
+import { getAccount, userLogin } from '../../../api';
 import { useHistory } from 'react-router-dom';
 
 // recoil
@@ -58,7 +58,7 @@ const AccountPinModal = () => {
   };
 
   useEffect(() => {
-    getLogin(authToken)
+    userLogin('auth/login')
       .then(res => {
         if (!accounts) {
           setAccounts(res.data.accounts);
