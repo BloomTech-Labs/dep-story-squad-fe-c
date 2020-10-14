@@ -16,7 +16,7 @@ const AccountPinModal = () => {
   const [validationError, setValidationError] = useState('');
   const history = useHistory();
   const [formSubmissionData, setFormSubmissionData] = useState({});
-
+  // toggles userForm off and the PinForm on after account selection
   const [formVisibility, setFormVisibility] = useState({
     userFormContainer: true,
     pinForm: false,
@@ -26,17 +26,18 @@ const AccountPinModal = () => {
     window.localStorage.getItem('okta-token-storage')
   ).idToken.value;
 
+  // current logged in user account
   const [currentUser, setCurrentUser] = useRecoilState(currentUserState);
   const { curUserId, curUserType } = currentUser;
-
+  // all child accounts associated with the main parent login account
   const [accounts, setAccounts] = useState(null);
 
+  // main submit after user account selection and pin entry are both done
   const mainSubmit = () => {
     const url = `${curUserType}/${curUserId}`;
-    getAccount(url, formSubmissionData.pin, authToken)
+    getAccount(url, formSubmissionData.pin)
       .then(res => {
-        // fire selector to set localstorage
-
+        // fire Recoil selector to set localstorage and state
         setCurrentUser({
           ...currentUser,
           curUserToken: res.data.token,

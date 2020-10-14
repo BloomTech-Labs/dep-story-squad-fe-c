@@ -3,10 +3,20 @@ import axios from 'axios';
 // we will define a bunch of API calls here.
 const apiUrl = `${process.env.REACT_APP_API_URI}`;
 
+// Okta token getter
+// used in axios funcs below
 const getAuthToken = () => {
   return (
     JSON.parse(window.localStorage.getItem('okta-token-storage')).idToken
       .value || null
+  );
+};
+
+// current logged in user token getter
+// used in axios funcs below
+const getUserToken = () => {
+  return (
+    JSON.parse(window.localStorage.getItem('currentUser')).curUserToken || null
   );
 };
 
@@ -72,21 +82,22 @@ const getAuthToken = () => {
 //  ************ ^ unused scaffolding funcs above^ ***************
 
 // gets associated accounts for logged in user
+// used in the UserForm at account selection
 const userLogin = endpoint => {
   return axios.get(`${apiUrl}/${endpoint}`, {
     headers: { Authorization: `Bearer ${getAuthToken()}` },
   });
 };
 
-// gets associated accounts for logged in user
-const getAccount = (url, pin, bearer) => {
+// gets associated accounts for logged in user after pin entry submit in the AccountPinModal
+const getAccount = (url, pin) => {
   return axios.post(
     `${apiUrl}/${url}`,
     {
       pin: `${pin}`,
     },
     {
-      headers: { Authorization: `Bearer ${bearer}` },
+      headers: { Authorization: `Bearer ${getAuthToken()}` },
     }
   );
 };
