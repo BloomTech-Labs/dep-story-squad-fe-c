@@ -6,7 +6,7 @@ import { LoadingComponent } from '../../../common';
 
 const RenderUserForm = ({ handleSubmit, accounts }) => {
   return (
-    <div className="userForm">
+    <div data-testid="userForm" className="userForm">
       <div className="userText">
         <h3>
           So we can direct you to the right place, please let us know who you
