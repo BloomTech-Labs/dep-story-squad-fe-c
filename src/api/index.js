@@ -83,16 +83,18 @@ const getUserToken = () => {
 
 // gets associated accounts for logged in user
 // used in the UserForm at account selection
+// requires okta token
 const userLogin = endpoint => {
-  return axios.get(`${apiUrl}/${endpoint}`, {
+  return axios.get(`${apiUrl}${endpoint}`, {
     headers: { Authorization: `Bearer ${getAuthToken()}` },
   });
 };
 
 // gets associated accounts for logged in user after pin entry submit in the AccountPinModal
+// requires okta token
 const getAccount = (url, pin) => {
   return axios.post(
-    `${apiUrl}/${url}`,
+    `${apiUrl}${url}`,
     {
       pin: `${pin}`,
     },
@@ -102,12 +104,22 @@ const getAccount = (url, pin) => {
   );
 };
 
-const getData = (url, userToken) => {
-  return axios.get(`${apiUrl}/${url}`, {
-    headers: { Authorization: `Bearer ${userToken}` },
+// generic get request
+const getData = endpoint => {
+  return axios.get(`${apiUrl}${endpoint}`, {
+    headers: { Authorization: `Bearer ${getUserToken()}` },
   });
 };
 
+// generic post JSON data request
+const postData = (body, endpoint) => {
+  return axios.post(`${apiUrl}${endpoint}`, body, {
+    headers: { Authorization: `Bearer ${getUserToken()}` },
+  });
+};
+
+// formData post request for images etc
+// you must use form data when submitting images
 const uploadSubmissionData = (url, formData, userToken) => {
   return axios.post(`${apiUrl}/${url}`, formData, {
     headers: {
@@ -163,5 +175,6 @@ export {
   getStory,
   uploadSubmissionData,
   getData,
+  postData,
   updateReadProgress,
 };

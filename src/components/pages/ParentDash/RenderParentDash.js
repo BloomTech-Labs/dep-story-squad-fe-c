@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Switch } from 'react-router-dom';
 import { SecureRoute } from '@okta/okta-react';
 import { Layout } from 'antd';
@@ -27,7 +27,7 @@ const RenderParentDash = () => {
     if (curUserToken) {
       getParentDash(curUserToken, curUserId)
         .then(res => {
-          setUserInfo(res);
+          setUserInfo(res.data.childData);
         })
         .catch(err => {
           console.log(err);

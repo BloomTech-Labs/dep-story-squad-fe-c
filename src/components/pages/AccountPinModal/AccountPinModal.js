@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getAccount, userLogin } from '../../../api';
 import { useHistory } from 'react-router-dom';
 
-// recoil
+// Recoil State Management
 import { useRecoilState } from 'recoil';
 import { currentUserState } from '../../../state/userState';
 
@@ -22,10 +22,6 @@ const AccountPinModal = () => {
     pinForm: false,
   });
 
-  const authToken = JSON.parse(
-    window.localStorage.getItem('okta-token-storage')
-  ).idToken.value;
-
   // current logged in user account
   const [currentUser, setCurrentUser] = useRecoilState(currentUserState);
   const { curUserId, curUserType } = currentUser;
@@ -34,7 +30,7 @@ const AccountPinModal = () => {
 
   // main submit after user account selection and pin entry are both done
   const mainSubmit = () => {
-    const url = `${curUserType}/${curUserId}`;
+    const url = `/${curUserType}/${curUserId}`;
     getAccount(url, formSubmissionData.pin)
       .then(res => {
         // fire Recoil selector to set localstorage and state
@@ -59,7 +55,8 @@ const AccountPinModal = () => {
   };
 
   useEffect(() => {
-    userLogin('auth/login')
+    // grabs all associated child accounts to populate the buttons for account selection
+    userLogin('/auth/login')
       .then(res => {
         if (!accounts) {
           setAccounts(res.data.accounts);
@@ -87,13 +84,11 @@ const AccountPinModal = () => {
           <UserFormContainer
             accounts={accounts}
             setFormVisibility={setFormVisibility}
-            setValidationError={setValidationError}
           />
         )}
 
         {formVisibility.pinForm && (
           <PinFormContainer
-            authToken={authToken}
             mainSubmit={mainSubmit}
             formSubmissionData={formSubmissionData}
             setFormSubmissionData={setFormSubmissionData}
