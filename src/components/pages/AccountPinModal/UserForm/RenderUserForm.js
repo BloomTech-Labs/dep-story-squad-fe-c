@@ -38,7 +38,6 @@ const RenderUserForm = ({ handleSubmit, accounts }) => {
 
 RenderUserForm.propTypes = {
   handleSubmit: PropTypes.func,
-  isLoading: PropTypes.bool,
   accounts: PropTypes.array,
 };
 
