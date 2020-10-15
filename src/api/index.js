@@ -120,11 +120,11 @@ const postData = (body, endpoint) => {
 
 // formData post request for images etc
 // you must use form data when submitting images
-const uploadSubmissionData = (url, formData, userToken) => {
+const uploadSubmissionData = (url, formData) => {
   return axios.post(`${apiUrl}/${url}`, formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
-      Authorization: `Bearer ${userToken}`,
+      Authorization: `Bearer ${getUserToken()}`,
     },
   });
 };
@@ -149,11 +149,11 @@ const deleteChild = (token, id, childId) => {
   });
 };
 
-const getStory = (token, id) => {
-  return axios.get(`${apiUrl}/child/${id}/mission`, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-};
+// const getStory = (token, id) => {
+//   return axios.get(`${apiUrl}/child/${id}/mission`, {
+//     headers: { Authorization: `Bearer ${token}` },
+//   });
+// };
 
 // Updates mission progress for the READ mission
 const updateReadProgress = (token, id) => {
@@ -172,7 +172,6 @@ export {
   getParentDash,
   addChild,
   deleteChild,
-  getStory,
   uploadSubmissionData,
   getData,
   postData,
