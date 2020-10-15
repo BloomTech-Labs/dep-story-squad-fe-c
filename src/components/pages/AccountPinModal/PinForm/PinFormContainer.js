@@ -8,6 +8,7 @@ const PinFomContainer = ({
   formSubmissionData,
   setFormSubmissionData,
   mainSubmit,
+  setValidationError,
 }) => {
   const handleChange = value => {
     // sends form data to modal component

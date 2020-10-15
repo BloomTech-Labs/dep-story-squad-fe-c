@@ -3,91 +3,123 @@ import axios from 'axios';
 // we will define a bunch of API calls here.
 const apiUrl = `${process.env.REACT_APP_API_URI}`;
 
-const sleep = time =>
-  new Promise(resolve => {
-    setTimeout(resolve, time);
-  });
-
-const getExampleData = () => {
-  return axios
-    .get(`https://jsonplaceholder.typicode.com/photos?albumId=1`)
-    .then(response => response.data);
-};
-
-const getAuthHeader = authState => {
-  if (!authState.isAuthenticated) {
-    throw new Error('Not authenticated');
-  }
-  return { Authorization: `Bearer ${authState.idToken}` };
-};
-
-const getDSData = (url, authState) => {
-  // here's another way you can compose together your API calls.
-  // Note the use of GetAuthHeader here is a little different than in the getProfileData call.
-  const headers = getAuthHeader(authState);
-  if (!url) {
-    throw new Error('No URL provided');
-  }
-  return axios
-    .get(url, { headers })
-    .then(res => JSON.parse(res.data))
-    .catch(err => err);
-};
-
-const apiAuthGet = authHeader => {
-  return axios.get(apiUrl, { headers: authHeader });
-};
-
-const apiAuthPost = (
-  endpoint,
-  payload,
-  contentType = 'application/json',
-  authHeader
-) => {
-  return axios.post(
-    `${apiUrl}/${endpoint}`,
-    { payload },
-    { headers: { ContentType: contentType }, authHeader }
+// Okta token getter
+// used in axios funcs below
+const getAuthToken = () => {
+  return (
+    JSON.parse(window.localStorage.getItem('okta-token-storage')).idToken
+      .value || null
   );
 };
 
-const getProfileData = authState => {
-  try {
-    return apiAuthGet(getAuthHeader(authState)).then(response => response.data);
-  } catch (error) {
-    return new Promise(() => {
-      console.log(error);
-      return [];
-    });
-  }
+// current logged in user token getter
+// used in axios funcs below
+const getUserToken = () => {
+  return (
+    JSON.parse(window.localStorage.getItem('currentUser')).curUserToken || null
+  );
 };
 
+// **** These methods were provided in intitial scaffolding but never got used ****
+// const sleep = time =>
+//   new Promise(resolve => {
+//     setTimeout(resolve, time);
+//   });
+
+// const getExampleData = () => {
+//   return axios
+//     .get(`https://jsonplaceholder.typicode.com/photos?albumId=1`)
+//     .then(response => response.data);
+// };
+
+// const getAuthHeader = authState => {
+//   if (!authState.isAuthenticated) {
+//     throw new Error('Not authenticated');
+//   }
+//   return { Authorization: `Bearer ${authState.idToken}` };
+// };
+
+// const getDSData = (url, authState) => {
+// here's another way you can compose together your API calls.
+// Note the use of GetAuthHeader here is a little different than in the getProfileData call.
+//   const headers = getAuthHeader(authState);
+//   if (!url) {
+//     throw new Error('No URL provided');
+//   }
+//   return axios
+//     .get(url, { headers })
+//     .then(res => JSON.parse(res.data))
+//     .catch(err => err);
+// };
+
+// const apiAuthGet = authHeader => {
+//   return axios.get(apiUrl, { headers: authHeader });
+// };
+
+// const apiAuthPost = (
+//   endpoint,
+//   payload,
+//   contentType = 'application/json',
+//   authHeader
+// ) => {
+//   return axios.post(
+//     `${apiUrl}/${endpoint}`,
+//     { payload },
+//     { headers: { ContentType: contentType }, authHeader }
+//   );
+// };
+
+// const getProfileData = authState => {
+//   try {
+//     return apiAuthGet(getAuthHeader(authState)).then(response => response.data);
+//   } catch (error) {
+//     return new Promise(() => {
+//       console.log(error);
+//       return [];
+//     });
+//   }
+// };
+//  ************ ^ unused scaffolding funcs above^ ***************
+
 // gets associated accounts for logged in user
-const getLogin = bearer => {
-  return axios.get(`${apiUrl}/auth/login`, {
-    headers: { Authorization: `Bearer ${bearer}` },
+// used in the UserForm at account selection
+// requires okta token
+const userLogin = endpoint => {
+  return axios.get(`${apiUrl}${endpoint}`, {
+    headers: { Authorization: `Bearer ${getAuthToken()}` },
   });
 };
 
-// gets associated accounts for logged in user
-const getAccount = (url, pin, bearer) => {
+// gets associated accounts for logged in user after pin entry submit in the AccountPinModal
+// requires okta token
+const getAccount = (url, pin) => {
   return axios.post(
-    `${apiUrl}/${url}`,
+    `${apiUrl}${url}`,
     {
       pin: `${pin}`,
     },
     {
-      headers: { Authorization: `Bearer ${bearer}` },
+      headers: { Authorization: `Bearer ${getAuthToken()}` },
     }
   );
 };
 
-const getData = (url, userToken) => {
-  return axios.get(`${apiUrl}/${url}`, {
-    headers: { Authorization: `Bearer ${userToken}` },
+// generic get request
+const getData = endpoint => {
+  return axios.get(`${apiUrl}${endpoint}`, {
+    headers: { Authorization: `Bearer ${getUserToken()}` },
   });
 };
 
+// generic post JSON data request
+const postData = (body, endpoint) => {
+  return axios.post(`${apiUrl}${endpoint}`, body, {
+    headers: { Authorization: `Bearer ${getUserToken()}` },
+  });
+};
+
+// formData post request for images etc
+// you must use form data when submitting images
 const uploadSubmissionData = (url, formData, userToken) => {
   return axios.post(`${apiUrl}/${url}`, formData, {
     headers: {
@@ -99,16 +131,9 @@ const uploadSubmissionData = (url, formData, userToken) => {
 
 // gets data associated with the parent dash
 const getParentDash = (token, id) => {
-  return axios
-    .get(`${apiUrl}/parent/${id}/dashboard`, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-    .then(res => {
-      return res.data.childData;
-    })
-    .catch(err => {
-      return err;
-    });
+  return axios.get(`${apiUrl}/parent/${id}/dashboard`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
 };
 
 // posts a child to the database
@@ -142,11 +167,7 @@ const updateReadProgress = (token, id) => {
 };
 
 export {
-  sleep,
-  getExampleData,
-  getProfileData,
-  getDSData,
-  getLogin,
+  userLogin,
   getAccount,
   getParentDash,
   addChild,
@@ -154,6 +175,6 @@ export {
   getStory,
   uploadSubmissionData,
   getData,
-  apiAuthPost,
+  postData,
   updateReadProgress,
 };
