@@ -22,7 +22,7 @@ const MissionWriteContainer = () => {
 
   // Get the text for mission prompt
   useEffect(() => {
-    getData(`child/${curUserId}/mission`, curUserToken).then(res => {
+    getData(`/child/${curUserId}/mission`).then(res => {
       setMissionPrompt(res.data.write);
     });
   }, [curUserId, curUserToken, setMissionPrompt]);
