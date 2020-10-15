@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { messagePopup } from '../../../utils/message-popup';
 import RenderMissionDash from './RenderMissionDash';
@@ -15,6 +15,7 @@ const MissionDashContainer = () => {
   const [curUser, setCurUser] = useRecoilState(currentUserState);
   const { curUserId, curUserType } = curUser;
   const missionReqs = curUser.missionProgress;
+  const refMissionReqs = useRef(curUser.missionProgress);
   // Calback to push user to correct URL
   const { push } = useHistory();
 
@@ -31,7 +32,7 @@ const MissionDashContainer = () => {
         setCurUser({
           ...curUser,
           missionProgress: {
-            ...curUser.missionProgress,
+            ...refMissionReqs.current,
             read,
             write,
             draw,
@@ -41,7 +42,7 @@ const MissionDashContainer = () => {
       .catch(err => {
         console.log(err);
       });
-  }, []);
+  }, [refMissionReqs.current]);
 
   // Checks if mission requirements have been met and then pushes
   // to mission URL or displays message popup with the requirements

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { getStory, updateReadProgress } from '../../../api';
+import { getData, putData } from '../../../api';
 import RenderMissionRead from './RenderMissionRead';
 // Recoil imports
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
@@ -22,14 +22,16 @@ const MissionReadContainer = () => {
   // state to track when a user has read the whole story
   const [readingDone, setReadingDone] = useState(false);
 
+  const endpoint = `/child/${curUserId}/mission`;
+
   // API call to get the PDF story
   useEffect(() => {
-    getStory(curUserToken, curUserId)
+    getData(endpoint)
       .then(res => {
         setStory(res.data.read);
       })
       .catch(err => console.log({ err }));
-  }, [curUserToken, curUserId]);
+  }, [curUserId]);
 
   // sets the header title
   useEffect(() => {
@@ -48,8 +50,10 @@ const MissionReadContainer = () => {
         read: true,
       },
     };
+    const body = { progress: { read: true } };
+    const endpoint = `/child/${curUserId}/mission/read`;
     // Sends a PUT to the API and update the progress in the DB
-    updateReadProgress(curUserToken, curUserId).catch(err => {
+    putData(endpoint, body).catch(err => {
       console.log('error with read progress update: ', err);
     });
     // Update currentUserState mission progress

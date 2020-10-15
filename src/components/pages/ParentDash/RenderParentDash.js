@@ -3,7 +3,7 @@ import { Switch } from 'react-router-dom';
 import { SecureRoute } from '@okta/okta-react';
 import { Layout } from 'antd';
 import { ParentNav, DashHome, ChildSignup, Help, Logout } from './components';
-import { getParentDash } from '../../../api';
+import { getData } from '../../../api';
 
 import { useSetRecoilState, useRecoilValue, useRecoilState } from 'recoil';
 import { headerTitle } from '../../../state/headerTitle';
@@ -23,9 +23,10 @@ const RenderParentDash = () => {
     setHeaderTitle(null);
   }, [setHeaderTitle]);
 
+  const endpoint = `/parent/${curUserId}/dashboard`;
   useEffect(() => {
     if (curUserToken) {
-      getParentDash(curUserToken, curUserId)
+      getData(endpoint)
         .then(res => {
           setUserInfo(res.data.childData);
         })
@@ -33,7 +34,7 @@ const RenderParentDash = () => {
           console.log(err);
         });
     }
-  }, [curUserId, curUserToken]);
+  }, [curUserToken]);
 
   return (
     <>

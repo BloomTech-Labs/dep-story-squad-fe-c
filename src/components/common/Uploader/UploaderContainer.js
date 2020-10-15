@@ -73,7 +73,7 @@ const Uploader = ({ fileLimit, uploadURL }) => {
       formData.append('image', file.originFileObj);
     });
     // endpoint, payload, userToken
-    uploadSubmissionData(endpoint, formData, curUserToken)
+    uploadSubmissionData(endpoint, formData)
       .then(res => {
         updateProgress(res.data.progress[mission]);
         console.log('submisisonRes: ', res);
