@@ -42,7 +42,6 @@ const ChildSignup = ({ userInfo, setUserInfo }) => {
     postData(signup, endpoint)
       .then(res => {
         setUserInfo([...userInfo, signup]);
-        console.log(res);
       })
       .catch(err => {
         console.log(err);

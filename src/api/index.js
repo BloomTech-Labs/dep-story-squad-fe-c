@@ -129,12 +129,12 @@ const uploadSubmissionData = (url, formData) => {
   });
 };
 
-// gets data associated with the parent dash
-const getParentDash = (token, id) => {
-  return axios.get(`${apiUrl}/parent/${id}/dashboard`, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-};
+// // gets data associated with the parent dash
+// const getParentDash = (token, id) => {
+//   return axios.get(`${apiUrl}/parent/${id}/dashboard`, {
+//     headers: { Authorization: `Bearer ${token}` },
+//   });
+// };
 
 // posts a child to the database
 const addChild = (token, id, body) => {
@@ -169,7 +169,6 @@ const updateReadProgress = (token, id) => {
 export {
   userLogin,
   getAccount,
-  getParentDash,
   addChild,
   deleteChild,
   uploadSubmissionData,
