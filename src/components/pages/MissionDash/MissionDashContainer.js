@@ -13,7 +13,7 @@ const MissionDashContainer = () => {
   const setHeaderTitle = useSetRecoilState(headerTitle);
   // mission progress used to control checkbox images and restrict access to missions in order
   const [curUser, setCurUser] = useRecoilState(currentUserState);
-  const { curUserId, curUserType, curUserToken } = curUser;
+  const { curUserId, curUserType } = curUser;
   const missionReqs = curUser.missionProgress;
   // Calback to push user to correct URL
   const { push } = useHistory();
@@ -24,7 +24,7 @@ const MissionDashContainer = () => {
   }, [setHeaderTitle]);
 
   useEffect(() => {
-    getData(`${curUserType}/${curUserId}/progress`, curUserToken)
+    getData(`/${curUserType}/${curUserId}/progress`)
       .then(res => {
         const { read, write, draw } = res.data.progress;
         console.log({ read }, { write }, { draw });
