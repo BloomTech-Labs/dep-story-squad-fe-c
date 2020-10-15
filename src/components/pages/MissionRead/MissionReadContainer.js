@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { getData, updateReadProgress } from '../../../api';
+import { getData, putData } from '../../../api';
 import RenderMissionRead from './RenderMissionRead';
 // Recoil imports
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
@@ -50,8 +50,10 @@ const MissionReadContainer = () => {
         read: true,
       },
     };
+    const body = { progress: { read: true } };
+    const endpoint = `/child/${curUserId}/mission/read`;
     // Sends a PUT to the API and update the progress in the DB
-    updateReadProgress(curUserToken, curUserId).catch(err => {
+    putData(endpoint, body).catch(err => {
       console.log('error with read progress update: ', err);
     });
     // Update currentUserState mission progress

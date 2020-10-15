@@ -118,6 +118,12 @@ const postData = (body, endpoint) => {
   });
 };
 
+const putData = (endpoint, body) => {
+  return axios.put(`${apiUrl}${endpoint}`, body, {
+    headers: { Authorization: `Bearer ${getUserToken()}` },
+  });
+};
+
 // formData post request for images etc
 // you must use form data when submitting images
 const uploadSubmissionData = (url, formData) => {
@@ -174,5 +180,6 @@ export {
   uploadSubmissionData,
   getData,
   postData,
+  putData,
   updateReadProgress,
 };
