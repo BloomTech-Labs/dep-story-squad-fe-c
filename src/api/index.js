@@ -70,12 +70,14 @@ const postData = (body, endpoint) => {
   });
 };
 
+// generic put request for standard JSON data
 const putData = (endpoint, body) => {
   return axios.put(`${apiUrl}${endpoint}`, body, {
     headers: { Authorization: `Bearer ${getUserToken()}` },
   });
 };
 
+// generic delete request
 const deleteData = endpoint => {
   return axios.delete(`${apiUrl}${endpoint}`, {
     headers: { Authorization: `Bearer ${getUserToken()}` },
