@@ -34,7 +34,7 @@ const RenderParentDash = () => {
           console.log(err);
         });
     }
-  }, [curUserToken]);
+  }, [curUserToken, endpoint, setUserInfo]);
 
   return (
     <>

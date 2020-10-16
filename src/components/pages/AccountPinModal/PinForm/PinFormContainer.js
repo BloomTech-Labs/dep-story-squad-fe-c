@@ -22,7 +22,7 @@ const PinFomContainer = ({
     if (formSubmissionData.pin && formSubmissionData.pin.length === 4) {
       mainSubmit();
     }
-  }, [formSubmissionData]);
+  }, [formSubmissionData, mainSubmit]);
 
   return (
     <>
