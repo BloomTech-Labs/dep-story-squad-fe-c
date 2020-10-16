@@ -5,11 +5,19 @@ import LoginTextArea from './LoginTextArea';
 
 import { config } from '../../../utils/oktaConfig';
 
+// utils
+import { checkTokenExpired } from '../../../utils/checkTokenExpired';
+
 import { useResetRecoilState } from 'recoil';
 import { headerTitle } from '../../../state/headerTitle';
 
 const LoginContainer = props => {
   const setHeaderTitle = useResetRecoilState(headerTitle);
+
+  // check if Okta token is expired
+  if (checkTokenExpired()) {
+    window.localStorage.clear();
+  }
 
   useEffect(() => {
     const { pkce, issuer, clientId, redirectUri, scopes } = config;
