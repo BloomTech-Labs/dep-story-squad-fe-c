@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 const RenderPinForm = ({ changeHandler, formData, ref_1, ref_2, ref_3 }) => {
   return (
     <form className="pinFormCont">
-      <label>Enter PIN:</label>
+      <label htmlFor="pinInput">Enter PIN:</label>
 
       <div className="inputCont">
         <input
@@ -14,6 +14,7 @@ const RenderPinForm = ({ changeHandler, formData, ref_1, ref_2, ref_3 }) => {
           data-testid="inputOne"
           type="password"
           name="0"
+          id="pinInput"
           value={formData[0]}
           onChange={e => changeHandler(e)}
           maxLength="1"

@@ -23,7 +23,7 @@ const AccountPinModal = () => {
   });
 
   // current logged in user account
-  const [currentUser, setCurrentUser] = useRecoilState(currentUserState);
+  const [currentUser] = useRecoilState(currentUserState);
   const { curUserId, curUserType } = currentUser;
 
   // all child accounts associated with the main parent login account
@@ -69,7 +69,6 @@ const AccountPinModal = () => {
 
         {formVisibility.pinForm && (
           <PinFormContainer
-            setCurrentUser={setCurrentUser}
             setValidationError={setValidationError}
             curUserType={curUserType}
             curUserId={curUserId}
