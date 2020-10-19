@@ -69,6 +69,7 @@ const AccountPinModal = () => {
 
         {formVisibility.pinForm && (
           <PinFormContainer
+            validationError={validationError}
             setValidationError={setValidationError}
             curUserType={curUserType}
             curUserId={curUserId}

@@ -15,6 +15,7 @@ import { getAccount } from '../../../../api';
 const PinFomContainer = ({
   curUserType,
   curUserId,
+  validationError,
   setValidationError,
   history,
 }) => {
@@ -44,8 +45,9 @@ const PinFomContainer = ({
             curUserToken: res.data.token,
             missionProgress: res.data.mission_progress,
           });
-
-          history.push('/dashboard');
+          if (!validationError) {
+            history.push('/dashboard');
+          }
         })
         .catch(err => {
           if (err) {
