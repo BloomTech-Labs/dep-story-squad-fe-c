@@ -17,7 +17,6 @@ const Uploader = ({ fileLimit, uploadURL }) => {
   const [errorState, setErrorState] = useState(false);
 
   const [curUser, setCurUser] = useRecoilState(currentUserState);
-  const curUserToken = curUser.curUserToken;
 
   const mission = useLocation().pathname.match(/write|draw/)[0];
 

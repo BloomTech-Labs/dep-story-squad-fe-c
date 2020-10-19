@@ -28,7 +28,6 @@ const MissionDashContainer = () => {
     getData(`/${curUserType}/${curUserId}/progress`)
       .then(res => {
         const { read, write, draw } = res.data.progress;
-        console.log({ read }, { write }, { draw });
         setCurUser({
           ...curUser,
           missionProgress: {
@@ -42,7 +41,7 @@ const MissionDashContainer = () => {
       .catch(err => {
         console.log(err);
       });
-  }, [refMissionReqs.current]);
+  }, [curUser, curUserId, curUserType, setCurUser]);
 
   // Checks if mission requirements have been met and then pushes
   // to mission URL or displays message popup with the requirements

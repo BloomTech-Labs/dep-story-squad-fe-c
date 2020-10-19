@@ -4,6 +4,7 @@ import { messagePopup } from '../../../../utils/message-popup';
 const ChildCard = ({ child }) => {
   return (
     <div className="Card Child">
+      {/* eslint-disable-next-line */}
       <a
         className="cancel"
         onClick={() =>

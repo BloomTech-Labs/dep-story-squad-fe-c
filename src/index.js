@@ -11,9 +11,6 @@ import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 // provider for Recoil state
 import { RecoilRoot } from 'recoil';
 
-// utils
-import { checkTokenExpired } from './utils/checkTokenExpired';
-
 // Styles imports
 import './styles/index.less';
 import 'antd/dist/antd.less';
@@ -52,11 +49,6 @@ function App() {
     // It'll automatically check if userToken is available and push back to login if not :)
     history.push('/login');
   };
-
-  // check if Okta token is expired
-  if (checkTokenExpired()) {
-    window.localStorage.clear();
-  }
 
   return (
     <Security {...config} onAuthRequired={authHandler}>

@@ -11,7 +11,7 @@ const MissionReadContainer = () => {
   // Header Title
   const setHeaderTitle = useSetRecoilState(headerTitle);
   // User details for API calls
-  const { curUserId, curUserToken } = useRecoilValue(currentUserState);
+  const { curUserId } = useRecoilValue(currentUserState);
   const [curUser, setCurUser] = useRecoilState(currentUserState);
   // Callback to push user to correct URL
   const { push } = useHistory();
@@ -31,7 +31,7 @@ const MissionReadContainer = () => {
         setStory(res.data.read);
       })
       .catch(err => console.log({ err }));
-  }, [curUserId]);
+  }, [curUserId, endpoint]);
 
   // sets the header title
   useEffect(() => {
