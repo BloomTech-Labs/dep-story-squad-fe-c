@@ -2,6 +2,9 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import PinFormContainer from '../components/pages/AccountPinModal/PinForm/PinFormContainer';
 
+// recoil
+import { RecoilRoot } from 'recoil';
+
 describe('PINForm component', () => {
   test('renders in the dom', () => {
     window.localStorage.setItem(
@@ -14,11 +17,16 @@ describe('PINForm component', () => {
       })
     );
     const { getByLabelText } = render(
-      <PinFormContainer
-        formSubmissionData={{
-          pin: '',
-        }}
-      />
+      <RecoilRoot>
+        <PinFormContainer
+          setValidationError={() => {
+            return;
+          }}
+          curUserType={'parent'}
+          curUserId={'1'}
+          history=""
+        />
+      </RecoilRoot>
     );
     expect(getByLabelText(/Enter PIN/i)).toBeInTheDocument();
   });

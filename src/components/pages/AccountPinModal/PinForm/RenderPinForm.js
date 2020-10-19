@@ -1,38 +1,65 @@
 // Render pin, JSX goes here, logic in PinFormContainer
 
 import React from 'react';
-import PinInput from 'react-pin-input';
 import PropTypes from 'prop-types';
 
-const RenderPinForm = ({ formSubmissionData, handleChange }) => {
+const RenderPinForm = ({ changeHandler, formData, ref_1, ref_2, ref_3 }) => {
   return (
-    <div className="pinFormCont">
-      <label>
-        <span className="label">Enter PIN:</span>
-        <PinInput
-          formValue={formSubmissionData.pin}
-          length={4}
-          focus
-          initialValue=""
-          secret // hides as you enter pin
-          onChange={(value, index) => {
-            handleChange(value);
-          }}
-          type="numeric"
-          inputMode="number"
-          style={{ borderRadius: '4px' }}
-          inputStyle={{ border: '3px solid #73adec', borderRadius: '7px' }}
-          inputFocusStyle={{ border: '3px solid #0267c1' }}
-          autoSelect={true}
+    <form className="pinFormCont">
+      <label htmlFor="pinInput">Enter PIN:</label>
+
+      <div className="inputCont">
+        <input
+          autoFocus
+          data-testid="inputOne"
+          type="password"
+          name="0"
+          id="pinInput"
+          value={formData[0]}
+          onChange={e => changeHandler(e)}
+          maxLength="1"
         />
-      </label>
-    </div>
+
+        <input
+          ref={ref_1}
+          data-testid="inputOne"
+          type="password"
+          name="1"
+          value={formData[1]}
+          onChange={e => changeHandler(e)}
+          maxLength="1"
+        />
+
+        <input
+          ref={ref_2}
+          data-testid="inputOne"
+          type="password"
+          name="2"
+          value={formData[2]}
+          onChange={e => changeHandler(e)}
+          maxLength="1"
+        />
+
+        <input
+          ref={ref_3}
+          data-testid="inputOne"
+          type="password"
+          name="3"
+          value={formData[3]}
+          onChange={e => changeHandler(e)}
+          maxLength="1"
+        />
+      </div>
+    </form>
   );
 };
 
 RenderPinForm.propTypes = {
-  formSubmissionData: PropTypes.object,
-  handleChange: PropTypes.func,
+  formData: PropTypes.array,
+  changeHandler: PropTypes.func,
+  ref_1: PropTypes.node,
+  ref_2: PropTypes.node,
+  ref_3: PropTypes.node,
 };
 
 export default RenderPinForm;

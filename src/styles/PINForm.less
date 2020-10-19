@@ -11,7 +11,34 @@
   justify-content: center;
   align-items: center;
 
-  .label{
+  label {
     font-size: 1.6rem;
+    width: 100%;
+  }
+
+  .inputCont {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    input {
+      outline: none;
+      font-size: 1.3rem;
+      border: 3px solid @lightBlue;
+      border-radius: 7px;
+      width: 55px;
+      height: 55px;
+      margin-right: 2%;
+      text-align: center;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &:focus-within {
+        border-color: @btn-blue;
+      }
+    }
   }
 }

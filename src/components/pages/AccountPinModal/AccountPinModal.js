@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getAccount, userLogin } from '../../../api';
+import { userLogin } from '../../../api';
 import { useHistory } from 'react-router-dom';
 
 // Recoil State Management
@@ -15,7 +15,7 @@ const AccountPinModal = () => {
   const [showModal, setShowModal] = useState(true);
   const [validationError, setValidationError] = useState('');
   const history = useHistory();
-  const [formSubmissionData, setFormSubmissionData] = useState({});
+
   // toggles userForm off and the PinForm on after account selection
   const [formVisibility, setFormVisibility] = useState({
     userFormContainer: true,
@@ -23,31 +23,11 @@ const AccountPinModal = () => {
   });
 
   // current logged in user account
-  const [currentUser, setCurrentUser] = useRecoilState(currentUserState);
+  const [currentUser] = useRecoilState(currentUserState);
   const { curUserId, curUserType } = currentUser;
+
   // all child accounts associated with the main parent login account
   const [accounts, setAccounts] = useState(null);
-
-  // main submit after user account selection and pin entry are both done
-  const mainSubmit = () => {
-    const url = `/${curUserType}/${curUserId}`;
-    getAccount(url, formSubmissionData.pin)
-      .then(res => {
-        // fire Recoil selector to set localstorage and state
-        setCurrentUser({
-          ...currentUser,
-          curUserToken: res.data.token,
-          missionProgress: res.data.mission_progress,
-        });
-
-        history.push('/dashboard');
-      })
-      .catch(err => {
-        if (err) {
-          setValidationError('Error: Invalid PIN');
-        }
-      });
-  };
 
   const handleCancel = () => {
     history.push('/login');
@@ -89,10 +69,11 @@ const AccountPinModal = () => {
 
         {formVisibility.pinForm && (
           <PinFormContainer
-            mainSubmit={mainSubmit}
-            formSubmissionData={formSubmissionData}
-            setFormSubmissionData={setFormSubmissionData}
+            validationError={validationError}
             setValidationError={setValidationError}
+            curUserType={curUserType}
+            curUserId={curUserId}
+            history={history}
           />
         )}
 
