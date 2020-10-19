@@ -1,7 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import PinFormContainer from '../components/pages/AccountPinModal/PinForm/PinFormContainer';
-import { BrowerRouter as Router } from 'react-router-dom';
 
 // recoil
 import { RecoilRoot } from 'recoil';
