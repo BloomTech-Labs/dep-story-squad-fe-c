@@ -3,13 +3,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const RenderPinForm = ({ changeHandler, formData, ref_1, ref_2, ref_3 }) => {
+const RenderPinForm = ({
+  changeHandler,
+  formData,
+  ref_start,
+  ref_1,
+  ref_2,
+  ref_3,
+}) => {
   return (
     <form className="pinFormCont">
       <label htmlFor="pinInput">Enter PIN:</label>
 
       <div className="inputCont">
         <input
+          ref={ref_start}
           autoFocus
           data-testid="inputOne"
           type="password"

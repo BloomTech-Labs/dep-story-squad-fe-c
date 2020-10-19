@@ -24,6 +24,7 @@ const PinFomContainer = ({
   const [currentUser, setCurrentUser] = useRecoilState(currentUserState);
 
   // references to the input elements
+  const ref_start = useRef();
   const ref_1 = useRef();
   const ref_2 = useRef();
   const ref_3 = useRef();
@@ -36,6 +37,7 @@ const PinFomContainer = ({
 
   const handleSubmit = () => {
     if (formString.length === 4) {
+      setValidationError('');
       const url = `/${curUserType}/${curUserId}`;
       getAccount(url, formString)
         .then(res => {
@@ -52,12 +54,19 @@ const PinFomContainer = ({
         .catch(err => {
           if (err) {
             setValidationError('Error: Invalid PIN');
+            // reset all form state
+            setFormData(['', '', '', '']);
+            setFormString(formData.join(''));
+            ref_start.current.focus();
           }
         });
     }
   };
 
   const changeHandler = e => {
+    if (validationError) {
+      setValidationError('');
+    }
     const { name, value } = e.target;
     // restrict to nums(0-9) only
     if (value.match(/^[0-9]*$/)) {
@@ -86,6 +95,7 @@ const PinFomContainer = ({
   return (
     <>
       <RenderPinForm
+        ref_start={ref_start}
         ref_1={ref_1}
         ref_2={ref_2}
         ref_3={ref_3}
