@@ -1,14 +1,12 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import PinFormContainer from '../components/pages/AccountPinModal/PinForm/PinFormContainer';
-import { useHistory } from 'react-router-dom';
+import { BrowerRouter as Router } from 'react-router-dom';
 
 // recoil
 import { RecoilRoot } from 'recoil';
 
 describe('PINForm component', () => {
-  const history = useHistory();
-
   test('renders in the dom', () => {
     window.localStorage.setItem(
       'okta-token-storage',
@@ -27,7 +25,7 @@ describe('PINForm component', () => {
           }}
           curUserType={'parent'}
           curUserId={'1'}
-          history={() => history}
+          history=""
         />
       </RecoilRoot>
     );
