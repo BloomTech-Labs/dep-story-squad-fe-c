@@ -34,7 +34,6 @@ const AccountPinModal = () => {
   // triggered on 'X' button or clicking off the modal
   const handleCancel = () => {
     history.push('/login');
-    setShowModal(false);
   };
 
   useEffect(() => {
