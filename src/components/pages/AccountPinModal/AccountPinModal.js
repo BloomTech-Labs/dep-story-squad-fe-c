@@ -76,9 +76,7 @@ const AccountPinModal = () => {
             history={history}
           />
         )}
-        <div className="pinFormError">
-          {validationError ? validationError : null}
-        </div>
+        <div className="pinFormError">{validationError && validationError}</div>
       </Modal>
     </div>
   );
