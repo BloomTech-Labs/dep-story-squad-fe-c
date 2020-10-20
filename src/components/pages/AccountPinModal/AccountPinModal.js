@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { userLogin } from '../../../api';
 import { useHistory } from 'react-router-dom';
 
 // Recoil State Management
 import { useRecoilState } from 'recoil';
 import { currentUserState } from '../../../state/userState';
 
-// components
+// Ant Design
 import { Modal } from 'antd';
+
+// components
+import { userLogin } from '../../../api';
 import UserFormContainer from './UserForm/UserFormContainer';
 import PinFormContainer from './PinForm/PinFormContainer';
 
@@ -29,9 +31,9 @@ const AccountPinModal = () => {
   // all child accounts associated with the main parent login account
   const [accounts, setAccounts] = useState(null);
 
+  // triggered on 'X' button or clicking off the modal
   const handleCancel = () => {
     history.push('/login');
-    setShowModal(false);
   };
 
   useEffect(() => {
@@ -47,6 +49,7 @@ const AccountPinModal = () => {
 
   return (
     <div className="modal" data-testid="formModalCont" key="formModalCont">
+      {/* Ant Design Component */}
       <Modal
         key="formModal"
         data-testid="formModal"
@@ -76,10 +79,7 @@ const AccountPinModal = () => {
             history={history}
           />
         )}
-
-        {validationError && (
-          <div className="pinFormError">{validationError}</div>
-        )}
+        <div className="pinFormError">{validationError && validationError}</div>
       </Modal>
     </div>
   );
