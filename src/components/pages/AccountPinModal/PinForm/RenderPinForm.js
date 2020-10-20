@@ -17,6 +17,7 @@ const RenderPinForm = ({
 
       <div className="inputCont">
         <input
+          // assigns useRef's from PinFormContainer
           ref={ref_start}
           autoFocus
           data-testid="inputOne"

@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
-// recoil
+// Recoil state management
 import { useRecoilState } from 'recoil';
 import { currentUserState } from '../../../../state/userState';
 
@@ -29,6 +29,7 @@ const PinFomContainer = ({
   const ref_2 = useRef();
   const ref_3 = useRef();
 
+  // used to increment input focus as you type, below
   const nextFocus = {
     '0': ref_1.current,
     '1': ref_2.current,
@@ -47,6 +48,7 @@ const PinFomContainer = ({
             curUserToken: res.data.token,
             missionProgress: res.data.mission_progress,
           });
+
           if (!validationError) {
             history.push('/dashboard');
           }
@@ -54,9 +56,12 @@ const PinFomContainer = ({
         .catch(err => {
           if (err) {
             setValidationError('Error: Invalid PIN');
+
             // reset all form state
             setFormData(['', '', '', '']);
             setFormString(formData.join(''));
+
+            // reset input focus
             ref_start.current.focus();
           }
         });
@@ -64,9 +69,11 @@ const PinFomContainer = ({
   };
 
   const changeHandler = e => {
+    // clear any prev validation errors
     if (validationError) {
       setValidationError('');
     }
+
     const { name, value } = e.target;
     // restrict to nums(0-9) only
     if (value.match(/^[0-9]*$/)) {
@@ -81,7 +88,7 @@ const PinFomContainer = ({
       );
       setFormString(formString + value);
 
-      // increment focus
+      // increment input focus as you type
       if (name in nextFocus) {
         nextFocus[name].focus();
       }
