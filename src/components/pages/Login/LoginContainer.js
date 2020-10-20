@@ -16,7 +16,7 @@ const LoginContainer = props => {
 
   // check if Okta token is expired
   if (checkTokenExpired()) {
-    window.localStorage.clear();
+    window.localStorage.removeItem('currentUser');
   }
 
   useEffect(() => {

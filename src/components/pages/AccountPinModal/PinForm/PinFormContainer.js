@@ -97,7 +97,7 @@ const PinFomContainer = ({
 
   useEffect(() => {
     handleSubmit();
-  }, [formData, handleSubmit]);
+  }, [formData]);
 
   return (
     <>

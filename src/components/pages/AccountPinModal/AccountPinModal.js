@@ -14,7 +14,6 @@ import UserFormContainer from './UserForm/UserFormContainer';
 import PinFormContainer from './PinForm/PinFormContainer';
 
 const AccountPinModal = () => {
-  const [showModal, setShowModal] = useState(true);
   const [validationError, setValidationError] = useState('');
   const history = useHistory();
 
@@ -59,7 +58,7 @@ const AccountPinModal = () => {
         }}
         destroyOnClose
         closable
-        visible={showModal}
+        visible={true}
         footer={null}
         onCancel={handleCancel}
       >
