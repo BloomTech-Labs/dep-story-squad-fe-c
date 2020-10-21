@@ -22,7 +22,7 @@ You can find the deployed project at [c.storysquad.dev](https://c.storysquad.dev
 ![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
 ![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)
 
-- Fork and clone the repo to install it as your own remote.
+- clone the repo to install it as your own remote.
   - **note** please [be sure to set your remote](https://help.github.jp/enterprise/2.11/user/articles/changing-a-remote-s-url/) for this repo to point to your Labs Team Front End Repository.
 - run: `npm install` to download all dependencies.
 - run: `npm start` to start your local development server.
@@ -31,11 +31,11 @@ You can find the deployed project at [c.storysquad.dev](https://c.storysquad.dev
 
 ### Key Features
 
-- feature one
-- feature two
-- feature three
-- feature four
-- feature five
+- Okta secure login
+- Custom loading spinner
+- Data driven handwriting recognition & analysis
+- PostgreSQL database
+- AWS 
 
 #### Front end deployed to `AWS Amplify`
 
@@ -59,9 +59,8 @@ Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do
 
 ## Payment API here
 
-🚫Replace text below with a description of the API
+Stripe payment subscription integration
 
-This is the way you take out your flustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
 
 ## Misc API here
 
@@ -71,7 +70,9 @@ You can do anything your heart can imagine. In life you need colors. This is whe
 
 # Installation Instructions
 
-🚫explain how to install the required dependencies to get this project up and running with yarn and NPM
+Clone the repo to your local machine
+run 'npm i' to install dependencies
+run 'npm start' to fire up the project
 
 ## Other Scripts
 
