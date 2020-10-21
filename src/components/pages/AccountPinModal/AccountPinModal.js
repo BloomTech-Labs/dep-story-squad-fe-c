@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
-// Recoil State Management
+// Recoil State Management (see readme in 'state' dir for more info on Recoil)
 import { useRecoilState } from 'recoil';
 import { currentUserState } from '../../../state/userState';
 

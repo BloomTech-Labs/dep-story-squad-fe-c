@@ -1,3 +1,5 @@
+// no logic here, JSX only. logic goes in the UserFormContainer
+
 import React from 'react';
 import PropTypes from 'prop-types';
 
