@@ -7,7 +7,7 @@ For steps on how to work with this repository [please see here](https://docs.lab
 You can find the deployed project at [c.storysquad.dev](https://c.storysquad.dev/login).
 
 # Need Help?
-Feel free to contact any of the labs26 contributors below, or DM in Slack. We'd be happy to help you all get off the ground. We made some videos explaining alot of the site and the code as well. We handed those off to out TPL: Jacob Tharp.
+Feel free to contact any of the labs26 contributors below, or DM in Slack. We'd be happy to help you all get off the ground. We made some videos explaining alot of the site and the code as well. We handed those off to our TPL: Jacob Tharp.
 
 ## Contributors
 
