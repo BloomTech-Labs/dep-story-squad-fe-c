@@ -31,7 +31,7 @@ const RenderPinForm = ({
 
         <input
           ref={ref_1}
-          data-testid="inputOne"
+          data-testid="inputTwo"
           type="password"
           name="1"
           value={formData[1]}
@@ -41,7 +41,7 @@ const RenderPinForm = ({
 
         <input
           ref={ref_2}
-          data-testid="inputOne"
+          data-testid="inputThree"
           type="password"
           name="2"
           value={formData[2]}
@@ -51,7 +51,7 @@ const RenderPinForm = ({
 
         <input
           ref={ref_3}
-          data-testid="inputOne"
+          data-testid="inputFour"
           type="password"
           name="3"
           value={formData[3]}

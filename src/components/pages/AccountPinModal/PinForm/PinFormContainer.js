@@ -1,4 +1,5 @@
 // pin form container. Logic goes here
+
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
@@ -12,6 +13,7 @@ import RenderPinForm from './RenderPinForm';
 // API
 import { getAccount } from '../../../../api';
 
+// uses an auto-submit feature
 const PinFomContainer = ({
   curUserType,
   curUserId,
@@ -24,6 +26,7 @@ const PinFomContainer = ({
   const [currentUser, setCurrentUser] = useRecoilState(currentUserState);
 
   // references to the input elements
+  // assigned in the renderPinForm  input 'ref' attributes
   const ref_start = useRef();
   const ref_1 = useRef();
   const ref_2 = useRef();
@@ -36,6 +39,7 @@ const PinFomContainer = ({
     '2': ref_3.current,
   };
 
+  // only submits when pin length === 4
   const handleSubmit = () => {
     if (formString.length === 4) {
       setValidationError('');
@@ -75,7 +79,7 @@ const PinFomContainer = ({
     }
 
     const { name, value } = e.target;
-    // restrict to nums(0-9) only
+    // restrict input to nums(0-9) only
     if (value.match(/^[0-9]*$/)) {
       setFormData(
         formData.map((ele, i) => {
@@ -95,6 +99,7 @@ const PinFomContainer = ({
     }
   };
 
+  // every keystroke triggers this
   useEffect(() => {
     handleSubmit();
   }, [formData]);
