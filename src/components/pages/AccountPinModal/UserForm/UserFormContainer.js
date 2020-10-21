@@ -1,3 +1,5 @@
+// Logic goes in this file
+
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -18,6 +20,7 @@ const UserFormContainer = ({ setFormVisibility, accounts }) => {
       curUserType: e.target.getAttribute('data-type'),
     });
 
+    // toggle from userForm to PinForm
     setFormVisibility({
       userFormContainer: false,
       pinForm: true,
