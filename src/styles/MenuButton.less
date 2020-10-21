@@ -1,32 +1,98 @@
 // Styles for <Header /> menu button -------------
 .storysquad-header {
   .menu-btn {
-    width: 50px;
-    height: 38px;
-    position: fixed;
-    top: 0;
-    right: 0;
+    display: block;
+    width: 40px;
+    height: 32px;
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    border: none;
+    background: transparent;
+    outline: none;
     z-index: 15;
-    cursor: pointer;
+
+    &:hover {
+      cursor: pointer;
+    }
 
     .menu-bar {
-      height: 5px;
+      display: block;
+      position: absolute;
+      width: 50%;
+      height: 3px;
       background: @black;
-      margin: 5px;
-      transition: all 0.3s ease;
-    }
+      opacity: 1;
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+      transition: 0.25s ease-in-out;
 
-    // These styles create the menu button animation transforming to an X
-    #bar-one.open {
-      transform: rotate(-45deg) translate(-6px, 8px);
-    }
+      &:nth-child(1),
+      &:nth-child(2) {
+        top: 0;
+      }
 
-    #bar-two.open {
-      opacity: 0;
-    }
+      &:nth-child(3),
+      &:nth-child(4) {
+        top: 10px;
+      }
 
-    #bar-three.open {
-      transform: rotate(45deg) translate(-6px, -8px);
+      &:nth-child(5),
+      &:nth-child(6) {
+        top: 20px;
+      }
+
+      &:nth-child(odd) {
+        left: 0;
+      }
+
+      &:nth-child(even) {
+        left: 50%;
+      }
+    }
+  }
+
+  .menu-btn.open {
+    .menu-bar {
+      &:nth-child(1),
+      &:nth-child(6) {
+        transform: rotate(45deg);
+      }
+
+      &:nth-child(2),
+      &:nth-child(5) {
+        transform: rotate(-45deg);
+      }
+
+      &:nth-child(1) {
+        top: 9px;
+        left: 5px;
+      }
+
+      &:nth-child(2) {
+        top: 9px;
+        left: calc(50% - 5px);
+      }
+
+      &:nth-child(3) {
+        left: -50%;
+        opacity: 0;
+      }
+
+      &:nth-child(4) {
+        left: 100%;
+        opacity: 0;
+      }
+
+      &:nth-child(5) {
+        top: 18px;
+        left: 5px;
+      }
+
+      &:nth-child(6) {
+        top: 18px;
+        left: calc(50% - 5px);
+      }
     }
   }
 }
