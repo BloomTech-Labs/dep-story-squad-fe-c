@@ -47,9 +47,8 @@ Feel free to contact any of the labs26 contributors below, or DM in Slack. We'd 
 
 #### Node.js and Express
 
-- point one
-- point two
-- point three
+- Multer middleware for handling image uploads via `mulipart/form-data`
+- Image storage in S3 bucket on AWS
 
 # APIs
 
