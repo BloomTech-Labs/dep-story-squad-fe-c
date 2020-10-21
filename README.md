@@ -6,6 +6,9 @@ For steps on how to work with this repository [please see here](https://docs.lab
 
 You can find the deployed project at [c.storysquad.dev](https://c.storysquad.dev/login).
 
+# Need Help?
+Feel free to contact any of the labs26 contributors below, or DM in Slack. We'd be happy to help you all get off the ground.
+
 ## Contributors
 
 |                                                      Michael Barnes                                                       |                                                              John Daly                                                              |                                                           Scott Fuston                                                            |                                                            Dawson Hamm                                                             |                                                            Jesse Marek                                                             |                                                           Johan Mazorra                                                            |                                                             Jack Ross                                                              |                                                            Jacob Tharp                                                             |
