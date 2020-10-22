@@ -38,8 +38,7 @@ Feel free to contact any of the labs26 contributors below, or DM in Slack. We'd 
 - Okta secure login
 - Custom loading spinner
 - Data driven handwriting recognition & analysis
-- PostgreSQL database
-- AWS
+- AWS Amplify
 
 #### Front end deployed to `AWS Amplify`
 
@@ -49,6 +48,7 @@ Feel free to contact any of the labs26 contributors below, or DM in Slack. We'd 
 
 - Multer middleware for handling image uploads via `mulipart/form-data`
 - Image storage in S3 bucket on AWS
+- PostgreSQL database
 
 # APIs
 
