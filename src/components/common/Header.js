@@ -20,10 +20,7 @@ const Header = () => {
   const location = useLocation();
   const loginPage = location.pathname.match(/login/);
 
-  // Refs to menu and menu button bars
-  const refBarOne = useRef();
-  const refBarTwo = useRef();
-  const refBarThree = useRef();
+  // Refs to Nav Menu and Menu Button
   const refNavMenu = useRef();
   const refMenuBtn = useRef();
 
@@ -38,13 +35,7 @@ const Header = () => {
         {/* Don't render the menu button on the Login page */}
         {loginPage ? null : (
           <>
-            <MenuButton
-              refBarOne={refBarOne}
-              refBarTwo={refBarTwo}
-              refBarThree={refBarThree}
-              refNavMenu={refNavMenu}
-              refMenuBtn={refMenuBtn}
-            />
+            <MenuButton refNavMenu={refNavMenu} refMenuBtn={refMenuBtn} />
             <HeaderMenu
               authService={authService}
               push={push}
