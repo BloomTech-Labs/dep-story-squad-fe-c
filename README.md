@@ -9,6 +9,10 @@ You can find the deployed project at [c.storysquad.dev](https://c.storysquad.dev
 # Need Help?
 Feel free to contact any of the labs26 contributors below, or DM in Slack. We'd be happy to help you all get off the ground. We made some videos explaining alot of the site and the code as well. We handed those off to our TPL: Jacob Tharp.
 
+# Dev Demo Videos
+1. [ss_overview.mp4](https://drive.google.com/file/d/1G9-DYp3Au6NsU95k4z9Z_BmLCuYMRWrH/view?usp=sharing)
+2. [Recoil Demo](https://drive.google.com/file/d/1w8b0121HndBaQ7hxyDVCUG_1Gp6IfPUu/view?usp=sharing)
+
 ## Contributors
 
 |                                                      Michael Barnes                                                       |                                                              John Daly                                                              |                                                           Scott Fuston                                                            |                                                            Dawson Hamm                                                             |                                                            Jesse Marek                                                             |                                                           Johan Mazorra                                                            |                                                             Jack Ross                                                              |                                                            Jacob Tharp                                                             |
