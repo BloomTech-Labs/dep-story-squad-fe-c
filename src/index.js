@@ -25,7 +25,8 @@ import { MissionDash } from './components/pages/MissionDash';
 import { MissionRead } from './components/pages/MissionRead';
 import { MissionWrite } from './components/pages/MissionWrite';
 import { MissionDraw } from './components/pages/MissionDraw';
-
+import PaymentForm from './components/pages/Stripe/PaymentForm';
+import StripeAccount from './components/pages/Stripe/StripeAccount';
 import { Header } from './components/common/';
 
 ReactDOM.render(
@@ -68,6 +69,8 @@ function App() {
         <SecureRoute path="/mission/read" component={() => <MissionRead />} />
         <SecureRoute path="/mission/write" component={() => <MissionWrite />} />
         <SecureRoute path="/mission/draw" component={() => <MissionDraw />} />
+        <Route path="/stripe" component={() => <PaymentForm />} />
+        <Route path="/update" component={() => <StripeAccount />} />
         <Route component={NotFoundPage} />
       </Switch>
     </Security>
