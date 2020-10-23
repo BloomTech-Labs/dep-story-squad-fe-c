@@ -9,6 +9,7 @@ import {
 import { useRecoilValue } from 'recoil';
 import { currentUserState } from '../../../state/userState';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 const stripePromise = loadStripe(
   process.env.STRIPE_PUBLISHABLE_KEY ||
@@ -20,8 +21,7 @@ const CheckoutForm = () => {
   const elements = useElements();
   const [email, setEmail] = useState('');
   const { curUserId, curUserToken } = useRecoilValue(currentUserState);
-  const [status, setStatus] = useState('');
-  const [clientSecret, setClientSecret] = useState('');
+  const history = useHistory();
 
   const handleSubmit = async event => {
     event.preventDefault();
@@ -44,26 +44,40 @@ const CheckoutForm = () => {
         payment_method: result.paymentMethod.id,
       };
       //axios call to backend sending the payment method
-      const res = await axios.post(
-        `http://localhost:8000/sub/${curUserId}`,
-        payload,
-        { headers: { Authorization: `Bearer ${curUserToken}` } }
-      );
+      const res = {};
+      try {
+        res = await axios.post(
+          `http://localhost:8000/sub/${curUserId}`,
+          payload,
+          { headers: { Authorization: `Bearer ${curUserToken}` } }
+        );
+      } catch (err) {
+        console.log(err);
+        alert('something went wrong');
+        history.push('/');
+        return;
+      }
 
-      console.log(res.data);
+      console.log(res);
 
       const { client_secret, status } = res.data;
 
       if (status === 'requires_action') {
-        setStatus(status);
-        setClientSecret(client_secret);
+        //setStatus(status);
+        //setClientSecret(client_secret);
 
-        stripe.confirmCardPayment(client_secret).then(function(result) {
+        stripe.confirmCardPayment(client_secret).then(async function(result) {
           if (result.error) {
             //display error message
             console.log(result.error.message);
           } else {
             //show success message
+            const confirmation = await axios.post(
+              `http://localhost:8000/sub/${curUserId}/confirmed`,
+              { message: 'payment successful' },
+              { headers: { Authorization: `Bearer ${curUserToken}` } }
+            );
+            console.log(confirmation);
             console.log('we got tha money');
           }
         });

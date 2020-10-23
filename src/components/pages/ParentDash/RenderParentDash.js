@@ -8,7 +8,7 @@ import { getParentDash } from '../../../api';
 import { useSetRecoilState, useRecoilState } from 'recoil';
 import { headerTitle } from '../../../state/headerTitle';
 import { currentUserState } from '../../../state/userState';
-
+import StripeAccountForm from '../Stripe/StripeAccount';
 // ParentDash component that contains a nav bar and routes to the various components
 const RenderParentDash = () => {
   const setHeaderTitle = useSetRecoilState(headerTitle);
@@ -54,6 +54,11 @@ const RenderParentDash = () => {
             />
             <SecureRoute exact path={'/dashboard/help'} component={Help} />
             <SecureRoute exact path={'/dashboard/logout'} component={Logout} />
+            <SecureRoute
+              exact
+              path={'/dashboard/subscription'}
+              component={StripeAccountForm}
+            />
           </>
         </Switch>
       </Layout>

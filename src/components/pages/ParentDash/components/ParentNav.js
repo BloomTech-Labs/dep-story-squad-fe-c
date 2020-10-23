@@ -49,6 +49,7 @@ const Nav = () => {
         >
           <Item key="/dashboard">Dashboard</Item>
           <Item key="/dashboard/settings">Parent Settings</Item>
+          <Item key="/dashboard/subscription">Manage Subscription</Item>
           <Item key="/dashboard/help">Help</Item>
           <Item key="/dashboard/logout">Log out</Item>
         </Menu>
