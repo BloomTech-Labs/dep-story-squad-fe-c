@@ -57,6 +57,8 @@ Here is the general full stack flow for our stripe implementation
 
 ### What still needs to be done
     - global state for subscription status
+    - the new subscription form needs to be joined with the rest of the application
+
     - live webhooks need to be set up in the stripe dashboard
     - styling for the manage stripe account forms
     - backend middleware to restrict routes for non subscribed users
@@ -64,3 +66,6 @@ Here is the general full stack flow for our stripe implementation
     - more webhooks can be implemented if you want to add more functionality
     - more card cases should be tested and handled
 
+
+### Here is a video overview
+    https://www.loom.com/share/fceecf71d30745c380e9831d7cb3c274?from_recorder=1

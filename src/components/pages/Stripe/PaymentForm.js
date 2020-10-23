@@ -44,7 +44,7 @@ const CheckoutForm = () => {
         payment_method: result.paymentMethod.id,
       };
       //axios call to backend sending the payment method
-      const res = {};
+      let res = {};
       try {
         res = await axios.post(
           `http://localhost:8000/sub/${curUserId}`,
@@ -77,7 +77,7 @@ const CheckoutForm = () => {
               { message: 'payment successful' },
               { headers: { Authorization: `Bearer ${curUserToken}` } }
             );
-            console.log(confirmation);
+            console.log(confirmation.data.message);
             console.log('we got tha money');
           }
         });
@@ -87,7 +87,7 @@ const CheckoutForm = () => {
           { message: 'payment successful' },
           { headers: { Authorization: `Bearer ${curUserToken}` } }
         );
-        console.log(confirmation);
+        console.log(confirmation.data.message);
         console.log('we got tha money');
       }
     }
