@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { getStory } from '../../../api';
+import { getData, putData } from '../../../api';
 import RenderMissionRead from './RenderMissionRead';
 // Recoil imports
-import { useSetRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import { headerTitle } from '../../../state/headerTitle';
 import { currentUserState } from '../../../state/userState';
 
@@ -11,7 +11,8 @@ const MissionReadContainer = () => {
   // Header Title
   const setHeaderTitle = useSetRecoilState(headerTitle);
   // User details for API calls
-  const { curUserId, curUserToken } = useRecoilValue(currentUserState);
+  const { curUserId } = useRecoilValue(currentUserState);
+  const [curUser, setCurUser] = useRecoilState(currentUserState);
   // Callback to push user to correct URL
   const { push } = useHistory();
   // URL to the PDF of the story to display
@@ -21,14 +22,16 @@ const MissionReadContainer = () => {
   // state to track when a user has read the whole story
   const [readingDone, setReadingDone] = useState(false);
 
+  const endpoint = `/child/${curUserId}/mission`;
+
   // API call to get the PDF story
   useEffect(() => {
-    getStory(curUserToken, curUserId)
+    getData(endpoint)
       .then(res => {
         setStory(res.data.read);
       })
       .catch(err => console.log({ err }));
-  }, [curUserToken, curUserId]);
+  }, [curUserId, endpoint]);
 
   // sets the header title
   useEffect(() => {
@@ -38,6 +41,23 @@ const MissionReadContainer = () => {
   // returns user to mission dashboard once story is read
   const missionComplete = e => {
     e.preventDefault();
+
+    // Update the Read mission progress to true
+    const missionUpdate = {
+      ...curUser,
+      missionProgress: {
+        ...curUser.missionProgress,
+        read: true,
+      },
+    };
+    const body = { progress: { read: true } };
+    const endpoint = `/child/${curUserId}/mission/read`;
+    // Sends a PUT to the API and update the progress in the DB
+    putData(endpoint, body).catch(err => {
+      console.log('error with read progress update: ', err);
+    });
+    // Update currentUserState mission progress
+    setCurUser(missionUpdate);
     // push back to mission dash
     push('/mission');
   };

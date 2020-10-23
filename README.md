@@ -6,6 +6,10 @@ For steps on how to work with this repository [please see here](https://docs.lab
 
 You can find the deployed project at [c.storysquad.dev](https://c.storysquad.dev/login).
 
+# Need Help?
+
+Feel free to contact any of the labs26 contributors below, or DM in Slack. We'd be happy to help you all get off the ground. We made some videos explaining alot of the site and the code as well. We handed those off to our TPL: Jacob Tharp.
+
 ## Contributors
 
 |                                                      Michael Barnes                                                       |                                                              John Daly                                                              |                                                           Scott Fuston                                                            |                                                            Dawson Hamm                                                             |                                                            Jesse Marek                                                             |                                                           Johan Mazorra                                                            |                                                             Jack Ross                                                              |                                                            Jacob Tharp                                                             |
@@ -13,7 +17,7 @@ You can find the deployed project at [c.storysquad.dev](https://c.storysquad.dev
 |                  <img src="https://avatars3.githubusercontent.com/u/49892996?s=460&v=4" width = "200" />                  |                       <img src="https://avatars1.githubusercontent.com/u/60858846?s=460&v=4" width = "200" />                       | <img src="https://avatars0.githubusercontent.com/u/8632549?s=460&u=fd1f74b5199d6a3fcf00167950845db186cb2da4&v=4" width = "200" /> | <img src="https://avatars3.githubusercontent.com/u/60896383?s=460&u=4687cc4d317e168391f59c13c8bbaf0a2ae8e0a1&v=4" width = "200" /> | <img src="https://avatars1.githubusercontent.com/u/61661005?s=460&u=31a2cd7a4b7b5d0d39190ae1091e62e98e0c50d7&v=4" width = "200" /> | <img src="https://avatars3.githubusercontent.com/u/60892622?s=460&u=3e09487cd4d9845a697693a90a59c6637e0d6bc3&v=4" width = "200" /> | <img src="https://avatars3.githubusercontent.com/u/43938405?s=460&u=594d25571eeb134a7bba80b5c3a5f0494e754d1e&v=4" width = "200" /> | <img src="https://avatars1.githubusercontent.com/u/18707646?s=460&u=e66878ccb3f1c48597d711fce5e8d29444de0f7e&v=4" width = "200" /> |
 |                                                            Web                                                            |                                                                 Web                                                                 |                                                                Web                                                                |                                                                Web                                                                 |                                                                Web                                                                 |                                                                 DS                                                                 |                                                                 DS                                                                 |                                                                TPL                                                                 |
 |              [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/michaelbarnes7282)               |                        [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/jcdaly97)                        |                       [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/fuston05)                       |                     [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/dawsonhammdev)                     |                      [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/jessemarek)                       |                       [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/jsmazorra)                       |                   [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/JackRossProjects)                    |                     [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/jengopockets)                      |
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/mbarnes01) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jack-daly-a2a3031b6) |   [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/scott-fuston)    |    [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/dawson-hamm)     |   [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jesse-a-marek)    |      [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jmazorra)      |           [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/jackcalvinross)            |    [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jacob-tharp)     |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/mbarnes01) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jack-daly-a2a3031b6) |   [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/scott-fuston)    |    [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/dawson-hamm)     |   [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jesse-a-marek)    |      [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jmazorra)      |    [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/jackcalvinross)     |    [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jacob-tharp)     |
 
 <br>
 <br>
@@ -22,7 +26,7 @@ You can find the deployed project at [c.storysquad.dev](https://c.storysquad.dev
 ![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
 ![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)
 
-- Fork and clone the repo to install it as your own remote.
+- clone the repo to install it as your own remote.
   - **note** please [be sure to set your remote](https://help.github.jp/enterprise/2.11/user/articles/changing-a-remote-s-url/) for this repo to point to your Labs Team Front End Repository.
 - run: `npm install` to download all dependencies.
 - run: `npm start` to start your local development server.
@@ -31,11 +35,10 @@ You can find the deployed project at [c.storysquad.dev](https://c.storysquad.dev
 
 ### Key Features
 
-- feature one
-- feature two
-- feature three
-- feature four
-- feature five
+- Okta secure login
+- Custom loading spinner
+- Data driven handwriting recognition & analysis
+- AWS Amplify
 
 #### Front end deployed to `AWS Amplify`
 
@@ -43,43 +46,29 @@ You can find the deployed project at [c.storysquad.dev](https://c.storysquad.dev
 
 #### Node.js and Express
 
-- point one
-- point two
-- point three
-
-🚫 List the rest of the back end end features and libraries in the same format as the framework above
+- Multer middleware for handling image uploads via `mulipart/form-data`
+- Image storage in S3 bucket on AWS
+- PostgreSQL database
 
 # APIs
 
-## Authentication API here
+## Okta Authentication
 
-🚫Replace text below with a description of the API
+User Authentication for this project is handled by Okta. For reference you can access Okta's Docs [here](https://developer.okta.com/docs/reference/).
 
-Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
+## Stripe API
 
-## Payment API here
+Payment processing and subscription integration in this project is handled by Stripe. For reference you can access Stripe's Docs [here](https://stripe.com/docs/api).
 
-🚫Replace text below with a description of the API
+## Recoil State Management
 
-This is the way you take out your flustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
-
-## Misc API here
-
-🚫Replace text below with a description of the API
-
-You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
+Global state management in this project is handled using Recoil.js. For reference on you can access the Recoil Docs [here](https://recoiljs.org/docs/introduction/core-concepts). There is also a `README.md` in the `src/state/` folder that gives a brief overview with examples on how to utilize Recoil.
 
 # Installation Instructions
 
-🚫explain how to install the required dependencies to get this project up and running with yarn and NPM
-
-## Other Scripts
-
-🚫replace these examples with your own
-
-    * build - creates a build of the application
-    * start - starts the production server after a build is created
-    * test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
+Clone the repo to your local machine
+run `npm i` to install dependencies
+run `npm start` to fire up the project.
 
 # Contributing
 
@@ -115,4 +104,5 @@ Remember that this project is licensed under the MIT license, and by submitting 
 
 ## Documentation
 
+[Back end repo](https://github.com/Lambda-School-Labs/Labs26-StorySquad-BE-TeamC)
 See [Backend Documentation](🚫*link to your backend API SWAGGER DOCS here*) for details on the backend of our project.

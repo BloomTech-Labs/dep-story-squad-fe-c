@@ -1,3 +1,5 @@
+// no logic here, JSX only. logic goes in the UserFormContainer
+
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -6,7 +8,7 @@ import { LoadingComponent } from '../../../common';
 
 const RenderUserForm = ({ handleSubmit, accounts }) => {
   return (
-    <div className="userForm">
+    <div data-testid="userForm" className="userForm">
       <div className="userText">
         <h3>
           So we can direct you to the right place, please let us know who you
@@ -38,7 +40,6 @@ const RenderUserForm = ({ handleSubmit, accounts }) => {
 
 RenderUserForm.propTypes = {
   handleSubmit: PropTypes.func,
-  isLoading: PropTypes.bool,
   accounts: PropTypes.array,
 };
 

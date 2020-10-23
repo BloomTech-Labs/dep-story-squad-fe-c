@@ -10,7 +10,7 @@ import { currentUserState } from '../../../state/userState';
 const MissionDrawContainer = () => {
   const setHeaderTitle = useSetRecoilState(headerTitle);
   // Current user's Id and Token for submitting files to API
-  const { curUserId, curUserToken } = useRecoilValue(currentUserState);
+  const { curUserId } = useRecoilValue(currentUserState);
   // File limit controls the number of images that can be uploaded
   // 5 for a Story submission and 1 for a Illustration
   const fileLimit = 1;
@@ -21,10 +21,10 @@ const MissionDrawContainer = () => {
 
   // Get the text for mission prompt
   useEffect(() => {
-    getData(`child/${curUserId}/mission`, curUserToken).then(res => {
+    getData(`/child/${curUserId}/mission`).then(res => {
       setMissionPrompt(res.data.draw);
     });
-  }, [curUserId, curUserToken, setMissionPrompt]);
+  }, [curUserId, setMissionPrompt]);
 
   // sets the header title
   useEffect(() => {

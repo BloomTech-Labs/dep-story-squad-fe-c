@@ -83,3 +83,36 @@ export default MyComponent;
 ---
 
 There are other `Hooks` available that allow you to fine tune how your app performs with the global state changes. If a component needs to set the state but doesn't need to read the value `Recoil` provides a hook to do that. The advantage with this setup is the component setting the state will not be subscribed to state changes and will not be re-rendered when this state changes. In a large component tree structure this means the app will be more performant as only the components that need to re-render will.
+
+---
+
+## File Structure
+
+For this project please follow the outlined structure for file orginization. For each global state item, create a named folder within `state/`. Inside of this folder add an `index.js`, `atoms.js` and `selectors.js` as needed. The index file will simply contain exports for all of this state's atoms and selectors.
+
+- Example Folder Structure:
+
+```
+state
+|
+|-- headerTitle
+|   |
+|   |-- index.js
+|   |-- atoms.js
+|
+|-- userState
+    |
+    |-- index.js
+    |-- atoms.js
+    |-- selectors.js
+```
+
+- Example `index.js` file:
+
+```js
+// Atom exports
+export { atom1, atom2, atom3 } from './atoms';
+
+// Selector exports
+export { selector1, selector2, selector3 } from './selectors';
+```

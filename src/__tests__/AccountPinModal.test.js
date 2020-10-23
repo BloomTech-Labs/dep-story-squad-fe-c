@@ -2,7 +2,6 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import AccountPinModal from '../components/pages/AccountPinModal/AccountPinModal';
 import { BrowserRouter as Router } from 'react-router-dom';
-import ShallowRenderer from 'react-shallow-renderer';
 import { RecoilRoot } from 'recoil';
 
 describe('AccountPinModal', () => {
@@ -29,7 +28,18 @@ describe('AccountPinModal', () => {
     const buttonX = getByLabelText('Close');
 
     fireEvent.click(buttonX);
-    console.log('HERE', global.window.location.pathname);
     await expect(global.window.location.pathname).toEqual('/login');
+  });
+
+  test('the modal component renders the userform', () => {
+    const { getByTestId } = render(
+      <Router>
+        <RecoilRoot>
+          <AccountPinModal />
+        </RecoilRoot>
+      </Router>
+    );
+    const userForm = getByTestId(/userForm/i);
+    expect(userForm).toBeInTheDocument();
   });
 });

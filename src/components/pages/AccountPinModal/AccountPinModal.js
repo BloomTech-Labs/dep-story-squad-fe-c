@@ -1,60 +1,43 @@
 import React, { useState, useEffect } from 'react';
-import { getAccount, getLogin } from '../../../api';
 import { useHistory } from 'react-router-dom';
 
-// recoil
+// Recoil State Management (see readme in 'state' dir for more info on Recoil)
 import { useRecoilState } from 'recoil';
 import { currentUserState } from '../../../state/userState';
 
-// components
+// Ant Design
 import { Modal } from 'antd';
+
+// components
+import { userLogin } from '../../../api';
 import UserFormContainer from './UserForm/UserFormContainer';
 import PinFormContainer from './PinForm/PinFormContainer';
 
-const AccountPinModal = props => {
-  const [showModal, setShowModal] = useState(true);
+const AccountPinModal = () => {
   const [validationError, setValidationError] = useState('');
   const history = useHistory();
-  const [formSubmissionData, setFormSubmissionData] = useState({});
 
+  // toggles userForm off and the PinForm on after account selection
   const [formVisibility, setFormVisibility] = useState({
     userFormContainer: true,
     pinForm: false,
   });
 
-  const authToken = JSON.parse(
-    window.localStorage.getItem('okta-token-storage')
-  ).idToken.value;
-
-  const [currentUser, setCurrentUser] = useRecoilState(currentUserState);
+  // current logged in user account
+  const [currentUser] = useRecoilState(currentUserState);
   const { curUserId, curUserType } = currentUser;
 
+  // all child accounts associated with the main parent login account
   const [accounts, setAccounts] = useState(null);
 
-  const mainSubmit = () => {
-    const url = `${curUserType}/${curUserId}`;
-    getAccount(url, formSubmissionData.pin, authToken)
-      .then(res => {
-        // fire selector to set localstorage
-
-        setCurrentUser({ ...currentUser, curUserToken: res.data.token });
-        console.log('userState: ', curUserType);
-        history.push('/dashboard');
-      })
-      .catch(err => {
-        if (err) {
-          setValidationError('Error: Invalid PIN');
-        }
-      });
-  };
-
+  // triggered on 'X' button or clicking off the modal
   const handleCancel = () => {
     history.push('/login');
-    setShowModal(false);
   };
 
   useEffect(() => {
-    getLogin(authToken)
+    // grabs all associated child accounts to populate the buttons for account selection
+    userLogin('/auth/login')
       .then(res => {
         if (!accounts) {
           setAccounts(res.data.accounts);
@@ -65,15 +48,17 @@ const AccountPinModal = props => {
 
   return (
     <div className="modal" data-testid="formModalCont" key="formModalCont">
+      {/* Ant Design Component */}
       <Modal
         key="formModal"
         data-testid="formModal"
         style={{
           width: '100%',
+          maxWidth: '100%',
         }}
         destroyOnClose
         closable
-        visible={showModal}
+        visible={true}
         footer={null}
         onCancel={handleCancel}
       >
@@ -81,23 +66,19 @@ const AccountPinModal = props => {
           <UserFormContainer
             accounts={accounts}
             setFormVisibility={setFormVisibility}
-            setValidationError={setValidationError}
           />
         )}
 
         {formVisibility.pinForm && (
           <PinFormContainer
-            authToken={authToken}
-            mainSubmit={mainSubmit}
-            formSubmissionData={formSubmissionData}
-            setFormSubmissionData={setFormSubmissionData}
+            validationError={validationError}
             setValidationError={setValidationError}
+            curUserType={curUserType}
+            curUserId={curUserId}
+            history={history}
           />
         )}
-
-        {validationError && (
-          <div className="pinFormError">{validationError}</div>
-        )}
+        <div className="pinFormError">{validationError && validationError}</div>
       </Modal>
     </div>
   );

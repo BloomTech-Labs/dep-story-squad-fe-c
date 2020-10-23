@@ -2,13 +2,13 @@
 import React, { useState } from 'react';
 import RenderUploader from './RenderUploader';
 import { LoadingComponent } from '..';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import { message } from 'antd';
 
 // api
 import { uploadSubmissionData } from '../../../api';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { currentUserState } from '../../../state/userState';
 
 const Uploader = ({ fileLimit, uploadURL }) => {
@@ -16,7 +16,9 @@ const Uploader = ({ fileLimit, uploadURL }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorState, setErrorState] = useState(false);
 
-  const { curUserToken } = useRecoilValue(currentUserState);
+  const [curUser, setCurUser] = useRecoilState(currentUserState);
+
+  const mission = useLocation().pathname.match(/write|draw/)[0];
 
   const { push } = useHistory();
 
@@ -45,6 +47,19 @@ const Uploader = ({ fileLimit, uploadURL }) => {
     imgWindow.document.write(image.outerHTML);
   };
 
+  const updateProgress = progress => {
+    // Update the Write or Draw mission progress to true
+    const missionUpdate = {
+      ...curUser,
+      missionProgress: {
+        ...curUser.missionProgress,
+        [mission]: progress,
+      },
+    };
+    // Update currentUserState with mission progress changes
+    setCurUser(missionUpdate);
+  };
+
   const onSubmit = e => {
     setIsLoading(true);
     e.preventDefault();
@@ -57,8 +72,9 @@ const Uploader = ({ fileLimit, uploadURL }) => {
       formData.append('image', file.originFileObj);
     });
     // endpoint, payload, userToken
-    uploadSubmissionData(endpoint, formData, curUserToken)
+    uploadSubmissionData(endpoint, formData)
       .then(res => {
+        updateProgress(res.data.progress[mission]);
         console.log('submisisonRes: ', res);
         setErrorState(false);
         message.success('Upload Successful');

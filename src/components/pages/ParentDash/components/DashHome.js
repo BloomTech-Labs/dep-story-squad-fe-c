@@ -8,12 +8,13 @@ const DashHome = ({ userInfo }) => {
   const { Header, Content } = Layout;
 
   useEffect(() => {}, [userInfo]);
+
   const Home = userInfo => {
     if (userInfo) {
       return (
         <div className="dashCards">
-          {userInfo.map(child => (
-            <ChildCard child={child} key={child.id} />
+          {userInfo.map((child, index) => (
+            <ChildCard child={child} key={index} />
           ))}
           <LinkButton className="Card" to="/dashboard/add">
             <PlusCircleOutlined className="icon" />

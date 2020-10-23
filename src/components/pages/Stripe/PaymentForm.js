@@ -82,6 +82,12 @@ const CheckoutForm = () => {
           }
         });
       } else {
+        const confirmation = await axios.post(
+          `http://localhost:8000/sub/${curUserId}/confirmed`,
+          { message: 'payment successful' },
+          { headers: { Authorization: `Bearer ${curUserToken}` } }
+        );
+        console.log(confirmation);
         console.log('we got tha money');
       }
     }
