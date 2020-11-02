@@ -19,7 +19,7 @@ const HeaderMenu = ({
 
   // Callback that fires when Change User button in nav menu is clicked
   const changeUser = event => {
-    menuBtn.click();
+    // menuBtn.click();
     switchUser(event, push);
   };
 
@@ -42,7 +42,7 @@ const HeaderMenu = ({
       <button
         disabled={!window.localStorage.getItem('okta-token-storage')}
         type="button"
-        onClick={e => changeUser(e)}
+        onClick={e => switchUser(e, push)}
       >
         Change User
       </button>
