@@ -41,7 +41,7 @@ const MissionDashContainer = () => {
       .catch(err => {
         console.log(err);
       });
-  }, [curUser, curUserId, curUserType, setCurUser]);
+  }, [curUser, curUserId, curUserType]);
 
   // Checks if mission requirements have been met and then pushes
   // to mission URL or displays message popup with the requirements
