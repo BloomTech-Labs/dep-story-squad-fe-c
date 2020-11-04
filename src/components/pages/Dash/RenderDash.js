@@ -8,6 +8,7 @@ import { currentUserState } from '../../../state/userState';
 
 const RenderDash = props => {
   const { curUserType } = useRecoilValue(currentUserState);
+  console.log(curUserType);
 
   useEffect(() => {}, [curUserType]);
 
