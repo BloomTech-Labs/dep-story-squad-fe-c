@@ -59,7 +59,7 @@ const MissionDashContainer = () => {
         break;
 
       case 'draw':
-        missionReqs.write
+        missionReqs.read
           ? push(missionURL)
           : messagePopup('warning', message, 'Mission Locked!');
         break;
