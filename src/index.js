@@ -27,6 +27,7 @@ import { MissionWrite } from './components/pages/MissionWrite';
 import { MissionDraw } from './components/pages/MissionDraw';
 
 import { Header } from './components/common/';
+import InstructionPanel from './components/common/InstructionPanel';
 
 ReactDOM.render(
   <Router>
@@ -53,7 +54,13 @@ function App() {
   return (
     <Security {...config} onAuthRequired={authHandler}>
       <Header />
-
+      <InstructionPanel
+        show={true}
+        title="You are Done"
+        instruction="Its time to join your Squad! Click next to continue Its time to join your Squad! Click next to continue Its time to join your Squad! Click next to continue"
+        buttonLabel="Squad Up"
+        onClick={() => console.log('Ready to squad up')}
+      />
       <Switch>
         <Route path="/login" component={() => <LoginPage />} />
 

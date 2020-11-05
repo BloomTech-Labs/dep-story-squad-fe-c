@@ -1,0 +1,39 @@
+.instruction-container {
+  display: none;
+  width: 80vw;
+  max-width: 680px;
+  z-index: 1000;
+  text-align: center;
+  margin: 0 auto;
+  padding: 4rem 6rem;
+  position: absolute;
+  right: 0;
+  top: 20vh;
+  left: 0;
+  background-color: @white;
+  box-shadow: @shadow-lg;
+  .minMQ(@desktop, {padding: 4rem 3rem;});
+
+  h1 {
+    color: @black;
+    margin: 0 0 2rem 0;
+  }
+  p {
+    color: @black;
+    line-height: 2.4rem;
+    max-width: 76ch;
+    font-size: 1.3rem;
+    padding-bottom: 2.4rem;
+  }
+  button {
+    margin: 0 auto;
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    .minMQ(@desktop, {position: initial;});
+  }
+}
+
+.instruction-container.show {
+  display: block;
+}
