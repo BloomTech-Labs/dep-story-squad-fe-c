@@ -49,7 +49,7 @@ const RenderMissionDash = ({ beginMission, missionReqs }) => {
             beginMission(
               'draw',
               '/mission/draw',
-              'Complete the Write mission first!'
+              'Complete the Read mission first!'
             )
           }
         >

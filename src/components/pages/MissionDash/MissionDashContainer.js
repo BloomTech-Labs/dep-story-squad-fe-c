@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { messagePopup } from '../../../utils/message-popup';
@@ -41,7 +42,7 @@ const MissionDashContainer = () => {
       .catch(err => {
         console.log(err);
       });
-  }, [curUser, curUserId, curUserType, setCurUser]);
+  }, [curUser, curUserId, curUserType]);
 
   // Checks if mission requirements have been met and then pushes
   // to mission URL or displays message popup with the requirements
@@ -58,7 +59,7 @@ const MissionDashContainer = () => {
         break;
 
       case 'draw':
-        missionReqs.write
+        missionReqs.read
           ? push(missionURL)
           : messagePopup('warning', message, 'Mission Locked!');
         break;
