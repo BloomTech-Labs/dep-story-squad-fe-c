@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { messagePopup } from '../../../utils/message-popup';
 import RenderMissionDash from './RenderMissionDash';
@@ -16,7 +16,6 @@ const MissionDashContainer = () => {
   const [curUser, setCurUser] = useRecoilState(currentUserState);
   const { curUserId, curUserType } = curUser;
   const missionReqs = curUser.missionProgress;
-  const refMissionReqs = useRef(curUser.missionProgress);
   // Calback to push user to correct URL
   const { push } = useHistory();
 
@@ -28,11 +27,12 @@ const MissionDashContainer = () => {
   useEffect(() => {
     getData(`/${curUserType}/${curUserId}/progress`)
       .then(res => {
+        console.log('res.data.progress', res.data.progress);
         const { read, write, draw } = res.data.progress;
         setCurUser({
           ...curUser,
           missionProgress: {
-            ...refMissionReqs.current,
+            ...missionReqs,
             read,
             write,
             draw,
@@ -42,7 +42,8 @@ const MissionDashContainer = () => {
       .catch(err => {
         console.log(err);
       });
-  }, [curUser, curUserId, curUserType]);
+    //eslint-disable-next-line
+  }, [curUser.curUserId]);
 
   // Checks if mission requirements have been met and then pushes
   // to mission URL or displays message popup with the requirements
