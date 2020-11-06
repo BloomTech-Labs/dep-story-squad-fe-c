@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { ParentDash } from '../ParentDash';
 import { ChildDash } from '../ChildDash';
 
@@ -8,8 +8,7 @@ import { currentUserState } from '../../../state/userState';
 
 const RenderDash = props => {
   const { curUserType } = useRecoilValue(currentUserState);
-
-  useEffect(() => {}, [curUserType]);
+  console.log(curUserType);
 
   const dash = {
     parent: <ParentDash />,
