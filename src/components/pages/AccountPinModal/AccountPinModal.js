@@ -32,7 +32,12 @@ const AccountPinModal = () => {
 
   // triggered on 'X' button or clicking off the modal
   const handleCancel = () => {
-    history.push('/login');
+    //history.push('/login');
+    if (window.localStorage.getItem('currentUser')) {
+      history.push('/dashboard');
+    } else {
+      history.push('/login');
+    }
   };
 
   useEffect(() => {
