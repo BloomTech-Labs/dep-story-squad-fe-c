@@ -32,6 +32,7 @@ const AccountPinModal = () => {
 
   // triggered on 'X' button or clicking off the modal
   const handleCancel = () => {
+    //Check whether we currently have a user; if we do, send them back to dashboard; otherwise send to login.
     if (window.localStorage.getItem('currentUser')) {
       history.push('/dashboard');
     } else {
