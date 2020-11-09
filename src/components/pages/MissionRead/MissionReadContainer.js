@@ -53,14 +53,11 @@ const MissionReadContainer = () => {
     const body = { progress: { read: true } };
     const endpoint = `/child/${curUserId}/mission/read`;
     // Sends a PUT to the API and update the progress in the DB
-    putData(endpoint, body)
-      .then(res => {
-        // Update currentUserState mission progress
-        setCurUser(missionUpdate);
-      })
-      .catch(err => {
-        console.log('error with read progress update: ', err);
-      });
+    putData(endpoint, body).catch(err => {
+      console.log('error with read progress update: ', err);
+    });
+    // Update currentUserState mission progress
+    setCurUser(missionUpdate);
     // push back to mission dash
     push('/mission');
   };

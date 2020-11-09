@@ -7,7 +7,7 @@ import { PlusCircleOutlined } from '@ant-design/icons';
 const DashHome = ({ userInfo }) => {
   const { Header, Content } = Layout;
 
-  // useEffect(() => {}, [userInfo]);
+  useEffect(() => {}, [userInfo]);
 
   const Home = userInfo => {
     if (userInfo) {
