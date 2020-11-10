@@ -27,6 +27,7 @@ import { MissionWrite } from './components/pages/MissionWrite';
 import { MissionDraw } from './components/pages/MissionDraw';
 import { GameSquadup } from './components/pages/GameSquadup';
 import { GameSharePoints } from './components/pages/GameSharePoints';
+import { GameMatchUp } from './components/pages/GameMatchUp';
 
 import { Header } from './components/common/';
 import InstructionPanel from './components/common/InstructionPanel';
@@ -72,6 +73,7 @@ function App() {
         <SecureRoute path="/mission/write" component={() => <MissionWrite />} />
         <SecureRoute path="/mission/draw" component={() => <MissionDraw />} />
         <SecureRoute path="/game/squad-up" component={() => <GameSquadup />} />
+        <SecureRoute path="/game/match-up" component={() => <GameMatchUp />} />
         <SecureRoute
           path="/game/share-points"
           component={() => <GameSharePoints />}

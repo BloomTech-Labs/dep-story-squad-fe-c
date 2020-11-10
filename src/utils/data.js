@@ -116,4 +116,22 @@ export const gameData = {
       navigateToOnPrevButtonClick: '/game/squad-up',
     },
   },
+  gameMatchUp: {
+    instruction: {
+      title: 'You are matched up',
+      content:
+        'Team Show Fries, you are matched up with Star Dog.  \n ' +
+        'Click on each vote button to vote for your favorite story or drawing with emoji',
+      buttonLabel: 'Ok',
+      hasShown: false,
+      navigateToOnClick: null,
+      showEveryTime: false,
+    },
+    gameControl: {
+      nextButtonLabel: 'Match Up!',
+      previousButtonLabel: 'Back',
+      navigateToOnNextButtonClick: '/game/match-up',
+      navigateToOnPrevButtonClick: '/game/squad-up',
+    },
+  },
 };
