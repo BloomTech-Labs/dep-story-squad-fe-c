@@ -25,8 +25,13 @@ import { MissionDash } from './components/pages/MissionDash';
 import { MissionRead } from './components/pages/MissionRead';
 import { MissionWrite } from './components/pages/MissionWrite';
 import { MissionDraw } from './components/pages/MissionDraw';
+import { GameSquadup } from './components/pages/GameSquadup';
+import { GameSharePoints } from './components/pages/GameSharePoints';
+import { GameMatchUp } from './components/pages/GameMatchUp';
+import { GameVote } from './components/pages/GameVote';
 
 import { Header } from './components/common/';
+import InstructionPanel from './components/common/InstructionPanel';
 
 ReactDOM.render(
   <Router>
@@ -53,7 +58,7 @@ function App() {
   return (
     <Security {...config} onAuthRequired={authHandler}>
       <Header />
-
+      <InstructionPanel />
       <Switch>
         <Route path="/login" component={() => <LoginPage />} />
 
@@ -68,6 +73,13 @@ function App() {
         <SecureRoute path="/mission/read" component={() => <MissionRead />} />
         <SecureRoute path="/mission/write" component={() => <MissionWrite />} />
         <SecureRoute path="/mission/draw" component={() => <MissionDraw />} />
+        <SecureRoute path="/game/squad-up" component={() => <GameSquadup />} />
+        <SecureRoute path="/game/match-up" component={() => <GameMatchUp />} />
+        <SecureRoute path="/game/vote" component={() => <GameVote />} />
+        <SecureRoute
+          path="/game/share-points"
+          component={() => <GameSharePoints />}
+        />
         <Route component={NotFoundPage} />
       </Switch>
     </Security>

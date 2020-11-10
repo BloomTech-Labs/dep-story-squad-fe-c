@@ -6,10 +6,14 @@ import RenderMissionDash from './RenderMissionDash';
 
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { headerTitle } from '../../../state/headerTitle';
+import { gameState } from '../../../state/gameState/atoms';
+
 import { currentUserState } from '../../../state/userState';
 import { getData } from '../../../api';
 
 const MissionDashContainer = () => {
+  const [curGameState, setGameState] = useRecoilState(gameState);
+
   // Header title
   const setHeaderTitle = useSetRecoilState(headerTitle);
   // mission progress used to control checkbox images and restrict access to missions in order
@@ -19,6 +23,11 @@ const MissionDashContainer = () => {
   const refMissionReqs = useRef(curUser.missionProgress);
   // Calback to push user to correct URL
   const { push } = useHistory();
+
+  // Whenever this component mounts update the <Header /> title
+  useEffect(() => {
+    setGameState('submissionStart');
+  }, []);
 
   // Whenever this component mounts update the <Header /> title
   useEffect(() => {
@@ -38,6 +47,13 @@ const MissionDashContainer = () => {
             draw,
           },
         });
+
+        if (read && write && draw) {
+          setGameState('submissionAllComplete');
+          // navigateToOnClick
+        } else if (read && !write && !draw) {
+          setGameState('readComplete');
+        }
       })
       .catch(err => {
         console.log(err);
