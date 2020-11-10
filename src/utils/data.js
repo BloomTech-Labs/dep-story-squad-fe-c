@@ -98,4 +98,22 @@ export const gameData = {
       navigateToOnPrevButtonClick: '/game/squad-up',
     },
   },
+  gameSharePoints: {
+    instruction: {
+      title: 'Ready Squad!',
+      content:
+        "Read your partner's story, view their drawing and share some points.m" +
+        'You have 00:00 until the match begins please assign points',
+      buttonLabel: 'Ok',
+      hasShown: false,
+      navigateToOnClick: null,
+      showEveryTime: false,
+    },
+    gameControl: {
+      nextButtonLabel: 'Match Up!',
+      previousButtonLabel: 'Back',
+      navigateToOnNextButtonClick: '/game/match-up',
+      navigateToOnPrevButtonClick: '/game/squad-up',
+    },
+  },
 };
