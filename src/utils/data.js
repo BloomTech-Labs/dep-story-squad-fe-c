@@ -121,17 +121,33 @@ export const gameData = {
       title: 'You are matched up',
       content:
         'Team Show Fries, you are matched up with Star Dog.  \n ' +
-        'Click on each vote button to vote for your favorite story or drawing with emoji',
+        'Click on each vote button to vote for your favorite story. You will need three votes to enter match',
       buttonLabel: 'Ok',
       hasShown: false,
       navigateToOnClick: null,
       showEveryTime: false,
     },
     gameControl: {
-      nextButtonLabel: 'Match Up!',
+      nextButtonLabel: 'Vote!',
+      previousButtonLabel: 'Back',
+      navigateToOnNextButtonClick: '/game/vote',
+      navigateToOnPrevButtonClick: '/game/squad-up',
+    },
+  },
+  gameVote: {
+    instruction: {
+      title: 'Vote for your favorite',
+      content: 'Select your favorite story or drawing with emoji',
+      buttonLabel: 'Ok',
+      hasShown: false,
+      navigateToOnClick: null,
+      showEveryTime: false,
+    },
+    gameControl: {
+      nextButtonLabel: 'Submit',
       previousButtonLabel: 'Back',
       navigateToOnNextButtonClick: '/game/match-up',
-      navigateToOnPrevButtonClick: '/game/squad-up',
+      navigateToOnPrevButtonClick: '/game/match-up',
     },
   },
 };
