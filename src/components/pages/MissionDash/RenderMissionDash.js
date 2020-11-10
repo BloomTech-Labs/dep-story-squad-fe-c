@@ -9,7 +9,9 @@ const RenderMissionDash = ({ beginMission, missionReqs }) => {
       >
         <div className="progress-check">
           <img
-            src={`images/check-${missionReqs.read ? 'done' : 'incomplete'}.png`}
+            src={`images/check-${
+              missionReqs && missionReqs.read ? 'done' : 'incomplete'
+            }.png`}
             alt=""
           />
         </div>
@@ -33,7 +35,7 @@ const RenderMissionDash = ({ beginMission, missionReqs }) => {
           <div className="progress-check">
             <img
               src={`images/check-${
-                missionReqs.write ? 'done' : 'incomplete'
+                missionReqs && missionReqs.write ? 'done' : 'incomplete'
               }.png`}
               alt=""
             />
@@ -56,7 +58,7 @@ const RenderMissionDash = ({ beginMission, missionReqs }) => {
           <div className="progress-check">
             <img
               src={`images/check-${
-                missionReqs.draw ? 'done' : 'incomplete'
+                missionReqs && missionReqs.draw ? 'done' : 'incomplete'
               }.png`}
               alt=""
             />

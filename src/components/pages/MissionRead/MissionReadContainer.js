@@ -58,6 +58,7 @@ const MissionReadContainer = () => {
     });
     // Update currentUserState mission progress
     setCurUser(missionUpdate);
+
     // push back to mission dash
     push('/mission');
   };

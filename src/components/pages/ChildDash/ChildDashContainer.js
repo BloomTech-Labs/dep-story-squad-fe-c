@@ -3,14 +3,21 @@ import { useHistory } from 'react-router-dom';
 import { messagePopup } from '../../../utils/message-popup';
 import RenderChildDash from './RenderChildDash';
 // Recoil imports
-import { useResetRecoilState } from 'recoil';
+import { useRecoilState, useResetRecoilState } from 'recoil';
 import { headerTitle } from '../../../state/headerTitle';
+import { gameState } from '../../../state/gameState';
 
 const ChildDashContainer = props => {
+  const [curGameState, setGameState] = useRecoilState(gameState);
+
   // Header Title
   const setHeaderTitle = useResetRecoilState(headerTitle);
 
   const { push } = useHistory();
+
+  useEffect(() => {
+    setGameState('missionDash');
+  }, []);
 
   // Whenever this component mounts update the <Header /> title
   useEffect(() => {

@@ -25,6 +25,7 @@ import { MissionDash } from './components/pages/MissionDash';
 import { MissionRead } from './components/pages/MissionRead';
 import { MissionWrite } from './components/pages/MissionWrite';
 import { MissionDraw } from './components/pages/MissionDraw';
+import { GameSquadup } from './components/pages/GameSquadup';
 
 import { Header } from './components/common/';
 import InstructionPanel from './components/common/InstructionPanel';
@@ -54,13 +55,7 @@ function App() {
   return (
     <Security {...config} onAuthRequired={authHandler}>
       <Header />
-      <InstructionPanel
-        show={true}
-        title="You are Done"
-        instruction="Its time to join your Squad! Click next to continue Its time to join your Squad! Click next to continue Its time to join your Squad! Click next to continue"
-        buttonLabel="Squad Up"
-        onClick={() => console.log('Ready to squad up')}
-      />
+      <InstructionPanel />
       <Switch>
         <Route path="/login" component={() => <LoginPage />} />
 
@@ -75,6 +70,7 @@ function App() {
         <SecureRoute path="/mission/read" component={() => <MissionRead />} />
         <SecureRoute path="/mission/write" component={() => <MissionWrite />} />
         <SecureRoute path="/mission/draw" component={() => <MissionDraw />} />
+        <SecureRoute path="/game/squad-up" component={() => <GameSquadup />} />
         <Route component={NotFoundPage} />
       </Switch>
     </Security>
