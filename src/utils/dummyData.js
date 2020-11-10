@@ -42,13 +42,13 @@ const players = [
 ];
 
 export function getRandomPartners() {
-  let index1 = Math.floor(Math.random() * 10);
-  let index2 = Math.floor(Math.random() * 10);
+  let index1 = Math.ceil(Math.random() * 9);
+  let index2 = Math.floor(Math.random() * 9);
   const player1 = players[index1];
-  player1.avtar = `https://labs28-b-storysquad.s3.amazonaws.com/hero-${index1}.svg`;
+  player1.avatar = `https://labs28-b-storysquad.s3.amazonaws.com/hero-${index1}.svg`;
 
   const player2 = players[index2];
-  player2.avtar = `https://labs28-b-storysquad.s3.amazonaws.com/hero-${index2}.svg`;
+  player2.avatar = `https://labs28-b-storysquad.s3.amazonaws.com/hero-${index2}.svg`;
 
   return [player1, player2];
 }

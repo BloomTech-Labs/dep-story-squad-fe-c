@@ -1,19 +1,19 @@
-import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import React from 'react';
+import GameControls from '../../common/GameControls';
+import HeroCard from '../../common/HeroCard/HeroCard';
 
 const RenderGameSquadup = ({ players, controls }) => {
-  const { push, goBack } = useHistory();
   return (
-    <>
-      <p className="text-box">Render Game Squadup</p>
-      {JSON.stringify(players, null, 2)}
-      <section>
-        <button onClick={() => goBack()}>{controls.previousButtonLabel}</button>
-        <button onClick={() => push(controls.navigateToOnNextButtonClick)}>
-          {controls.nextButtonLabel}
-        </button>
-      </section>
-    </>
+    <div className="game-container ">
+      {/*{JSON.stringify(players, null, 2)}*/}
+      <HeroCard player={players[0]} color="green">
+        <div></div>
+      </HeroCard>
+      <HeroCard player={players[1]} color="yellow">
+        <div></div>
+      </HeroCard>
+      <GameControls controls={controls} />
+    </div>
   );
 };
 
