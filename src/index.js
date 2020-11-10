@@ -73,9 +73,17 @@ function App() {
         <SecureRoute path="/mission/read" component={() => <MissionRead />} />
         <SecureRoute path="/mission/write" component={() => <MissionWrite />} />
         <SecureRoute path="/mission/draw" component={() => <MissionDraw />} />
-        <SecureRoute path="/game/squad-up" component={() => <GameSquadup />} />
-        <SecureRoute path="/game/match-up" component={() => <GameMatchUp />} />
-        <SecureRoute path="/game/vote" component={() => <GameVote />} />
+        <SecureRoute
+          path="/game/squad-up"
+          exact
+          component={() => <GameSquadup />}
+        />
+        <SecureRoute
+          path="/game/match-up"
+          exact
+          component={() => <GameMatchUp />}
+        />
+        <SecureRoute path="/game/vote" exact component={() => <GameVote />} />
         <SecureRoute
           path="/game/share-points"
           component={() => <GameSharePoints />}

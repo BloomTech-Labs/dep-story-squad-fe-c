@@ -71,9 +71,20 @@ export const gameData = {
       showEveryTime: false,
     },
   },
-  submissionAllComplete: {
+  submissionsCompletePendingModeration: {
     instruction: {
       title: 'All Submission Received',
+      content:
+        'Check back on Wednesday. If your submissions have been approved, you will be able to move onto the next phase - Meet your partner',
+      buttonLabel: 'Back to Dashboard',
+      navigateToOnClick: '/dashboard',
+      hasShown: false,
+      showEveryTime: true,
+    },
+  },
+  submissionsCompleteApproved: {
+    instruction: {
+      title: 'Your submissions have been approved',
       content: 'Its time to join your Squad!  Click the button to continue',
       buttonLabel: 'Squad Up',
       hasShown: false,
@@ -116,6 +127,7 @@ export const gameData = {
       navigateToOnPrevButtonClick: '/game/squad-up',
     },
   },
+
   gameMatchUp: {
     instruction: {
       title: 'You are matched up',
@@ -134,6 +146,7 @@ export const gameData = {
       navigateToOnPrevButtonClick: '/game/squad-up',
     },
   },
+
   gameVote: {
     instruction: {
       title: 'Vote for your favorite',

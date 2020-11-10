@@ -252,3 +252,7 @@ export function getRandomPartners() {
 
   return [player1, player2];
 }
+
+export function getSubmissionApproved() {
+  return Math.floor(Math.random() * 2);
+}

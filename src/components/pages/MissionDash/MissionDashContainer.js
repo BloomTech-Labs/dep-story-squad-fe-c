@@ -7,9 +7,10 @@ import RenderMissionDash from './RenderMissionDash';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { headerTitle } from '../../../state/headerTitle';
 import { gameState } from '../../../state/gameState/atoms';
-
 import { currentUserState } from '../../../state/userState';
+
 import { getData } from '../../../api';
+import { getSubmissionApproved } from '../../../utils/dummyData';
 
 const MissionDashContainer = () => {
   const [curGameState, setGameState] = useRecoilState(gameState);
@@ -47,9 +48,15 @@ const MissionDashContainer = () => {
             draw,
           },
         });
+        // TODO: we need to differentiate whether it's approved or submitted only
 
         if (read && write && draw) {
-          setGameState('submissionAllComplete');
+          if (getSubmissionApproved()) {
+            setGameState('submissionsCompleteApproved');
+          } else {
+            setGameState('submissionsCompletePendingModeration');
+          }
+
           // navigateToOnClick
         } else if (read && !write && !draw) {
           setGameState('readComplete');
@@ -58,7 +65,7 @@ const MissionDashContainer = () => {
       .catch(err => {
         console.log(err);
       });
-  }, [curUser, curUserId, curUserType]);
+  }, []);
 
   // Checks if mission requirements have been met and then pushes
   // to mission URL or displays message popup with the requirements
