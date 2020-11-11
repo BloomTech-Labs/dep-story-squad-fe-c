@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import RenderGameSquadup from './RenderGameSquadup';
 
 // Recoil imports
-import { useSetRecoilState, useRecoilValue, useRecoilState } from 'recoil';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { headerTitle } from '../../../state/headerTitle';
 import { currentUserState } from '../../../state/userState';
 import { screenState } from '../../../state/screenState/atoms';

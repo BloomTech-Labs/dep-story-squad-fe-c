@@ -7,11 +7,10 @@ import RenderMissionDash from './RenderMissionDash';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { headerTitle } from '../../../state/headerTitle';
 import { gameState } from '../../../state/gameState';
+import { screenState } from '../../../state/screenState';
 import { currentUserState } from '../../../state/userState';
 
 import { getData } from '../../../api';
-import { getSubmissionApproved } from '../../../utils/dummyData';
-import { screenState } from '../../../state/screenState';
 
 const MissionDashContainer = () => {
   const setGameState = useSetRecoilState(gameState);
@@ -47,14 +46,20 @@ const MissionDashContainer = () => {
         // TODO: we need to differentiate whether it's approved or submitted only
         if (read && write && draw) {
           // right now this function is a dummy random value
-          if (getSubmissionApproved()) {
-            setGameState('submissionsCompleteApproved');
-            setScreenState('submissionsCompleteApproved');
-          } else {
-            setGameState('pendingSubmissionModeration');
-            setScreenState('pendingSubmissionModeration');
-          }
+          //   setGameState({
+          //     name: 'pendingSubmissionModeration',
+          //     message: 'Please check back on Wednesday',
+          //   });
+          //   setScreenState('pendingSubmissionModeration');
+          setGameState({
+            name: 'submissionsCompleteApproved',
+            message: 'Please check back on Wednesday',
+          });
+          setScreenState('submissionsCompleteApproved');
         } else if (read && !write && !draw) {
+          setGameState({
+            name: 'readComplete',
+          });
           setScreenState('readComplete');
         } else {
           setScreenState('submissionStart');

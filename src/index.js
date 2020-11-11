@@ -88,15 +88,16 @@ function App() {
           component={() => <GameSquadup />}
         />
         <SecureRoute
+          path="/game/share-points"
+          component={() => <GameSharePoints />}
+        />
+        <SecureRoute
           path="/game/match-up"
           exact
           component={() => <GameMatchUp />}
         />
         <SecureRoute path="/game/vote" exact component={() => <GameVote />} />
-        <SecureRoute
-          path="/game/share-points"
-          component={() => <GameSharePoints />}
-        />
+
         <Route component={NotFoundPage} />
       </Switch>
       <InstructionPanel />

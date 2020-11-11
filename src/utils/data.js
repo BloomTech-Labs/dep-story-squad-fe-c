@@ -1,5 +1,9 @@
 export const screenData = {
-  missionDash: {
+  home: {
+    route: '/',
+  },
+  missionNotStarted: {
+    route: '/dashboard',
     instruction: {
       title: 'Welcome to Story Squad',
       content: 'Accept your mission to start an adventure!',
@@ -11,6 +15,7 @@ export const screenData = {
     },
   },
   submissionStart: {
+    route: '/mission',
     instruction: {
       title: 'Are you ready to accept the challenge?',
       content:
@@ -23,6 +28,7 @@ export const screenData = {
     },
   },
   readComplete: {
+    route: '/mission',
     instruction: {
       title: 'Great Job!',
       content: 'Its time to get creative. Click on one of the prompts.',
@@ -34,6 +40,7 @@ export const screenData = {
     },
   },
   submissionWriteStart: {
+    route: '/mission/write',
     instruction: {
       title: 'Instruction',
       content:
@@ -45,6 +52,7 @@ export const screenData = {
     },
   },
   submissionWriteComplete: {
+    route: '/mission',
     instruction: {
       title: 'Submitted',
       content: 'Your Story has been submitted',
@@ -56,6 +64,7 @@ export const screenData = {
     },
   },
   submissionDrawStart: {
+    route: '/mission/draw',
     instruction: {
       title: 'Instruction',
       content:
@@ -68,6 +77,7 @@ export const screenData = {
     },
   },
   submissionDrawComplete: {
+    route: '/mission',
     instruction: {
       title: 'Submitted',
       content: 'Your drawing has been submitted',
@@ -78,7 +88,9 @@ export const screenData = {
       isModal: false,
     },
   },
+  // All submission completed
   pendingSubmissionModeration: {
+    route: '/mission',
     instruction: {
       title: 'All Submission Received',
       content:
@@ -91,6 +103,7 @@ export const screenData = {
     },
   },
   submissionsCompleteApproved: {
+    route: '/mission',
     instruction: {
       title: 'Your submissions have been approved',
       content: 'Its time to join your Squad!  Click the button to continue',
@@ -102,6 +115,7 @@ export const screenData = {
     },
   },
   gameSquadup: {
+    route: '/game/squad-up',
     instruction: {
       title: 'Meet your Squad Partner',
       content:
@@ -120,6 +134,7 @@ export const screenData = {
     },
   },
   gameSharePoints: {
+    route: '/game/share-points',
     instruction: {
       title: 'Ready Squad!',
       content:
@@ -140,6 +155,7 @@ export const screenData = {
   },
 
   gameMatchUp: {
+    route: '/game/match-up',
     instruction: {
       title: 'You are matched up',
       content:
@@ -160,6 +176,7 @@ export const screenData = {
   },
 
   gameVote: {
+    route: '/game/vote',
     instruction: {
       title: 'Vote for your favorite',
       content: 'Select your favorite story or drawing with emoji',
@@ -177,3 +194,7 @@ export const screenData = {
     },
   },
 };
+
+export function getScreenStateByGameState(gameState) {
+  return screenData[gameState].route;
+}
