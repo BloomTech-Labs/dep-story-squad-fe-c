@@ -1,4 +1,4 @@
-export const gameData = {
+export const screenData = {
   missionDash: {
     instruction: {
       title: 'Welcome to Story Squad',
@@ -7,6 +7,7 @@ export const gameData = {
       navigateToOnClick: null,
       hasShown: false,
       showEveryTime: false,
+      isModal: false,
     },
   },
   submissionStart: {
@@ -18,6 +19,7 @@ export const gameData = {
       navigateToOnClick: null,
       showEveryTime: false,
       hasShown: false,
+      isModal: false,
     },
   },
   readComplete: {
@@ -28,6 +30,7 @@ export const gameData = {
       navigateToOnClick: null,
       hasShown: false,
       showEveryTime: false,
+      isModal: false,
     },
   },
   submissionWriteStart: {
@@ -38,6 +41,7 @@ export const gameData = {
       buttonLabel: 'OK',
       showEveryTime: false,
       navigateToOnClick: null,
+      isModal: false,
     },
   },
   submissionWriteComplete: {
@@ -48,6 +52,7 @@ export const gameData = {
       navigateToOnClick: null,
       hasShown: false,
       showEveryTime: false,
+      isModal: false,
     },
   },
   submissionDrawStart: {
@@ -59,6 +64,7 @@ export const gameData = {
       navigateToOnClick: null,
       hasShown: false,
       showEveryTime: false,
+      isModal: false,
     },
   },
   submissionDrawComplete: {
@@ -69,9 +75,10 @@ export const gameData = {
       navigateToOnClick: null,
       hasShown: false,
       showEveryTime: false,
+      isModal: false,
     },
   },
-  submissionsCompletePendingModeration: {
+  pendingSubmissionModeration: {
     instruction: {
       title: 'All Submission Received',
       content:
@@ -80,6 +87,7 @@ export const gameData = {
       navigateToOnClick: '/dashboard',
       hasShown: false,
       showEveryTime: true,
+      isModal: true,
     },
   },
   submissionsCompleteApproved: {
@@ -90,6 +98,7 @@ export const gameData = {
       hasShown: false,
       navigateToOnClick: '/game/squad-up',
       showEveryTime: true,
+      isModal: false,
     },
   },
   gameSquadup: {
@@ -101,6 +110,7 @@ export const gameData = {
       hasShown: false,
       navigateToOnClick: null,
       showEveryTime: false,
+      isModal: false,
     },
     gameControl: {
       nextButtonLabel: 'Share Points',
@@ -119,6 +129,7 @@ export const gameData = {
       hasShown: false,
       navigateToOnClick: null,
       showEveryTime: false,
+      isModal: false,
     },
     gameControl: {
       nextButtonLabel: 'Match Up!',
@@ -138,6 +149,7 @@ export const gameData = {
       hasShown: false,
       navigateToOnClick: null,
       showEveryTime: false,
+      isModal: false,
     },
     gameControl: {
       nextButtonLabel: 'Vote!',
@@ -156,6 +168,7 @@ export const gameData = {
       navigateToOnClick: null,
       showEveryTime: false,
     },
+
     gameControl: {
       nextButtonLabel: 'Submit',
       previousButtonLabel: 'Back',

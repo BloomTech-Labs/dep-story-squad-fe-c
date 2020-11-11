@@ -1,5 +1,28 @@
 .instruction-container {
   display: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+.instruction-container.show {
+  display: block;
+}
+
+.screen-blocker {
+  display:none;
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  opacity: 0.5;
+}
+.screen-blocker.show{
+  display: block;
+}
+
+
+.instruction-panel {
   width: 80vw;
   max-width: 680px;
   z-index: 1000;
@@ -34,6 +57,7 @@
   }
 }
 
-.instruction-container.show {
-  display: block;
+
+.click-trapper{
+  //cursor: not-allowed;
 }

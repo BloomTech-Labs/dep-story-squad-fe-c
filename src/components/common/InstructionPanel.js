@@ -1,46 +1,61 @@
 import React, { useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { useHistory } from 'react-router-dom';
 
-import { gameState } from '../../state/gameState';
-import { modalState } from '../../state/modalState/atoms';
-import { gameData } from '../../utils/data';
+import { panelState } from '../../state/panelState';
+import { screenState } from '../../state/screenState';
+import { screenData } from '../../utils/data';
 
 const InstructionPanel = ({}) => {
-  const [curGameState] = useRecoilState(gameState);
-  const [isModalOpen, setModalState] = useRecoilState(modalState);
+  const curScreenState = useRecoilValue(screenState);
+  const [curPanelState, setPanelState] = useRecoilState(panelState);
   const [instruction, setInstruction] = useState({});
   const { push } = useHistory();
 
   useEffect(() => {
-    const inst = gameData[curGameState]?.instruction;
+    if (!screenData[curScreenState]) return;
+    const inst = screenData[curScreenState].instruction;
     if (inst && (!inst.hasShown || inst.showEveryTime)) {
       inst.hasShown = true;
       setInstruction(inst);
-      setModalState(true);
+      // set modal to open every time if
+      // 1. instruction is not empty
+      // 2. it has not been shown
+      // 3. Or it needs to show every time
+      setPanelState(true);
     } else {
-      setModalState(false);
+      setPanelState(false);
     }
-  }, [curGameState]);
+  }, [curScreenState]);
 
   const handleClick = () => {
+    // which route it will take you to on button click
     const route = instruction.navigateToOnClick;
     if (route) {
       push(route);
     }
-    setModalState(false);
+    setPanelState(false);
   };
+
   return (
     <div
       className={`instruction-container ${instruction &&
-        isModalOpen &&
+        curPanelState &&
         'show'}`}
     >
-      <h1>{instruction.title}</h1>
-      <p>{instruction.content}</p>
-      <button className="game-button" onClick={handleClick}>
-        {instruction.buttonLabel}
-      </button>
+      {/*Some screen state prevents further actions from user*/}
+      <div
+        className={`screen-blocker ${instruction &&
+          instruction.isModal &&
+          'show click-trapper'}`}
+      />
+      <div className="instruction-panel">
+        <h1>{instruction.title}</h1>
+        <p>{instruction.content}</p>
+        <button className="game-button" onClick={handleClick}>
+          {instruction.buttonLabel}
+        </button>
+      </div>
     </div>
   );
 };

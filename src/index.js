@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import {
   BrowserRouter as Router,
   Route,
   useHistory,
   Switch,
+  useLocation,
 } from 'react-router-dom';
 import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 
 // provider for Recoil state
-import { RecoilRoot } from 'recoil';
+import { RecoilRoot, useSetRecoilState } from 'recoil';
 
 // Styles imports
 import './styles/index.less';
@@ -32,6 +33,7 @@ import { GameVote } from './components/pages/GameVote';
 
 import { Header } from './components/common/';
 import InstructionPanel from './components/common/InstructionPanel';
+import { routeState } from './state/routeState';
 
 ReactDOM.render(
   <Router>
@@ -45,9 +47,17 @@ ReactDOM.render(
 );
 
 function App() {
+  const setCurRoute = useSetRecoilState(routeState);
+  const location = useLocation();
+
   // The reason to declare App this way is so that we can use any helper functions we'd need for business logic, in our case auth.
   // React Router has a nifty useHistory hook we can use at this level to ensure we have security around our routes.
   const history = useHistory();
+
+  useEffect(() => {
+    // get the current route. added here just in case we need to use this later
+    setCurRoute(location.pathname);
+  }, [location]);
 
   const authHandler = () => {
     // We pass this to our <Security /> component that wraps our routes.
@@ -58,7 +68,6 @@ function App() {
   return (
     <Security {...config} onAuthRequired={authHandler}>
       <Header />
-      <InstructionPanel />
       <Switch>
         <Route path="/login" component={() => <LoginPage />} />
 
@@ -90,6 +99,7 @@ function App() {
         />
         <Route component={NotFoundPage} />
       </Switch>
+      <InstructionPanel />
     </Security>
   );
 }

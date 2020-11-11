@@ -2,5 +2,5 @@ import { atom } from 'recoil';
 
 export const gameState = atom({
   key: 'gameState',
-  default: 'home',
+  default: 'missionNotStarted',
 });

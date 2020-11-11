@@ -6,30 +6,26 @@ import RenderMissionDash from './RenderMissionDash';
 
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { headerTitle } from '../../../state/headerTitle';
-import { gameState } from '../../../state/gameState/atoms';
+import { gameState } from '../../../state/gameState';
 import { currentUserState } from '../../../state/userState';
 
 import { getData } from '../../../api';
 import { getSubmissionApproved } from '../../../utils/dummyData';
+import { screenState } from '../../../state/screenState';
 
 const MissionDashContainer = () => {
-  const [curGameState, setGameState] = useRecoilState(gameState);
-
+  const setGameState = useSetRecoilState(gameState);
+  const setScreenState = useSetRecoilState(screenState);
   // Header title
   const setHeaderTitle = useSetRecoilState(headerTitle);
   // mission progress used to control checkbox images and restrict access to missions in order
   const [curUser, setCurUser] = useRecoilState(currentUserState);
   const { curUserId, curUserType } = curUser;
+
   const missionReqs = curUser.missionProgress;
   const refMissionReqs = useRef(curUser.missionProgress);
   // Calback to push user to correct URL
   const { push } = useHistory();
-
-  // Whenever this component mounts update the <Header /> title
-  useEffect(() => {
-    setGameState('submissionStart');
-  }, []);
-
   // Whenever this component mounts update the <Header /> title
   useEffect(() => {
     setHeaderTitle('Mission');
@@ -49,17 +45,19 @@ const MissionDashContainer = () => {
           },
         });
         // TODO: we need to differentiate whether it's approved or submitted only
-
         if (read && write && draw) {
+          // right now this function is a dummy random value
           if (getSubmissionApproved()) {
             setGameState('submissionsCompleteApproved');
+            setScreenState('submissionsCompleteApproved');
           } else {
-            setGameState('submissionsCompletePendingModeration');
+            setGameState('pendingSubmissionModeration');
+            setScreenState('pendingSubmissionModeration');
           }
-
-          // navigateToOnClick
         } else if (read && !write && !draw) {
-          setGameState('readComplete');
+          setScreenState('readComplete');
+        } else {
+          setScreenState('submissionStart');
         }
       })
       .catch(err => {

@@ -2,18 +2,17 @@ import React, { useState, useEffect } from 'react';
 import RenderGameMatchup from './RenderGameMatchup';
 
 // Recoil imports
-import { useSetRecoilState, useRecoilValue, useRecoilState } from 'recoil';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { headerTitle } from '../../../state/headerTitle';
 import { currentUserState } from '../../../state/userState';
-import { gameState } from '../../../state/gameState/atoms';
-import { gameData } from '../../../utils/data';
+import { screenState } from '../../../state/screenState/atoms';
+import { screenData } from '../../../utils/data';
 import { getRandomPartners } from '../../../utils/dummyData';
 
 const GameMatchUpContainer = () => {
-  const [curGameState, setGameState] = useRecoilState(gameState);
+  const setScreenState = useSetRecoilState(screenState);
   const [controls, setControls] = useState(() => {
-    const data = gameData['gameMatchUp'].gameControl;
-    return data;
+    return screenData['gameMatchUp'].gameControl;
   });
   const setHeaderTitle = useSetRecoilState(headerTitle);
   // Current user's Id and Token for submitting files to API
@@ -26,7 +25,7 @@ const GameMatchUpContainer = () => {
   });
 
   useEffect(() => {
-    setGameState('gameMatchUp');
+    setScreenState('gameMatchUp');
   }, []);
 
   // sets the header title

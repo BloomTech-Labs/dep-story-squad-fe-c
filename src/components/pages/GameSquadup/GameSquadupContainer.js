@@ -5,15 +5,14 @@ import RenderGameSquadup from './RenderGameSquadup';
 import { useSetRecoilState, useRecoilValue, useRecoilState } from 'recoil';
 import { headerTitle } from '../../../state/headerTitle';
 import { currentUserState } from '../../../state/userState';
-import { gameState } from '../../../state/gameState/atoms';
-import { gameData } from '../../../utils/data';
+import { screenState } from '../../../state/screenState/atoms';
+import { screenData } from '../../../utils/data';
 import { getRandomPartners } from '../../../utils/dummyData';
 
 const GameSquadupContainer = () => {
-  const [curGameState, setGameState] = useRecoilState(gameState);
+  const setScreenState = useSetRecoilState(screenState);
   const [controls, setControls] = useState(() => {
-    const data = gameData['gameSquadup'].gameControl;
-    return data;
+    return screenData['gameSquadup'].gameControl;
   });
   const setHeaderTitle = useSetRecoilState(headerTitle);
   // Current user's Id and Token for submitting files to API
@@ -26,7 +25,7 @@ const GameSquadupContainer = () => {
   });
 
   useEffect(() => {
-    setGameState('gameSquadup');
+    setScreenState('gameSquadup');
   }, []);
 
   // sets the header title

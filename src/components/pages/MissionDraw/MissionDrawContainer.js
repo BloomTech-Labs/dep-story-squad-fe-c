@@ -3,13 +3,13 @@ import RenderMissionDraw from './RenderMissionDraw';
 
 import { getData } from '../../../api';
 // Recoil imports
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { headerTitle } from '../../../state/headerTitle';
 import { currentUserState } from '../../../state/userState';
 import { gameState } from '../../../state/gameState/atoms';
 
 const MissionDrawContainer = () => {
-  const [curGameState, setGameState] = useRecoilState(gameState);
+  const setGameState = useSetRecoilState(gameState);
 
   const setHeaderTitle = useSetRecoilState(headerTitle);
   // Current user's Id and Token for submitting files to API

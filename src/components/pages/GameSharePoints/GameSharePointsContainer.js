@@ -2,17 +2,17 @@ import React, { useState, useEffect } from 'react';
 import RenderGameSharePoints from './RenderGameSharePoints';
 
 // Recoil imports
-import { useSetRecoilState, useRecoilValue, useRecoilState } from 'recoil';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { headerTitle } from '../../../state/headerTitle';
 import { currentUserState } from '../../../state/userState';
-import { gameState } from '../../../state/gameState/atoms';
-import { gameData } from '../../../utils/data';
+import { screenState } from '../../../state/screenState/atoms';
+import { screenData } from '../../../utils/data';
 import { getRandomPartners } from '../../../utils/dummyData';
 
 const GameSharePointsContainer = () => {
-  const [curGameState, setGameState] = useRecoilState(gameState);
+  const setScreenState = useSetRecoilState(screenState);
   const [controls, setControls] = useState(() => {
-    const data = gameData['gameSharePoints'].gameControl;
+    const data = screenData['gameSharePoints'].gameControl;
     return data;
   });
   const setHeaderTitle = useSetRecoilState(headerTitle);
@@ -26,7 +26,7 @@ const GameSharePointsContainer = () => {
   });
 
   useEffect(() => {
-    setGameState('gameSharePoints');
+    setScreenState('gameSharePoints');
   }, []);
 
   // sets the header title

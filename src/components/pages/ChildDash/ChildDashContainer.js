@@ -3,12 +3,16 @@ import { useHistory } from 'react-router-dom';
 import { messagePopup } from '../../../utils/message-popup';
 import RenderChildDash from './RenderChildDash';
 // Recoil imports
-import { useRecoilState, useResetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState, useResetRecoilState } from 'recoil';
 import { headerTitle } from '../../../state/headerTitle';
 import { gameState } from '../../../state/gameState';
+import { screenState } from '../../../state/screenState';
+import { panelState } from '../../../state/panelState';
 
 const ChildDashContainer = props => {
-  const [curGameState, setGameState] = useRecoilState(gameState);
+  const curGameState = useRecoilValue(gameState);
+  const setScreenState = useSetRecoilState(screenState);
+  const setPanelState = useSetRecoilState(panelState);
 
   // Header Title
   const setHeaderTitle = useResetRecoilState(headerTitle);
@@ -16,7 +20,11 @@ const ChildDashContainer = props => {
   const { push } = useHistory();
 
   useEffect(() => {
-    setGameState('missionDash');
+    // Only show welcome message if mission has not been started
+    if (curGameState === 'missionNotStarted') {
+      setPanelState(true);
+      setScreenState('missionDash');
+    }
   }, []);
 
   // Whenever this component mounts update the <Header /> title
