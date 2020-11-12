@@ -116,7 +116,7 @@ export const screenData = {
       buttonLabel: 'Back to Dashboard',
       navigateToOnClick: '/dashboard',
       hasShown: false,
-      showEveryTime: true,
+      showEveryTime: false,
       isModal: true,
     },
   },

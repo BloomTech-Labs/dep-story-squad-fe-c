@@ -25,7 +25,7 @@ const RenderChildDash = ({ push, messagePopup }) => {
     if (name.startsWith('pending')) {
       // disable click listener if it's a pending state
       return (
-        <button className="dash-btn-container mission ">
+        <button className="dash-btn-container mission pending">
           <img src="/images/mission-btn.png" alt="accept the mission artwork" />
           <div className="btn-overlay" />
           <p className="btn-overlay-text">{message}</p>

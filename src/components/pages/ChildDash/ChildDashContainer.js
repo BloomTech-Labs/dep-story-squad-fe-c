@@ -24,11 +24,7 @@ const ChildDashContainer = props => {
     if (curGameState.name === 'missionNotStarted') {
       // setPanelState(true);
       setScreenState('missionNotStarted');
-    } else {
-      setPanelState(true);
-      setScreenState(curGameState.name);
     }
-    // TODO
   }, []);
 
   // Whenever this component mounts update the <Header /> title
