@@ -4,9 +4,11 @@ import { useHistory } from 'react-router-dom';
 
 import { panelState } from '../../state/panelState';
 import { screenState } from '../../state/screenState';
+import { gameState } from '../../state/gameState';
 import { screenData } from '../../utils/data';
 
 const InstructionPanel = ({}) => {
+  const curGameState = useRecoilValue(gameState);
   const curScreenState = useRecoilValue(screenState);
   const [curPanelState, setPanelState] = useRecoilState(panelState);
   const [instruction, setInstruction] = useState({});

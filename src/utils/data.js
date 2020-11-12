@@ -1,3 +1,8 @@
+// ScreenData is used to serve as the repo for screen and game state
+// 1. display instruction panel content for the state
+// 2. route that each state belongs too
+// 3. game related state also have a game control that can navigate to and from the state
+
 export const screenData = {
   home: {
     route: '/',
@@ -24,6 +29,19 @@ export const screenData = {
       navigateToOnClick: null,
       showEveryTime: false,
       hasShown: false,
+      isModal: false,
+    },
+  },
+  incompleteSubmissions: {
+    route: '/mission',
+    instruction: {
+      title: 'Incomplete Submissions',
+      content:
+        'You have not completed all required submissions, click accept mission to resume',
+      buttonLabel: 'OK',
+      navigateToOnClick: null,
+      showEveryTime: false,
+      hasShown: true,
       isModal: false,
     },
   },
@@ -194,6 +212,8 @@ export const screenData = {
     },
   },
 };
+
+const instructionsShown = [];
 
 export function getScreenStateByGameState(gameState) {
   return screenData[gameState].route;

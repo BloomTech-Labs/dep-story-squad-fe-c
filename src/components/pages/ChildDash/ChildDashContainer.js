@@ -22,9 +22,13 @@ const ChildDashContainer = props => {
   useEffect(() => {
     // Only show welcome message if mission has not been started
     if (curGameState.name === 'missionNotStarted') {
-      setPanelState(true);
+      // setPanelState(true);
       setScreenState('missionNotStarted');
+    } else {
+      setPanelState(true);
+      setScreenState(curGameState.name);
     }
+    // TODO
   }, []);
 
   // Whenever this component mounts update the <Header /> title
