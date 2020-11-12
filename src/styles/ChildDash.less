@@ -14,7 +14,32 @@
   outline: none;
   cursor: pointer;
   transition: all 0.3s ease;
+  position: relative;
 
+  .btn-overlay {
+    background-color: @black;
+    opacity: 0.8;
+    position: absolute;
+    top: -2px;
+    bottom: -14px;
+    left: -2px;
+    right: -2px;
+    cursor: not-allowed;
+  }
+
+  .btn-overlay-text{
+    position: absolute;
+    top: 0;
+    bottom: -14px;
+    left: -2px;
+    right: -2px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    color:@white;
+    font-size: 1.6rem;
+    font-weight:800;
+  }
   // <img>s inside the buttons
   img {
     height: 90%;

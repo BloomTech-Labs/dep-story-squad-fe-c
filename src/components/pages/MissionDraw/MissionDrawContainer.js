@@ -3,13 +3,13 @@ import RenderMissionDraw from './RenderMissionDraw';
 
 import { getData } from '../../../api';
 // Recoil imports
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { headerTitle } from '../../../state/headerTitle';
 import { currentUserState } from '../../../state/userState';
-import { gameState } from '../../../state/gameState/atoms';
+import { screenState } from '../../../state/screenState';
 
 const MissionDrawContainer = () => {
-  const [curGameState, setGameState] = useRecoilState(gameState);
+  const setScreenState = useSetRecoilState(screenState);
 
   const setHeaderTitle = useSetRecoilState(headerTitle);
   // Current user's Id and Token for submitting files to API
@@ -23,7 +23,7 @@ const MissionDrawContainer = () => {
   const [missionPrompt, setMissionPrompt] = useState('Loading...');
 
   useEffect(() => {
-    setGameState('submissionDrawStart');
+    setScreenState('submissionDrawStart');
   }, []);
 
   // Get the text for mission prompt

@@ -1,5 +1,14 @@
-export const gameData = {
-  missionDash: {
+// ScreenData is used to serve as the repo for screen and game state
+// 1. display instruction panel content for the state
+// 2. route that each state belongs too
+// 3. game related state also have a game control that can navigate to and from the state
+
+export const screenData = {
+  home: {
+    route: '/',
+  },
+  missionNotStarted: {
+    route: '/dashboard',
     instruction: {
       title: 'Welcome to Story Squad',
       content: 'Accept your mission to start an adventure!',
@@ -7,9 +16,11 @@ export const gameData = {
       navigateToOnClick: null,
       hasShown: false,
       showEveryTime: false,
+      isModal: false,
     },
   },
   submissionStart: {
+    route: '/mission',
     instruction: {
       title: 'Are you ready to accept the challenge?',
       content:
@@ -18,9 +29,24 @@ export const gameData = {
       navigateToOnClick: null,
       showEveryTime: false,
       hasShown: false,
+      isModal: false,
+    },
+  },
+  incompleteSubmissions: {
+    route: '/mission',
+    instruction: {
+      title: 'Incomplete Submissions',
+      content:
+        'You have not completed all required submissions, click accept mission to resume',
+      buttonLabel: 'OK',
+      navigateToOnClick: null,
+      showEveryTime: false,
+      hasShown: true,
+      isModal: false,
     },
   },
   readComplete: {
+    route: '/mission',
     instruction: {
       title: 'Great Job!',
       content: 'Its time to get creative. Click on one of the prompts.',
@@ -28,9 +54,11 @@ export const gameData = {
       navigateToOnClick: null,
       hasShown: false,
       showEveryTime: false,
+      isModal: false,
     },
   },
   submissionWriteStart: {
+    route: '/mission/write',
     instruction: {
       title: 'Instruction',
       content:
@@ -38,9 +66,11 @@ export const gameData = {
       buttonLabel: 'OK',
       showEveryTime: false,
       navigateToOnClick: null,
+      isModal: false,
     },
   },
   submissionWriteComplete: {
+    route: '/mission',
     instruction: {
       title: 'Submitted',
       content: 'Your Story has been submitted',
@@ -48,9 +78,11 @@ export const gameData = {
       navigateToOnClick: null,
       hasShown: false,
       showEveryTime: false,
+      isModal: false,
     },
   },
   submissionDrawStart: {
+    route: '/mission/draw',
     instruction: {
       title: 'Instruction',
       content:
@@ -59,9 +91,11 @@ export const gameData = {
       navigateToOnClick: null,
       hasShown: false,
       showEveryTime: false,
+      isModal: false,
     },
   },
   submissionDrawComplete: {
+    route: '/mission',
     instruction: {
       title: 'Submitted',
       content: 'Your drawing has been submitted',
@@ -69,19 +103,37 @@ export const gameData = {
       navigateToOnClick: null,
       hasShown: false,
       showEveryTime: false,
+      isModal: false,
     },
   },
-  submissionAllComplete: {
+  // All submission completed
+  pendingSubmissionModeration: {
+    route: '/mission',
     instruction: {
       title: 'All Submission Received',
+      content:
+        'Check back on Wednesday. If your submissions have been approved, you will be able to move onto the next phase - Meet your partner',
+      buttonLabel: 'Back to Dashboard',
+      navigateToOnClick: '/dashboard',
+      hasShown: false,
+      showEveryTime: false,
+      isModal: true,
+    },
+  },
+  submissionsCompleteApproved: {
+    route: '/mission',
+    instruction: {
+      title: 'Your submissions have been approved',
       content: 'Its time to join your Squad!  Click the button to continue',
       buttonLabel: 'Squad Up',
       hasShown: false,
       navigateToOnClick: '/game/squad-up',
       showEveryTime: true,
+      isModal: false,
     },
   },
   gameSquadup: {
+    route: '/game/squad-up',
     instruction: {
       title: 'Meet your Squad Partner',
       content:
@@ -90,6 +142,7 @@ export const gameData = {
       hasShown: false,
       navigateToOnClick: null,
       showEveryTime: false,
+      isModal: false,
     },
     gameControl: {
       nextButtonLabel: 'Share Points',
@@ -99,6 +152,7 @@ export const gameData = {
     },
   },
   gameSharePoints: {
+    route: '/game/share-points',
     instruction: {
       title: 'Ready Squad!',
       content:
@@ -108,6 +162,7 @@ export const gameData = {
       hasShown: false,
       navigateToOnClick: null,
       showEveryTime: false,
+      isModal: false,
     },
     gameControl: {
       nextButtonLabel: 'Match Up!',
@@ -116,7 +171,9 @@ export const gameData = {
       navigateToOnPrevButtonClick: '/game/squad-up',
     },
   },
+
   gameMatchUp: {
+    route: '/game/match-up',
     instruction: {
       title: 'You are matched up',
       content:
@@ -126,6 +183,7 @@ export const gameData = {
       hasShown: false,
       navigateToOnClick: null,
       showEveryTime: false,
+      isModal: false,
     },
     gameControl: {
       nextButtonLabel: 'Vote!',
@@ -134,7 +192,9 @@ export const gameData = {
       navigateToOnPrevButtonClick: '/game/squad-up',
     },
   },
+
   gameVote: {
+    route: '/game/vote',
     instruction: {
       title: 'Vote for your favorite',
       content: 'Select your favorite story or drawing with emoji',
@@ -143,6 +203,7 @@ export const gameData = {
       navigateToOnClick: null,
       showEveryTime: false,
     },
+
     gameControl: {
       nextButtonLabel: 'Submit',
       previousButtonLabel: 'Back',
@@ -151,3 +212,9 @@ export const gameData = {
     },
   },
 };
+
+const instructionsShown = [];
+
+export function getScreenStateByGameState(gameState) {
+  return screenData[gameState].route;
+}
