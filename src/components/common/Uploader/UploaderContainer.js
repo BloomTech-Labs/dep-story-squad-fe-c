@@ -67,10 +67,12 @@ const Uploader = ({ fileLimit, uploadURL }) => {
     const formData = new FormData();
 
     // 'child/userId/mission'
-    const endpoint = uploadURL;
+    let endpoint = uploadURL;
+    endpoint += `?mpi=${curUser.missionProgress.id}`;
     fileList.forEach(file => {
       formData.append('image', file.originFileObj);
     });
+
     // endpoint, payload, userToken
     uploadSubmissionData(endpoint, formData)
       .then(res => {

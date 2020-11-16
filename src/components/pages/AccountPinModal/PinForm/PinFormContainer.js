@@ -34,9 +34,9 @@ const PinFomContainer = ({
 
   // used to increment input focus as you type, below
   const nextFocus = {
-    '0': ref_1.current,
-    '1': ref_2.current,
-    '2': ref_3.current,
+    0: ref_1.current,
+    1: ref_2.current,
+    2: ref_3.current,
   };
 
   // only submits when pin length === 4
