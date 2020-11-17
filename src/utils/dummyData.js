@@ -243,14 +243,22 @@ const players = [
 
 export function getRandomPartners(curUser) {
   let index1 = Math.ceil(Math.random() * 9);
-  let index2 = Math.floor(Math.random() * 9);
+  let index2 = Math.ceil(Math.random() * 9);
+  let index3 = Math.ceil(Math.random() * 9);
+  let index4 = Math.ceil(Math.random() * 9);
   const player1 = players[index1];
   player1.avatar = `https://labs28-b-storysquad.s3.amazonaws.com/hero-${index1}.svg`;
 
   const player2 = players[index2];
   player2.avatar = `https://labs28-b-storysquad.s3.amazonaws.com/hero-${index2}.svg`;
 
-  return [player1, player2];
+  const player3 = players[index3];
+  player3.avatar = `https://labs28-b-storysquad.s3.amazonaws.com/hero-${index3}.svg`;
+
+  const player4 = players[index4];
+  player4.avatar = `https://labs28-b-storysquad.s3.amazonaws.com/hero-${index4}.svg`;
+
+  return [player1, player2, player3, player4];
 }
 
 export function getSubmissionApproved() {

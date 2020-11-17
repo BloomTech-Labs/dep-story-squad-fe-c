@@ -1,5 +1,5 @@
 import React from 'react';
-const HeroCard = ({ player, color }) => {
+const HeroCard = ({ player, color, isYou = false }) => {
   return (
     <div className={`hero-card ${color}`}>
       <div className="chat-wrapper">
@@ -10,6 +10,10 @@ const HeroCard = ({ player, color }) => {
       <div className="hero-avatar-wrapper ">
         <img className="hero-avatar" src={player.avatar} />
       </div>
+      <h1 className="player-name">
+        {player.name}
+        {isYou && '(YOU)'}
+      </h1>
     </div>
   );
 };

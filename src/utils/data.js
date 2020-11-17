@@ -7,7 +7,7 @@ export const screenData = {
   home: {
     route: '/',
   },
-  missionNotStarted: {
+  MISSION_NOT_STARTED: {
     route: '/dashboard',
     instruction: {
       title: 'Welcome to Story Squad',
@@ -132,7 +132,7 @@ export const screenData = {
       isModal: false,
     },
   },
-  gameSquadup: {
+  GAME_SQUAD_UP: {
     route: '/game/squad-up',
     instruction: {
       title: 'Meet your Squad Partner',
@@ -151,7 +151,7 @@ export const screenData = {
       navigateToOnPrevButtonClick: '/game/squad-up',
     },
   },
-  gameSharePoints: {
+  GAME_SHARE_POINTS: {
     route: '/game/share-points',
     instruction: {
       title: 'Ready Squad!',
@@ -172,7 +172,7 @@ export const screenData = {
     },
   },
 
-  gameMatchUp: {
+  GAME_MATCHUP: {
     route: '/game/match-up',
     instruction: {
       title: 'You are matched up',
@@ -193,8 +193,27 @@ export const screenData = {
     },
   },
 
-  gameVote: {
+  // gameVote: {
+  INDEPENDENT_VOTING: {
     route: '/game/vote',
+    instruction: {
+      title: 'Vote for your favorite',
+      content: 'Select your favorite story or drawing with emoji',
+      buttonLabel: 'Ok',
+      hasShown: false,
+      navigateToOnClick: null,
+      showEveryTime: false,
+    },
+
+    gameControl: {
+      nextButtonLabel: 'Submit',
+      previousButtonLabel: 'Back',
+      navigateToOnNextButtonClick: '/game/match-up',
+      navigateToOnPrevButtonClick: '/game/match-up',
+    },
+  },
+  PENDING_RESULT: {
+    route: '/game/match-up',
     instruction: {
       title: 'Vote for your favorite',
       content: 'Select your favorite story or drawing with emoji',

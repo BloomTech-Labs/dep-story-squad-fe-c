@@ -21,9 +21,9 @@ const ChildDashContainer = props => {
 
   useEffect(() => {
     // Only show welcome message if mission has not been started
-    if (curGameState.name === 'missionNotStarted') {
+    if (curGameState.name === 'MISSION_NOT_STARTED') {
       // setPanelState(true);
-      setScreenState('missionNotStarted');
+      setScreenState('MISSION_NOT_STARTED');
     }
   }, []);
 

@@ -12,7 +12,7 @@ import { getRandomPartners } from '../../../utils/dummyData';
 const GameSharePointsContainer = () => {
   const setScreenState = useSetRecoilState(screenState);
   const [controls, setControls] = useState(() => {
-    const data = screenData['gameSharePoints'].gameControl;
+    const data = screenData['GAME_SHARE_POINTS'].gameControl;
     return data;
   });
   const setHeaderTitle = useSetRecoilState(headerTitle);
@@ -26,7 +26,7 @@ const GameSharePointsContainer = () => {
   });
 
   useEffect(() => {
-    setScreenState('gameSharePoints');
+    setScreenState('GAME_SHARE_POINTS');
   }, []);
 
   // sets the header title
