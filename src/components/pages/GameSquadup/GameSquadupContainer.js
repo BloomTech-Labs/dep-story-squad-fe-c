@@ -12,7 +12,7 @@ import { getRandomPartners } from '../../../utils/dummyData';
 const GameSquadupContainer = () => {
   const setScreenState = useSetRecoilState(screenState);
   const [controls, setControls] = useState(() => {
-    return screenData['gameSquadup'].gameControl;
+    return screenData['GAME_SQUAD_UP'].gameControl;
   });
   const setHeaderTitle = useSetRecoilState(headerTitle);
   // Current user's Id and Token for submitting files to API
@@ -25,7 +25,7 @@ const GameSquadupContainer = () => {
   });
 
   useEffect(() => {
-    setScreenState('gameSquadup');
+    setScreenState('GAME_SQUAD_UP');
   }, []);
 
   // sets the header title

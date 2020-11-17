@@ -1,9 +1,26 @@
 .matchup-container {
   display: flex;
   flex-wrap: wrap;
-  height: calc(100vh - @headerHeight - @gameControllerHeight);
-  margin-bottom: 80px;
+  height: calc(100vh - 20vh - 100px);
+  .minMQ(@desktop, {height: calc(100vh - 20vh) ;});
+  position: relative;
+  .waiting-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: @cyan;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 3rem;
+    outline-color: @black;
+    text-align: center;
+  }
 }
+
 .avatar-container {
   display: flex;
   align-items: center;
@@ -26,32 +43,37 @@
       width: 100%;
     }
   }
-  .submission-container {
-    border: 5px solid @black;
-    background-color: @blue;
-    border-radius: 16px;
-    padding-top: 16px;
-    padding-bottom: 16px;
-    width: 160px;
-    height: 160px;
-    position: relative;
+}
+.submission-container {
+  border: 5px solid @black;
+  background-color: @blue;
+  border-radius: 16px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  width: 160px;
+  height: 160px;
+  position: relative;
 
-    .submission-image {
-      border-radius: 10px;
-      max-width: 100%;
-      max-height: 100%;
-    }
-
-    .lock-container {
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 25%;
-      bottom: 0;
+  &.game-vote {
+    h1 {
+      color: red;
     }
   }
-}
+  .submission-image {
+    width: 100%;
+    border-radius: 10px;
+    max-width: 100%;
+    max-height: 100%;
+  }
 
+  .lock-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 25%;
+    bottom: 0;
+  }
+}
 .matchup-btn-container {
   display: flex;
   flex-wrap: wrap;
@@ -65,16 +87,6 @@
   transition: all 0.3s ease;
   position: relative;
   .minMQ(@desktop, {height: initial; ;});
-  .thunder-backdrop {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    background-image: url('../images/thunder.svg');
-    background-position: center;
-    background-repeat: no-repeat;
-  }
   .vs-points-container {
     display: flex;
     flex-direction: column;
@@ -119,14 +131,6 @@
     font-weight: 800;
   }
   // <img>s inside the buttons
-  //img {
-  //  margin-top: -5px;
-  //  height: 90%;
-  //  overflow-x: hidden;
-  //  transition: all 0.3s ease;
-  //}
-  //--------------------------
-
   // background colors of specific buttons in the child dashboard
   &.match-1 {
     background: @green;

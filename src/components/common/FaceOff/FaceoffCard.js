@@ -1,11 +1,13 @@
 import React from 'react';
 import AvatarCircle from './AvatarCircle';
-import VSImage from '../../../images/vs.svg';
+import VSImage from '../../../images/vs.png';
 import lockImage from '../../../images/lock.svg';
 const FaceOffCard = ({
   player1,
   player2,
   cardIndex,
+  winner = null,
+  locked = true,
   type = 'writing',
   ...rest
 }) => {
@@ -19,11 +21,12 @@ const FaceOffCard = ({
             src={player1.missions['1'].writingSubmission}
           />
         </div>
+        {winner === 1 && <h1>160 PT</h1>}
       </div>
 
       <div className="vs-points-container">
         <img src={VSImage} alt="accept the mission artwork" />
-        <h1>160 PT</h1>
+        {!winner && <h1>160 PT</h1>}
       </div>
       <div className="avatar-container">
         <AvatarCircle player={player2} />
@@ -32,9 +35,12 @@ const FaceOffCard = ({
             className="submission-image"
             src={player2.missions['1'].writingSubmission}
           />
-          <div className="lock-container">
-            <img className="lock-image" src={lockImage} />
-          </div>
+          {locked && (
+            <div className="lock-container">
+              <img className="lock-image" src={lockImage} />
+            </div>
+          )}
+          {winner === player2.id && <h1>160 PT</h1>}
         </div>
       </div>
     </button>

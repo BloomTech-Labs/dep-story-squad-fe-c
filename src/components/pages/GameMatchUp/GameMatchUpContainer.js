@@ -12,7 +12,7 @@ import { getRandomPartners } from '../../../utils/dummyData';
 const GameMatchUpContainer = () => {
   const setScreenState = useSetRecoilState(screenState);
   const [controls, setControls] = useState(() => {
-    return screenData['gameMatchUp'].gameControl;
+    return screenData['GAME_MATCHUP'].gameControl;
   });
   const setHeaderTitle = useSetRecoilState(headerTitle);
   // Current user's Id and Token for submitting files to API
@@ -25,7 +25,7 @@ const GameMatchUpContainer = () => {
   });
 
   useEffect(() => {
-    setScreenState('gameMatchUp');
+    setScreenState('GAME_MATCHUP');
   }, []);
 
   // sets the header title
@@ -33,7 +33,13 @@ const GameMatchUpContainer = () => {
     setHeaderTitle('The matchup');
   }, [setHeaderTitle]);
 
-  return <RenderGameMatchup players={players} controls={controls} />;
+  return (
+    <RenderGameMatchup
+      players={players}
+      controls={controls}
+      waitingForResult={false}
+    />
+  );
 };
 
 export default GameMatchUpContainer;

@@ -9,14 +9,14 @@ const RenderChildDash = ({ push, messagePopup }) => {
 
   // TODO: Reset mission on every Sat.
   const resetMission = ({}) => {
-    setCurGameState('missionNotStarted');
+    setCurGameState('MISSION_NOT_STARTED');
   };
   // add mission button based on game state
   const getMissionButton = ({ name, message }) => {
     let nextRoute = '';
 
     // if mission has not been started
-    if (name === 'missionNotStarted') {
+    if (name === 'MISSION_NOT_STARTED') {
       nextRoute = '/mission';
     } else {
       nextRoute = getScreenStateByGameState(name);

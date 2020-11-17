@@ -12,7 +12,7 @@ import { getRandomPartners } from '../../../utils/dummyData';
 const GameVoteContainer = () => {
   const setScreenState = useSetRecoilState(screenState);
   const [controls] = useState(() => {
-    return screenData['gameVote'].gameControl;
+    return screenData['INDEPENDENT_VOTING'].gameControl;
   });
   const setHeaderTitle = useSetRecoilState(headerTitle);
   // Current user's Id and Token for submitting files to API
@@ -24,7 +24,7 @@ const GameVoteContainer = () => {
   });
 
   useEffect(() => {
-    setScreenState('gameVote');
+    setScreenState('INDEPENDENT_VOTING');
   }, []);
 
   // sets the header title
