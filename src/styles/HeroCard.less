@@ -1,5 +1,7 @@
 .hero-card {
-  display:flex;
+  display: flex;
+  flex-direction: column;
+  //overflow: hidden;
   &.green {
     background-color: @green;
   }
@@ -12,8 +14,38 @@
   &.blue {
     background-color: @blue;
   }
+  .hero-avatar-wrapper {
+    padding:50px;
+    background-image: url('../images/burst.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 60%;
+    max-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .minMQ(@desktop, {height: 500px;});
+    .hero-avatar {
+      height: 100%;
+      max-width: 400px;
+      //.minMQ(@desktop, {width: 70%; max-height: 50%; max-width: initial;});
+    }
 
-  .hero-avatar {
-    width:40%;
+  }
+
+  .chat-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../images/chat-bubble.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 30%;
+    min-height: 200px;
+    p {
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 1.8;
+    }
   }
 }

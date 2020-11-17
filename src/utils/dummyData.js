@@ -241,7 +241,7 @@ const players = [
   },
 ];
 
-export function getRandomPartners() {
+export function getRandomPartners(curUser) {
   let index1 = Math.ceil(Math.random() * 9);
   let index2 = Math.floor(Math.random() * 9);
   const player1 = players[index1];

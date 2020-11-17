@@ -8,13 +8,17 @@ const RenderGameSharePoints = ({ players, controls }) => {
   const player2 = players[1];
   return (
     <div className="game-container grid-4">
-      <HeroCard player={player1} color="green">
-        <div></div>
-      </HeroCard>
+      <div className={`hero-card yellow`}>
+        <div className="hero-avatar-wrapper ">
+          <img className="hero-avatar" src={player2.avatar} />
+        </div>
+      </div>
       <SharePoints player={player1} />
-      <HeroCard player={players[0]} color="green">
-        <div></div>
-      </HeroCard>
+      <div className={`hero-card green`}>
+        <div className="hero-avatar-wrapper ">
+          <img className="hero-avatar" src={player2.avatar} />
+        </div>
+      </div>
       <SharePoints player={player2} />
       <GameControls controls={controls} />
     </div>
