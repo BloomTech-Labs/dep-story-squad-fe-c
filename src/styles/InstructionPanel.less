@@ -5,22 +5,48 @@
   bottom: 0;
   right: 0;
   left: 0;
+
+  &.modal-panel {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .modal-panel-inner {
+      position: relative;
+      .closeButton {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+      }
+      .submission-image {
+        width: 60%;
+      }
+    }
+  }
+
+  &.modal-panel.show {
+    display:block;
+  }
+
+  &.modal-panel.hide {
+    display:none;
+  }
 }
+
 .container-full.show {
   display: block;
 }
 
 .screen-blocker {
-  display:none;
+  display: none;
   width: 100%;
   height: 100%;
   background-color: white;
   opacity: 0.5;
 }
-.screen-blocker.show{
+.screen-blocker.show {
   display: block;
 }
-
 
 .instruction-panel {
   width: 80vw;
@@ -57,7 +83,6 @@
   }
 }
 
-
-.click-trapper{
+.click-trapper {
   //cursor: not-allowed;
 }

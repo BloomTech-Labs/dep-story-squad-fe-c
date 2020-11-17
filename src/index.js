@@ -33,6 +33,7 @@ import { GameVote } from './components/pages/GameVote';
 
 import { Header } from './components/common/';
 import InstructionPanel from './components/common/InstructionPanel';
+import SubmissionViewer from './components/common/SubmissionViewer';
 import { routeState } from './state/routeState';
 
 ReactDOM.render(
@@ -101,6 +102,7 @@ function App() {
         <Route component={NotFoundPage} />
       </Switch>
       <InstructionPanel />
+      <SubmissionViewer />
     </Security>
   );
 }

@@ -20,28 +20,28 @@ const RenderGameMatchup = ({ players, controls, waitingForResult = false }) => {
             player2={player3}
             type="writing"
             cardIndex={1}
-            locked={true}
+            locked={false}
           />
           <FaceOffCard
             player1={player1}
             player2={player3}
             type="drawing"
             cardIndex={2}
-            locked={true}
+            locked={false}
           />
           <FaceOffCard
             player1={player2}
             player2={player4}
             type="writing"
             cardIndex={3}
-            locked={true}
+            locked={false}
           />
           <FaceOffCard
             player1={player2}
             player2={player4}
             type="drawing"
             cardIndex={4}
-            locked={true}
+            locked={false}
           />
         </>
       ) : (
