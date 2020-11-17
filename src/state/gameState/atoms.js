@@ -5,5 +5,7 @@ export const gameState = atom({
   default: {
     name: 'MISSION_NOT_STARTED',
     message: 'Pending mission',
+    userVoteCount: 0,
+    matchedPlayers: [],
   },
 });

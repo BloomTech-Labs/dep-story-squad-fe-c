@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
-const GameControls = ({ controls }) => {
+const GameControls = ({ controls, onClick = null }) => {
   const { push, goBack } = useHistory();
 
   return (
@@ -11,7 +11,9 @@ const GameControls = ({ controls }) => {
       </button>
       <button
         className="game-button "
-        onClick={() => push(controls.navigateToOnNextButtonClick)}
+        onClick={() =>
+          onClick ? onClick() : push(controls.navigateToOnNextButtonClick)
+        }
       >
         {controls.nextButtonLabel}
       </button>

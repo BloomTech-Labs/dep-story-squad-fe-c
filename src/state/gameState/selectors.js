@@ -13,7 +13,7 @@ export const currentGameState = selector({
   },
   set: ({ set }, newValue) => {
     // set the new user info into local storage
-    window.localStorage.setItem('currentUser', JSON.stringify(newValue));
+    window.localStorage.setItem('currentGameState', JSON.stringify(newValue));
     // update state with the new user
     set(gameState, newValue);
   },
