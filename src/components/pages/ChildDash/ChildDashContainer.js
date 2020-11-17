@@ -5,12 +5,12 @@ import RenderChildDash from './RenderChildDash';
 // Recoil imports
 import { useRecoilValue, useSetRecoilState, useResetRecoilState } from 'recoil';
 import { headerTitle } from '../../../state/headerTitle';
-import { gameState } from '../../../state/gameState';
+import { currentGameState } from '../../../state/gameState';
 import { screenState } from '../../../state/screenState';
 import { panelState } from '../../../state/panelState';
 
 const ChildDashContainer = props => {
-  const curGameState = useRecoilValue(gameState);
+  const curGameState = useRecoilValue(currentGameState);
   const setScreenState = useSetRecoilState(screenState);
   const setPanelState = useSetRecoilState(panelState);
 

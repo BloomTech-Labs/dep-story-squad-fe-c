@@ -7,11 +7,11 @@ import { getData } from '../../../api';
 import { useSetRecoilState, useRecoilValue, useRecoilState } from 'recoil';
 import { headerTitle } from '../../../state/headerTitle';
 import { currentUserState } from '../../../state/userState';
-import { gameState } from '../../../state/gameState/atoms';
+import { currentGameState } from '../../../state/gameState';
 import { screenState } from '../../../state/screenState/atoms';
 
 const MissionWriteContainer = () => {
-  const [curGameState, setGameState] = useRecoilState(gameState);
+  const [curGameState, setGameState] = useRecoilState(currentGameState);
   const [curScreenState, setScreenState] = useRecoilState(screenState);
   const setHeaderTitle = useSetRecoilState(headerTitle);
   // Current user's Id and Token for submitting files to API

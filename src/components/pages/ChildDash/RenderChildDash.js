@@ -1,11 +1,11 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
 
-import { gameState } from '../../../state/gameState';
+import { currentGameState } from '../../../state/gameState';
 import { getScreenStateByGameState } from '../../../utils/data';
 
 const RenderChildDash = ({ push, messagePopup }) => {
-  const [curGameState, setCurGameState] = useRecoilState(gameState);
+  const [curGameState, setCurGameState] = useRecoilState(currentGameState);
 
   // TODO: Reset mission on every Sat.
   const resetMission = ({}) => {

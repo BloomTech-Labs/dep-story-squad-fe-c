@@ -6,14 +6,14 @@ import RenderMissionDash from './RenderMissionDash';
 
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { headerTitle } from '../../../state/headerTitle';
-import { gameState } from '../../../state/gameState';
+import { currentGameState } from '../../../state/gameState';
 import { screenState } from '../../../state/screenState';
 import { currentUserState } from '../../../state/userState';
 
 import { getData } from '../../../api';
 
 const MissionDashContainer = () => {
-  const setGameState = useSetRecoilState(gameState);
+  const setGameState = useSetRecoilState(currentGameState);
   const setScreenState = useSetRecoilState(screenState);
   // Header title
   const setHeaderTitle = useSetRecoilState(headerTitle);
