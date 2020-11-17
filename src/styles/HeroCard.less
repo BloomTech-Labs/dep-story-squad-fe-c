@@ -1,5 +1,11 @@
 .hero-card {
-  display:flex;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  //overflow: hidden;
   &.green {
     background-color: @green;
   }
@@ -12,8 +18,44 @@
   &.blue {
     background-color: @blue;
   }
+  .hero-avatar-wrapper {
+    padding: 50px;
+    background-image: url('../images/burst.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    max-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .minMQ(@desktop, {height: 500px;});
+    .hero-avatar {
+      height: 300px;
+    }
+  }
 
-  .hero-avatar {
-    width:40%;
+  .chat-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../images/chat-bubble.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 30%;
+    width: 100%;
+    min-height: 200px;
+    p {
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 1.8;
+    }
+  }
+
+  .player-name {
+    color: @black;
+    font-size:2rem;
+
+    margin-top: -24px
   }
 }

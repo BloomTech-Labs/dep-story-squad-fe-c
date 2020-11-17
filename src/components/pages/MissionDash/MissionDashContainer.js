@@ -33,7 +33,7 @@ const MissionDashContainer = () => {
   useEffect(() => {
     getData(`/${curUserType}/${curUserId}/progress`)
       .then(res => {
-        const { read, write, draw } = res.data.progress;
+        const { read, write, draw, id } = res.data.progress;
         setCurUser({
           ...curUser,
           missionProgress: {
@@ -41,6 +41,7 @@ const MissionDashContainer = () => {
             read,
             write,
             draw,
+            id,
           },
         });
         // TODO: we need to differentiate whether it's approved or submitted only
