@@ -41,7 +41,6 @@ const InstructionPanel = ({}) => {
 
   return (
     <div className={`container-full ${instruction && curPanelState && 'show'}`}>
-      {/*Some screen state prevents further actions from user*/}
       <div
         className={`screen-blocker ${instruction &&
           instruction.isModal &&

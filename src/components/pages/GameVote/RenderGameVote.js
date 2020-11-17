@@ -1,11 +1,21 @@
 import React from 'react';
 import GameControls from '../../common/GameControls';
+import { useRecoilState } from 'recoil';
+import { modalWindow } from '../../../state/modalWindowOpen';
 
 const RenderGameVote = ({ players, controls }) => {
+  const [curModalWindow, setModalWindow] = useRecoilState(modalWindow);
   const player1 = players[0];
   const player2 = players[1];
   const submissionId1 = 1;
   const submissionId2 = 2;
+
+  const handleClick = () => {
+    setModalWindow({
+      isOpen: true,
+      url: player1.missions['1'].writingSubmission,
+    });
+  };
   return (
     <div className="game-container">
       <div className="game-vote-item">
@@ -20,7 +30,7 @@ const RenderGameVote = ({ players, controls }) => {
             />
             <label htmlFor="submission-1"> Submission 1:</label>
           </div>
-          <div className="submission-container game-vote">
+          <div className="submission-container game-vote" onClick={handleClick}>
             <img
               className="submission-image"
               src={player1.missions['1'].writingSubmission}
@@ -39,7 +49,7 @@ const RenderGameVote = ({ players, controls }) => {
             />
             <label htmlFor="submission-2"> Submission 2:</label>
           </div>
-          <div className="submission-container game-vote">
+          <div className="submission-container game-vote" onClick={handleClick}>
             <img
               className="submission-image"
               src={player2.missions['1'].writingSubmission}
