@@ -10,14 +10,16 @@ const RenderGameSharePoints = ({ players, controls }) => {
     <div className="game-container grid-4">
       <div className={`hero-card yellow`}>
         <div className="hero-avatar-wrapper ">
-          <img className="hero-avatar" src={player2.avatar} />
+          <img className="hero-avatar" src={player1.avatar} />
         </div>
+        <h1 className="player-name">{player1.name} (YOU)</h1>
       </div>
       <SharePoints player={player1} />
       <div className={`hero-card green`}>
         <div className="hero-avatar-wrapper ">
           <img className="hero-avatar" src={player2.avatar} />
         </div>
+        <h1 className="player-name">{player2.name}</h1>
       </div>
       <SharePoints player={player2} />
       <GameControls controls={controls} />

@@ -1,6 +1,10 @@
 .hero-card {
   display: flex;
   flex-direction: column;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
   //overflow: hidden;
   &.green {
     background-color: @green;
@@ -15,22 +19,20 @@
     background-color: @blue;
   }
   .hero-avatar-wrapper {
-    padding:50px;
+    padding: 50px;
     background-image: url('../images/burst.svg');
     background-position: center;
     background-repeat: no-repeat;
-    height: 60%;
+    height: 100%;
+    width: 100%;
     max-height: 400px;
     display: flex;
     align-items: center;
     justify-content: center;
     .minMQ(@desktop, {height: 500px;});
     .hero-avatar {
-      height: 100%;
-      max-width: 400px;
-      //.minMQ(@desktop, {width: 70%; max-height: 50%; max-width: initial;});
+      height: 300px;
     }
-
   }
 
   .chat-wrapper {
@@ -41,11 +43,19 @@
     background-position: center;
     background-repeat: no-repeat;
     height: 30%;
+    width: 100%;
     min-height: 200px;
     p {
       font-weight: 600;
       font-size: 18px;
       line-height: 1.8;
     }
+  }
+
+  .player-name {
+    color: @black;
+    font-size:2rem;
+
+    margin-top: -24px
   }
 }
