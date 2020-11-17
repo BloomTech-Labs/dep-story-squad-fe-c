@@ -2,14 +2,21 @@ import React from 'react';
 import GameControls from '../../common/GameControls';
 import { useRecoilState } from 'recoil';
 import { modalWindow } from '../../../state/modalWindowOpen';
+import { currentGameState } from '../../../state/gameState';
 
 const RenderGameVote = ({ players, controls }) => {
   const [curModalWindow, setModalWindow] = useRecoilState(modalWindow);
+  const [curGameState, setCurGameState] = useRecoilState(currentGameState);
   const player1 = players[0];
   const player2 = players[1];
   const submissionId1 = 1;
   const submissionId2 = 2;
-
+  const updateVoteCount = () => {
+    setCurGameState({
+      ...curGameState,
+      userVoteCount: curGameState.userVoteCount++,
+    });
+  };
   const handleClick = () => {
     setModalWindow({
       isOpen: true,
@@ -58,7 +65,7 @@ const RenderGameVote = ({ players, controls }) => {
         </div>
       </div>
 
-      <GameControls controls={controls} />
+      <GameControls controls={controls} onClick={updateVoteCount} />
     </div>
   );
 };
