@@ -5,9 +5,9 @@ export const currentUserState = selector({
   key: 'currentUserState',
   get: ({ get }) => {
     // look into local storage for cached user info
-    const cachedUser = JSON.parse(window.localStorage.getItem('currentUser'));
-    // return the cached user info or the default userState if no cached obj found
-    return cachedUser ? cachedUser : get(userState);
+    const value = get(userState);
+    const cached = JSON.parse(window.localStorage.getItem('currentUser'));
+    return !cached ? value : cached;
   },
   set: ({ set }, newValue) => {
     // set the new user info into local storage

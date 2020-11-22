@@ -7,16 +7,14 @@ import RenderMissionDash from './RenderMissionDash';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { headerTitle } from '../../../state/headerTitle';
 import { currentGameState } from '../../../state/gameState';
-import { screenState } from '../../../state/screenState';
 import { currentUserState } from '../../../state/userState';
 
 import { getData } from '../../../api';
 
 const MissionDashContainer = () => {
-  const setGameState = useSetRecoilState(currentGameState);
-  const setScreenState = useSetRecoilState(screenState);
   // Header title
   const setHeaderTitle = useSetRecoilState(headerTitle);
+  const [curGameState, setCurGameState] = useRecoilState(currentGameState);
   // mission progress used to control checkbox images and restrict access to missions in order
   const [curUser, setCurUser] = useRecoilState(currentUserState);
   const { curUserId, curUserType } = curUser;
@@ -26,6 +24,26 @@ const MissionDashContainer = () => {
   // Calback to push user to correct URL
   const { push } = useHistory();
   // Whenever this component mounts update the <Header /> title
+  useEffect(() => {
+    const { read, write, draw } = curUser.missionProgress;
+    if (read && write && draw) {
+      setCurGameState({
+        ...curGameState,
+        name: 'PENDING_SUBMISSION_MODERATION',
+      });
+    } else if (read) {
+      setCurGameState({
+        ...curGameState,
+        name: 'READ_COMPLETE',
+      });
+    } else {
+      setCurGameState({
+        ...curGameState,
+        name: 'SUBMISSION_START',
+      });
+    }
+  }, []);
+
   useEffect(() => {
     setHeaderTitle('Mission');
   }, [setHeaderTitle]);
@@ -45,26 +63,6 @@ const MissionDashContainer = () => {
           },
         });
         // TODO: we need to differentiate whether it's approved or submitted only
-        if (read && write && draw) {
-          // right now this function is a dummy random value
-          //   setGameState({
-          //     name: 'pendingSubmissionModeration',
-          //     message: 'Please check back on Wednesday',
-          //   });
-          //   setScreenState('pendingSubmissionModeration');
-          setGameState({
-            name: 'submissionsCompleteApproved',
-            message: 'Please check back on Wednesday',
-          });
-          setScreenState('submissionsCompleteApproved');
-        } else if (read && !write && !draw) {
-          setGameState({
-            name: 'readComplete',
-          });
-          setScreenState('readComplete');
-        } else {
-          setScreenState('submissionStart');
-        }
       })
       .catch(err => {
         console.log(err);

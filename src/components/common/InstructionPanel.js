@@ -3,21 +3,39 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { useHistory } from 'react-router-dom';
 
 import { panelState } from '../../state/panelState';
-import { screenState } from '../../state/screenState';
 import { currentGameState } from '../../state/gameState';
-import { screenData } from '../../utils/data';
+import { routeState } from '../../state/routeState';
+import { screenData, getIsCurrentState } from '../../utils/data';
+import { modalWindow } from '../../state/modalWindowOpen';
 
 const InstructionPanel = ({}) => {
-  const curGameState = useRecoilValue(currentGameState);
-  const curScreenState = useRecoilValue(screenState);
+  const [curGameState, setCurGameState] = useRecoilState(currentGameState);
   const [curPanelState, setPanelState] = useRecoilState(panelState);
+  const [curModalWindow, setModalWindow] = useRecoilState(modalWindow);
+  const curRoute = useRecoilValue(routeState);
   const [instruction, setInstruction] = useState({});
   const { push } = useHistory();
 
   useEffect(() => {
+    const curScreenState = curGameState.name;
+
     if (!screenData[curScreenState]) return;
-    const inst = screenData[curScreenState].instruction;
+
+    const inst = screenData[curScreenState]?.instruction;
+    const isInScope = getIsCurrentState(curScreenState, curRoute);
+
+    // Don't show if
+    if (!isInScope) {
+      return setPanelState(false);
+    }
+    // Don't show if modal panel is open
+    if (curModalWindow.isOpen) {
+      return setPanelState(false);
+    }
+
     if (inst && (!inst.hasShown || inst.showEveryTime)) {
+      // if it's to show every time
+      // If game state is not in correct order,
       inst.hasShown = true;
       setInstruction(inst);
       // set modal to open every time if
@@ -28,7 +46,7 @@ const InstructionPanel = ({}) => {
     } else {
       setPanelState(false);
     }
-  }, [curScreenState]);
+  }, [curGameState]);
 
   const handleClick = () => {
     // which route it will take you to on button click

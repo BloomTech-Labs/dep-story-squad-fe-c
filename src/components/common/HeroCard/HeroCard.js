@@ -1,7 +1,8 @@
 import React from 'react';
-const HeroCard = ({ player, color, isYou = false }) => {
+
+const HeroCard = ({ player, backgroundColor, isYou = false }) => {
   return (
-    <div className={`hero-card ${color}`}>
+    <div className={`hero-card ${backgroundColor}`}>
       <div className="chat-wrapper">
         <p>
           Hi, <br /> My name is {player.name}

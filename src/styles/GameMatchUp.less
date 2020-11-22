@@ -59,12 +59,6 @@
       color: red;
     }
   }
-  .submission-image {
-    width: 100%;
-    border-radius: 10px;
-    max-width: 100%;
-    max-height: 100%;
-  }
 
   .lock-container {
     position: absolute;
@@ -129,6 +123,8 @@
     color: @white;
     font-size: 1.6rem;
     font-weight: 800;
+    max-width:50ch;
+
   }
   // <img>s inside the buttons
   // background colors of specific buttons in the child dashboard
@@ -159,4 +155,11 @@
       &.match-4 {height: 37.5vh;}}
     )
     ;;
+}
+
+.submission-image {
+  width: 100%;
+  border-radius: 10px;
+  max-width: 100%;
+  max-height: 100%;
 }

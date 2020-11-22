@@ -1,27 +1,22 @@
 import React from 'react';
+
 import GameControls from '../../common/GameControls';
-import HeroCard from '../../common/HeroCard/HeroCard';
 import SharePoints from '../../common/SharePoints';
 
 const RenderGameSharePoints = ({ players, controls }) => {
-  const player1 = players[0];
-  const player2 = players[1];
   return (
     <div className="game-container grid-4">
-      <div className={`hero-card yellow`}>
-        <div className="hero-avatar-wrapper ">
-          <img className="hero-avatar" src={player1.avatar} />
-        </div>
-        <h1 className="player-name">{player1.name} (YOU)</h1>
-      </div>
-      <SharePoints player={player1} />
-      <div className={`hero-card green`}>
-        <div className="hero-avatar-wrapper ">
-          <img className="hero-avatar" src={player2.avatar} />
-        </div>
-        <h1 className="player-name">{player2.name}</h1>
-      </div>
-      <SharePoints player={player2} />
+      {players.map(player => (
+        <>
+          <div className={`hero-card ${player.backgroundColor}`}>
+            <div className="hero-avatar-wrapper ">
+              <img className="hero-avatar" src={player.avatar} />
+            </div>
+            <h1 className="player-name">{player.name}</h1>
+          </div>
+          <SharePoints player={player} />
+        </>
+      ))}
       <GameControls controls={controls} />
     </div>
   );

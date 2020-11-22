@@ -1,0 +1,36 @@
+.modal-panel-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: black;
+  display: block;
+  justify-content: center;
+  align-items: center;
+
+  .modal-panel-inner {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    .submission-image {
+      width: 90%;
+      max-width:860px;
+    }
+  }
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 20;
+  outline: none;
+  padding: 20px;
+  border-radius: 10px;
+  border: none;
+  background-color: @red;
+}

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import {
   BrowserRouter as Router,
@@ -10,7 +10,7 @@ import {
 import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 
 // provider for Recoil state
-import { RecoilRoot, useSetRecoilState } from 'recoil';
+import { RecoilRoot, useRecoilValue, useSetRecoilState } from 'recoil';
 
 // Styles imports
 import './styles/index.less';
@@ -30,11 +30,13 @@ import { GameSquadup } from './components/pages/GameSquadup';
 import { GameSharePoints } from './components/pages/GameSharePoints';
 import { GameMatchUp } from './components/pages/GameMatchUp';
 import { GameVote } from './components/pages/GameVote';
+import { GameWaitForResult } from './components/pages/GameWaitForResult';
 
 import { Header } from './components/common/';
 import InstructionPanel from './components/common/InstructionPanel';
 import SubmissionViewer from './components/common/SubmissionViewer';
 import { routeState } from './state/routeState';
+import { matchupPlayers } from './state/gameState';
 
 ReactDOM.render(
   <Router>
@@ -49,6 +51,7 @@ ReactDOM.render(
 
 function App() {
   const setCurRoute = useSetRecoilState(routeState);
+  const players = useRecoilValue(matchupPlayers);
   const location = useLocation();
 
   // The reason to declare App this way is so that we can use any helper functions we'd need for business logic, in our case auth.
@@ -58,7 +61,7 @@ function App() {
   useEffect(() => {
     // get the current route. added here just in case we need to use this later
     setCurRoute(location.pathname);
-  }, [location]);
+  });
 
   const authHandler = () => {
     // We pass this to our <Security /> component that wraps our routes.
@@ -98,11 +101,16 @@ function App() {
           component={() => <GameMatchUp />}
         />
         <SecureRoute path="/game/vote" exact component={() => <GameVote />} />
+        <SecureRoute
+          path="/game/waiting-for-result"
+          exact
+          component={() => <GameWaitForResult />}
+        />
 
         <Route component={NotFoundPage} />
       </Switch>
       <InstructionPanel />
-      <SubmissionViewer />
+      <SubmissionViewer standAlone={false} />
     </Security>
   );
 }

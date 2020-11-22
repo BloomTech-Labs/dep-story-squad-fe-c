@@ -1,30 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useSetRecoilState, useRecoilState, useRecoilValue } from 'recoil';
+
+import { headerTitle } from '../../../state/headerTitle';
+import { currentGameState, matchupPlayers } from '../../../state/gameState';
+import { getGameControl } from '../../../utils/data';
 import RenderGameVote from './RenderGameVote';
 
-// Recoil imports
-import { useSetRecoilState, useRecoilValue } from 'recoil';
-import { headerTitle } from '../../../state/headerTitle';
-import { currentUserState } from '../../../state/userState';
-import { screenState } from '../../../state/screenState/atoms';
-import { screenData } from '../../../utils/data';
-import { getRandomPartners } from '../../../utils/dummyData';
-
 const GameVoteContainer = () => {
-  const setScreenState = useSetRecoilState(screenState);
-  const [controls] = useState(() => {
-    return screenData['INDEPENDENT_VOTING'].gameControl;
-  });
+  const { push } = useHistory();
   const setHeaderTitle = useSetRecoilState(headerTitle);
-  // Current user's Id and Token for submitting files to API
-  const { curUserId } = useRecoilValue(currentUserState);
-
-  // set current players
-  const [players, setPlayers] = useState(() => {
-    return getRandomPartners();
-  });
+  const [curGameState, setCurGameState] = useRecoilState(currentGameState);
+  const players = useRecoilValue(matchupPlayers);
+  const controls = getGameControl('INDEPENDENT_VOTING');
 
   useEffect(() => {
-    setScreenState('INDEPENDENT_VOTING');
+    setCurGameState({
+      ...curGameState,
+      name: 'INDEPENDENT_VOTING',
+      matchedPlayers: [...players],
+    });
   }, []);
 
   // sets the header title
@@ -32,7 +27,25 @@ const GameVoteContainer = () => {
     setHeaderTitle('Vote for your Favorite Story');
   }, [setHeaderTitle]);
 
-  return <RenderGameVote players={players} controls={controls} />;
+  const handleRoute = e => {
+    let currentVote = curGameState.userVoteCount;
+
+    const newState = {
+      ...curGameState,
+      userVoteCount: currentVote + 1,
+    };
+
+    setCurGameState(newState);
+    push('/game/match-up');
+  };
+
+  return (
+    <RenderGameVote
+      players={players.length && players.slice(0, 2)}
+      controls={controls}
+      submitVote={handleRoute}
+    />
+  );
 };
 
 export default GameVoteContainer;

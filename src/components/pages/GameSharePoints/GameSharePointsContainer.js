@@ -1,28 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useSetRecoilState, useRecoilState, useRecoilValue } from 'recoil';
+
+import { headerTitle } from '../../../state/headerTitle';
+import { currentGameState, matchupPlayers } from '../../../state/gameState';
+import { getGameControl } from '../../../utils/data';
 import RenderGameSharePoints from './RenderGameSharePoints';
 
-// Recoil imports
-import { useSetRecoilState, useRecoilValue, useRecoilState } from 'recoil';
-import { headerTitle } from '../../../state/headerTitle';
-import { currentUserState } from '../../../state/userState';
-import { screenState } from '../../../state/screenState/atoms';
-import { screenData } from '../../../utils/data';
-import { getRandomPartners } from '../../../utils/dummyData';
-import { currentGameState } from '../../../state/gameState';
-
 const GameSharePointsContainer = () => {
-  const [curGameState, setCurGameState] = useRecoilState(currentGameState);
-  const setScreenState = useSetRecoilState(screenState);
-  const [controls, setControls] = useState(() => {
-    const data = screenData['GAME_SHARE_POINTS'].gameControl;
-    return data;
-  });
   const setHeaderTitle = useSetRecoilState(headerTitle);
-  // Current user's Id and Token for submitting files to API
-  const { curUserId } = useRecoilValue(currentUserState);
+  const [curGameState, setCurGameState] = useRecoilState(currentGameState);
+  const players = useRecoilValue(matchupPlayers);
+  const controls = getGameControl('GAME_SHARE_POINTS');
 
   useEffect(() => {
-    setScreenState('GAME_SHARE_POINTS');
+    setCurGameState({
+      ...curGameState,
+      name: 'GAME_SHARE_POINTS',
+      matchedPlayers: [...players],
+    });
   }, []);
 
   // sets the header title
@@ -31,10 +26,7 @@ const GameSharePointsContainer = () => {
   }, [setHeaderTitle]);
 
   return (
-    <RenderGameSharePoints
-      players={curGameState.matchedPlayers}
-      controls={controls}
-    />
+    <RenderGameSharePoints players={players.slice(0, 2)} controls={controls} />
   );
 };
 

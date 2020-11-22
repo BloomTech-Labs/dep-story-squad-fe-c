@@ -1,4 +1,5 @@
 import React from 'react';
+
 const AvatarCircle = ({ player }) => {
   return (
     <div className="avatar-container">

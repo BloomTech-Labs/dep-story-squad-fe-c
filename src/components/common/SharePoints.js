@@ -1,25 +1,24 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
+
 import { modalWindow } from '../../state/modalWindowOpen';
 
 const SharePoints = ({ label, player }) => {
   const [curModalWindow, setModalWindow] = useRecoilState(modalWindow);
-  const idx = Math.ceil(Math.random() * 2);
-  const missions = player.missions;
-
-  const handleClick = url => {
+  const showModalViewer = () => {
     setModalWindow({
       isOpen: true,
-      url,
+      url: player.writingSubmission.url,
     });
   };
   return (
     <div className="share-points-container">
-      <div
-        className="submission-item"
-        onClick={() => handleClick(missions[idx].writingSubmission)}
-      >
-        <img src={missions[idx].writingSubmission} />
+      <div className="submission-item">
+        <img
+          className="submission-image"
+          src={player.writingSubmission.url}
+          onClick={showModalViewer}
+        />
         <select>
           <option value="0">0</option>
           <option value="10">10</option>
@@ -35,11 +34,13 @@ const SharePoints = ({ label, player }) => {
         </select>
         <h1>Writing</h1>
       </div>
-      <div
-        className="submission-item"
-        onClick={() => handleClick(missions[idx].writingSubmission)}
-      >
-        <img src={missions[idx].drawingSubmission} />
+
+      <div className="submission-item">
+        <img
+          className="submission-image"
+          src={player.drawingSubmission.url}
+          onClick={showModalViewer}
+        />
         <select>
           <option value="0">0</option>
           <option value="10">10</option>
