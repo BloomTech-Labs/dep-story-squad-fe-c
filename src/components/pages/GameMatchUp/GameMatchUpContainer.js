@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 
 import { headerTitle } from '../../../state/headerTitle';
@@ -11,7 +11,6 @@ const GameMatchUpContainer = () => {
   const curGameState = useRecoilValue(currentGameState);
   const players = useRecoilValue(matchupPlayers);
   const controls = getGameControl('GAME_MATCHUP');
-
   // sets the header title
   useEffect(() => {
     setHeaderTitle('The matchup');

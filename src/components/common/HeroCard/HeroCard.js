@@ -11,10 +11,7 @@ const HeroCard = ({ player, backgroundColor, isYou = false }) => {
       <div className="hero-avatar-wrapper ">
         <img className="hero-avatar" src={player.avatar} />
       </div>
-      <h1 className="player-name">
-        {player.name}
-        {isYou && '(YOU)'}
-      </h1>
+      <h1 className="player-name">{player.name}</h1>
     </div>
   );
 };

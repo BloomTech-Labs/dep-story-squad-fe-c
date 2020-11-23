@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
 
-import { modalWindow } from '../../state/modalWindowOpen';
+import { modalWindow } from '../../state/modalWindow';
 
 const SharePoints = ({ label, player }) => {
   const [curModalWindow, setModalWindow] = useRecoilState(modalWindow);

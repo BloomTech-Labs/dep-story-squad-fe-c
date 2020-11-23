@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
 
-import { modalWindow } from '../../../state/modalWindowOpen';
+import { modalWindow } from '../../../state/modalWindow';
 import GameControls from '../../common/GameControls';
 
 const RenderGameVote = ({ players, type, controls, submitVote }) => {
@@ -20,11 +20,14 @@ const RenderGameVote = ({ players, type, controls, submitVote }) => {
       url: getUrl(player),
     });
   };
+  const handleOnChange = event => {
+    // To be implemented
+  };
 
   return (
     <div className="game-container">
       {players.map((player, idx) => (
-        <div className="game-vote-item">
+        <div className="game-vote-item" key={idx}>
           <div className="game-vote-inner">
             <img
               className="submission-image"
@@ -38,6 +41,7 @@ const RenderGameVote = ({ players, type, controls, submitVote }) => {
                 name="fav-submission"
                 value={idx + 1}
                 checked
+                onChange={handleOnChange}
               />
               <label htmlFor="submission-1"> Submission {idx + 1}:</label>
             </div>

@@ -6,8 +6,12 @@ import HeroCard from '../../common/HeroCard/HeroCard';
 const RenderGameSquadup = ({ players, controls }) => {
   return (
     <div className="game-container ">
-      {players.map(player => (
-        <HeroCard player={player} backgroundColor={player.backgroundColor} />
+      {players.map((player, idx) => (
+        <HeroCard
+          key={idx}
+          player={player}
+          backgroundColor={player.backgroundColor}
+        />
       ))}
       <GameControls controls={controls} />
     </div>

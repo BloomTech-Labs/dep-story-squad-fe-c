@@ -21,7 +21,10 @@ const MissionDrawContainer = () => {
   const [missionPrompt, setMissionPrompt] = useState('Loading...');
 
   useEffect(() => {
-    setCurGameState('SUBMISSION_DRAW_START');
+    setCurGameState({
+      ...curGameState,
+      name: 'SUBMISSION_DRAW_START',
+    });
   }, []);
 
   // Get the text for mission prompt

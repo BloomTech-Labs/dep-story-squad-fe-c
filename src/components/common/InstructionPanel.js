@@ -2,15 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { useHistory } from 'react-router-dom';
 
-import { panelState } from '../../state/panelState';
+import { instructionPanelState } from '../../state/instructionPanel';
 import { currentGameState } from '../../state/gameState';
 import { routeState } from '../../state/routeState';
 import { screenData, getIsCurrentState } from '../../utils/data';
-import { modalWindow } from '../../state/modalWindowOpen';
+import { modalWindow } from '../../state/modalWindow';
 
-const InstructionPanel = ({}) => {
+const InstructionPanel = ({ gameState = null }) => {
   const [curGameState, setCurGameState] = useRecoilState(currentGameState);
-  const [curPanelState, setPanelState] = useRecoilState(panelState);
+  const [curPanelState, setPanelState] = useRecoilState(instructionPanelState);
   const [curModalWindow, setModalWindow] = useRecoilState(modalWindow);
   const curRoute = useRecoilValue(routeState);
   const [instruction, setInstruction] = useState({});

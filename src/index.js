@@ -11,7 +11,6 @@ import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 
 // provider for Recoil state
 import { RecoilRoot, useRecoilValue, useSetRecoilState } from 'recoil';
-
 // Styles imports
 import './styles/index.less';
 import 'antd/dist/antd.less';
@@ -36,7 +35,6 @@ import { Header } from './components/common/';
 import InstructionPanel from './components/common/InstructionPanel';
 import SubmissionViewer from './components/common/SubmissionViewer';
 import { routeState } from './state/routeState';
-import { matchupPlayers } from './state/gameState';
 
 ReactDOM.render(
   <Router>
@@ -49,9 +47,8 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-function App() {
+export function App() {
   const setCurRoute = useSetRecoilState(routeState);
-  const players = useRecoilValue(matchupPlayers);
   const location = useLocation();
 
   // The reason to declare App this way is so that we can use any helper functions we'd need for business logic, in our case auth.
@@ -110,7 +107,7 @@ function App() {
         <Route component={NotFoundPage} />
       </Switch>
       <InstructionPanel />
-      <SubmissionViewer standAlone={false} />
+      <SubmissionViewer />
     </Security>
   );
 }

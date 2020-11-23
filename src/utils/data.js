@@ -3,11 +3,14 @@
 // 2. route that each state belongs too
 // 3. game related state also have a game control that can navigate to and from the state
 
+// This is the game state that controls the flow of the game
 export const screenData = {
   // Default route
   Home: {
     route: '/',
   },
+  // This is the new mission state
+  // might need to
   MISSION_NOT_STARTED: {
     // * this property is used for
     // 1. to take user back to the part of the game where they can visit,

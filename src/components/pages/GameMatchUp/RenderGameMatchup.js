@@ -52,7 +52,7 @@ const RenderGameMatchup = ({
       )}
       <section className="game-control">
         <button className="game-button dark" onClick={() => push('/dashboard')}>
-          Dashboard
+          Exit
         </button>
         {voteCount >= 3 ? (
           <button

@@ -43,7 +43,7 @@ const ChildDashContainer = props => {
         />
       );
     }
-  }, [curGameState]);
+  }, [curGameState.name]);
 
   // Whenever this component mounts update the <Header /> title
   useEffect(() => {

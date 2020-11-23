@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { useRecoilState } from 'recoil';
-import { modalWindow } from '../../state/modalWindowOpen';
+import { modalWindow } from '../../state/modalWindow';
 import { currentGameState } from '../../state/gameState';
 
 const GameControls = ({ controls, nextButtonClick = null }) => {
@@ -34,7 +34,11 @@ const GameControls = ({ controls, nextButtonClick = null }) => {
       <button className="game-button dark" onClick={() => push('/dashboard')}>
         {prev.label}
       </button>
-      <button className="game-button " onClick={handleNextButtonClick}>
+      <button
+        className="game-button "
+        data-testid="next-button"
+        onClick={handleNextButtonClick}
+      >
         {next.label}
       </button>
     </section>

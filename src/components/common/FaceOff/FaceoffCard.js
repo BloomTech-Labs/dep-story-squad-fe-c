@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 
-import { modalWindow } from '../../../state/modalWindowOpen';
+import { modalWindow } from '../../../state/modalWindow';
 import AvatarCircle from './AvatarCircle';
 import VSImage from '../../../images/vs.png';
 import lockImage from '../../../images/lock.svg';

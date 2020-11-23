@@ -2,7 +2,7 @@ import React from 'react';
 import { useRecoilState } from 'recoil';
 
 import CloseIcon from '../../images/closeIcon.svg';
-import { modalWindow } from '../../state/modalWindowOpen';
+import { modalWindow } from '../../state/modalWindow';
 
 const SubmissionViewer = () => {
   const [curModalWindow, setModalWindow] = useRecoilState(modalWindow);
