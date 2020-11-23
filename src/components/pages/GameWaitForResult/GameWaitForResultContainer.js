@@ -4,30 +4,33 @@ import { useSetRecoilState, useRecoilState, useRecoilValue } from 'recoil';
 import { headerTitle } from '../../../state/headerTitle';
 import { currentGameState, matchupPlayers } from '../../../state/gameState';
 import { getGameControl } from '../../../utils/data';
-import RenderGameSquadup from './RenderGameSquadup';
+import RenderGameWaitForResult from './RenderGameWaitForResult';
 
-const GameSquadupContainer = () => {
+const GameWaitForResultContainer = () => {
   const setHeaderTitle = useSetRecoilState(headerTitle);
   const [curGameState, setCurGameState] = useRecoilState(currentGameState);
   const players = useRecoilValue(matchupPlayers);
-  const controls = getGameControl('GAME_SQUAD_UP');
+  const controls = getGameControl('PENDING_GAME_RESULT');
 
   useEffect(() => {
     setCurGameState({
       ...curGameState,
-      name: 'GAME_SQUAD_UP',
-      matchedPlayers: [...players],
+      name: 'PENDING_GAME_RESULT',
     });
   }, []);
 
   // sets the header title
   useEffect(() => {
-    setHeaderTitle('Join the Squad');
+    setHeaderTitle('The matchup');
   }, [setHeaderTitle]);
 
   return (
-    <RenderGameSquadup players={players.slice(0, 2)} controls={controls} />
+    <RenderGameWaitForResult
+      players={players}
+      controls={controls}
+      waitingForResult={false}
+    />
   );
 };
 
-export default GameSquadupContainer;
+export default GameWaitForResultContainer;

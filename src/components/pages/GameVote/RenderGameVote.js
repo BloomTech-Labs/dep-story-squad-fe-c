@@ -1,71 +1,58 @@
 import React from 'react';
-import GameControls from '../../common/GameControls';
 import { useRecoilState } from 'recoil';
-import { modalWindow } from '../../../state/modalWindowOpen';
-import { currentGameState } from '../../../state/gameState';
 
-const RenderGameVote = ({ players, controls }) => {
+import { modalWindow } from '../../../state/modalWindow';
+import GameControls from '../../common/GameControls';
+
+const RenderGameVote = ({ players, type, controls, submitVote }) => {
   const [curModalWindow, setModalWindow] = useRecoilState(modalWindow);
-  const [curGameState, setCurGameState] = useRecoilState(currentGameState);
-  const player1 = players[0];
-  const player2 = players[1];
-  const submissionId1 = 1;
-  const submissionId2 = 2;
-  const updateVoteCount = () => {
-    setCurGameState({
-      ...curGameState,
-      userVoteCount: curGameState.userVoteCount++,
-    });
+
+  const getUrl = player => {
+    if (type === 'Writing') {
+      return player.writingSubmission.url;
+    } else {
+      return player.drawingSubmission.url;
+    }
   };
-  const handleClick = () => {
+  const showModalViewer = player => {
     setModalWindow({
       isOpen: true,
-      url: player1.missions['1'].writingSubmission,
+      url: getUrl(player),
     });
   };
+  const handleOnChange = event => {
+    // To be implemented
+  };
+
   return (
     <div className="game-container">
-      <div className="game-vote-item">
-        <div className="game-vote-inner">
-          <div className="input-wrapper">
-            <input
-              type="radio"
-              id="submission-1"
-              name="fav-submission"
-              value={submissionId1}
-              checked
-            />
-            <label htmlFor="submission-1"> Submission 1:</label>
-          </div>
-          <div className="submission-container game-vote" onClick={handleClick}>
+      {players.map((player, idx) => (
+        <div className="game-vote-item" key={idx}>
+          <div className="game-vote-inner">
             <img
               className="submission-image"
-              src={player1.missions['1'].writingSubmission}
+              src={getUrl(player)}
+              onClick={() => showModalViewer(player)}
             />
+            <div className="input-wrapper">
+              <input
+                type="radio"
+                id="submission-1"
+                name="fav-submission"
+                value={idx + 1}
+                checked
+                onChange={handleOnChange}
+              />
+              <label htmlFor="submission-1"> Submission {idx + 1}:</label>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="game-vote-item">
-        <div className="game-vote-inner">
-          <div className="input-wrapper">
-            <input
-              type="radio"
-              id="submission-2"
-              name="fav-submission"
-              value={submissionId2}
-            />
-            <label htmlFor="submission-2"> Submission 2:</label>
-          </div>
-          <div className="submission-container game-vote" onClick={handleClick}>
-            <img
-              className="submission-image"
-              src={player2.missions['1'].writingSubmission}
-            />
-          </div>
-        </div>
-      </div>
-
-      <GameControls controls={controls} onClick={updateVoteCount} />
+      ))}
+      <GameControls
+        show={!curModalWindow.isOpen}
+        controls={controls}
+        nextButtonClick={submitVote}
+      />
     </div>
   );
 };

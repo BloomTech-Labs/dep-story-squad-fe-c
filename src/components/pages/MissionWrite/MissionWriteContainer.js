@@ -1,18 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import RenderMissionWrite from './RenderMissionWrite';
+import { useSetRecoilState, useRecoilValue, useRecoilState } from 'recoil';
 
 import { getData } from '../../../api';
-
-// Recoil imports
-import { useSetRecoilState, useRecoilValue, useRecoilState } from 'recoil';
 import { headerTitle } from '../../../state/headerTitle';
 import { currentUserState } from '../../../state/userState';
 import { currentGameState } from '../../../state/gameState';
-import { screenState } from '../../../state/screenState/atoms';
+import RenderMissionWrite from './RenderMissionWrite';
 
 const MissionWriteContainer = () => {
-  const [curGameState, setGameState] = useRecoilState(currentGameState);
-  const [curScreenState, setScreenState] = useRecoilState(screenState);
+  const [curGameState, setCurGameState] = useRecoilState(currentGameState);
   const setHeaderTitle = useSetRecoilState(headerTitle);
   // Current user's Id and Token for submitting files to API
   const { curUserId } = useRecoilValue(currentUserState);
@@ -25,7 +21,10 @@ const MissionWriteContainer = () => {
   const [missionPrompt, setMissionPrompt] = useState('Loading...');
 
   useEffect(() => {
-    setScreenState('submissionWriteStart');
+    setCurGameState({
+      ...curGameState,
+      name: 'SUBMISSION_WRITE_START',
+    });
   }, []);
 
   // Get the text for mission prompt

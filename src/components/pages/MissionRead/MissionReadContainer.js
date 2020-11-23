@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { getData, putData } from '../../../api';
-import RenderMissionRead from './RenderMissionRead';
-// Recoil imports
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
+
 import { headerTitle } from '../../../state/headerTitle';
 import { currentUserState } from '../../../state/userState';
+import { getData, putData } from '../../../api';
+import RenderMissionRead from './RenderMissionRead';
 
 const MissionReadContainer = () => {
   // Header Title

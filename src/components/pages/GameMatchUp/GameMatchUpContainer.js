@@ -1,33 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
+
+import { headerTitle } from '../../../state/headerTitle';
+import { currentGameState, matchupPlayers } from '../../../state/gameState';
+import { getGameControl } from '../../../utils/data';
 import RenderGameMatchup from './RenderGameMatchup';
 
-// Recoil imports
-import { useSetRecoilState, useRecoilValue } from 'recoil';
-import { headerTitle } from '../../../state/headerTitle';
-import { currentUserState } from '../../../state/userState';
-import { screenState } from '../../../state/screenState/atoms';
-import { screenData } from '../../../utils/data';
-import { getRandomPartners } from '../../../utils/dummyData';
-
 const GameMatchUpContainer = () => {
-  const setScreenState = useSetRecoilState(screenState);
-  const [controls, setControls] = useState(() => {
-    return screenData['GAME_MATCHUP'].gameControl;
-  });
   const setHeaderTitle = useSetRecoilState(headerTitle);
-  // Current user's Id and Token for submitting files to API
-  const { curUserId } = useRecoilValue(currentUserState);
-
-  // set current players
-  const [players, setPlayers] = useState(() => {
-    const players = getRandomPartners();
-    return players;
-  });
-
-  useEffect(() => {
-    setScreenState('GAME_MATCHUP');
-  }, []);
-
+  const curGameState = useRecoilValue(currentGameState);
+  const players = useRecoilValue(matchupPlayers);
+  const controls = getGameControl('GAME_MATCHUP');
   // sets the header title
   useEffect(() => {
     setHeaderTitle('The matchup');
@@ -38,6 +21,7 @@ const GameMatchUpContainer = () => {
       players={players}
       controls={controls}
       waitingForResult={false}
+      voteCount={curGameState.userVoteCount}
     />
   );
 };

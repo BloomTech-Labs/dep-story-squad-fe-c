@@ -77,7 +77,6 @@ const Uploader = ({ fileLimit, uploadURL }) => {
     uploadSubmissionData(endpoint, formData)
       .then(res => {
         updateProgress(res.data.progress[mission]);
-        console.log('submisisonRes: ', res);
         setErrorState(false);
         message.success('Upload Successful');
         setTimeout(() => {
