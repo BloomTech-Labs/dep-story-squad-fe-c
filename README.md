@@ -13,6 +13,7 @@ Feel free to contact any of the labs26 contributors below, or DM in Slack. We'd 
 # Dev Demo Videos
 1. [ss_overview.mp4](https://drive.google.com/file/d/1G9-DYp3Au6NsU95k4z9Z_BmLCuYMRWrH/view?usp=sharing)
 2. [Recoil Demo](https://drive.google.com/file/d/1w8b0121HndBaQ7hxyDVCUG_1Gp6IfPUu/view?usp=sharing)
+3. [Lab28 Demo](https://drive.google.com/file/d/1NLZc1nixUbmOO4gziiA6Nv38SucTE2L5/view?usp=sharing)
 
 # Other Resources
 You might need to DM Jacob Tharp to get access:
